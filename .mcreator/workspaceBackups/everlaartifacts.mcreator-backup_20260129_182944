@@ -1,0 +1,3870 @@
+{
+  "mod_elements": [
+    {
+      "name": "DeepslateAuricOre",
+      "type": "block",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "deepslate_auric_ore",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/everlaartifacts/blockstates/deepslate_auric_ore.json",
+          "src/main/java/net/everla/everlaartifacts/block/DeepslateAuricOreBlock.java",
+          "src/main/resources/data/everlaartifacts/forge/biome_modifier/deepslate_auric_ore_biome_modifier.json",
+          "src/main/resources/data/everlaartifacts/worldgen/placed_feature/deepslate_auric_ore.json",
+          "src/main/resources/assets/everlaartifacts/models/block/deepslate_auric_ore.json",
+          "src/main/resources/data/everlaartifacts/worldgen/configured_feature/deepslate_auric_ore.json",
+          "src/main/resources/assets/everlaartifacts/models/item/deepslate_auric_ore.json"
+        ]
+      }
+    },
+    {
+      "name": "RawAuric",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "raw_auric",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/item/RawAuricItem.java",
+          "src/main/resources/assets/everlaartifacts/models/item/raw_auric.json"
+        ]
+      }
+    },
+    {
+      "name": "Deepslateauricoredrop",
+      "type": "loottable",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "deepslateauricoredrop",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/loot_tables/blocks/deepslate_auric_ore.json"
+        ]
+      }
+    },
+    {
+      "name": "AuricScrap",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "auric_scrap",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/everlaartifacts/models/item/auric_scrap.json",
+          "src/main/java/net/everla/everlaartifacts/item/AuricScrapItem.java"
+        ]
+      }
+    },
+    {
+      "name": "AuricScrapBlock",
+      "type": "block",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "auric_scrap_block",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/everlaartifacts/models/item/auric_scrap_block.json",
+          "src/main/resources/assets/everlaartifacts/blockstates/auric_scrap_block.json",
+          "src/main/resources/assets/everlaartifacts/models/block/auric_scrap_block.json",
+          "src/main/resources/data/everlaartifacts/loot_tables/blocks/auric_scrap_block.json",
+          "src/main/java/net/everla/everlaartifacts/block/AuricScrapBlockBlock.java"
+        ]
+      }
+    },
+    {
+      "name": "AuricScrapBlockCrafting",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "auric_scrap_block_crafting",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/auric_scrap_block_crafting.json"
+        ]
+      }
+    },
+    {
+      "name": "RawAuricSmelting",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "raw_auric_smelting",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/raw_auric_smelting.json"
+        ]
+      }
+    },
+    {
+      "name": "RawAuricBlasting",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "raw_auric_blasting",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/raw_auric_blasting.json"
+        ]
+      }
+    },
+    {
+      "name": "AuricOreSmelting",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "auric_ore_smelting",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/auric_ore_smelting.json"
+        ]
+      }
+    },
+    {
+      "name": "AuricOreBlasting",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "auric_ore_blasting",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/auric_ore_blasting.json"
+        ]
+      }
+    },
+    {
+      "name": "AuricIngot",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "auric_ingot",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/item/AuricIngotItem.java",
+          "src/main/resources/assets/everlaartifacts/models/item/auric_ingot.json"
+        ]
+      }
+    },
+    {
+      "name": "AuricIngotCrafting",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "auric_ingot_crafting",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/auric_ingot_crafting.json"
+        ]
+      }
+    },
+    {
+      "name": "ZakoUncle",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "zako_uncle",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/everlaartifacts/models/item/zako_uncle.json",
+          "src/main/java/net/everla/everlaartifacts/item/ZakoUncleItem.java"
+        ]
+      }
+    },
+    {
+      "name": "ZakoZako",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "zako_zako",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/procedures/ZakoZakoProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ThousandLoveRecipe",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "thousand_love_recipe",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/thousand_love_recipe.json"
+        ]
+      }
+    },
+    {
+      "name": "StayAtUrHouseRecipe",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "stay_at_ur_house_recipe",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/stay_at_ur_house_recipe.json"
+        ]
+      }
+    },
+    {
+      "name": "SuicideFunc",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "suicide_func",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/procedures/SuicideFuncProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Suicide",
+      "type": "command",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "suicide",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/command/SuicideCommand.java"
+        ]
+      }
+    },
+    {
+      "name": "KillTheMessengerRecipe",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "kill_the_messenger_recipe",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/kill_the_messenger_recipe.json"
+        ]
+      }
+    },
+    {
+      "name": "AlephRecipe",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "aleph_recipe",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/aleph_recipe.json"
+        ]
+      }
+    },
+    {
+      "name": "CruelAngelRecipe",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "cruel_angel_recipe",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/cruel_angel_recipe.json"
+        ]
+      }
+    },
+    {
+      "name": "DelicateWeaponRecipe",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "delicate_weapon_recipe",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/delicate_weapon_recipe.json"
+        ]
+      }
+    },
+    {
+      "name": "SweetDeathRecipe",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "sweet_death_recipe",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/sweet_death_recipe.json"
+        ]
+      }
+    },
+    {
+      "name": "NeverGonnaGiveYouUpRecipe",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "never_gonna_give_you_up_recipe",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/never_gonna_give_you_up_recipe.json"
+        ]
+      }
+    },
+    {
+      "name": "Hardest2BeRecipe",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "hardest_2_be_recipe",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/hardest_2_be_recipe.json"
+        ]
+      }
+    },
+    {
+      "name": "RealSmokerRecipe",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "real_smoker_recipe",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/real_smoker_recipe.json"
+        ]
+      }
+    },
+    {
+      "name": "HackerGamerRecipe",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "hacker_gamer_recipe",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/hacker_gamer_recipe.json"
+        ]
+      }
+    },
+    {
+      "name": "FadingSkyRecipe",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "fading_sky_recipe",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/fading_sky_recipe.json"
+        ]
+      }
+    },
+    {
+      "name": "ElectricalStickBoneRecipe",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "electrical_stick_bone_recipe",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/electrical_stick_bone_recipe.json"
+        ]
+      }
+    },
+    {
+      "name": "LonelyGuitarRecipe",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "lonely_guitar_recipe",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/lonely_guitar_recipe.json"
+        ]
+      }
+    },
+    {
+      "name": "PotOfPain",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "pot_of_pain",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/everlaartifacts/models/item/pot_of_pain.json",
+          "src/main/java/net/everla/everlaartifacts/item/PotOfPainItem.java"
+        ]
+      }
+    },
+    {
+      "name": "PotOfPainEffect",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "pot_of_pain_effect",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/procedures/PotOfPainEffectProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      }
+    },
+    {
+      "name": "FirecrackerExplode",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "firecracker_explode",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/procedures/FirecrackerExplodeProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "sourceentity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      }
+    },
+    {
+      "name": "FirecrackerOwner",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "firecracker_owner",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/procedures/FirecrackerOwnerProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      }
+    },
+    {
+      "name": "FirecrackerBlockExplode",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "firecracker_block_explode",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/procedures/FirecrackerBlockExplodeProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "immediatesourceentity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ChineseDumpling",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "chinese_dumpling",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/everlaartifacts/models/item/chinese_dumpling.json",
+          "src/main/java/net/everla/everlaartifacts/item/ChineseDumplingItem.java"
+        ]
+      }
+    },
+    {
+      "name": "ChineseDumplingAnnoyingSound",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "chinese_dumpling_annoying_sound",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/procedures/ChineseDumplingAnnoyingSoundProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      }
+    },
+    {
+      "name": "RedPacketOpen",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "red_packet_open",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/procedures/RedPacketOpenProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "itemstack",
+            "type": "itemstack"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      }
+    },
+    {
+      "name": "RedPacket",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "red_packet",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/everlaartifacts/models/item/red_packet.json",
+          "src/main/java/net/everla/everlaartifacts/item/RedPacketItem.java"
+        ]
+      }
+    },
+    {
+      "name": "FireCrackerRecipe",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "fire_cracker_recipe",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/fire_cracker_recipe.json"
+        ]
+      }
+    },
+    {
+      "name": "NuclearWasteWater",
+      "type": "fluid",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "nuclear_waste_water",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/item/NuclearWasteWaterItem.java",
+          "src/main/java/net/everla/everlaartifacts/fluid/types/NuclearWasteWaterFluidType.java",
+          "src/main/resources/assets/everlaartifacts/models/block/nuclear_waste_water.json",
+          "src/main/java/net/everla/everlaartifacts/fluid/NuclearWasteWaterFluid.java",
+          "src/main/java/net/everla/everlaartifacts/block/NuclearWasteWaterBlock.java",
+          "src/main/resources/assets/everlaartifacts/models/item/nuclear_waste_water_bucket.json",
+          "src/main/resources/assets/everlaartifacts/blockstates/nuclear_waste_water.json"
+        ]
+      }
+    },
+    {
+      "name": "NuclearWasteWaterRadiation",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "nuclear_waste_water_radiation",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/procedures/NuclearWasteWaterRadiationProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      }
+    },
+    {
+      "name": "NuclearWasteWaterBottle",
+      "type": "potion",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "nuclear_waste_water_bottle",
+      "metadata": {
+        "files": []
+      }
+    },
+    {
+      "name": "NuclearWaterRadiation",
+      "type": "potioneffect",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "nuclear_water_radiation",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/potion/NuclearWaterRadiationMobEffect.java"
+        ]
+      }
+    },
+    {
+      "name": "NuclearWaterRadiationBuff",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "nuclear_water_radiation_buff",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/procedures/NuclearWaterRadiationBuffProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      }
+    },
+    {
+      "name": "InnerQuartzOuterNuclear",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "inner_quartz_outer_nuclear",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/everlaartifacts/models/item/inner_quartz_outer_nuclear.json",
+          "src/main/java/net/everla/everlaartifacts/item/InnerQuartzOuterNuclearItem.java"
+        ]
+      }
+    },
+    {
+      "name": "InnerQuartzOuterNuclearRecipe",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "inner_quartz_outer_nuclear_recipe",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/inner_quartz_outer_nuclear_recipe.json"
+        ]
+      }
+    },
+    {
+      "name": "TwoBreadSandwichedWithCheese",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "two_bread_sandwiched_with_cheese",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/everlaartifacts/models/item/two_bread_sandwiched_with_cheese.json",
+          "src/main/java/net/everla/everlaartifacts/item/TwoBreadSandwichedWithCheeseItem.java"
+        ]
+      }
+    },
+    {
+      "name": "TwoBreadSandwichedWithCheeseSound",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "two_bread_sandwiched_with_cheese_sound",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/procedures/TwoBreadSandwichedWithCheeseSoundProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ThreeInterwinedFateEmotionalDamage",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "three_interwined_fate_emotional_damage",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/procedures/ThreeInterwinedFateEmotionalDamageProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ThreeInterwinedFate",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "three_interwined_fate",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/item/ThreeInterwinedFateItem.java",
+          "src/main/resources/assets/everlaartifacts/models/item/three_interwined_fate.json"
+        ]
+      }
+    },
+    {
+      "name": "ThreeInterwinedFateRecipe",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "three_interwined_fate_recipe",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/three_interwined_fate_recipe.json"
+        ]
+      }
+    },
+    {
+      "name": "AuricScrapBlockDecrafting",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "auric_scrap_block_decrafting",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/auric_scrap_block_decrafting.json"
+        ]
+      }
+    },
+    {
+      "name": "WeirdCocktail",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "weird_cocktail",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/item/WeirdCocktailItem.java",
+          "src/main/resources/assets/everlaartifacts/models/item/weird_cocktail.json"
+        ]
+      }
+    },
+    {
+      "name": "BedmicDestructionCheckIfPlayerLookAtBed",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "bedmic_destruction_check_if_player_look_at_bed",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/procedures/BedmicDestructionCheckIfPlayerLookAtBedProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      }
+    },
+    {
+      "name": "BedmicDestruction",
+      "type": "potioneffect",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "bedmic_destruction",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/potion/BedmicDestructionMobEffect.java"
+        ]
+      }
+    },
+    {
+      "name": "WeirdCocktailEffect",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "weird_cocktail_effect",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/procedures/WeirdCocktailEffectProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      }
+    },
+    {
+      "name": "GG2LTranslation",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "gg_2_l_translation",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/gg2l_translation.json"
+        ]
+      }
+    },
+    {
+      "name": "YamatoRecipe",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "yamato_recipe",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/yamato_recipe.json"
+        ]
+      }
+    },
+    {
+      "name": "NanomachineRecipe",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "nanomachine_recipe",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/nanomachine_recipe.json"
+        ]
+      }
+    },
+    {
+      "name": "RaidenRecipe",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "raiden_recipe",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/raiden_recipe.json"
+        ]
+      }
+    },
+    {
+      "name": "BadAppleSound",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "bad_apple_sound",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/procedures/BadAppleSoundProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "itemstack",
+            "type": "itemstack"
+          }
+        ]
+      }
+    },
+    {
+      "name": "TakeoffAtAPowerOfFiveWatts",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "takeoff_at_a_power_of_five_watts",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/procedures/TakeoffAtAPowerOfFiveWattsProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      }
+    },
+    {
+      "name": "BraisedPorkWithPlumCabbage",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "braised_pork_with_plum_cabbage",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/everlaartifacts/models/item/braised_pork_with_plum_cabbage.json",
+          "src/main/java/net/everla/everlaartifacts/item/BraisedPorkWithPlumCabbageItem.java"
+        ]
+      }
+    },
+    {
+      "name": "WeirdThing",
+      "type": "tab",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "weird_thing",
+      "metadata": {
+        "files": []
+      }
+    },
+    {
+      "name": "PayToWinShard1",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "pay_to_win_shard_1",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/item/PayToWinShard1Item.java",
+          "src/main/resources/assets/everlaartifacts/models/item/pay_to_win_shard_1.json"
+        ]
+      }
+    },
+    {
+      "name": "PayToWinShard2",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "pay_to_win_shard_2",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/item/PayToWinShard2Item.java",
+          "src/main/resources/assets/everlaartifacts/models/item/pay_to_win_shard_2.json"
+        ]
+      }
+    },
+    {
+      "name": "PayToWinShard3",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "pay_to_win_shard_3",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/everlaartifacts/models/item/pay_to_win_shard_3.json",
+          "src/main/java/net/everla/everlaartifacts/item/PayToWinShard3Item.java"
+        ]
+      }
+    },
+    {
+      "name": "PayToWinShard4",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "pay_to_win_shard_4",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/everlaartifacts/models/item/pay_to_win_shard_4.json",
+          "src/main/java/net/everla/everlaartifacts/item/PayToWinShard4Item.java"
+        ]
+      }
+    },
+    {
+      "name": "PayToWinShard5",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "pay_to_win_shard_5",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/item/PayToWinShard5Item.java",
+          "src/main/resources/assets/everlaartifacts/models/item/pay_to_win_shard_5.json"
+        ]
+      }
+    },
+    {
+      "name": "PayToWinCrystal",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "pay_to_win_crystal",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/item/PayToWinCrystalItem.java",
+          "src/main/resources/assets/everlaartifacts/models/item/pay_to_win_crystal.json"
+        ]
+      }
+    },
+    {
+      "name": "P2WShard2",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "p_2_w_shard_2",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/p2w_shard_2.json"
+        ]
+      }
+    },
+    {
+      "name": "P2WShard3",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "p_2_w_shard_3",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/p2w_shard_3.json"
+        ]
+      }
+    },
+    {
+      "name": "P2WShard4",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "p_2_w_shard_4",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/p2w_shard_4.json"
+        ]
+      }
+    },
+    {
+      "name": "P2WShard5",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "p_2_w_shard_5",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/p2w_shard_5.json"
+        ]
+      }
+    },
+    {
+      "name": "P2WCrystal",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "p_2_w_crystal",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/p2w_crystal.json"
+        ]
+      }
+    },
+    {
+      "name": "EverlaDiscs",
+      "type": "tab",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "everla_discs",
+      "metadata": {
+        "files": []
+      }
+    },
+    {
+      "name": "WorstAppleRecipe",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "worst_apple_recipe",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/worst_apple_recipe.json"
+        ]
+      }
+    },
+    {
+      "name": "FirecrackerProjectile",
+      "type": "projectile",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "firecracker_projectile",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/entity/FirecrackerProjectileEntity.java"
+        ]
+      }
+    },
+    {
+      "name": "Firecracker",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "firecracker",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/item/FirecrackerItem.java",
+          "src/main/resources/assets/everlaartifacts/models/item/firecracker.json"
+        ]
+      }
+    },
+    {
+      "name": "BeijingTicket",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "beijing_ticket",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/item/BeijingTicketItem.java",
+          "src/main/resources/assets/everlaartifacts/models/item/beijing_ticket.json"
+        ]
+      }
+    },
+    {
+      "name": "NanjingTicket",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "nanjing_ticket",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/item/NanjingTicketItem.java",
+          "src/main/resources/assets/everlaartifacts/models/item/nanjing_ticket.json"
+        ]
+      }
+    },
+    {
+      "name": "TokyoTicket",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "tokyo_ticket",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/item/TokyoTicketItem.java",
+          "src/main/resources/assets/everlaartifacts/models/item/tokyo_ticket.json"
+        ]
+      }
+    },
+    {
+      "name": "TokyoHotRecipe",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "tokyo_hot_recipe",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/tokyo_hot_recipe.json"
+        ]
+      }
+    },
+    {
+      "name": "TokyoTicketRecipe",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "tokyo_ticket_recipe",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/tokyo_ticket_recipe.json"
+        ]
+      }
+    },
+    {
+      "name": "BeijingTicketRecipe",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "beijing_ticket_recipe",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/beijing_ticket_recipe.json"
+        ]
+      }
+    },
+    {
+      "name": "NanjingTicketRecipe",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "nanjing_ticket_recipe",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/nanjing_ticket_recipe.json"
+        ]
+      }
+    },
+    {
+      "name": "GenshinStart",
+      "type": "potioneffect",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "genshin_start",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/potion/GenshinStartMobEffect.java"
+        ]
+      }
+    },
+    {
+      "name": "GenshinOverlay",
+      "type": "overlay",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "genshin_overlay",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/client/screens/GenshinOverlayOverlay.java"
+        ]
+      }
+    },
+    {
+      "name": "GenshinStartSoundPlay",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "genshin_start_sound_play",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/procedures/GenshinStartSoundPlayProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      }
+    },
+    {
+      "name": "AmericanStyleCutOverlay",
+      "type": "potioneffect",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "american_style_cut_overlay",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/potion/AmericanStyleCutOverlayMobEffect.java"
+        ]
+      }
+    },
+    {
+      "name": "USAOverlay",
+      "type": "overlay",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "usa_overlay",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/client/screens/USAOverlayOverlay.java"
+        ]
+      }
+    },
+    {
+      "name": "USADisplay",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "usa_display",
+      "metadata": {
+        "return_type": "logic",
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/procedures/USADisplayProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      }
+    },
+    {
+      "name": "EverlaTweaker",
+      "type": "tab",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "everla_tweaker",
+      "metadata": {
+        "files": []
+      }
+    },
+    {
+      "name": "CondencedPotato1",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "condenced_potato_1",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/everlaartifacts/models/item/condenced_potato_1.json",
+          "src/main/java/net/everla/everlaartifacts/item/CondencedPotato1Item.java"
+        ]
+      }
+    },
+    {
+      "name": "CondencedPotato2",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "condenced_potato_2",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/item/CondencedPotato2Item.java",
+          "src/main/resources/assets/everlaartifacts/models/item/condenced_potato_2.json"
+        ]
+      }
+    },
+    {
+      "name": "CondencedPotato3",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "condenced_potato_3",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/everlaartifacts/models/item/condenced_potato_3.json",
+          "src/main/java/net/everla/everlaartifacts/item/CondencedPotato3Item.java"
+        ]
+      }
+    },
+    {
+      "name": "CondencedPotato4",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "condenced_potato_4",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/everlaartifacts/models/item/condenced_potato_4.json",
+          "src/main/java/net/everla/everlaartifacts/item/CondencedPotato4Item.java"
+        ]
+      }
+    },
+    {
+      "name": "CondencedPotato5",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "condenced_potato_5",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/everlaartifacts/models/item/condenced_potato_5.json",
+          "src/main/java/net/everla/everlaartifacts/item/CondencedPotato5Item.java"
+        ]
+      }
+    },
+    {
+      "name": "CondencedPotato6",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "condenced_potato_6",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/everlaartifacts/models/item/condenced_potato_6.json",
+          "src/main/java/net/everla/everlaartifacts/item/CondencedPotato6Item.java"
+        ]
+      }
+    },
+    {
+      "name": "CondencedPotato7",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "condenced_potato_7",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/item/CondencedPotato7Item.java",
+          "src/main/resources/assets/everlaartifacts/models/item/condenced_potato_7.json"
+        ]
+      }
+    },
+    {
+      "name": "CondencedPotato8",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "condenced_potato_8",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/item/CondencedPotato8Item.java",
+          "src/main/resources/assets/everlaartifacts/models/item/condenced_potato_8.json"
+        ]
+      }
+    },
+    {
+      "name": "CondencedPotato9",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "condenced_potato_9",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/everlaartifacts/models/item/condenced_potato_9.json",
+          "src/main/java/net/everla/everlaartifacts/item/CondencedPotato9Item.java"
+        ]
+      }
+    },
+    {
+      "name": "CondencedPotatoRecipe1",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "condenced_potato_recipe_1",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/condenced_potato_recipe_1.json"
+        ]
+      }
+    },
+    {
+      "name": "CondencedPotatoRecipe2",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "condenced_potato_recipe_2",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/condenced_potato_recipe_2.json"
+        ]
+      }
+    },
+    {
+      "name": "CondencedPotatoRecipe3",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "condenced_potato_recipe_3",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/condenced_potato_recipe_3.json"
+        ]
+      }
+    },
+    {
+      "name": "CondencedPotatoRecipe4",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "condenced_potato_recipe_4",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/condenced_potato_recipe_4.json"
+        ]
+      }
+    },
+    {
+      "name": "CondencedPotatoRecipe5",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "condenced_potato_recipe_5",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/condenced_potato_recipe_5.json"
+        ]
+      }
+    },
+    {
+      "name": "CondencedPotatoRecipe6",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "condenced_potato_recipe_6",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/condenced_potato_recipe_6.json"
+        ]
+      }
+    },
+    {
+      "name": "CondencedPotatoRecipe7",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "condenced_potato_recipe_7",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/condenced_potato_recipe_7.json"
+        ]
+      }
+    },
+    {
+      "name": "CondencedPotatoRecipe8",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "condenced_potato_recipe_8",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/condenced_potato_recipe_8.json"
+        ]
+      }
+    },
+    {
+      "name": "CondencedPotatoRecipe9",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "condenced_potato_recipe_9",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/condenced_potato_recipe_9.json"
+        ]
+      }
+    },
+    {
+      "name": "ChaliceOfBloodGod",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "chalice_of_blood_god",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/item/ChaliceOfBloodGodItem.java",
+          "src/main/resources/assets/everlaartifacts/models/item/chalice_of_blood_god.json"
+        ]
+      }
+    },
+    {
+      "name": "ChaliceOfBloodGodRecipe",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "chalice_of_blood_god_recipe",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/chalice_of_blood_god_recipe.json"
+        ]
+      }
+    },
+    {
+      "name": "UnpackCondencedPotato9",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "unpack_condenced_potato_9",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/unpack_condenced_potato_9.json"
+        ]
+      }
+    },
+    {
+      "name": "UnpackCondencedPotato8",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "unpack_condenced_potato_8",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/unpack_condenced_potato_8.json"
+        ]
+      }
+    },
+    {
+      "name": "UnpackCondencedPotato7",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "unpack_condenced_potato_7",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/unpack_condenced_potato_7.json"
+        ]
+      }
+    },
+    {
+      "name": "UnpackCondencedPotato6",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "unpack_condenced_potato_6",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/unpack_condenced_potato_6.json"
+        ]
+      }
+    },
+    {
+      "name": "UnpackCondencedPotato5",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "unpack_condenced_potato_5",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/unpack_condenced_potato_5.json"
+        ]
+      }
+    },
+    {
+      "name": "UnpackCondencedPotato4",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "unpack_condenced_potato_4",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/unpack_condenced_potato_4.json"
+        ]
+      }
+    },
+    {
+      "name": "UnpackCondencedPotato3",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "unpack_condenced_potato_3",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/unpack_condenced_potato_3.json"
+        ]
+      }
+    },
+    {
+      "name": "UnpackCondencedPotato2",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "unpack_condenced_potato_2",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/unpack_condenced_potato_2.json"
+        ]
+      }
+    },
+    {
+      "name": "UnpackCondencedPotato1",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "unpack_condenced_potato_1",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/unpack_condenced_potato_1.json"
+        ]
+      }
+    },
+    {
+      "name": "ChaliceOfBloodGodChallenge",
+      "type": "achievement",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "chalice_of_blood_god_challenge",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/advancements/chalice_of_blood_god_challenge.json"
+        ]
+      }
+    },
+    {
+      "name": "TechnobladeStaring",
+      "type": "painting",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "technoblade_staring",
+      "metadata": {
+        "files": []
+      }
+    },
+    {
+      "name": "PayToWinShard",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "pay_to_win_shard",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/pay_to_win_shard.json"
+        ]
+      }
+    },
+    {
+      "name": "BraizedPork",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "braized_pork",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/braized_pork.json"
+        ]
+      }
+    },
+    {
+      "name": "ZakoUncleRecipe",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "zako_uncle_recipe",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/zako_uncle_recipe.json"
+        ]
+      }
+    },
+    {
+      "name": "MakeEntityFly",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "make_entity_fly",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/procedures/MakeEntityFlyProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      }
+    },
+    {
+      "name": "GalaticDestruction",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "galatic_destruction",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/item/GalaticDestructionItem.java",
+          "src/main/resources/assets/everlaartifacts/models/item/galatic_destruction.json"
+        ]
+      }
+    },
+    {
+      "name": "GlutinousArbitration",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "glutinous_arbitration",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/everlaartifacts/models/item/glutinous_arbitration.json",
+          "src/main/java/net/everla/everlaartifacts/item/GlutinousArbitrationItem.java"
+        ]
+      }
+    },
+    {
+      "name": "ViscousDesperation",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "viscous_desperation",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/everlaartifacts/models/item/viscous_desperation.json",
+          "src/main/java/net/everla/everlaartifacts/item/ViscousDesperationItem.java"
+        ]
+      }
+    },
+    {
+      "name": "TwistedGarden",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "twisted_garden",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/everlaartifacts/models/item/twisted_garden.json",
+          "src/main/java/net/everla/everlaartifacts/item/TwistedGardenItem.java"
+        ]
+      }
+    },
+    {
+      "name": "ThousandLove",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "thousand_love",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/item/ThousandLoveItem.java",
+          "src/main/resources/assets/everlaartifacts/models/item/thousand_love.json"
+        ]
+      }
+    },
+    {
+      "name": "IReallyWantToStayAtYourHouse",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "i_really_want_to_stay_at_your_house",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/everlaartifacts/models/item/i_really_want_to_stay_at_your_house.json",
+          "src/main/java/net/everla/everlaartifacts/item/IReallyWantToStayAtYourHouseItem.java"
+        ]
+      }
+    },
+    {
+      "name": "KillTheMessenger",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "kill_the_messenger",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/everlaartifacts/models/item/kill_the_messenger.json",
+          "src/main/java/net/everla/everlaartifacts/item/KillTheMessengerItem.java"
+        ]
+      }
+    },
+    {
+      "name": "Aleph0",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "aleph_0",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/item/Aleph0Item.java",
+          "src/main/resources/assets/everlaartifacts/models/item/aleph_0.json"
+        ]
+      }
+    },
+    {
+      "name": "CruelAngel",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "cruel_angel",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/item/CruelAngelItem.java",
+          "src/main/resources/assets/everlaartifacts/models/item/cruel_angel.json"
+        ]
+      }
+    },
+    {
+      "name": "DelicateWeapon",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "delicate_weapon",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/item/DelicateWeaponItem.java",
+          "src/main/resources/assets/everlaartifacts/models/item/delicate_weapon.json"
+        ]
+      }
+    },
+    {
+      "name": "SweetDeath",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "sweet_death",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/item/SweetDeathItem.java",
+          "src/main/resources/assets/everlaartifacts/models/item/sweet_death.json"
+        ]
+      }
+    },
+    {
+      "name": "NeverGonnaGiveYouUp",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "never_gonna_give_you_up",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/everlaartifacts/models/item/never_gonna_give_you_up.json",
+          "src/main/java/net/everla/everlaartifacts/item/NeverGonnaGiveYouUpItem.java"
+        ]
+      }
+    },
+    {
+      "name": "Hardest2Be",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "hardest_2_be",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/everlaartifacts/models/item/hardest_2_be.json",
+          "src/main/java/net/everla/everlaartifacts/item/Hardest2BeItem.java"
+        ]
+      }
+    },
+    {
+      "name": "RealSmoker",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "real_smoker",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/item/RealSmokerItem.java",
+          "src/main/resources/assets/everlaartifacts/models/item/real_smoker.json"
+        ]
+      }
+    },
+    {
+      "name": "HackerGamer",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "hacker_gamer",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/everlaartifacts/models/item/hacker_gamer.json",
+          "src/main/java/net/everla/everlaartifacts/item/HackerGamerItem.java"
+        ]
+      }
+    },
+    {
+      "name": "FadingSky",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "fading_sky",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/item/FadingSkyItem.java",
+          "src/main/resources/assets/everlaartifacts/models/item/fading_sky.json"
+        ]
+      }
+    },
+    {
+      "name": "ElectricalStickBone",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "electrical_stick_bone",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/everlaartifacts/models/item/electrical_stick_bone.json",
+          "src/main/java/net/everla/everlaartifacts/item/ElectricalStickBoneItem.java"
+        ]
+      }
+    },
+    {
+      "name": "LonelyGuitar",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "lonely_guitar",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/everlaartifacts/models/item/lonely_guitar.json",
+          "src/main/java/net/everla/everlaartifacts/item/LonelyGuitarItem.java"
+        ]
+      }
+    },
+    {
+      "name": "Theonlythingiknowforreal",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "theonlythingiknowforreal",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/item/TheonlythingiknowforrealItem.java",
+          "src/main/resources/assets/everlaartifacts/models/item/theonlythingiknowforreal.json"
+        ]
+      }
+    },
+    {
+      "name": "Girlgotolove",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "girlgotolove",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/item/GirlgotoloveItem.java",
+          "src/main/resources/assets/everlaartifacts/models/item/girlgotolove.json"
+        ]
+      }
+    },
+    {
+      "name": "Yamato",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "yamato",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/item/YamatoItem.java",
+          "src/main/resources/assets/everlaartifacts/models/item/yamato.json"
+        ]
+      }
+    },
+    {
+      "name": "Nanomachine",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "nanomachine",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/item/NanomachineItem.java",
+          "src/main/resources/assets/everlaartifacts/models/item/nanomachine.json"
+        ]
+      }
+    },
+    {
+      "name": "Raiden",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "raiden",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/item/RaidenItem.java",
+          "src/main/resources/assets/everlaartifacts/models/item/raiden.json"
+        ]
+      }
+    },
+    {
+      "name": "WorstApple",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "worst_apple",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/everlaartifacts/models/item/worst_apple.json",
+          "src/main/java/net/everla/everlaartifacts/item/WorstAppleItem.java"
+        ]
+      }
+    },
+    {
+      "name": "TokyoHotDisc",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "tokyo_hot_disc",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/item/TokyoHotDiscItem.java",
+          "src/main/resources/assets/everlaartifacts/models/item/tokyo_hot_disc.json"
+        ]
+      }
+    },
+    {
+      "name": "ChaliceOfBloodGodRegenerate",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "chalice_of_blood_god_regenerate",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/procedures/ChaliceOfBloodGodRegenerateProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      }
+    },
+    {
+      "name": "WaaoooOverlay",
+      "type": "potioneffect",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "waaooo_overlay",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/potion/WaaoooOverlayMobEffect.java"
+        ]
+      }
+    },
+    {
+      "name": "WaaoooDisplay",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "waaooo_display",
+      "metadata": {
+        "return_type": "logic",
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/procedures/WaaoooDisplayProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      }
+    },
+    {
+      "name": "WaaooOverlay",
+      "type": "overlay",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "waaoo_overlay",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/client/screens/WaaooOverlayOverlay.java"
+        ]
+      }
+    },
+    {
+      "name": "Waaooooo",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "waaooooo",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/procedures/WaaoooooProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ManboLegend",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "manbo_legend",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/item/ManboLegendItem.java",
+          "src/main/resources/assets/everlaartifacts/models/item/manbo_legend.json"
+        ]
+      }
+    },
+    {
+      "name": "PenisMusicExplosion",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "penis_music_explosion",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/procedures/PenisMusicExplosionProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ManboNoMore",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "manbo_no_more",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/everlaartifacts/models/item/manbo_no_more.json",
+          "src/main/java/net/everla/everlaartifacts/item/ManboNoMoreItem.java"
+        ]
+      }
+    },
+    {
+      "name": "LonelyManBrokenheartedSong",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "lonely_man_brokenhearted_song",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/everlaartifacts/models/item/lonely_man_brokenhearted_song.json",
+          "src/main/java/net/everla/everlaartifacts/item/LonelyManBrokenheartedSongItem.java"
+        ]
+      }
+    },
+    {
+      "name": "ManboLegendRecipe",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "manbo_legend_recipe",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/manbo_legend_recipe.json"
+        ]
+      }
+    },
+    {
+      "name": "ManboNoMoreRecipe",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "manbo_no_more_recipe",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/manbo_no_more_recipe.json"
+        ]
+      }
+    },
+    {
+      "name": "LonelyManBrokenheartedSongRecipe",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "lonely_man_brokenhearted_song_recipe",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/lonely_man_brokenhearted_song_recipe.json"
+        ]
+      }
+    },
+    {
+      "name": "NuclearWasteWaterRecipe",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "nuclear_waste_water_recipe",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/nuclear_waste_water_recipe.json"
+        ]
+      }
+    },
+    {
+      "name": "NuclearBottleRecipe",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "nuclear_bottle_recipe",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/recipes/brewing/NuclearBottleRecipeBrewingRecipe.java"
+        ]
+      }
+    },
+    {
+      "name": "WeirdCocktailRecipe",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "weird_cocktail_recipe",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/weird_cocktail_recipe.json"
+        ]
+      }
+    },
+    {
+      "name": "Flashbomb",
+      "type": "potion",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "flashbomb",
+      "metadata": {
+        "files": []
+      }
+    },
+    {
+      "name": "FlashbombRecipe",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "flashbomb_recipe",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/recipes/brewing/FlashbombRecipeBrewingRecipe.java"
+        ]
+      }
+    },
+    {
+      "name": "GenshinStartMobEffect",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "genshin_start_mob_effect",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/procedures/GenshinStartMobEffectProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      }
+    },
+    {
+      "name": "JetstreamRecipe",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "jetstream_recipe",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/jetstream_recipe.json"
+        ]
+      }
+    },
+    {
+      "name": "P2WShard1",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "p_2_w_shard_1",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/p_2_w_shard_1.json"
+        ]
+      }
+    },
+    {
+      "name": "TwoBreadSandwitchedWithCheeseRecipe",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "two_bread_sandwitched_with_cheese_recipe",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/two_bread_sandwitched_with_cheese_recipe.json"
+        ]
+      }
+    },
+    {
+      "name": "HomaStaff",
+      "type": "tool",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "homa_staff",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/item/HomaStaffItem.java",
+          "src/main/resources/assets/everlaartifacts/models/item/homa_staff.json"
+        ]
+      }
+    },
+    {
+      "name": "HomaPassive",
+      "type": "potioneffect",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "homa_passive",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/potion/HomaPassiveMobEffect.java"
+        ]
+      }
+    },
+    {
+      "name": "HomaActive",
+      "type": "potioneffect",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "homa_active",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/potion/HomaActiveMobEffect.java"
+        ]
+      }
+    },
+    {
+      "name": "HomaStaffFunc",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "homa_staff_func",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/procedures/HomaStaffFuncProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "itemstack",
+            "type": "itemstack"
+          }
+        ]
+      }
+    },
+    {
+      "name": "HomaTickFunc",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "homa_tick_func",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/procedures/HomaTickFuncProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          }
+        ]
+      }
+    },
+    {
+      "name": "HomaRecipe",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "homa_recipe",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/homa_recipe.json"
+        ]
+      }
+    },
+    {
+      "name": "Nilk",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "nilk",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/everlaartifacts/models/item/nilk.json",
+          "src/main/java/net/everla/everlaartifacts/item/NilkItem.java"
+        ]
+      }
+    },
+    {
+      "name": "NilkRecipe",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "nilk_recipe",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/nilk_recipe.json"
+        ]
+      }
+    },
+    {
+      "name": "MusicDiscNilk",
+      "type": "item",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "music_disc_nilk",
+      "metadata": {
+        "files": [
+          "src/main/resources/assets/everlaartifacts/models/item/music_disc_nilk.json",
+          "src/main/java/net/everla/everlaartifacts/item/MusicDiscNilkItem.java"
+        ]
+      }
+    },
+    {
+      "name": "NilkDisc",
+      "type": "procedure",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "nilk_disc",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/procedures/NilkDiscProcedure.java"
+        ],
+        "dependencies": [
+          {
+            "name": "entity",
+            "type": "entity"
+          },
+          {
+            "name": "x",
+            "type": "number"
+          },
+          {
+            "name": "y",
+            "type": "number"
+          },
+          {
+            "name": "z",
+            "type": "number"
+          },
+          {
+            "name": "world",
+            "type": "world"
+          }
+        ]
+      }
+    },
+    {
+      "name": "BossDisc1",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "boss_disc_1",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/boss_disc_1.json"
+        ]
+      }
+    },
+    {
+      "name": "BossDisc2",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "boss_disc_2",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/boss_disc_2.json"
+        ]
+      }
+    },
+    {
+      "name": "BossDisc3",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "boss_disc_3",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/boss_disc_3.json"
+        ]
+      }
+    },
+    {
+      "name": "BossDisc4",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "boss_disc_4",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/boss_disc_4.json"
+        ]
+      }
+    },
+    {
+      "name": "BossDisc5",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "boss_disc_5",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/boss_disc_5.json"
+        ]
+      }
+    },
+    {
+      "name": "RainbowLoreHandler",
+      "type": "code",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "rainbow_lore_handler",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/RainbowLoreHandler.java"
+        ]
+      }
+    },
+    {
+      "name": "HomaAttributeHandler",
+      "type": "code",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "homa_attribute_handler",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/HomaAttributeHandler.java"
+        ]
+      }
+    },
+    {
+      "name": "RainbowNameHandler",
+      "type": "code",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "rainbow_name_handler",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/RainbowNameHandler.java"
+        ]
+      }
+    },
+    {
+      "name": "Fabsoup",
+      "type": "recipe",
+      "compiles": true,
+      "locked_code": false,
+      "registry_name": "fabsoup",
+      "metadata": {
+        "files": [
+          "src/main/resources/data/everlaartifacts/recipes/fabsoup.json"
+        ]
+      }
+    },
+    {
+      "name": "EverlaKillHandler",
+      "type": "code",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "everla_kill_handler",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/EverlaKillHandler.java"
+        ]
+      }
+    },
+    {
+      "name": "EverlaRainbowHandler",
+      "type": "code",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "everla_rainbow_handler",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/EverlaRainbowHandler.java"
+        ]
+      }
+    }
+  ],
+  "variable_elements": [],
+  "sound_elements": [
+    {
+      "name": "everlabosstheme1",
+      "files": [
+        "everlaphase1"
+      ],
+      "category": "music",
+      "subtitle": ""
+    },
+    {
+      "name": "everlabosstheme2",
+      "files": [
+        "everlabosstheme2"
+      ],
+      "category": "music",
+      "subtitle": ""
+    },
+    {
+      "name": "everlabosstheme3",
+      "files": [
+        "everlabosstheme3"
+      ],
+      "category": "music",
+      "subtitle": ""
+    },
+    {
+      "name": "everlabosstheme4",
+      "files": [
+        "everlabosstheme4"
+      ],
+      "category": "music",
+      "subtitle": ""
+    },
+    {
+      "name": "everlafakedeath",
+      "files": [
+        "everlafakedeath"
+      ],
+      "category": "hostile",
+      "subtitle": "EvwelaPrismerAya:Reborn"
+    },
+    {
+      "name": "everladeath",
+      "files": [
+        "everladeath"
+      ],
+      "category": "hostile",
+      "subtitle": "EverlaPrismerAya:Death"
+    },
+    {
+      "name": "everlabosstheme40",
+      "files": [
+        "everlabosstheme40"
+      ],
+      "category": "music",
+      "subtitle": ""
+    },
+    {
+      "name": "everlabosstheme44",
+      "files": [
+        "everlabosstheme44"
+      ],
+      "category": "music",
+      "subtitle": ""
+    },
+    {
+      "name": "bullshit",
+      "files": [
+        "bullshit"
+      ],
+      "category": "hostile",
+      "subtitle": "That\u0027s Bullshit"
+    },
+    {
+      "name": "lightning_storm",
+      "files": [
+        "lightning_storm"
+      ],
+      "category": "hostile",
+      "subtitle": "Lightning Whirlwind Splitting"
+    },
+    {
+      "name": "avada_kedavra",
+      "files": [
+        "avada_kedavra"
+      ],
+      "category": "hostile",
+      "subtitle": "Avada Kedavra"
+    },
+    {
+      "name": "waaooo",
+      "files": [
+        "waaooo"
+      ],
+      "category": "neutral",
+      "subtitle": "WAAOOO"
+    },
+    {
+      "name": "tnnd",
+      "files": [
+        "tnnd"
+      ],
+      "category": "hostile",
+      "subtitle": "TNND"
+    },
+    {
+      "name": "genshin_start",
+      "files": [
+        "genshin_start"
+      ],
+      "category": "hostile",
+      "subtitle": "Genshin Start"
+    },
+    {
+      "name": "noob",
+      "files": [
+        "noob"
+      ],
+      "category": "hostile",
+      "subtitle": "Noob need Pratice"
+    },
+    {
+      "name": "storm",
+      "files": [
+        "storm"
+      ],
+      "category": "music",
+      "subtitle": "Approatching Storm"
+    },
+    {
+      "name": "metal_pipe",
+      "files": [
+        "metal_pipe"
+      ],
+      "category": "hostile",
+      "subtitle": "Metal Pipe Lands"
+    },
+    {
+      "name": "gun",
+      "files": [
+        "fire"
+      ],
+      "category": "hostile",
+      "subtitle": "American Style Cuts"
+    },
+    {
+      "name": "reload",
+      "files": [
+        "reload"
+      ],
+      "category": "hostile",
+      "subtitle": "American Style Cuts Loading"
+    },
+    {
+      "name": "xeloc",
+      "files": [
+        "xeloc"
+      ],
+      "category": "neutral",
+      "subtitle": "Enraged Xeloc"
+    },
+    {
+      "name": "quaso",
+      "files": [
+        "quaso"
+      ],
+      "category": "hostile",
+      "subtitle": "QUASO"
+    },
+    {
+      "name": "iwilltellingyourdream",
+      "files": [
+        "iwilltellingyourdream"
+      ],
+      "category": "neutral",
+      "subtitle": "Telling Your Dream"
+    },
+    {
+      "name": "harryroad_cyclone",
+      "files": [
+        "harryroad_cyclone"
+      ],
+      "category": "hostile",
+      "subtitle": "Harry Road Cyclone"
+    },
+    {
+      "name": "fuckyou",
+      "files": [
+        "fuckyou"
+      ],
+      "category": "hostile",
+      "subtitle": "UOY KCUF"
+    },
+    {
+      "name": "gohell",
+      "files": [
+        "gohell"
+      ],
+      "category": "hostile",
+      "subtitle": "Go to Hell"
+    },
+    {
+      "name": "fuckout",
+      "files": [
+        "fuckout"
+      ],
+      "category": "hostile",
+      "subtitle": "Fuck Out You Fucking Dick"
+    },
+    {
+      "name": "gfbhurt",
+      "files": [
+        "everlagfbhurt"
+      ],
+      "category": "neutral",
+      "subtitle": "Evernight Phantom Hurts"
+    },
+    {
+      "name": "galatic_destruction",
+      "files": [
+        "galatic_destruction"
+      ],
+      "category": "record",
+      "subtitle": ""
+    },
+    {
+      "name": "glutinous_arbitration",
+      "files": [
+        "glutinous_arbitration"
+      ],
+      "category": "record",
+      "subtitle": ""
+    },
+    {
+      "name": "viscous_desperation",
+      "files": [
+        "viscous_desperation"
+      ],
+      "category": "record",
+      "subtitle": ""
+    },
+    {
+      "name": "twisted_garden",
+      "files": [
+        "twisted_garden"
+      ],
+      "category": "record",
+      "subtitle": ""
+    },
+    {
+      "name": "icantreadjapanesebruh",
+      "files": [
+        "icantreadjapanesebruh"
+      ],
+      "category": "record",
+      "subtitle": ""
+    },
+    {
+      "name": "ireallywant2stayaturhouse",
+      "files": [
+        "ireallywant2stayaturhouse"
+      ],
+      "category": "record",
+      "subtitle": ""
+    },
+    {
+      "name": "gfbfinalbgm",
+      "files": [
+        "gfbfinalbgm"
+      ],
+      "category": "music",
+      "subtitle": ""
+    },
+    {
+      "name": "killthemessenger",
+      "files": [
+        "kill_the_messenger"
+      ],
+      "category": "record",
+      "subtitle": ""
+    },
+    {
+      "name": "aleph_0",
+      "files": [
+        "aleph_0"
+      ],
+      "category": "record",
+      "subtitle": ""
+    },
+    {
+      "name": "cruel_angel",
+      "files": [
+        "cruel_angel"
+      ],
+      "category": "record",
+      "subtitle": ""
+    },
+    {
+      "name": "delicate_weapon",
+      "files": [
+        "delicate_weapon"
+      ],
+      "category": "record",
+      "subtitle": ""
+    },
+    {
+      "name": "sweet_death",
+      "files": [
+        "sweet_death"
+      ],
+      "category": "record",
+      "subtitle": ""
+    },
+    {
+      "name": "never_gonna_give_you_up",
+      "files": [
+        "never_gonna_give_you_up"
+      ],
+      "category": "record",
+      "subtitle": ""
+    },
+    {
+      "name": "hardest_2_be",
+      "files": [
+        "hardest_2_be"
+      ],
+      "category": "record",
+      "subtitle": ""
+    },
+    {
+      "name": "real_smoker",
+      "files": [
+        "real_smoker"
+      ],
+      "category": "record",
+      "subtitle": ""
+    },
+    {
+      "name": "hacker_gamer",
+      "files": [
+        "hacker_gamer"
+      ],
+      "category": "record",
+      "subtitle": ""
+    },
+    {
+      "name": "fading_sky",
+      "files": [
+        "fading_sky"
+      ],
+      "category": "record",
+      "subtitle": ""
+    },
+    {
+      "name": "electrical_stick_bone",
+      "files": [
+        "electrical_stick_bone"
+      ],
+      "category": "record",
+      "subtitle": ""
+    },
+    {
+      "name": "lonely_guitar",
+      "files": [
+        "lonely_guitar"
+      ],
+      "category": "record",
+      "subtitle": ""
+    },
+    {
+      "name": "annoyingdumpling",
+      "files": [
+        "annoyingdumpling"
+      ],
+      "category": "hostile",
+      "subtitle": ""
+    },
+    {
+      "name": "twobreadsandwichedwithcheese",
+      "files": [
+        "twobreadsandwichedwithcheese"
+      ],
+      "category": "player",
+      "subtitle": "Two Bread Sandwiched With Cheese"
+    },
+    {
+      "name": "murasama_swing",
+      "files": [
+        "murasama_swing"
+      ],
+      "category": "neutral",
+      "subtitle": "Murasama Swings"
+    },
+    {
+      "name": "murasama_swing_heavy",
+      "files": [
+        "murasama_swing_heavy"
+      ],
+      "category": "neutral",
+      "subtitle": "Murasama Swing Heavily"
+    },
+    {
+      "name": "murasama_hit_organic",
+      "files": [
+        "murasama_hit_organic"
+      ],
+      "category": "neutral",
+      "subtitle": "Murasama Hits Organic"
+    },
+    {
+      "name": "murasama_hit_inorganic",
+      "files": [
+        "murasama_hit_inorganic"
+      ],
+      "category": "neutral",
+      "subtitle": "Murasama Hits Inorganic"
+    },
+    {
+      "name": "emotional_damage",
+      "files": [
+        "emotional_damage"
+      ],
+      "category": "neutral",
+      "subtitle": "EMOTIONAL DAMAGE"
+    },
+    {
+      "name": "godslayerdash",
+      "files": [
+        "godslayerdash"
+      ],
+      "category": "player",
+      "subtitle": "Godslayer Dash"
+    },
+    {
+      "name": "the_only_thing_i_know_for_real",
+      "files": [
+        "the_only_thing_i_know_for_real"
+      ],
+      "category": "record",
+      "subtitle": ""
+    },
+    {
+      "name": "girl_go_to_love",
+      "files": [
+        "girl_go_to_love"
+      ],
+      "category": "record",
+      "subtitle": ""
+    },
+    {
+      "name": "yamato",
+      "files": [
+        "yamato"
+      ],
+      "category": "record",
+      "subtitle": ""
+    },
+    {
+      "name": "nanomachine",
+      "files": [
+        "nanomachine"
+      ],
+      "category": "record",
+      "subtitle": ""
+    },
+    {
+      "name": "raiden",
+      "files": [
+        "raiden"
+      ],
+      "category": "record",
+      "subtitle": ""
+    },
+    {
+      "name": "eagle_sound",
+      "files": [
+        "eagle_sound"
+      ],
+      "category": "hostile",
+      "subtitle": ""
+    },
+    {
+      "name": "xeloc_bad_apple",
+      "files": [
+        "xeloc_bad_apple"
+      ],
+      "category": "neutral",
+      "subtitle": ""
+    },
+    {
+      "name": "five_watt",
+      "files": [
+        "5_watt"
+      ],
+      "category": "neutral",
+      "subtitle": ""
+    },
+    {
+      "name": "worst_apple",
+      "files": [
+        "worst_apple"
+      ],
+      "category": "record",
+      "subtitle": ""
+    },
+    {
+      "name": "tokyo_hot",
+      "files": [
+        "tokyo_hot"
+      ],
+      "category": "record",
+      "subtitle": ""
+    },
+    {
+      "name": "placeholder_snd",
+      "files": [
+        "plaaceholder"
+      ],
+      "category": "neutral",
+      "subtitle": ""
+    },
+    {
+      "name": "genshin_start_sound",
+      "files": [
+        "genshin_start_sound"
+      ],
+      "category": "player",
+      "subtitle": ""
+    },
+    {
+      "name": "everla_blaster_shoot",
+      "files": [
+        "everla_blaster_shoot"
+      ],
+      "category": "hostile",
+      "subtitle": "Everla Blaster Shoots"
+    },
+    {
+      "name": "everla_blaster_charge",
+      "files": [
+        "everla_blaster_charge"
+      ],
+      "category": "hostile",
+      "subtitle": "Everla Blaster Charges"
+    },
+    {
+      "name": "fuckyoustupidflagandpride",
+      "files": [
+        "fuckyoustupidflagandpride"
+      ],
+      "category": "hostile",
+      "subtitle": ""
+    },
+    {
+      "name": "deltarune_explosion",
+      "files": [
+        "deltarune_explosion"
+      ],
+      "category": "hostile",
+      "subtitle": "Deltarune Explosion"
+    },
+    {
+      "name": "fumofumo",
+      "files": [
+        "fumofumo"
+      ],
+      "category": "block",
+      "subtitle": "fumofumo"
+    },
+    {
+      "name": "auric_strike",
+      "files": [
+        "auric_strike"
+      ],
+      "category": "block",
+      "subtitle": "Auric Strikes"
+    },
+    {
+      "name": "manbo_legend",
+      "files": [
+        "manbo_legend"
+      ],
+      "category": "record",
+      "subtitle": ""
+    },
+    {
+      "name": "manbo_no_more",
+      "files": [
+        "manbo_no_more"
+      ],
+      "category": "record",
+      "subtitle": ""
+    },
+    {
+      "name": "lonely_man_brokenhearted_song",
+      "files": [
+        "lonely_man_brokenhearted_song"
+      ],
+      "category": "record",
+      "subtitle": ""
+    },
+    {
+      "name": "nilk",
+      "files": [
+        "nilk"
+      ],
+      "category": "record",
+      "subtitle": ""
+    }
+  ],
+  "tag_elements": {
+    "BLOCKS:minecraft:wither_immune": [
+      "CUSTOM:DeepslateAuricOre",
+      "CUSTOM:AuricScrapBlock"
+    ],
+    "BLOCKS:everlatweaker:can_destoryed_by_weird_cocktail": [
+      "Blocks.BED",
+      "Blocks.ORANGE_BED",
+      "Blocks.MAGENTA_BED",
+      "Blocks.LIGHT_BLUE_BED",
+      "Blocks.YELLOW_BED",
+      "Blocks.LIME_BED",
+      "Blocks.PINK_BED",
+      "Blocks.GRAY_BED",
+      "Blocks.LIGHT_GRAY_BED",
+      "Blocks.CYAN_BED",
+      "Blocks.PURPLE_BED",
+      "Blocks.BLUE_BED",
+      "Blocks.BROWN_BED",
+      "Blocks.GREEN_BED",
+      "Blocks.RED_BED",
+      "Blocks.BLACK_BED"
+    ],
+    "ITEMS:everlatweaker:bad_apple": [
+      "Items.GOLDEN_APPLE#1"
+    ],
+    "ITEMS:c:ores/auric": [
+      "CUSTOM:DeepslateAuricOre"
+    ],
+    "ENTITIES:minecraft:items": [
+      "EntityItem"
+    ],
+    "BLOCKS:minecraft:needs_diamond_tool": [
+      "~CUSTOM:AuricScrapBlock",
+      "~CUSTOM:DeepslateAuricOre"
+    ],
+    "BLOCKS:minecraft:mineable/pickaxe": [
+      "~CUSTOM:AuricScrapBlock",
+      "~CUSTOM:DeepslateAuricOre"
+    ],
+    "BLOCKS:minecraft:replaceable": [
+      "~CUSTOM:NuclearWasteWater"
+    ],
+    "ITEMS:everlatweaker:beds": [
+      "Blocks.BED",
+      "Blocks.ORANGE_BED",
+      "Blocks.MAGENTA_BED",
+      "Blocks.LIGHT_BLUE_BED",
+      "Blocks.YELLOW_BED",
+      "Blocks.LIME_BED",
+      "Blocks.PINK_BED",
+      "Blocks.GRAY_BED",
+      "Blocks.LIGHT_GRAY_BED",
+      "Blocks.CYAN_BED",
+      "Blocks.PURPLE_BED",
+      "Blocks.BLUE_BED",
+      "Blocks.BROWN_BED",
+      "Blocks.GREEN_BED",
+      "Blocks.RED_BED",
+      "Blocks.BLACK_BED"
+    ],
+    "ITEMS:everlatweaker:penis_music": [
+      "CUSTOM:ManboLegend",
+      "CUSTOM:ManboNoMore"
+    ],
+    "ITEMS:c:ores": [
+      "CUSTOM:DeepslateAuricOre"
+    ],
+    "DAMAGE_TYPES:minecraft:bypasses_cooldown": [],
+    "ITEMS:everlaartifacts:rainbow_lore": [
+      "CUSTOM:Nilk"
+    ],
+    "ITEMS:everlaartifacts:rainbow_name": [
+      "CUSTOM:Nilk",
+      "CUSTOM:ChaliceOfBloodGod",
+      "CUSTOM:HomaStaff",
+      "CUSTOM:PotOfPain",
+      "CUSTOM:ThreeInterwinedFate",
+      "CUSTOM:WeirdCocktail",
+      "CUSTOM:PayToWinCrystal",
+      "Blocks.DIRT#0"
+    ],
+    "ITEMS:minecraft:swords": [
+      "~CUSTOM:HomaStaff"
+    ],
+    "ITEMS:minecraft:music_discs": [
+      "~CUSTOM:MusicDiscNilk",
+      "~CUSTOM:LonelyManBrokenheartedSong",
+      "~CUSTOM:ManboNoMore",
+      "~CUSTOM:ManboLegend",
+      "~CUSTOM:TokyoHotDisc",
+      "~CUSTOM:WorstApple",
+      "~CUSTOM:Raiden",
+      "~CUSTOM:Nanomachine",
+      "~CUSTOM:Yamato",
+      "~CUSTOM:Girlgotolove",
+      "~CUSTOM:Theonlythingiknowforreal",
+      "~CUSTOM:LonelyGuitar",
+      "~CUSTOM:ElectricalStickBone",
+      "~CUSTOM:FadingSky",
+      "~CUSTOM:HackerGamer",
+      "~CUSTOM:RealSmoker",
+      "~CUSTOM:Hardest2Be",
+      "~CUSTOM:NeverGonnaGiveYouUp",
+      "~CUSTOM:SweetDeath",
+      "~CUSTOM:DelicateWeapon",
+      "~CUSTOM:CruelAngel",
+      "~CUSTOM:Aleph0",
+      "~CUSTOM:KillTheMessenger",
+      "~CUSTOM:IReallyWantToStayAtYourHouse",
+      "~CUSTOM:ThousandLove",
+      "~CUSTOM:TwistedGarden",
+      "~CUSTOM:ViscousDesperation",
+      "~CUSTOM:GlutinousArbitration",
+      "~CUSTOM:GalaticDestruction"
+    ]
+  },
+  "tab_element_order": {},
+  "language_map": {
+    "en_us": {
+      "item.everlaartifacts.homa_staff.description_13": "§aPassive – Hearthfire of Blood:",
+      "item.everlaartifacts.homa_staff.description_14": "§fWhen the holder’s current HP drops to 50% or below, Attack Power is increased by 33%.",
+      "item.everlaartifacts.homa_staff.description_15": "§aActive – Butterfly Brings Rebirth:",
+      "item.everlaartifacts.homa_staff.description_16": "§fRight-click to consume 30% of current HP (non-lethal) and gain the \"Butterfly Brings Rebirth\" buff for 9 seconds (16-second cooldown).",
+      "item.everlaartifacts.chalice_of_blood_god": "Chalice Of Blood God",
+      "item.everlaartifacts.homa_staff.description_10": "§fIncreases maximum HP by 40% while held.",
+      "item.everlaartifacts.tokyo_ticket": "Plane Ticket to Tokyo",
+      "item.everlaartifacts.homa_staff.description_11": "§fAdditionally, grants Attack Power equal to 16% of the holder\u0027s maximum HP.",
+      "item.everlaartifacts.homa_staff.description_12": "§fWhen the holder’s current HP drops to 50% or below, gains an additional 18% of maximum HP as Attack Power.",
+      "item.everlaartifacts.nanomachine": "Music Disc",
+      "item.everlaartifacts.hacker_gamer.desc": "黄勇,任浩铭 - 你看到的我",
+      "item.everlaartifacts.manbo_no_more.desc": "Normal No More(不再曼波) - 还给我神ID",
+      "item.everlaartifacts.inner_quartz_outer_nuclear": "Inner Quartz Outer Nuclear",
+      "effect.everlaartifacts.american_style_cut_overlay": "Power of U.S.A",
+      "item.everlaartifacts.girlgotolove": "Music Disc",
+      "item.everlaartifacts.real_smoker.desc": "夜吟月寒 - 肺痒痒",
+      "item.everlaartifacts.homa_staff.description_2": "§fSwing the staff to deal damage in 6 hits:",
+      "item.everlaartifacts.theonlythingiknowforreal": "Music Disc",
+      "item.everlaartifacts.homa_staff.description_3": "§7Hit 1: 83.6% of Attack Power",
+      "item.everlaartifacts.homa_staff.description_4": "§7Hit 2: 86.1% of Attack Power",
+      "item.everlaartifacts.homa_staff.description_5": "§7Hit 3: 108.9% of Attack Power",
+      "item.minecraft.lingering_potion.effect.flashbomb": "Lingering Flashbomb",
+      "item.everlaartifacts.homa_staff.description_6": "§7Hit 4: 117.1% of Attack Power",
+      "item.everlaartifacts.homa_staff.description_7": "§7Hit 5: 59.4% + 62.8% of Attack Power",
+      "item.everlaartifacts.homa_staff.description_8": "§7Hit 6: 153.4% of Attack Power",
+      "item.everlaartifacts.homa_staff.description_9": "§aPassive – Unbound Vermilion Butterfly:",
+      "effect.everlaartifacts.genshin_start": "Genshin Start",
+      "text.everlaartifacts.suicide": "%s vanished without a trace, Bermuda Triangle-style",
+      "item.everlaartifacts.worst_apple": "Music Disc",
+      "text.everlaartifacts.penis_music_explosion": "That absurd music pelted %s with soundwaves and sent him flying",
+      "item.everlaartifacts.homa_staff.description_0": "§eAfter loading the Better Combat mod, the attack pattern changes as follows:",
+      "item.everlaartifacts.homa_staff.description_1": "§aNormal Attack – Wangsheng Funeral Parlor\u0027s Secret Spear Technique:",
+      "item.everlaartifacts.twisted_garden": "Music Disc",
+      "item.everlaartifacts.homa_staff.description_20": "§cWhile wielding this weapon, any bonuses from off-hand items are disabled.",
+      "item.everlaartifacts.homa_staff.description_21": "§6§mWhat? You think I got this idea from playing Genshin Impact? Do you even know how many brain cells I burned making this? — EverlaPrismerAya",
+      "item.everlaartifacts.lonely_guitar.desc": "結束バンド - ギターと孤独と蒼い惑星",
+      "item.everlaartifacts.zako_uncle": "Zako Uncle",
+      "item.everlaartifacts.music_disc_nilk.desc": "ennway - Nilk",
+      "effect.everlaartifacts.bedmic_destruction": "Bedmic Desturction",
+      "item.everlaartifacts.never_gonna_give_you_up": "Music Disc",
+      "item.everlaartifacts.nilk": "Nilk",
+      "item.everlaartifacts.two_bread_sandwiched_with_cheese.description_0": "§7Too Weak...",
+      "item.everlaartifacts.kill_the_messenger.desc": "Rezodrone - KILL THE MESSENGER",
+      "item.everlaartifacts.electrical_stick_bone.desc": "欠债调音狮 - bones",
+      "item.everlaartifacts.sweet_death": "Music Disc",
+      "subtitles.nilk": "",
+      "item.everlaartifacts.twisted_garden.desc": "Heart Plus Up! - Twisted Garden",
+      "item.everlaartifacts.nanomachine.desc": "Platinum Mix - It Has To Be This Way",
+      "item.everlaartifacts.homa_staff.description_17": "§fThis buff increases Attack Power by an amount equal to 62.6% of the holder’s maximum HP.",
+      "item.everlaartifacts.homa_staff.description_18": "§fThe extra damage from this Attack Power boost ignores invincibility frames, but cannot exceed 800% of the holder’s base Attack Power.",
+      "item.everlaartifacts.homa_staff.description_19": "§cTwo-Handed Weapon Restriction:",
+      "item.everlaartifacts.aleph_0.desc": "LeaF - Aleph-0",
+      "item.everlaartifacts.raiden.desc": "Platinum Mix - Rules of Nature",
+      "item.minecraft.potion.effect.nuclear_waste_water_bottle": "Nuclear Waste Water Bottle",
+      "block.everlaartifacts.auric_scrap_block": "Auric Scrap Block",
+      "item.everlaartifacts.lonely_guitar": "Music Disc",
+      "item.everlaartifacts.manbo_legend.description_0": "§cWarning: This music maybe will kill you",
+      "item.everlaartifacts.galatic_destruction.desc": "Heart Plus Up! - Galactic Destruction",
+      "item.everlaartifacts.raiden": "Music Disc",
+      "item.minecraft.splash_potion.effect.nuclear_waste_water_bottle": "Splash Nuclear Waste Water Bottle",
+      "item.everlaartifacts.braised_pork_with_plum_cabbage": "Braised Pork With Plum Cabbage",
+      "advancements.chalice_of_blood_god_challenge.descr": "Win the Greate Potato War",
+      "item.everlaartifacts.auric_ingot": "Auric Ingot",
+      "item.everlaartifacts.i_really_want_to_stay_at_your_house.desc": "Rosa Walton - I Really Want to Stay At Your House",
+      "item.everlaartifacts.music_disc_nilk": "Music Disc Nilk",
+      "item.everlaartifacts.auric_scrap": "Auric Scrap",
+      "item_group.everlaartifacts.weird_thing": "Weird Thing",
+      "item.minecraft.splash_potion.effect.flashbomb": "Flashbomb",
+      "item.everlaartifacts.hardest_2_be.desc": "P.T. Adamczyk, Sora Lion - Hardest To Be",
+      "item.everlaartifacts.pot_of_pain": "Pot Of Pain",
+      "block.everlaartifacts.nuclear_waste_water": "Nuclear Waste Water",
+      "item.everlaartifacts.homa_staff.description_n0": "§eWhen Apotheosis Loaded:",
+      "item.everlaartifacts.homa_staff.description_n1": "§9+66.2% Critical Damage",
+      "item.everlaartifacts.theonlythingiknowforreal.desc": "Maniac Agenda Mix - The Only Thing I Know For Real",
+      "item.everlaartifacts.weird_cocktail": "Weird Cocktail",
+      "item.everlaartifacts.delicate_weapon": "Music Disc",
+      "item.everlaartifacts.glutinous_arbitration.desc": "The Exiled Fellow - Glutinous Arbitration",
+      "item.everlaartifacts.delicate_weapon.desc": "Grimes _ Lizzy Wizzy - Delicate Weapon",
+      "item.everlaartifacts.two_bread_sandwiched_with_cheese": "Two Bread Sandwiched With Cheese",
+      "item.everlaartifacts.manbo_no_more.description_0": "§cWarning: This music maybe will kill you",
+      "item.minecraft.lingering_potion.effect.nuclear_waste_water_bottle": "Lingering Nuclear Waste Water Bottle",
+      "advancements.chalice_of_blood_god_challenge.title": "Chalice Of Blood God",
+      "item.everlaartifacts.pay_to_win_shard_1": "§fPay To Win Shard I",
+      "effect.everlaartifacts.homa_passive": "Butterfly Brings Rebirth",
+      "item.everlaartifacts.pay_to_win_shard_4": "§5Pay To Win Shard IV",
+      "item.everlaartifacts.pay_to_win_shard_5": "§6Pay To Win Shard V",
+      "item.everlaartifacts.thousand_love.desc": "KOTOKO - 恋ひ恋ふ縁",
+      "item.everlaartifacts.pay_to_win_shard_2": "§aPay To Win Shard II",
+      "item.everlaartifacts.pay_to_win_shard_3": "§9Pay To Win Shard III",
+      "item.everlaartifacts.galatic_destruction": "Music Disc",
+      "item.everlaartifacts.three_interwined_fate": "Three Interwined Fate",
+      "item.everlaartifacts.sweet_death.desc": "ARIANNE - Komm, susser Tod （甘き死よ、来たれ）",
+      "item.everlaartifacts.girlgotolove.desc": "米仓千寻 - 恋せよ乙女！",
+      "item.minecraft.tipped_arrow.effect.nuclear_waste_water_bottle": "Arrow of Nuclear Waste Water",
+      "item_group.everlaartifacts.everla_tweaker": "Everla Artifacts",
+      "painting.everlaartifacts.technoblade_staring.author": "Unknown",
+      "item.everlaartifacts.chalice_of_blood_god.description_0": "§6Item Ability: Potato King",
+      "item.everlaartifacts.chalice_of_blood_god.description_1": "§7Bestowed by §kNameless Deity§r§7 to the",
+      "item.everlaartifacts.raw_auric": "Raw Auric",
+      "item.everlaartifacts.chalice_of_blood_god.description_2": "§7winner of the Great Potato War.",
+      "item.everlaartifacts.chalice_of_blood_god.description_3": "",
+      "item.everlaartifacts.thousand_love": "Music Disc",
+      "item.everlaartifacts.chalice_of_blood_god.description_4": "§d§oAll man can see the tactics",
+      "item.everlaartifacts.pot_of_pain.description_0": "§7Meh, soup",
+      "item.everlaartifacts.nuclear_waste_water_bucket": "Nuclear Waste Water Bucket",
+      "item.everlaartifacts.chalice_of_blood_god.description_5": "§d§owhereby I conquer, but what none",
+      "item.everlaartifacts.chalice_of_blood_god.description_6": "§d§ocan see is the strategy out of",
+      "item.everlaartifacts.chalice_of_blood_god.description_7": "§d§owhich victory is evolved",
+      "item.everlaartifacts.i_really_want_to_stay_at_your_house": "Music Disc",
+      "item.everlaartifacts.firecracker": "Firecracker",
+      "item.everlaartifacts.chalice_of_blood_god.description_8": "§8- Sun Tzu, The Art of War",
+      "item.everlaartifacts.red_packet": "Red Packet",
+      "item.everlaartifacts.chalice_of_blood_god.description_9": "",
+      "item.everlaartifacts.condenced_potato_1": "Condenced Potato I",
+      "item.everlaartifacts.condenced_potato_2": "Condenced Potato II",
+      "item.everlaartifacts.condenced_potato_3": "Condenced Potato III",
+      "item.everlaartifacts.condenced_potato_4": "Condenced Potato IV",
+      "item.everlaartifacts.kill_the_messenger": "Music Disc",
+      "item.everlaartifacts.cruel_angel": "Music Disc",
+      "item.everlaartifacts.homa_staff": "Homa Staff",
+      "item.everlaartifacts.yamato.desc": "Andrew Baena - Bury the light",
+      "item.everlaartifacts.lonely_man_brokenhearted_song": "Music Disc",
+      "item.everlaartifacts.manbo_legend": "Music Disc",
+      "item.everlaartifacts.viscous_desperation": "Music Disc",
+      "item.everlaartifacts.pay_to_win_crystal": "§6Pay To Win Crystal",
+      "effect.everlaartifacts.waaooo_overlay": "Waaooo!!!",
+      "fluid.everlaartifacts.nuclear_waste_water": "Nuclear Waste Water",
+      "item.everlaartifacts.real_smoker": "Music Disc",
+      "item.everlaartifacts.hacker_gamer": "Music Disc",
+      "item_group.everlaartifacts.everla_discs": "Everla Discs",
+      "item.everlaartifacts.worst_apple.desc": "§kNameless Deity§r - Worst Apple",
+      "item.everlaartifacts.glutinous_arbitration": "Music Disc",
+      "subtitles.deltarune_explosion": "Deltarune Explosion",
+      "item.everlaartifacts.tokyo_hot_disc": "Music Disc",
+      "item.everlaartifacts.fading_sky.desc": "ARKNIGHT - Fading Sky",
+      "text.rainbow_lore.everlaartifacts.nilk": "§oTestas Greet！§r\\nAt least this thing won\u0027t give you photosensitive epilepsy.",
+      "item.everlaartifacts.yamato": "Music Disc",
+      "effect.everlaartifacts.nuclear_water_radiation": "Nuclear Water Radiation",
+      "item.everlaartifacts.hardest_2_be": "Music Disc",
+      "item.minecraft.potion.effect.flashbomb": "Self Flashbomb",
+      "item.everlaartifacts.manbo_no_more": "Music Disc",
+      "item.minecraft.tipped_arrow.effect.flashbomb": "Arrow of Flashing",
+      "item.everlaartifacts.cruel_angel.desc": "高橋洋子 - 残酷な天使のテーゼ",
+      "effect.everlaartifacts.homa_active": "Unbound Vermilion Butterfly",
+      "item.everlaartifacts.fading_sky": "Music Disc",
+      "item.everlaartifacts.condenced_potato_9": "§6Condenced Potato IX§r",
+      "item.everlaartifacts.beijing_ticket": "Plane Ticket to Beijing",
+      "item.everlaartifacts.condenced_potato_5": "Condenced Potato V",
+      "item.everlaartifacts.condenced_potato_6": "Condenced Potato VI",
+      "item.everlaartifacts.condenced_potato_7": "Condenced Potato VII",
+      "item.everlaartifacts.condenced_potato_8": "Condenced Potato VIII",
+      "item.everlaartifacts.weird_cocktail.description_0": "§7§oIt\\u0027s looks very bad",
+      "item.everlaartifacts.weird_cocktail.description_1": "§e-  Mascot:§b小恐龙呀啊\\u0027s §eexclusive drink -",
+      "item.everlaartifacts.chalice_of_blood_god.description_11": "§6§lLEGENDARY ITEM",
+      "item.everlaartifacts.chalice_of_blood_god.description_10": "§7Can be used to craft any potato material recipe, will not consume",
+      "item.everlaartifacts.chalice_of_blood_god.description_13": "",
+      "item.everlaartifacts.never_gonna_give_you_up.desc": "§kRick Astley §r-§k Never Gonna Give You Up",
+      "item.everlaartifacts.chalice_of_blood_god.description_12": "§7§m                                        ",
+      "item.everlaartifacts.electrical_stick_bone": "Music Disc",
+      "item.everlaartifacts.nanjing_ticket": "Plane Ticket to Nanjing",
+      "item.everlaartifacts.chalice_of_blood_god.description_15": "§7Please stop.",
+      "item.everlaartifacts.tokyo_hot_disc.desc": "Z3BROTHER - Tokyo Hot (Remix) ",
+      "item.everlaartifacts.viscous_desperation.desc": "The Exiled Fellow - Viscous Desperation",
+      "item.everlaartifacts.chalice_of_blood_god.description_14": "§7Congrats!!!",
+      "item.everlaartifacts.aleph_0": "Music Disc",
+      "item.everlaartifacts.lonely_man_brokenhearted_song.desc": "寂寞的人伤心的歌 - 龙梅子 杨海彪",
+      "item.everlaartifacts.manbo_legend.desc": "Manbo Legend - CannonGary",
+      "item.everlaartifacts.chinese_dumpling": "Chinese Dumpling",
+      "painting.everlaartifacts.technoblade_staring.title": "Technoblade Staring",
+      "block.everlaartifacts.deepslate_auric_ore": "Deepslate Auric Ore"
+    },
+    "zh_cn": {
+      "item.everlaartifacts.homa_staff.description_13": "§a被动技能·血之灶火：",
+      "item.everlaartifacts.homa_staff.description_14": "§f当持有者的当前生命下降到50%及以下时，获得33%攻击力提升",
+      "item.everlaartifacts.homa_staff.description_15": "§a主动技能·蝶引来生：",
+      "item.everlaartifacts.homa_staff.description_16": "§f右击以损失30%当前生命为代价获得蝶引来生增益，持续9秒，冷却16秒，此损失生命的效果不致死",
+      "item.everlaartifacts.chalice_of_blood_god": "血神圣杯",
+      "item.everlaartifacts.homa_staff.description_10": "§f持有时最大生命值提高40%",
+      "item.everlaartifacts.homa_staff.description_11": "§f此外，基于持有者生命上限的16%，获得攻击力加成",
+      "item.everlaartifacts.tokyo_ticket": "飞往东京的机票",
+      "item.everlaartifacts.homa_staff.description_12": "§f当持有者当前生命下降到50%及以下时，进一步获得18%基于生命值上限的攻击提升",
+      "item.everlaartifacts.nanomachine": "音乐唱片",
+      "item.everlaartifacts.hacker_gamer.desc": "黄勇,任浩铭 - 你看到的我",
+      "item.everlaartifacts.manbo_no_more.desc": "Normal No More(不再曼波) - 还给我神ID",
+      "item.everlaartifacts.inner_quartz_outer_nuclear": "里英外核",
+      "effect.everlaartifacts.american_style_cut_overlay": "美利坚之力",
+      "item.everlaartifacts.girlgotolove": "音乐唱片",
+      "item.everlaartifacts.real_smoker.desc": "夜吟月寒 - 肺痒痒",
+      "item.everlaartifacts.homa_staff.description_2": "§f§7挥舞权杖，造成6段伤害：",
+      "item.everlaartifacts.homa_staff.description_3": "§7一段伤害：83.6%攻击力",
+      "item.everlaartifacts.theonlythingiknowforreal": "音乐唱片",
+      "item.everlaartifacts.homa_staff.description_4": "§7二段伤害：86.1%攻击力",
+      "item.everlaartifacts.homa_staff.description_5": "§7三段伤害：108.9%攻击力",
+      "item.minecraft.lingering_potion.effect.flashbomb": "滞留型闪光弹",
+      "item.everlaartifacts.homa_staff.description_6": "§7四段伤害：117.1%攻击力",
+      "item.everlaartifacts.homa_staff.description_7": "§7五段伤害：59.4%+62.8%攻击力",
+      "item.everlaartifacts.homa_staff.description_8": "§7六段伤害：153.4%攻击力",
+      "item.everlaartifacts.homa_staff.description_9": "§a被动技能·无羁的朱赤之蝶：",
+      "effect.everlaartifacts.genshin_start": "原神启动！",
+      "text.everlaartifacts.suicide": "%s百慕大三角式人间蒸发",
+      "item.everlaartifacts.worst_apple": "音乐唱片",
+      "text.everlaartifacts.penis_music_explosion": "%s被神人音乐肘飞了",
+      "item.everlaartifacts.homa_staff.description_0": "§e装载Better Combat模组后，攻击方式变为如下形式：",
+      "item.everlaartifacts.homa_staff.description_1": "§a普通攻击·往生堂秘传枪法：",
+      "item.everlaartifacts.twisted_garden": "音乐唱片",
+      "item.everlaartifacts.homa_staff.description_20": "§c手持此武器时，副手物品的任何加成都将失效",
+      "item.everlaartifacts.homa_staff.description_21": "§6§m什么？你觉得我是玩原神玩的？你不知道当初做这玩意烧了我多少脑细胞吗？——EverlaPrismerAya",
+      "item.everlaartifacts.lonely_guitar.desc": "結束バンド - ギターと孤独と蒼い惑星",
+      "item.everlaartifacts.zako_uncle": "炸鱼薯黍",
+      "item.everlaartifacts.music_disc_nilk.desc": "ennway - Nilk",
+      "effect.everlaartifacts.bedmic_destruction": "床板毁灭",
+      "item.everlaartifacts.never_gonna_give_you_up": "音乐唱片",
+      "item.everlaartifacts.nilk": "谬奶",
+      "item.everlaartifacts.two_bread_sandwiched_with_cheese.description_0": "§7太弱小了……",
+      "item.everlaartifacts.kill_the_messenger.desc": "Rezodrone - KILL THE MESSENGER",
+      "item.everlaartifacts.electrical_stick_bone.desc": "欠债调音狮 - bones",
+      "item.everlaartifacts.sweet_death": "音乐唱片",
+      "subtitles.nilk": "",
+      "item.everlaartifacts.twisted_garden.desc": "Heart Plus Up! - Twisted Garden",
+      "item.everlaartifacts.nanomachine.desc": "Platinum Mix - It Has To Be This Way",
+      "item.everlaartifacts.homa_staff.description_17": "§f此增益将使得持有者的攻击力提升，提升量相当于持有者生命值上限的62.6%",
+      "item.everlaartifacts.homa_staff.description_18": "§f此增益造成的攻击提升效果产生的额外伤害将无视无敌帧，但此伤害不能超过持有者攻击力的800%",
+      "item.everlaartifacts.homa_staff.description_19": "§c双手武器限制：",
+      "item.everlaartifacts.aleph_0.desc": "LeaF - Aleph-0",
+      "item.everlaartifacts.raiden.desc": "Platinum Mix - Rules of Nature",
+      "item.minecraft.potion.effect.nuclear_waste_water_bottle": "核废水瓶",
+      "block.everlaartifacts.auric_scrap_block": "圣金源碎片块",
+      "item.everlaartifacts.lonely_guitar": "音乐唱片",
+      "item.everlaartifacts.manbo_legend.description_0": "§c警告：此音乐可能会把你难听死",
+      "item.everlaartifacts.galatic_destruction.desc": "Heart Plus Up! - Galactic Destruction",
+      "item.everlaartifacts.raiden": "音乐唱片",
+      "item.minecraft.splash_potion.effect.nuclear_waste_water_bottle": "喷溅型核废水瓶",
+      "item.everlaartifacts.braised_pork_with_plum_cabbage": "梅菜扣肉",
+      "advancements.chalice_of_blood_god_challenge.descr": "赢得伟大的土豆战争",
+      "item.everlaartifacts.auric_ingot": "圣金源锭",
+      "item.everlaartifacts.i_really_want_to_stay_at_your_house.desc": "Rosa Walton - I Really Want to Stay At Your House",
+      "item.everlaartifacts.music_disc_nilk": "音乐唱片",
+      "item.everlaartifacts.auric_scrap": "圣金源碎片",
+      "item_group.everlaartifacts.weird_thing": "七叶镜绫的抽象",
+      "item.minecraft.splash_potion.effect.flashbomb": "闪光弹药水",
+      "item.everlaartifacts.hardest_2_be.desc": "P.T. Adamczyk, Sora Lion - Hardest To Be",
+      "item.everlaartifacts.pot_of_pain": "山猪胡辣汤",
+      "block.everlaartifacts.nuclear_waste_water": "核废水",
+      "item.everlaartifacts.homa_staff.description_n0": "§e装载神化后：",
+      "item.everlaartifacts.homa_staff.description_n1": "§9+66.2% 暴击伤害",
+      "item.everlaartifacts.theonlythingiknowforreal.desc": "Maniac Agenda Mix - The Only Thing I Know For Real",
+      "item.everlaartifacts.weird_cocktail": "奇怪的鸡尾酒",
+      "item.everlaartifacts.delicate_weapon": "音乐唱片",
+      "item.everlaartifacts.glutinous_arbitration.desc": "The Exiled Fellow - Glutinous Arbitration",
+      "item.everlaartifacts.delicate_weapon.desc": "Grimes _ Lizzy Wizzy - Delicate Weapon",
+      "item.everlaartifacts.two_bread_sandwiched_with_cheese": "两面包夹芝士",
+      "item.everlaartifacts.manbo_no_more.description_0": "§c警告：此音乐可能会把你难听死",
+      "item.minecraft.lingering_potion.effect.nuclear_waste_water_bottle": "滞留型核废水瓶",
+      "advancements.chalice_of_blood_god_challenge.title": "血神圣杯",
+      "item.everlaartifacts.pay_to_win_shard_1": "§f抽象氪金碎片 I",
+      "effect.everlaartifacts.homa_passive": "无羁的朱赤之蝶",
+      "item.everlaartifacts.pay_to_win_shard_4": "§5抽象氪金碎片 IV",
+      "item.everlaartifacts.pay_to_win_shard_5": "§6抽象氪金碎片 V",
+      "item.everlaartifacts.thousand_love.desc": "KOTOKO - 恋ひ恋ふ縁",
+      "item.everlaartifacts.pay_to_win_shard_2": "§a抽象氪金碎片 II",
+      "item.everlaartifacts.pay_to_win_shard_3": "§9抽象氪金碎片 III",
+      "item.everlaartifacts.galatic_destruction": "音乐唱片",
+      "item.everlaartifacts.three_interwined_fate": "原神超绝丰厚年活·三颗纠缠之缘",
+      "item.everlaartifacts.sweet_death.desc": "ARIANNE - Komm, susser Tod （甘き死よ、来たれ）",
+      "item.everlaartifacts.girlgotolove.desc": "米仓千寻 - 恋せよ乙女！",
+      "item.minecraft.tipped_arrow.effect.nuclear_waste_water_bottle": "核废水之箭",
+      "item_group.everlaartifacts.everla_tweaker": "七叶镜绫的杂物",
+      "painting.everlaartifacts.technoblade_staring.author": "未知",
+      "item.everlaartifacts.chalice_of_blood_god.description_0": "§6物品能力：土豆之王",
+      "item.everlaartifacts.chalice_of_blood_god.description_1": "§7由§k无名光神§r§7赐予",
+      "item.everlaartifacts.raw_auric": "粗圣金源",
+      "item.everlaartifacts.chalice_of_blood_god.description_2": "§7伟大土豆战争的胜者。",
+      "item.everlaartifacts.thousand_love": "音乐唱片",
+      "item.everlaartifacts.chalice_of_blood_god.description_4": "§d§o众人皆知我克敌之法，",
+      "item.everlaartifacts.pot_of_pain.description_0": "§7§o嘿嘿，汤",
+      "item.everlaartifacts.nuclear_waste_water_bucket": "核废水桶",
+      "item.everlaartifacts.chalice_of_blood_god.description_5": "§d§o然无人见我致胜之策，",
+      "item.everlaartifacts.chalice_of_blood_god.description_6": "§d§o此乃谋略所生之胜也，",
+      "item.everlaartifacts.chalice_of_blood_god.description_7": "§d§o",
+      "item.everlaartifacts.i_really_want_to_stay_at_your_house": "音乐唱片",
+      "item.everlaartifacts.firecracker": "鞭炮",
+      "item.everlaartifacts.chalice_of_blood_god.description_8": "§8——孙武《孙子兵法·形篇》",
+      "item.everlaartifacts.red_packet": "红包",
+      "item.everlaartifacts.condenced_potato_1": "一重压缩土豆",
+      "item.everlaartifacts.condenced_potato_2": "二重压缩土豆",
+      "item.everlaartifacts.condenced_potato_3": "三重压缩土豆",
+      "item.everlaartifacts.condenced_potato_4": "四重压缩土豆",
+      "item.everlaartifacts.kill_the_messenger": "音乐唱片",
+      "item.everlaartifacts.cruel_angel": "音乐唱片",
+      "item.everlaartifacts.homa_staff": "护摩之杖",
+      "item.everlaartifacts.yamato.desc": "Andrew Baena - Bury the light",
+      "item.everlaartifacts.lonely_man_brokenhearted_song": "音乐唱片",
+      "item.everlaartifacts.manbo_legend": "音乐唱片",
+      "item.everlaartifacts.viscous_desperation": "音乐唱片",
+      "item.everlaartifacts.pay_to_win_crystal": "§6抽象氪金结晶",
+      "effect.everlaartifacts.waaooo_overlay": "哇袄！！！",
+      "fluid.everlaartifacts.nuclear_waste_water": "核废水",
+      "item.everlaartifacts.real_smoker": "音乐唱片",
+      "item.everlaartifacts.hacker_gamer": "音乐唱片",
+      "item_group.everlaartifacts.everla_discs": "七叶镜绫的唱片",
+      "item.everlaartifacts.worst_apple.desc": "§k无名光神§r - Worst Apple",
+      "item.everlaartifacts.glutinous_arbitration": "音乐唱片",
+      "subtitles.deltarune_explosion": "三角符文高级爆炸特效",
+      "item.everlaartifacts.tokyo_hot_disc": "音乐唱片",
+      "item.everlaartifacts.fading_sky.desc": "ARKNIGHT - Fading Sky",
+      "text.rainbow_lore.everlaartifacts.nilk": "§o濠河\\n§r至少这东西不会让你得光敏性癫痫",
+      "item.everlaartifacts.yamato": "音乐唱片",
+      "effect.everlaartifacts.nuclear_water_radiation": "核废水辐射",
+      "item.everlaartifacts.hardest_2_be": "音乐唱片",
+      "item.minecraft.potion.effect.flashbomb": "我吃闪了！！",
+      "item.everlaartifacts.manbo_no_more": "音乐唱片",
+      "item.minecraft.tipped_arrow.effect.flashbomb": "闪光之箭",
+      "item.everlaartifacts.cruel_angel.desc": "高橋洋子 - 残酷な天使のテーゼ",
+      "effect.everlaartifacts.homa_active": "蝶引来生",
+      "item.everlaartifacts.fading_sky": "音乐唱片",
+      "item.everlaartifacts.condenced_potato_9": "§6九重压缩土豆§r",
+      "item.everlaartifacts.beijing_ticket": "飞往北京的机票",
+      "item.everlaartifacts.condenced_potato_5": "五重压缩土豆",
+      "item.everlaartifacts.condenced_potato_6": "六重压缩土豆",
+      "item.everlaartifacts.condenced_potato_7": "七重压缩土豆",
+      "item.everlaartifacts.condenced_potato_8": "八重压缩土豆",
+      "item.everlaartifacts.weird_cocktail.description_0": "§7§o看起来很糟糕",
+      "item.everlaartifacts.weird_cocktail.description_1": "§e-  吉祥物：§b小恐龙呀啊§e的专属饮品 -",
+      "item.everlaartifacts.chalice_of_blood_god.description_11": "§6§l传说物品",
+      "item.everlaartifacts.chalice_of_blood_god.description_10": "§7可用于合成任意土豆材料配方，且不消耗自身",
+      "item.everlaartifacts.never_gonna_give_you_up.desc": "§kRick Astley §r-§k Never Gonna Give You Up",
+      "item.everlaartifacts.chalice_of_blood_god.description_12": "§7§m",
+      "item.everlaartifacts.electrical_stick_bone": "音乐唱片",
+      "item.everlaartifacts.nanjing_ticket": "飞往南京的机票",
+      "item.everlaartifacts.chalice_of_blood_god.description_15": "§7求你了，停下吧。",
+      "item.everlaartifacts.tokyo_hot_disc.desc": "Z3BROTHER - Tokyo Hot (Remix)",
+      "item.everlaartifacts.viscous_desperation.desc": "The Exiled Fellow - Viscous Desperation",
+      "item.everlaartifacts.chalice_of_blood_god.description_14": "§7恭喜！！！",
+      "item.everlaartifacts.aleph_0": "音乐唱片",
+      "item.everlaartifacts.lonely_man_brokenhearted_song.desc": "寂寞的人伤心的歌 - 龙梅子 杨海彪",
+      "item.everlaartifacts.manbo_legend.desc": "Manbo Legend - CannonGary",
+      "item.everlaartifacts.chinese_dumpling": "饺子",
+      "painting.everlaartifacts.technoblade_staring.title": "Technoblade之凝视",
+      "block.everlaartifacts.deepslate_auric_ore": "深板岩圣金源矿石"
+    }
+  },
+  "foldersRoot": {
+    "name": "~",
+    "children": []
+  },
+  "workspaceSettings": {
+    "modid": "everlaartifacts",
+    "modName": "EverlaArtifacts",
+    "version": "2.0.0-1.20.1",
+    "description": "Some items and other things from my old mod",
+    "author": "EverlaPrismerAya",
+    "websiteURL": "https://space.bilibili.com/485238732?spm_id_from\u003d333.1007.0.0",
+    "license": "All Rights Reserved",
+    "serverSideOnly": false,
+    "modPicture": "pack",
+    "requiredMods": [],
+    "dependencies": [],
+    "dependants": [],
+    "mcreatorDependencies": [],
+    "currentGenerator": "forge-1.20.1",
+    "credits": "fumofumo, fumofumofumo",
+    "modElementsPackage": "net.everla.everlaartifacts"
+  },
+  "mcreatorVersion": 202500113416
+}
