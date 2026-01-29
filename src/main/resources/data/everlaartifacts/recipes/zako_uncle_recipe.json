@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "everlaartifacts:condenced_potato_1"
+    },
+    {
+      "item": "minecraft:cooked_cod"
+    },
+    {
+      "item": "minecraft:cooked_cod"
+    },
+    {
+      "item": "minecraft:cooked_cod"
+    },
+    {
+      "item": "minecraft:cooked_cod"
+    },
+    {
+      "item": "minecraft:blue_dye"
+    },
+    {
+      "item": "minecraft:black_dye"
+    },
+    {
+      "item": "minecraft:poisonous_potato"
+    },
+    {
+      "item": "everlaartifacts:inner_quartz_outer_nuclear"
+    }
+  ],
+  "result": {
+    "item": "everlaartifacts:zako_uncle",
+    "count": 8
+  }
+}

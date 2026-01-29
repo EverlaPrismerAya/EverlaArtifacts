@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "abc",
+    "bdb",
+    "cba"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:diamond"
+    },
+    "b": {
+      "item": "everlaartifacts:auric_scrap"
+    },
+    "c": {
+      "item": "minecraft:gold_ingot"
+    },
+    "d": {
+      "tag": "minecraft:creeper_drop_music_discs"
+    }
+  },
+  "result": {
+    "id": "everlaartifacts:kill_the_messenger",
+    "count": 1
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "a"
+  ],
+  "key": {
+    "a": {
+      "item": "everlaartifacts:viscous_desperation"
+    }
+  },
+  "result": {
+    "item": "everlaartifacts:twisted_garden",
+    "count": 1
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aba",
+    "bcb",
+    "aba"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:orange_dye"
+    },
+    "b": {
+      "item": "everlaartifacts:auric_scrap"
+    },
+    "c": {
+      "tag": "minecraft:creeper_drop_music_discs"
+    }
+  },
+  "result": {
+    "item": "everlaartifacts:cruel_angel",
+    "count": 1
+  }
+}

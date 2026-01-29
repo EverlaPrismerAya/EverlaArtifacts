@@ -1,0 +1,34 @@
+newmtl 3
+Ka 0.0 0.0 0.0
+Kd 0.0 0.0 0.0
+Ks 0.0 0.0 0.0
+map_Kd everlatweaker:block/mekatool
+Ns 100.0
+d 1.0
+newmtl 4
+Ka 0.0 0.0 0.0
+Kd 0.0 0.0 0.0
+Ks 0.0 0.0 0.0
+map_Kd everlatweaker:block/mekatool
+Ns 100.0
+d 1.0
+newmtl 5
+Ka 0.0 0.0 0.0
+Kd 0.0 0.0 0.0
+Ks 0.0 0.0 0.0
+map_Kd everlatweaker:block/mekatool
+Ns 100.0
+d 1.0
+newmtl 6
+Ka 0.0 0.0 0.0
+Kd 0.0 0.0 0.0
+Ks 0.0 0.0 0.0
+map_Kd everlatweaker:block/mekatool
+Ns 100.0
+d 1.0
+newmtl none
+Ka 0.0 0.0 0.0
+Kd 0.0 0.0 0.0
+Ks 0.0 0.0 0.0
+Ns 100.0
+d 1.0

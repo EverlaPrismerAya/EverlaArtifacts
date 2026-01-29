@@ -1,0 +1,48 @@
+{
+  "_fv": 77,
+  "_type": "recipe",
+  "definition": {
+    "recipeType": "Crafting",
+    "recipeRetstackSize": 1,
+    "group": "",
+    "cookingBookCategory": "MISC",
+    "xpReward": 0.0,
+    "cookingTime": 200,
+    "craftingBookCategory": "MISC",
+    "recipeShapeless": false,
+    "recipeSlots": [
+      {
+        "value": "TAG:minecraft:flowers"
+      },
+      {
+        "value": "CUSTOM:AuricScrap"
+      },
+      {
+        "value": "TAG:minecraft:flowers"
+      },
+      {
+        "value": "CUSTOM:AuricScrap"
+      },
+      {
+        "value": "TAG:minecraft:creeper_drop_music_discs"
+      },
+      {
+        "value": "CUSTOM:AuricScrap"
+      },
+      {
+        "value": "TAG:minecraft:flowers"
+      },
+      {
+        "value": "CUSTOM:AuricScrap"
+      },
+      {
+        "value": "TAG:minecraft:flowers"
+      }
+    ],
+    "recipeReturnStack": {
+      "value": "CUSTOM:ThousandLove"
+    },
+    "name": "thousand_love_recipe",
+    "namespace": "mod"
+  }
+}

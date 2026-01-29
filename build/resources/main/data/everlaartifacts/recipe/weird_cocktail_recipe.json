@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aba",
+    "cdc",
+    "aea"
+  ],
+  "key": {
+    "a": {
+      "item": "everlaartifacts:three_interwined_fate"
+    },
+    "b": {
+      "item": "everlaartifacts:inner_quartz_outer_nuclear"
+    },
+    "c": {
+      "tag": "everlatweaker:beds"
+    },
+    "d": {
+      "item": "minecraft:honey_bottle"
+    },
+    "e": {
+      "item": "minecraft:glass_bottle"
+    }
+  },
+  "result": {
+    "id": "everlaartifacts:weird_cocktail",
+    "count": 1
+  }
+}

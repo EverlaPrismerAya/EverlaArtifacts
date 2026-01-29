@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "ab"
+  ],
+  "key": {
+    "a": {
+      "item": "everlaartifacts:two_bread_sandwiched_with_cheese"
+    },
+    "b": {
+      "item": "everlaartifacts:pay_to_win_crystal"
+    }
+  },
+  "result": {
+    "id": "everlaartifacts:nanjing_ticket",
+    "count": 1
+  }
+}

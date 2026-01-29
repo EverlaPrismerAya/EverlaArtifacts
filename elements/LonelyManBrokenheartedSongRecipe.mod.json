@@ -1,0 +1,48 @@
+{
+  "_fv": 77,
+  "_type": "recipe",
+  "definition": {
+    "recipeType": "Crafting",
+    "recipeRetstackSize": 1,
+    "group": "",
+    "cookingBookCategory": "MISC",
+    "xpReward": 0.0,
+    "cookingTime": 200,
+    "craftingBookCategory": "MISC",
+    "recipeShapeless": false,
+    "recipeSlots": [
+      {
+        "value": "CUSTOM:Firecracker"
+      },
+      {
+        "value": "CUSTOM:AuricScrap"
+      },
+      {
+        "value": "CUSTOM:ThreeInterwinedFate"
+      },
+      {
+        "value": "CUSTOM:AuricScrap"
+      },
+      {
+        "value": "CUSTOM:LonelyGuitar"
+      },
+      {
+        "value": "CUSTOM:AuricScrap"
+      },
+      {
+        "value": "Items.FERMENTED_SPIDER_EYE"
+      },
+      {
+        "value": "CUSTOM:AuricScrap"
+      },
+      {
+        "value": "Items.CHICKEN"
+      }
+    ],
+    "recipeReturnStack": {
+      "value": "CUSTOM:LonelyManBrokenheartedSong"
+    },
+    "name": "lonely_man_brokenhearted_song_recipe",
+    "namespace": "mod"
+  }
+}

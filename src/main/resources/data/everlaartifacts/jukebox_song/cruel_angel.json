@@ -1,0 +1,8 @@
+{
+  "comparator_output": 8,
+  "description": {
+    "translate": "item.everlaartifacts.cruel_angel.desc"
+  },
+  "length_in_seconds": 245,
+  "sound_event": "everlaartifacts:cruel_angel"
+}

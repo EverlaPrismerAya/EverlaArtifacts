@@ -1,0 +1,68 @@
+{
+  "_fv": 77,
+  "_type": "tool",
+  "definition": {
+    "toolType": "Sword",
+    "renderType": 0,
+    "blockingRenderType": 0,
+    "texture": "homa_staff",
+    "customModelName": "Normal",
+    "blockingModelName": "Normal blocking",
+    "name": "Homa Staff",
+    "specialInformation": {
+      "fixedValue": [
+        "§eAfter loading the Better Combat mod, the attack pattern changes as follows:",
+        "§aNormal Attack – Wangsheng Funeral Parlor's Secret Spear Technique:",
+        "§fSwing the staff to deal damage in 6 hits:",
+        "§7Hit 1: 83.6% of Attack Power",
+        "§7Hit 2: 86.1% of Attack Power",
+        "§7Hit 3: 108.9% of Attack Power",
+        "§7Hit 4: 117.1% of Attack Power",
+        "§7Hit 5: 59.4% + 62.8% of Attack Power",
+        "§7Hit 6: 153.4% of Attack Power",
+        "§aPassive – Unbound Vermilion Butterfly:",
+        "§fIncreases maximum HP by 40% while held.",
+        "§fAdditionally, grants Attack Power equal to 16% of the holder's maximum HP.",
+        "§fWhen the holder’s current HP drops to 50% or below, gains an additional 18% of maximum HP as Attack Power.",
+        "§aPassive – Hearthfire of Blood:",
+        "§fWhen the holder’s current HP drops to 50% or below, Attack Power is increased by 33%.",
+        "§aActive – Butterfly Brings Rebirth:",
+        "§fRight-click to consume 30% of current HP (non-lethal) and gain the \"Butterfly Brings Rebirth\" buff for 9 seconds (16-second cooldown).",
+        "§fThis buff increases Attack Power by an amount equal to 62.6% of the holder’s maximum HP.",
+        "§fThe extra damage from this Attack Power boost ignores invincibility frames, but cannot exceed 800% of the holder’s base Attack Power.",
+        "§cTwo-Handed Weapon Restriction:",
+        "§cWhile wielding this weapon, any bonuses from off-hand items are disabled.",
+        "§6§mWhat? You think I got this idea from playing Genshin Impact? Do you even know how many brain cells I burned making this? — EverlaPrismerAya"
+      ]
+    },
+    "creativeTabs": [
+      {
+        "value": "COMBAT"
+      }
+    ],
+    "efficiency": 4.0,
+    "attackSpeed": 2.0,
+    "enchantability": 2,
+    "damageVsEntity": 7.7,
+    "usageCount": 715,
+    "glowCondition": {
+      "fixedValue": false
+    },
+    "repairItems": [
+      {
+        "value": "Items.NETHERITE_INGOT"
+      }
+    ],
+    "immuneToFire": true,
+    "blockDropsTier": "NETHERITE",
+    "blocksAffected": [],
+    "stayInGridWhenCrafting": false,
+    "damageOnCrafting": true,
+    "onRightClickedInAir": {
+      "name": "HomaStaffFunc"
+    },
+    "onItemInUseTick": {
+      "name": "HomaTickFunc"
+    }
+  }
+}

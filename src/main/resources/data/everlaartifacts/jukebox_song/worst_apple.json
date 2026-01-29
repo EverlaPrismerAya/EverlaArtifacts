@@ -1,0 +1,8 @@
+{
+  "comparator_output": 4,
+  "description": {
+    "translate": "item.everlaartifacts.worst_apple.desc"
+  },
+  "length_in_seconds": 217,
+  "sound_event": "everlaartifacts:worst_apple"
+}

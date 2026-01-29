@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:block",
+  "random_sequence": "everlaartifacts:blocks/auric_scrap_block",
+  "pools": [
+    {
+      "rolls": 1.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "everlaartifacts:auric_scrap_block"
+        }
+      ]
+    }
+  ]
+}

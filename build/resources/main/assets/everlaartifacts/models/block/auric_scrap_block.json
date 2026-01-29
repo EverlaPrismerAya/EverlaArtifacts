@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "everlaartifacts:block/auric_scrap_block",
+    "up": "everlaartifacts:block/auric_scrap_block",
+    "north": "everlaartifacts:block/auric_scrap_block",
+    "east": "everlaartifacts:block/auric_scrap_block",
+    "south": "everlaartifacts:block/auric_scrap_block",
+    "west": "everlaartifacts:block/auric_scrap_block",
+    "particle": "everlaartifacts:block/auric_scrap_block"
+  },
+  "render_type": "solid"
+}

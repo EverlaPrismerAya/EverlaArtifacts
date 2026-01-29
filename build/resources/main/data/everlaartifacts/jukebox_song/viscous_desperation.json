@@ -1,0 +1,8 @@
+{
+  "comparator_output": 15,
+  "description": {
+    "translate": "item.everlaartifacts.viscous_desperation.desc"
+  },
+  "length_in_seconds": 130,
+  "sound_event": "everlaartifacts:viscous_desperation"
+}

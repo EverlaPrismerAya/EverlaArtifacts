@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "everlaartifacts:condenced_potato_2"
+    }
+  ],
+  "result": {
+    "id": "everlaartifacts:condenced_potato_1",
+    "count": 9
+  }
+}

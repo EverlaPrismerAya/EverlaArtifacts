@@ -1,0 +1,22 @@
+{
+  "_fv": 77,
+  "_type": "potion",
+  "definition": {
+    "potionName": "Self Flashbomb",
+    "splashName": "Flashbomb",
+    "lingeringName": "Lingering Flashbomb",
+    "arrowName": "Arrow of Flashing",
+    "effects": [
+      {
+        "effect": {
+          "value": "CUSTOM:GenshinStart"
+        },
+        "duration": 300,
+        "infinite": false,
+        "amplifier": 0,
+        "ambient": false,
+        "showParticles": true
+      }
+    ]
+  }
+}

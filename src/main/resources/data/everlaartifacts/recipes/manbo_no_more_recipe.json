@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "abc",
+    "bdb",
+    "ebf"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:string"
+    },
+    "b": {
+      "item": "everlaartifacts:auric_scrap"
+    },
+    "c": {
+      "item": "minecraft:brown_wool"
+    },
+    "d": {
+      "tag": "minecraft:creeper_drop_music_discs"
+    },
+    "e": {
+      "item": "minecraft:blue_wool"
+    },
+    "f": {
+      "item": "minecraft:honey_bottle"
+    }
+  },
+  "result": {
+    "item": "everlaartifacts:manbo_no_more",
+    "count": 1
+  }
+}

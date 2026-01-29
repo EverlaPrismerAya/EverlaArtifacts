@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "everlaartifacts:pay_to_win_shard_4"
+    },
+    {
+      "item": "everlaartifacts:pay_to_win_shard_4"
+    },
+    {
+      "item": "everlaartifacts:pay_to_win_shard_4"
+    }
+  ],
+  "result": {
+    "item": "everlaartifacts:pay_to_win_shard_5",
+    "count": 1
+  }
+}

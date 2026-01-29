@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#is_overworld",
+  "features": "everlaartifacts:deepslate_auric_ore",
+  "step": "underground_ores"
+}

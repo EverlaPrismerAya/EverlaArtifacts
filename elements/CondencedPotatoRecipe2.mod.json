@@ -1,0 +1,48 @@
+{
+  "_fv": 77,
+  "_type": "recipe",
+  "definition": {
+    "recipeType": "Crafting",
+    "recipeRetstackSize": 1,
+    "group": "",
+    "cookingBookCategory": "MISC",
+    "xpReward": 0.0,
+    "cookingTime": 200,
+    "craftingBookCategory": "MISC",
+    "recipeShapeless": true,
+    "recipeSlots": [
+      {
+        "value": "CUSTOM:CondencedPotato1"
+      },
+      {
+        "value": "CUSTOM:CondencedPotato1"
+      },
+      {
+        "value": "CUSTOM:CondencedPotato1"
+      },
+      {
+        "value": "CUSTOM:CondencedPotato1"
+      },
+      {
+        "value": "CUSTOM:CondencedPotato1"
+      },
+      {
+        "value": "CUSTOM:CondencedPotato1"
+      },
+      {
+        "value": "CUSTOM:CondencedPotato1"
+      },
+      {
+        "value": "CUSTOM:CondencedPotato1"
+      },
+      {
+        "value": "CUSTOM:CondencedPotato1"
+      }
+    ],
+    "recipeReturnStack": {
+      "value": "CUSTOM:CondencedPotato2"
+    },
+    "name": "condenced_potato_recipe_2",
+    "namespace": "mod"
+  }
+}

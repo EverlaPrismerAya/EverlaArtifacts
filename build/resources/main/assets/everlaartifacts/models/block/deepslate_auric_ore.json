@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "everlaartifacts:block/deepslate_auric_ore",
+    "up": "everlaartifacts:block/deepslate_auric_ore",
+    "north": "everlaartifacts:block/deepslate_auric_ore",
+    "east": "everlaartifacts:block/deepslate_auric_ore",
+    "south": "everlaartifacts:block/deepslate_auric_ore",
+    "west": "everlaartifacts:block/deepslate_auric_ore",
+    "particle": "everlaartifacts:block/deepslate_auric_ore"
+  },
+  "render_type": "solid"
+}

@@ -1,0 +1,29 @@
+{
+  "_fv": 77,
+  "_type": "potioneffect",
+  "definition": {
+    "effectName": "Homa Passive",
+    "icon": "homa_passive",
+    "color": {
+      "value": -39322,
+      "falpha": 0.0
+    },
+    "onAddedSound": {
+      "value": ""
+    },
+    "isInstant": false,
+    "mobEffectCategory": "BENEFICIAL",
+    "renderStatusInInventory": true,
+    "renderStatusInHUD": true,
+    "isCuredbyHoney": false,
+    "modifiers": [
+      {
+        "attribute": {
+          "value": "MAX_HEALTH"
+        },
+        "amount": 0.4,
+        "operation": "ADD_MULTIPLIED_BASE"
+      }
+    ]
+  }
+}

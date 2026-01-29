@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "everlaartifacts:auric_scrap"
+    },
+    {
+      "tag": "everlatweaker:bad_apple"
+    },
+    {
+      "item": "everlaartifacts:auric_scrap"
+    },
+    {
+      "tag": "everlatweaker:bad_apple"
+    },
+    {
+      "tag": "minecraft:creeper_drop_music_discs"
+    },
+    {
+      "tag": "everlatweaker:bad_apple"
+    },
+    {
+      "item": "everlaartifacts:auric_scrap"
+    },
+    {
+      "tag": "everlatweaker:bad_apple"
+    },
+    {
+      "item": "everlaartifacts:auric_scrap"
+    }
+  ],
+  "result": {
+    "id": "everlaartifacts:worst_apple",
+    "count": 1
+  }
+}

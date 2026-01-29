@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "ab"
+  ],
+  "key": {
+    "a": {
+      "item": "everlaartifacts:inner_quartz_outer_nuclear"
+    },
+    "b": {
+      "item": "everlaartifacts:pay_to_win_crystal"
+    }
+  },
+  "result": {
+    "id": "everlaartifacts:beijing_ticket",
+    "count": 1
+  }
+}

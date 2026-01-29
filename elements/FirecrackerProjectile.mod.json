@@ -1,0 +1,33 @@
+{
+  "_fv": 77,
+  "_type": "projectile",
+  "definition": {
+    "projectileItem": {
+      "value": "CUSTOM:Firecracker"
+    },
+    "showParticles": false,
+    "actionSound": {
+      "value": "entity.firework.shoot"
+    },
+    "igniteFire": false,
+    "power": 0.3,
+    "damage": 1.0,
+    "knockback": 0,
+    "entityModel": "Default",
+    "customModelTexture": "",
+    "modelWidth": 0.5,
+    "modelHeight": 0.5,
+    "onHitsBlock": {
+      "name": "FirecrackerBlockExplode"
+    },
+    "onHitsPlayer": {
+      "name": "FirecrackerExplode"
+    },
+    "onHitsEntity": {
+      "name": "FirecrackerExplode"
+    },
+    "onFlyingTick": {
+      "name": "FirecrackerOwner"
+    }
+  }
+}

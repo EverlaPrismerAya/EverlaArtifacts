@@ -1,0 +1,48 @@
+{
+  "_fv": 77,
+  "_type": "recipe",
+  "definition": {
+    "recipeType": "Crafting",
+    "recipeRetstackSize": 1,
+    "group": "",
+    "cookingBookCategory": "MISC",
+    "xpReward": 0.0,
+    "cookingTime": 200,
+    "craftingBookCategory": "MISC",
+    "recipeShapeless": false,
+    "recipeSlots": [
+      {
+        "value": "CUSTOM:AuricScrapBlock"
+      },
+      {
+        "value": "CUSTOM:CondencedPotato9"
+      },
+      {
+        "value": "CUSTOM:AuricScrapBlock"
+      },
+      {
+        "value": ""
+      },
+      {
+        "value": "CUSTOM:AuricScrapBlock"
+      },
+      {
+        "value": ""
+      },
+      {
+        "value": "CUSTOM:AuricScrapBlock"
+      },
+      {
+        "value": "CUSTOM:AuricScrapBlock"
+      },
+      {
+        "value": "CUSTOM:AuricScrapBlock"
+      }
+    ],
+    "recipeReturnStack": {
+      "value": "CUSTOM:ChaliceOfBloodGod"
+    },
+    "name": "chalice_of_blood_god_recipe",
+    "namespace": "mod"
+  }
+}

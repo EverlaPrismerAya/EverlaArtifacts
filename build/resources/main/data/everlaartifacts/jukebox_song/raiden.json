@@ -1,0 +1,8 @@
+{
+  "comparator_output": 8,
+  "description": {
+    "translate": "item.everlaartifacts.raiden.desc"
+  },
+  "length_in_seconds": 148,
+  "sound_event": "everlaartifacts:raiden"
+}

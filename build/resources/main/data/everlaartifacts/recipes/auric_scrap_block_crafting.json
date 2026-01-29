@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "everlaartifacts:auric_scrap"
+    },
+    {
+      "item": "everlaartifacts:auric_scrap"
+    },
+    {
+      "item": "everlaartifacts:auric_scrap"
+    },
+    {
+      "item": "everlaartifacts:auric_scrap"
+    },
+    {
+      "item": "everlaartifacts:auric_scrap"
+    },
+    {
+      "item": "everlaartifacts:auric_scrap"
+    },
+    {
+      "item": "everlaartifacts:auric_scrap"
+    },
+    {
+      "item": "everlaartifacts:auric_scrap"
+    },
+    {
+      "item": "everlaartifacts:auric_scrap"
+    }
+  ],
+  "result": {
+    "item": "everlaartifacts:auric_scrap_block",
+    "count": 1
+  }
+}

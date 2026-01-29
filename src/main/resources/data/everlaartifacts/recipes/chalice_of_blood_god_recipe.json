@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aba",
+    " a ",
+    "aaa"
+  ],
+  "key": {
+    "a": {
+      "item": "everlaartifacts:auric_scrap_block"
+    },
+    "b": {
+      "item": "everlaartifacts:condenced_potato_9"
+    }
+  },
+  "result": {
+    "item": "everlaartifacts:chalice_of_blood_god",
+    "count": 1
+  }
+}

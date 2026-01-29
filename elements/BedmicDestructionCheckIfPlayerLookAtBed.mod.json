@@ -1,0 +1,7 @@
+{
+  "_fv": 77,
+  "_type": "procedure",
+  "definition": {
+    "procedurexml": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><xml xmlns=\"https://developers.google.com/blockly/xml\"><variables><variable id=\"found\" type=\"Boolean\">found</variable><variable id=\"sx\" type=\"Number\">sx</variable><variable id=\"sy\" type=\"Number\">sy</variable><variable id=\"sz\" type=\"Number\">sz</variable></variables><block deletable=\"false\" type=\"event_trigger\" x=\"-157\" y=\"-75\"><field name=\"trigger\">no_ext_trigger</field><next><block type=\"entity_execute_command\"><value name=\"entity\"><block type=\"entity_from_deps\"/></value><value name=\"command\"><block type=\"text\"><field name=\"TEXT\">fill ~10 ~ ~10 ~-10 ~-10 ~-10 air replace #everlatweaker:can_destoryed_by_weird_cocktail[part=foot]</field></block></value><next><block type=\"entity_execute_command\"><value name=\"entity\"><block type=\"entity_from_deps\"/></value><value name=\"command\"><block type=\"text\"><field name=\"TEXT\">fill ~10 ~10 ~10 ~1 ~-10 ~-10 air replace #everlatweaker:can_destoryed_by_weird_cocktail[part=foot]</field></block></value></block></next></block></next></block></xml>"
+  }
+}

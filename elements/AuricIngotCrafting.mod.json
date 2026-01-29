@@ -1,0 +1,48 @@
+{
+  "_fv": 77,
+  "_type": "recipe",
+  "definition": {
+    "recipeType": "Crafting",
+    "recipeRetstackSize": 16,
+    "group": "",
+    "cookingBookCategory": "MISC",
+    "xpReward": 0.0,
+    "cookingTime": 200,
+    "craftingBookCategory": "MISC",
+    "recipeShapeless": true,
+    "recipeSlots": [
+      {
+        "value": "CUSTOM:AuricScrapBlock"
+      },
+      {
+        "value": "CUSTOM:AuricScrapBlock"
+      },
+      {
+        "value": "CUSTOM:AuricScrapBlock"
+      },
+      {
+        "value": "CUSTOM:AuricScrapBlock"
+      },
+      {
+        "value": "Items.DRAGON_BREATH"
+      },
+      {
+        "value": "CUSTOM:AuricScrapBlock"
+      },
+      {
+        "value": "CUSTOM:AuricScrapBlock"
+      },
+      {
+        "value": "CUSTOM:AuricScrapBlock"
+      },
+      {
+        "value": "CUSTOM:AuricScrapBlock"
+      }
+    ],
+    "recipeReturnStack": {
+      "value": "CUSTOM:AuricIngot"
+    },
+    "name": "auric_ingot_crafting",
+    "namespace": "mod"
+  }
+}

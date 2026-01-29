@@ -1,0 +1,147 @@
+---- Minecraft Crash Report ----
+// Shall we play a game?
+
+Time: 2024-02-22 23:08:24
+Description: Ticking player
+
+java.lang.NullPointerException: Cannot invoke "net.minecraft.world.entity.ai.attributes.AttributeInstance.getValue()" because the return value of "net.minecraft.world.entity.LivingEntity.getAttribute(net.minecraft.world.entity.ai.attributes.Attribute)" is null
+	at net.everla.everlatweaker.procedures.GoodAppleHealthBoostProcedure.execute(GoodAppleHealthBoostProcedure.java:22) ~[%23196!/:?] {re:classloading}
+	at net.everla.everlatweaker.item.GoodAppleItem.finishUsingItem(GoodAppleItem.java:40) ~[%23196!/:?] {re:classloading}
+	at net.minecraft.world.item.ItemStack.finishUsingItem(ItemStack.java:279) ~[forge-1.20.1-47.1.0_mapped_official_1.20.1-recomp.jar%23191!/:?] {re:classloading,xf:fml:forge:itemstack,re:mixin,xf:fml:forge:itemstack}
+	at net.minecraft.world.entity.LivingEntity.completeUsingItem(LivingEntity.java:3016) ~[forge-1.20.1-47.1.0_mapped_official_1.20.1-recomp.jar%23191!/:?] {re:mixin,re:computing_frames,re:classloading,pl:mixin:APP:curios.mixins.json:MixinLivingEntity,pl:mixin:A}
+	at net.minecraft.server.level.ServerPlayer.completeUsingItem(ServerPlayer.java:1102) ~[forge-1.20.1-47.1.0_mapped_official_1.20.1-recomp.jar%23191!/:?] {re:computing_frames,pl:accesstransformer:B,re:classloading,pl:accesstransformer:B}
+	at net.minecraft.world.entity.LivingEntity.updateUsingItem(LivingEntity.java:2898) ~[forge-1.20.1-47.1.0_mapped_official_1.20.1-recomp.jar%23191!/:?] {re:mixin,re:computing_frames,re:classloading,pl:mixin:APP:curios.mixins.json:MixinLivingEntity,pl:mixin:A}
+	at net.minecraft.server.level.ServerPlayer.updateUsingItem(ServerPlayer.java:1671) ~[forge-1.20.1-47.1.0_mapped_official_1.20.1-recomp.jar%23191!/:?] {re:computing_frames,pl:accesstransformer:B,re:classloading,pl:accesstransformer:B}
+	at net.minecraft.world.entity.LivingEntity.updatingUsingItem(LivingEntity.java:2880) ~[forge-1.20.1-47.1.0_mapped_official_1.20.1-recomp.jar%23191!/:?] {re:mixin,re:computing_frames,re:classloading,pl:mixin:APP:curios.mixins.json:MixinLivingEntity,pl:mixin:A}
+	at net.minecraft.world.entity.LivingEntity.tick(LivingEntity.java:2254) ~[forge-1.20.1-47.1.0_mapped_official_1.20.1-recomp.jar%23191!/:?] {re:mixin,re:computing_frames,re:classloading,pl:mixin:APP:curios.mixins.json:MixinLivingEntity,pl:mixin:A}
+	at net.minecraft.world.entity.player.Player.tick(Player.java:241) ~[forge-1.20.1-47.1.0_mapped_official_1.20.1-recomp.jar%23191!/:?] {re:computing_frames,pl:accesstransformer:B,re:classloading,pl:accesstransformer:B,re:mixin,pl:accesstransformer:B}
+	at net.minecraft.server.level.ServerPlayer.doTick(ServerPlayer.java:467) ~[forge-1.20.1-47.1.0_mapped_official_1.20.1-recomp.jar%23191!/:?] {re:computing_frames,pl:accesstransformer:B,re:classloading,pl:accesstransformer:B}
+	at net.minecraft.server.network.ServerGamePacketListenerImpl.tick(ServerGamePacketListenerImpl.java:262) ~[forge-1.20.1-47.1.0_mapped_official_1.20.1-recomp.jar%23191!/:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.network.Connection.tick(Connection.java:263) ~[forge-1.20.1-47.1.0_mapped_official_1.20.1-recomp.jar%23191!/:?] {re:classloading}
+	at net.minecraft.server.network.ServerConnectionListener.tick(ServerConnectionListener.java:142) ~[forge-1.20.1-47.1.0_mapped_official_1.20.1-recomp.jar%23191!/:?] {re:classloading}
+	at net.minecraft.server.MinecraftServer.tickChildren(MinecraftServer.java:907) ~[forge-1.20.1-47.1.0_mapped_official_1.20.1-recomp.jar%23191!/:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.server.MinecraftServer.tickServer(MinecraftServer.java:814) ~[forge-1.20.1-47.1.0_mapped_official_1.20.1-recomp.jar%23191!/:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.client.server.IntegratedServer.tickServer(IntegratedServer.java:89) ~[forge-1.20.1-47.1.0_mapped_official_1.20.1-recomp.jar%23191!/:?] {re:classloading,pl:runtimedistcleaner:A}
+	at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:661) ~[forge-1.20.1-47.1.0_mapped_official_1.20.1-recomp.jar%23191!/:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.server.MinecraftServer.lambda$spin$2(MinecraftServer.java:251) ~[forge-1.20.1-47.1.0_mapped_official_1.20.1-recomp.jar%23191!/:?] {re:classloading,pl:accesstransformer:B}
+	at java.lang.Thread.run(Thread.java:833) ~[?:?] {}
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Thread: Server thread
+Stacktrace:
+	at net.everla.everlatweaker.procedures.GoodAppleHealthBoostProcedure.execute(GoodAppleHealthBoostProcedure.java:22) ~[%23196!/:?] {re:classloading}
+	at net.everla.everlatweaker.item.GoodAppleItem.finishUsingItem(GoodAppleItem.java:40) ~[%23196!/:?] {re:classloading}
+	at net.minecraft.world.item.ItemStack.finishUsingItem(ItemStack.java:279) ~[forge-1.20.1-47.1.0_mapped_official_1.20.1-recomp.jar%23191!/:?] {re:classloading,xf:fml:forge:itemstack,re:mixin,xf:fml:forge:itemstack}
+	at net.minecraft.world.entity.LivingEntity.completeUsingItem(LivingEntity.java:3016) ~[forge-1.20.1-47.1.0_mapped_official_1.20.1-recomp.jar%23191!/:?] {re:mixin,re:computing_frames,re:classloading,pl:mixin:APP:curios.mixins.json:MixinLivingEntity,pl:mixin:A}
+	at net.minecraft.server.level.ServerPlayer.completeUsingItem(ServerPlayer.java:1102) ~[forge-1.20.1-47.1.0_mapped_official_1.20.1-recomp.jar%23191!/:?] {re:computing_frames,pl:accesstransformer:B,re:classloading,pl:accesstransformer:B}
+	at net.minecraft.world.entity.LivingEntity.updateUsingItem(LivingEntity.java:2898) ~[forge-1.20.1-47.1.0_mapped_official_1.20.1-recomp.jar%23191!/:?] {re:mixin,re:computing_frames,re:classloading,pl:mixin:APP:curios.mixins.json:MixinLivingEntity,pl:mixin:A}
+	at net.minecraft.server.level.ServerPlayer.updateUsingItem(ServerPlayer.java:1671) ~[forge-1.20.1-47.1.0_mapped_official_1.20.1-recomp.jar%23191!/:?] {re:computing_frames,pl:accesstransformer:B,re:classloading,pl:accesstransformer:B}
+	at net.minecraft.world.entity.LivingEntity.updatingUsingItem(LivingEntity.java:2880) ~[forge-1.20.1-47.1.0_mapped_official_1.20.1-recomp.jar%23191!/:?] {re:mixin,re:computing_frames,re:classloading,pl:mixin:APP:curios.mixins.json:MixinLivingEntity,pl:mixin:A}
+	at net.minecraft.world.entity.LivingEntity.tick(LivingEntity.java:2254) ~[forge-1.20.1-47.1.0_mapped_official_1.20.1-recomp.jar%23191!/:?] {re:mixin,re:computing_frames,re:classloading,pl:mixin:APP:curios.mixins.json:MixinLivingEntity,pl:mixin:A}
+	at net.minecraft.world.entity.player.Player.tick(Player.java:241) ~[forge-1.20.1-47.1.0_mapped_official_1.20.1-recomp.jar%23191!/:?] {re:computing_frames,pl:accesstransformer:B,re:classloading,pl:accesstransformer:B,re:mixin,pl:accesstransformer:B}
+-- Player being ticked --
+Details:
+	Entity Type: minecraft:player (net.minecraft.server.level.ServerPlayer)
+	Entity ID: 119
+	Entity Name: Dev
+	Entity's Exact location: -1.00, 67.18, 5.72
+	Entity's Block location: World: (-1,67,5), Section: (at 15,3,5 in -1,4,0; chunk contains blocks -16,-64,0 to -1,319,15), Region: (-1,0; contains chunks -32,0 to -1,31, blocks -512,-64,0 to -1,319,511)
+	Entity's Momentum: 0.02, -0.08, 0.11
+	Entity's Passengers: []
+	Entity's Vehicle: null
+Stacktrace:
+	at net.minecraft.server.level.ServerPlayer.doTick(ServerPlayer.java:467) ~[forge-1.20.1-47.1.0_mapped_official_1.20.1-recomp.jar%23191!/:?] {re:computing_frames,pl:accesstransformer:B,re:classloading,pl:accesstransformer:B}
+	at net.minecraft.server.network.ServerGamePacketListenerImpl.tick(ServerGamePacketListenerImpl.java:262) ~[forge-1.20.1-47.1.0_mapped_official_1.20.1-recomp.jar%23191!/:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.network.Connection.tick(Connection.java:263) ~[forge-1.20.1-47.1.0_mapped_official_1.20.1-recomp.jar%23191!/:?] {re:classloading}
+	at net.minecraft.server.network.ServerConnectionListener.tick(ServerConnectionListener.java:142) ~[forge-1.20.1-47.1.0_mapped_official_1.20.1-recomp.jar%23191!/:?] {re:classloading}
+	at net.minecraft.server.MinecraftServer.tickChildren(MinecraftServer.java:907) ~[forge-1.20.1-47.1.0_mapped_official_1.20.1-recomp.jar%23191!/:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.server.MinecraftServer.tickServer(MinecraftServer.java:814) ~[forge-1.20.1-47.1.0_mapped_official_1.20.1-recomp.jar%23191!/:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.client.server.IntegratedServer.tickServer(IntegratedServer.java:89) ~[forge-1.20.1-47.1.0_mapped_official_1.20.1-recomp.jar%23191!/:?] {re:classloading,pl:runtimedistcleaner:A}
+	at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:661) ~[forge-1.20.1-47.1.0_mapped_official_1.20.1-recomp.jar%23191!/:?] {re:classloading,pl:accesstransformer:B}
+	at net.minecraft.server.MinecraftServer.lambda$spin$2(MinecraftServer.java:251) ~[forge-1.20.1-47.1.0_mapped_official_1.20.1-recomp.jar%23191!/:?] {re:classloading,pl:accesstransformer:B}
+	at java.lang.Thread.run(Thread.java:833) ~[?:?] {}
+
+
+-- System Details --
+Details:
+	Minecraft Version: 1.20.1
+	Minecraft Version ID: 1.20.1
+	Operating System: Windows 11 (amd64) version 10.0
+	Java Version: 17.0.7, Eclipse Adoptium
+	Java VM Version: OpenJDK 64-Bit Server VM (mixed mode, sharing), Eclipse Adoptium
+	Memory: 1058963960 bytes (1009 MiB) / 3690987520 bytes (3520 MiB) up to 8493465600 bytes (8100 MiB)
+	CPUs: 20
+	Processor Vendor: GenuineIntel
+	Processor Name: 12th Gen Intel(R) Core(TM) i7-12700H
+	Identifier: Intel64 Family 6 Model 154 Stepping 3
+	Microarchitecture: Alder Lake
+	Frequency (GHz): 2.69
+	Number of physical packages: 1
+	Number of physical CPUs: 14
+	Number of logical CPUs: 20
+	Graphics card #0 name: OrayIddDriver Device
+	Graphics card #0 vendor: Shanghai Best Oray Information Technology Co., Ltd.
+	Graphics card #0 VRAM (MB): 0.00
+	Graphics card #0 deviceId: unknown
+	Graphics card #0 versionInfo: DriverVersion=17.1.58.818
+	Graphics card #1 name: Intel(R) Iris(R) Xe Graphics
+	Graphics card #1 vendor: Intel Corporation (0x8086)
+	Graphics card #1 VRAM (MB): 1024.00
+	Graphics card #1 deviceId: 0x46a6
+	Graphics card #1 versionInfo: DriverVersion=31.0.101.4502
+	Graphics card #2 name: NVIDIA GeForce RTX 3060 Laptop GPU
+	Graphics card #2 vendor: NVIDIA (0x10de)
+	Graphics card #2 VRAM (MB): 4095.00
+	Graphics card #2 deviceId: 0x2520
+	Graphics card #2 versionInfo: DriverVersion=31.0.15.5152
+	Memory slot #0 capacity (MB): 16384.00
+	Memory slot #0 clockSpeed (GHz): 5.60
+	Memory slot #0 type: Unknown
+	Memory slot #1 capacity (MB): 16384.00
+	Memory slot #1 clockSpeed (GHz): 5.60
+	Memory slot #1 type: Unknown
+	Virtual memory max (MB): 49796.54
+	Virtual memory used (MB): 24733.24
+	Swap memory total (MB): 17408.00
+	Swap memory used (MB): 143.50
+	JVM Flags: 1 total; -XX:HeapDumpPath=MojangTricksIntelDriversForPerformance_javaw.exe_minecraft.exe.heapdump
+	Server Running: true
+	Player Count: 1 / 8; [ServerPlayer['Dev'/119, l='ServerLevel[新的世界]', x=-1.00, y=67.18, z=5.72]]
+	Data Packs: vanilla, mod:everlatweaker, mod:forge, mod:curios (incompatible), mod:geckolib, mod:jei
+	Enabled Feature Flags: minecraft:vanilla
+	World Generation: Experimental
+	Type: Integrated Server (map_client.txt)
+	Is Modded: Definitely; Client brand changed to 'forge'; Server brand changed to 'forge'
+	Launched Version: MOD_DEV
+	ModLauncher: 10.0.9+10.0.9+main.dcd20f30
+	ModLauncher launch target: forgeclientuserdev
+	ModLauncher naming: mcp
+	ModLauncher services: 
+		mixin-0.8.5.jar mixin PLUGINSERVICE 
+		eventbus-6.0.5.jar eventbus PLUGINSERVICE 
+		fmlloader-1.20.1-47.1.0.jar slf4jfixer PLUGINSERVICE 
+		fmlloader-1.20.1-47.1.0.jar object_holder_definalize PLUGINSERVICE 
+		fmlloader-1.20.1-47.1.0.jar runtime_enum_extender PLUGINSERVICE 
+		fmlloader-1.20.1-47.1.0.jar capability_token_subclass PLUGINSERVICE 
+		accesstransformers-8.0.4.jar accesstransformer PLUGINSERVICE 
+		fmlloader-1.20.1-47.1.0.jar runtimedistcleaner PLUGINSERVICE 
+		modlauncher-10.0.9.jar mixin TRANSFORMATIONSERVICE 
+		modlauncher-10.0.9.jar fml TRANSFORMATIONSERVICE 
+	FML Language Providers: 
+		minecraft@1.0
+		lowcodefml@null
+		javafml@null
+	Mod List: 
+		forge-1.20.1-47.1.0_mapped_official_1.20.1-recomp.|Minecraft                     |minecraft                     |1.20.1              |DONE      |Manifest: a1:d4:5e:04:4f:d3:d6:e0:7b:37:97:cf:77:b0:de:ad:4a:47:ce:8c:96:49:5f:0a:cf:8c:ae:b2:6d:4b:8a:3f
+		main                                              |EverlaTweaker                 |everlatweaker                 |1.8.8               |DONE      |Manifest: NOSIGNATURE
+		                                                  |Forge                         |forge                         |47.1.0              |DONE      |Manifest: NOSIGNATURE
+		curios-forge-5.4.2+1.20.1_mapped_official_1.20.1.j|Curios API                    |curios                        |5.4.2+1.20.1        |DONE      |Manifest: NOSIGNATURE
+		geckolib-forge-1.20.1-4.2.2_mapped_official_1.20.1|GeckoLib 4                    |geckolib                      |4.2.2               |DONE      |Manifest: NOSIGNATURE
+		jei-1.20.1-forge-15.2.0.27_mapped_official_1.20.1.|Just Enough Items             |jei                           |15.2.0.27           |DONE      |Manifest: NOSIGNATURE
+	Crash Report UUID: a45a6109-b214-4956-8034-290bb0a7f69b
+	FML: 47.1
+	Forge: net.minecraftforge:47.1.0

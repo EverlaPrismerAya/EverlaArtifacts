@@ -1,0 +1,48 @@
+{
+  "_fv": 77,
+  "_type": "recipe",
+  "definition": {
+    "recipeType": "Crafting",
+    "recipeRetstackSize": 1,
+    "group": "",
+    "cookingBookCategory": "MISC",
+    "xpReward": 0.0,
+    "cookingTime": 200,
+    "craftingBookCategory": "MISC",
+    "recipeShapeless": false,
+    "recipeSlots": [
+      {
+        "value": ""
+      },
+      {
+        "value": "CUSTOM:AuricScrap"
+      },
+      {
+        "value": ""
+      },
+      {
+        "value": "CUSTOM:AuricScrap"
+      },
+      {
+        "value": "Items.RECORD_BLOCKS"
+      },
+      {
+        "value": "CUSTOM:AuricScrap"
+      },
+      {
+        "value": ""
+      },
+      {
+        "value": "CUSTOM:AuricScrap"
+      },
+      {
+        "value": ""
+      }
+    ],
+    "recipeReturnStack": {
+      "value": "CUSTOM:NeverGonnaGiveYouUp"
+    },
+    "name": "never_gonna_give_you_up_recipe",
+    "namespace": "mod"
+  }
+}

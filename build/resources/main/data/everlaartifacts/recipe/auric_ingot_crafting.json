@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "everlaartifacts:auric_scrap_block"
+    },
+    {
+      "item": "everlaartifacts:auric_scrap_block"
+    },
+    {
+      "item": "everlaartifacts:auric_scrap_block"
+    },
+    {
+      "item": "everlaartifacts:auric_scrap_block"
+    },
+    {
+      "item": "minecraft:dragon_breath"
+    },
+    {
+      "item": "everlaartifacts:auric_scrap_block"
+    },
+    {
+      "item": "everlaartifacts:auric_scrap_block"
+    },
+    {
+      "item": "everlaartifacts:auric_scrap_block"
+    },
+    {
+      "item": "everlaartifacts:auric_scrap_block"
+    }
+  ],
+  "result": {
+    "id": "everlaartifacts:auric_ingot",
+    "count": 16
+  }
+}

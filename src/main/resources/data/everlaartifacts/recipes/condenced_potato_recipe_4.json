@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aaa",
+    "aaa",
+    "aaa"
+  ],
+  "key": {
+    "a": {
+      "item": "everlaartifacts:condenced_potato_3"
+    }
+  },
+  "result": {
+    "item": "everlaartifacts:condenced_potato_4",
+    "count": 1
+  }
+}

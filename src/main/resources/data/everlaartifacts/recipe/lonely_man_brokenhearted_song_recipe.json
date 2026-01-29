@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "abc",
+    "bdb",
+    "ebf"
+  ],
+  "key": {
+    "a": {
+      "item": "everlaartifacts:firecracker"
+    },
+    "b": {
+      "item": "everlaartifacts:auric_scrap"
+    },
+    "c": {
+      "item": "everlaartifacts:three_interwined_fate"
+    },
+    "d": {
+      "item": "everlaartifacts:lonely_guitar"
+    },
+    "e": {
+      "item": "minecraft:fermented_spider_eye"
+    },
+    "f": {
+      "item": "minecraft:chicken"
+    }
+  },
+  "result": {
+    "id": "everlaartifacts:lonely_man_brokenhearted_song",
+    "count": 1
+  }
+}

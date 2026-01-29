@@ -1,0 +1,22 @@
+{
+  "_fv": 77,
+  "_type": "potion",
+  "definition": {
+    "potionName": "Nuclear Waste Water Bottle",
+    "splashName": "Splash Nuclear Waste Water Bottle",
+    "lingeringName": "Lingering Nuclear Waste Water Bottle",
+    "arrowName": "Arrow of Nuclear Waste Water",
+    "effects": [
+      {
+        "effect": {
+          "value": "CUSTOM:NuclearWaterRadiation"
+        },
+        "duration": 4444,
+        "infinite": false,
+        "amplifier": 0,
+        "ambient": true,
+        "showParticles": true
+      }
+    ]
+  }
+}

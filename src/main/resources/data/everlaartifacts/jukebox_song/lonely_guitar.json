@@ -1,0 +1,8 @@
+{
+  "comparator_output": 4,
+  "description": {
+    "translate": "item.everlaartifacts.lonely_guitar.desc"
+  },
+  "length_in_seconds": 228,
+  "sound_event": "everlaartifacts:lonely_guitar"
+}

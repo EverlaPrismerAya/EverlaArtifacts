@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "everlaartifacts:condenced_potato_4"
+    },
+    {
+      "item": "everlaartifacts:condenced_potato_4"
+    },
+    {
+      "item": "everlaartifacts:condenced_potato_4"
+    },
+    {
+      "item": "everlaartifacts:condenced_potato_4"
+    },
+    {
+      "item": "everlaartifacts:condenced_potato_4"
+    },
+    {
+      "item": "everlaartifacts:condenced_potato_4"
+    },
+    {
+      "item": "everlaartifacts:condenced_potato_4"
+    },
+    {
+      "item": "everlaartifacts:condenced_potato_4"
+    },
+    {
+      "item": "everlaartifacts:condenced_potato_4"
+    }
+  ],
+  "result": {
+    "item": "everlaartifacts:condenced_potato_5",
+    "count": 1
+  }
+}

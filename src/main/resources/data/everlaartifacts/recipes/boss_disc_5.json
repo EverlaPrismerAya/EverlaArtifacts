@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "a"
+  ],
+  "key": {
+    "a": {
+      "item": "everlaartifacts:twisted_garden"
+    }
+  },
+  "result": {
+    "item": "everlaartifacts:music_disc_nilk",
+    "count": 1
+  }
+}
