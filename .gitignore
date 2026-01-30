@@ -1,0 +1,122 @@
+# MCreator generated files
+.gradle/
+/.gradle/
+/build/
+/.build/
+
+# IDE specific files
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/
+
+# Eclipse specific
+.project
+.classpath
+.settings/
+
+# IntelliJ IDEA
+*.iml
+*.ipr
+*.iws
+out/
+
+# NetBeans
+nbproject/private/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Icon?
+*.orig
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+logs/
+
+# User-specific files
+.run/
+.localhistory/
+
+# Minecraft specific
+/run/
+/debug/
+/crash-reports/
+/logs/
+
+# MCreator workspace files
+/.mcreator/
+/workspaceCache/
+/workspacecache/
+
+# Compiled classes and jars
+/bin/
+/dist/
+/out/
+
+# Local configuration (keep these if needed for team development)
+local.properties
+*.properties
+
+# Version control backup files
+*~
+#*#
+.*.swp
+.*.swo
+*.bak
+*.backup
+
+# MCreator specific cache directories
+/.cache/
+/.mcreator-cache/
+/mcreator_cache/
+
+# Minecraft development
+/.gradle/
+/forge/
+/mcp/
+/versions/
+/libraries/
+
+# Mod development
+/mods/
+/modpacks/
+
+# System files
+.DS_Store
+desktop.ini
+Thumbs.db
+
+# Configuration backups (optional - remove if you want to track these)
+/config/
+/config-local/
+/localconfig/
+
+# Minecraft saves
+/saves/
+/servers/
+
+# MCreator logs
+/mcreator.log
+/mcreator-*.log
+
+# Workspace metadata that might be machine-specific
+/workspace.xml
+/modules.xml
+
+# Keep important project files
+!src/
+!build.gradle
+!settings.gradle
+!gradle.properties
+!assets/
+!data/
+!pack.mcmeta
