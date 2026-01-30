@@ -53,6 +53,7 @@ logs/
 /logs/
 
 # MCreator workspace files
+.mcreator/
 /.mcreator/
 /workspaceCache/
 /workspacecache/
