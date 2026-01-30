@@ -16,6 +16,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.pathfinder.Path;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -115,18 +116,31 @@ public class TPAuraHandler {
             // 传送玩家到目标背后2格
             player.teleportTo(teleportPos.getX() + 0.5, teleportPos.getY(), teleportPos.getZ() + 0.5);
             
-            // 对目标造成伤害（相当于玩家攻击力，并应用其他附魔）
-            float baseAttackDamage = (float) player.getAttribute(net.minecraft.world.entity.ai.attributes.Attributes.ATTACK_DAMAGE).getValue();
+            // 触发一次攻击事件，这样其他附魔效果就能正常工作
+            AttackEntityEvent attackEvent = new AttackEntityEvent(player, target);
+            MinecraftForge.EVENT_BUS.post(attackEvent);
             
-            // 应用其他附魔效果，如亡灵杀手、节肢杀手、火焰附加等
-            DamageSource damageSource = level.damageSources().playerAttack(player);
-            
-            // 使用Minecraft内置的方法来应用所有附魔效果
-            EnchantmentHelper.doPostHurtEffects(target, player);
-            EnchantmentHelper.doPostDamageEffects(player, target);
-            
-            // 对目标造成基础伤害
-            target.hurt(damageSource, baseAttackDamage);
+            if (!attackEvent.isCanceled()) {
+                // 对目标造成伤害（相当于玩家攻击力，并应用所有附魔效果）
+                float baseAttackDamage = (float) player.getAttribute(net.minecraft.world.entity.ai.attributes.Attributes.ATTACK_DAMAGE).getValue();
+                
+                // 使用标准的玩家攻击方式来确保所有附魔都被应用
+                DamageSource damageSource = level.damageSources().playerAttack(player);
+                
+                // 先应用附魔效果，再造成伤害
+                EnchantmentHelper.doPostHurtEffects(target, player);
+                EnchantmentHelper.doPostDamageEffects(player, target);
+                
+                // 对目标造成伤害
+                boolean attacked = target.hurt(damageSource, baseAttackDamage);
+                
+                if (attacked) {
+                    // 如果攻击成功，处理攻击后效果
+                    if (target instanceof LivingEntity) {
+                        EnchantmentHelper.doPostHurtEffects((LivingEntity) target, player);
+                    }
+                }
+            }
             
             // 减少物品耐久
             itemStack.hurtAndBreak(1, player, (p) -> {
