@@ -21,7 +21,13 @@ public final class EverlaRainbowHandler {
      * @return 彩虹格式化后的MutableComponent（颜色为0xRRGGBB，不含Alpha）
      */
     public static MutableComponent buildRainbowComponent(String text, float baseHue, float charHueOffset) {
-        if (text == null || text.isEmpty()) return null;
+        if (text == null || text.isEmpty()) {
+            return Component.empty(); // 返回空组件而不是null，避免NPE
+        }
+
+        // 参数验证和规范化
+        baseHue = Math.max(0.0f, Math.min(360.0f, baseHue));
+        charHueOffset = Math.max(-360.0f, Math.min(360.0f, charHueOffset));
 
         MutableComponent result = Component.empty();
         boolean bold = false, italic = false, underline = false, strikethrough = false, obfuscated = false;
@@ -42,12 +48,12 @@ public final class EverlaRainbowHandler {
                     // 颜色代码（0-9, a-f）被彩虹色覆盖，直接忽略
                     default -> {}
                 }
-                continue;
+                continue; // 遇到格式代码时，不递增charIndex
             }
             if (c == '\r' || c == '\n') continue; // 跳过换行符（由调用方处理多行）
 
             // 字符级色相偏移
-            float charHue = (baseHue + charIndex * charHueOffset) % 360.0f;
+            float charHue = ((baseHue + charIndex * charHueOffset) % 360.0f + 360.0f) % 360.0f; // 确保结果为正
             int rgb = hsvToRgb(charHue, 1.0f, 1.0f);
             charIndex++;
 
@@ -72,7 +78,9 @@ public final class EverlaRainbowHandler {
      * @return RGB 颜色值
      */
     public static int hsvToRgb(float hue, float saturation, float value) {
-        hue = hue % 360.0f;
+        // 规范化色相值到[0, 360)范围
+        hue = ((hue % 360.0f) + 360.0f) % 360.0f;
+
         float c = value * saturation;
         float x = c * (1 - Math.abs((hue / 60.0f) % 2 - 1));
         float m = value - c;
@@ -85,9 +93,9 @@ public final class EverlaRainbowHandler {
         else if (hue < 300) { r = x; g = 0; b = c; }
         else { r = c; g = 0; b = x; }
 
-        int red = (int) ((r + m) * 255);
-        int green = (int) ((g + m) * 255);
-        int blue = (int) ((b + m) * 255);
+        int red = Math.max(0, Math.min(255, (int) Math.round((r + m) * 255)));
+        int green = Math.max(0, Math.min(255, (int) Math.round((g + m) * 255)));
+        int blue = Math.max(0, Math.min(255, (int) Math.round((b + m) * 255)));
         return (red << 16) | (green << 8) | blue;
     }
 }

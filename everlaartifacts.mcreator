@@ -2830,6 +2830,18 @@
           "src/main/java/net/everla/everlaartifacts/command/OverlayTestCommand.java"
         ]
       }
+    },
+    {
+      "name": "TPAura",
+      "type": "enchantment",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "tp_aura",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/enchantment/TPAuraEnchantment.java"
+        ]
+      }
     }
   ],
   "variable_elements": [],
@@ -3568,8 +3580,8 @@
       "item.everlaartifacts.homa_staff.description_16": "§fRight-click to consume 30% of current HP (non-lethal) and gain the \"Butterfly Brings Rebirth\" buff for 9 seconds (16-second cooldown).",
       "item.everlaartifacts.chalice_of_blood_god": "Chalice Of Blood God",
       "item.everlaartifacts.homa_staff.description_10": "§fIncreases maximum HP by 40% while held.",
-      "item.everlaartifacts.tokyo_ticket": "Plane Ticket to Tokyo",
       "item.everlaartifacts.homa_staff.description_11": "§fAdditionally, grants Attack Power equal to 16% of the holder\u0027s maximum HP.",
+      "item.everlaartifacts.tokyo_ticket": "Plane Ticket to Tokyo",
       "item.everlaartifacts.homa_staff.description_12": "§fWhen the holder’s current HP drops to 50% or below, gains an additional 18% of maximum HP as Attack Power.",
       "item.everlaartifacts.nanomachine": "Music Disc",
       "item.everlaartifacts.hacker_gamer.desc": "黄勇,任浩铭 - 你看到的我",
@@ -3710,6 +3722,7 @@
       "item.everlaartifacts.manbo_no_more": "Music Disc",
       "item.minecraft.tipped_arrow.effect.flashbomb": "Arrow of Flashing",
       "item.everlaartifacts.cruel_angel.desc": "高橋洋子 - 残酷な天使のテーゼ",
+      "enchantment.everlaartifacts.tp_aura": "TP Aura",
       "effect.everlaartifacts.homa_active": "Unbound Vermilion Butterfly",
       "item.everlaartifacts.fading_sky": "Music Disc",
       "item.everlaartifacts.condenced_potato_9": "§6Condenced Potato IX§r",
@@ -3885,6 +3898,7 @@
       "item.everlaartifacts.manbo_no_more": "音乐唱片",
       "item.minecraft.tipped_arrow.effect.flashbomb": "闪光之箭",
       "item.everlaartifacts.cruel_angel.desc": "高橋洋子 - 残酷な天使のテーゼ",
+      "enchantment.everlaartifacts.tp_aura": "传送杀戮光环",
       "effect.everlaartifacts.homa_active": "蝶引来生",
       "item.everlaartifacts.fading_sky": "音乐唱片",
       "item.everlaartifacts.condenced_potato_9": "§6九重压缩土豆§r",

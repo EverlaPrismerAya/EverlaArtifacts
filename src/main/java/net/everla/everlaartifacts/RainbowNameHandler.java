@@ -126,34 +126,31 @@ public class RainbowNameHandler {
         // 检查是否加载了colorfulhearts或overflowingbars模组
         boolean hasConflictingMods = ModList.get().isLoaded("colorfulhearts") || 
                                    ModList.get().isLoaded("overflowingbars");
-        
-        if (hasConflictingMods) {
-            // 有冲突模组：根据游戏模式和伤害吸收状态决定位置
-            if (player.isCreative()) {
-                return screenHeight - 45; // 创造模式
-            } else {
-                // 生存或冒险模式
+        if (player.isCreative()){
+            return screenHeight - 45;
+        }else{
+            if(hasConflictingMods){
                 double absorptionAmount = player.getAbsorptionAmount();
                 if (absorptionAmount <= 0) {
                     return screenHeight - 59; // 无伤害吸收
                 } else {
                     return screenHeight - 69; // 有伤害吸收
                 }
+            }else{
+                // 无冲突模组：使用基于生命值的计算
+                double maxHealth = player.getMaxHealth();
+                double absorptionAmount = player.getAbsorptionAmount();
+                double totalEffectiveHealth = maxHealth + absorptionAmount;
+
+                int offset = calculateHealthBasedOffset(totalEffectiveHealth);
+
+                // 如果有伤害吸收，额外增加3
+                if (absorptionAmount > 0) {
+                    offset += 3;
+                }
+
+                return screenHeight - offset;
             }
-        } else {
-            // 无冲突模组：使用基于生命值的计算
-            double maxHealth = player.getMaxHealth();
-            double absorptionAmount = player.getAbsorptionAmount();
-            double totalEffectiveHealth = maxHealth + absorptionAmount;
-            
-            int offset = calculateHealthBasedOffset(totalEffectiveHealth);
-            
-            // 如果有伤害吸收，额外增加3
-            if (absorptionAmount > 0) {
-                offset += 3;
-            }
-            
-            return screenHeight - offset;
         }
     }
     

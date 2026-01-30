@@ -18,12 +18,12 @@ public class SteadfastEnchantment extends Enchantment {
 
     @Override
     public int getMinCost(int level) {
-        return 1 + level * 10;
+        return 12 + level * 15;
     }
 
     @Override
     public int getMaxCost(int level) {
-        return 6 + level * 10;
+        return 15 + level * 18;
     }
 
     @Override

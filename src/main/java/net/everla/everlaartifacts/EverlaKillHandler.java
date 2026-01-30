@@ -13,6 +13,12 @@ import net.minecraft.world.level.GameRules;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public final class EverlaKillHandler {
+    private static final String INFINITY_NAMESPACE = "avaritia";
+    private static final String INFINITY_HELMET_PATH = "infinity_helmet";
+    private static final String INFINITY_CHESTPLATE_PATH = "infinity_chestplate";
+    private static final String INFINITY_PANTS_PATH = "infinity_pants";
+    private static final String INFINITY_BOOTS_PATH = "infinity_boots";
+
     private EverlaKillHandler() {
         // 工具类禁止实例化
     }
@@ -27,7 +33,9 @@ public final class EverlaKillHandler {
      */
     public static void killPlayer(Player player, String deathTag, Component deathMessage, ResourceLocation soundKey) {
         if (player == null || player.level().isClientSide()) return;
+
         ServerLevel level = (ServerLevel) player.level();
+        if (!(player.level() instanceof ServerLevel)) return; // 确保类型安全
 
         // 步骤1: 检测并移除无尽四件套
         handleInfinityArmor(player, level);
@@ -60,14 +68,16 @@ public final class EverlaKillHandler {
         );
 
         // 步骤4: 标记死亡原因
-        player.getPersistentData().putBoolean(deathTag, true);
+        if (player.getPersistentData() != null) {
+            player.getPersistentData().putBoolean(deathTag, true);
+        }
 
         // 步骤5: 广播死亡消息
         level.getServer().getPlayerList().broadcastSystemMessage(deathMessage, false);
 
         // 步骤6: 触发标准死亡流程（确保物品正常掉落）
         level.getServer().execute(() -> {
-            if (!player.isRemoved() && player.isAlive()) {
+            if (!player.isRemoved() && player.isAlive() && !player.level().isClientSide()) {
                 player.hurt(level.damageSources().genericKill(), Float.MAX_VALUE);
             }
         });
@@ -76,10 +86,10 @@ public final class EverlaKillHandler {
     // ========== 私有辅助方法 ==========
 
     private static void handleInfinityArmor(Player player, ServerLevel level) {
-        boolean hasFullSet = isInfinityItem(player.getItemBySlot(EquipmentSlot.HEAD), "infinity_helmet") &&
-                            isInfinityItem(player.getItemBySlot(EquipmentSlot.CHEST), "infinity_chestplate") &&
-                            isInfinityItem(player.getItemBySlot(EquipmentSlot.LEGS), "infinity_pants") &&
-                            isInfinityItem(player.getItemBySlot(EquipmentSlot.FEET), "infinity_boots");
+        boolean hasFullSet = isInfinityItem(player.getItemBySlot(EquipmentSlot.HEAD), INFINITY_HELMET_PATH) &&
+                            isInfinityItem(player.getItemBySlot(EquipmentSlot.CHEST), INFINITY_CHESTPLATE_PATH) &&
+                            isInfinityItem(player.getItemBySlot(EquipmentSlot.LEGS), INFINITY_PANTS_PATH) &&
+                            isInfinityItem(player.getItemBySlot(EquipmentSlot.FEET), INFINITY_BOOTS_PATH);
 
         if (hasFullSet) {
             boolean keepInventory = level.getGameRules().getBoolean(GameRules.RULE_KEEPINVENTORY);
@@ -95,8 +105,8 @@ public final class EverlaKillHandler {
         if (stack.isEmpty() || stack.is(Items.AIR)) return false;
         ResourceLocation registryName = ForgeRegistries.ITEMS.getKey(stack.getItem());
         return registryName != null &&
-               registryName.getNamespace().equals("avaritia") &&
-               registryName.getPath().equals(expectedPath);
+               INFINITY_NAMESPACE.equals(registryName.getNamespace()) &&
+               expectedPath.equals(registryName.getPath());
     }
 
     private static void storeOrDrop(Player player, ServerLevel level, ItemStack stack, boolean keepInventory, EquipmentSlot slot) {
