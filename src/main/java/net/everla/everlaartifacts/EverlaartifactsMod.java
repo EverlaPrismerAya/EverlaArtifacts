@@ -26,6 +26,7 @@ import net.everla.everlaartifacts.init.EverlaartifactsModItems;
 import net.everla.everlaartifacts.init.EverlaartifactsModFluids;
 import net.everla.everlaartifacts.init.EverlaartifactsModFluidTypes;
 import net.everla.everlaartifacts.init.EverlaartifactsModEntities;
+import net.everla.everlaartifacts.init.EverlaartifactsModEnchantments;
 import net.everla.everlaartifacts.init.EverlaartifactsModBlocks;
 
 import java.util.function.Supplier;
@@ -52,7 +53,7 @@ public class EverlaartifactsMod {
 
 		EverlaartifactsModItems.REGISTRY.register(bus);
 		EverlaartifactsModEntities.REGISTRY.register(bus);
-
+		EverlaartifactsModEnchantments.REGISTRY.register(bus);
 		EverlaartifactsModTabs.REGISTRY.register(bus);
 
 		EverlaartifactsModMobEffects.REGISTRY.register(bus);

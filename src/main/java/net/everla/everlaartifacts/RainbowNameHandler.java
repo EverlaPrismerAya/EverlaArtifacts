@@ -9,6 +9,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
@@ -17,6 +18,7 @@ import net.minecraftforge.client.event.RenderGuiEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 
 import java.util.List;
@@ -91,8 +93,10 @@ public class RainbowNameHandler {
         int screenHeight = mc.getWindow().getGuiScaledHeight();
         int nameWidth = mc.font.width(rainbowName);
         int x = (screenWidth - nameWidth) / 2;
-        int y = screenHeight - 45;
-
+        
+        // ===== 新增：根据游戏模式和生命值计算Y位置 =====
+        int y = calculateYPosition(screenHeight, mc.player);
+        
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
 
@@ -105,5 +109,86 @@ public class RainbowNameHandler {
 
         poseStack.popPose();
         RenderSystem.enableDepthTest();
+    }
+    
+    /**
+     * 根据游戏模式和生命值计算Y位置
+     * 
+     * 冲突模组检测：
+     * - 有冲突模组：创造=45，生存/冒险+无伤害吸收=59，生存/冒险+有伤害吸收=69
+     * - 无冲突模组：使用基于(最大生命值+伤害吸收生命值)的函数，有伤害吸收额外+3
+     * 
+     * @param screenHeight 屏幕高度
+     * @param player 玩家实体
+     * @return 计算出的Y坐标
+     */
+    private static int calculateYPosition(int screenHeight, Player player) {
+        // 检查是否加载了colorfulhearts或overflowingbars模组
+        boolean hasConflictingMods = ModList.get().isLoaded("colorfulhearts") || 
+                                   ModList.get().isLoaded("overflowingbars");
+        
+        if (hasConflictingMods) {
+            // 有冲突模组：根据游戏模式和伤害吸收状态决定位置
+            if (player.isCreative()) {
+                return screenHeight - 45; // 创造模式
+            } else {
+                // 生存或冒险模式
+                double absorptionAmount = player.getAbsorptionAmount();
+                if (absorptionAmount <= 0) {
+                    return screenHeight - 59; // 无伤害吸收
+                } else {
+                    return screenHeight - 69; // 有伤害吸收
+                }
+            }
+        } else {
+            // 无冲突模组：使用基于生命值的计算
+            double maxHealth = player.getMaxHealth();
+            double absorptionAmount = player.getAbsorptionAmount();
+            double totalEffectiveHealth = maxHealth + absorptionAmount;
+            
+            int offset = calculateHealthBasedOffset(totalEffectiveHealth);
+            
+            // 如果有伤害吸收，额外增加3
+            if (absorptionAmount > 0) {
+                offset += 3;
+            }
+            
+            return screenHeight - offset;
+        }
+    }
+    
+    /**
+     * 根据最大生命值计算文本偏移量
+     * 
+     * @param maxHealth 最大生命值（包括伤害吸收）
+     * @return 对应的文本偏移量
+     */
+    private static int calculateHealthBasedOffset(double maxHealth) {
+        if (maxHealth <= 20) {
+            return 59;
+        } else if (maxHealth <= 40) {
+            return 69;
+        } else if (maxHealth <= 60) {
+            return 77;
+        } else if (maxHealth <= 80) {
+            return 83;
+        } else if (maxHealth <= 100) {
+            return 87;
+        } else if (maxHealth <= 120) {
+            return 89;
+        } else if (maxHealth <= 140) {
+            return 89;
+        } else if (maxHealth <= 160) {
+            return 87;
+        } else if (maxHealth <= 180) {
+            return 83;
+        } else if (maxHealth <= 200) {
+            return 86;
+        } else {
+            // 201+：每增加20，offset增加3
+            double excessHealth = maxHealth - 200;
+            int additionalSteps = (int) Math.floor(excessHealth / 20);
+            return 86 + (additionalSteps * 3);
+        }
     }
 }
