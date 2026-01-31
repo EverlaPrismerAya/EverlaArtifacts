@@ -1,4 +1,3 @@
-
 package net.everla.everlaartifacts.potion;
 
 import net.minecraftforge.client.extensions.common.IClientMobEffectExtensions;
@@ -8,6 +7,9 @@ import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.client.gui.screens.inventory.EffectRenderingInventoryScreen;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.world.item.ItemStack;
+
+import java.util.List;
 
 public class AmericanStyleCutOverlayMobEffect extends MobEffect {
 	public AmericanStyleCutOverlayMobEffect() {
@@ -37,5 +39,15 @@ public class AmericanStyleCutOverlayMobEffect extends MobEffect {
 				return false;
 			}
 		});
+	}
+	
+	@Override
+	public boolean isBeneficial() {
+		return false; // 设置为非有益效果，这样就不会被牛奶移除
+	}
+	
+	@Override
+	public List<ItemStack> getCurativeItems() {
+		return List.of(); // 返回空列表，防止被牛奶等物品治愈
 	}
 }

@@ -56,9 +56,6 @@ public class TPAuraHandler {
         if (enchantmentLevel > 0) {
             // 右键点击时触发TPAura效果
             triggerTPAuraAbility(player, mainHandItem, (ServerLevel) level);
-            
-            // 阻止正常的右键交互行为，因为我们只想触发TPAura效果
-            event.setCanceled(true);
         }
     }
     

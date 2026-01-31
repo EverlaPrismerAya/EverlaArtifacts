@@ -43,15 +43,28 @@ public class HomaAttributeHandler {
     // 暴击伤害属性缓存（避免每 tick 重复查找）
     private static Attribute CRIT_DAMAGE_ATTRIBUTE = null;
     private static boolean ATTRIBUTESLIB_CHECKED = false;
+    
+    // 用于控制属性更新频率的计数器
+    private static final java.util.Map<java.util.UUID, Integer> playerUpdateCounter = new ConcurrentHashMap<>();
 
     /**
      * 每 tick 检查玩家状态并更新属性
      * 仅在服务端运行（客户端自动同步）
+     * 优化：每5个tick更新一次，减少性能开销
      */
     @SubscribeEvent
     public static void onLivingTick(LivingEvent.LivingTickEvent event) {
         if (event.getEntity().level().isClientSide()) return;
         if (!(event.getEntity() instanceof Player player)) return;
+
+        // 每5个tick更新一次，减少性能开销
+        UUID playerUUID = player.getUUID();
+        int currentTick = playerUpdateCounter.getOrDefault(playerUUID, 0) + 1;
+        playerUpdateCounter.put(playerUUID, currentTick);
+        
+        if (currentTick % 5 != 0) { // 每5个tick更新一次
+            return;
+        }
 
         updateHomaPassive(player);
         updateHomaActive(player);
@@ -160,9 +173,7 @@ public class HomaAttributeHandler {
             // 检查模组是否加载
             if (ModList.get().isLoaded("apotheosis") || ModList.get().isLoaded("attributeslib")) {
                 // 尝试获取暴击伤害属性
-                CRIT_DAMAGE_ATTRIBUTE = ForgeRegistries.ATTRIBUTES.getValue(
-                    new ResourceLocation("attributeslib", "crit_damage")
-                );
+                CRIT_DAMAGE_ATTRIBUTE = ForgeRegistries.ATTRIBUTES.getValue(ResourceLocation.fromNamespaceAndPath("attributeslib", "crit_damage"));
             }
         }
         return CRIT_DAMAGE_ATTRIBUTE != null;

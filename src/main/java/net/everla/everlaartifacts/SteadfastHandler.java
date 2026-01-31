@@ -51,6 +51,10 @@ public class SteadfastHandler {
     // 击倒效果参数（1.2秒 = 24 tick）
     private static final int KNOCKDOWN_DURATION = 24;
     
+    // 持久化数据键
+    private static final String KNOCKDOWN_REMAINING_TICKS_KEY = "SteadfastKnockdownRemainingTicks";
+    private static final String KNOCKDOWN_END_TIME_KEY = "SteadfastKnockdownEndTime";
+    
     // 玩家级击倒冷却（每1.5秒一次）
     private static final Map<UUID, Long> PLAYER_KNOCKDOWN_COOLDOWN = new HashMap<>();
     private static final long KNOCKDOWN_COOLDOWN_TICKS = 30L; // 1.5秒
@@ -58,9 +62,6 @@ public class SteadfastHandler {
     // 属性修饰符UUID
     private static final UUID SPEED_MODIFIER_UUID = UUID.fromString("a1b2c3d4-e5f6-7890-abcd-ef1234567890");
     private static final UUID DAMAGE_MODIFIER_UUID = UUID.fromString("b2c3d4e5-f6a7-8901-bcde-f23456789012");
-    
-    // 击倒状态跟踪
-    private static final Map<UUID, Integer> KNOCKDOWN_REMAINING_TICKS = new HashMap<>();
     
     // 突进冷却
     private static final Map<UUID, Long> LAST_DASH_TIME = new HashMap<>();
@@ -189,7 +190,9 @@ public class SteadfastHandler {
             ));
         }
         
-        KNOCKDOWN_REMAINING_TICKS.put(entity.getUUID(), KNOCKDOWN_DURATION);
+        // 使用实体的持久化数据存储击倒状态
+        long endTime = level.getGameTime() + KNOCKDOWN_DURATION;
+        entity.getPersistentData().putLong(KNOCKDOWN_END_TIME_KEY, endTime);
         
         // 视觉反馈
         level.sendParticles(
@@ -205,35 +208,37 @@ public class SteadfastHandler {
         );
     }
 
+    // 用于控制服务器tick检查频率的计数器
+    private static int serverTickCounter = 0;
+    
     @SubscribeEvent
     public static void onServerTick(TickEvent.ServerTickEvent event) {
         if (event.phase != TickEvent.Phase.END || event.getServer() == null) return;
         
+        serverTickCounter++;
+        
+        // 每5个服务器tick执行一次清理，减少性能开销
+        if (serverTickCounter % 5 != 0) {
+            return;
+        }
+        
         long currentTime = event.getServer().getTickCount();
         
-        // 清理击倒状态
-        Iterator<Map.Entry<UUID, Integer>> iterator = KNOCKDOWN_REMAINING_TICKS.entrySet().iterator();
-        while (iterator.hasNext()) {
-            Map.Entry<UUID, Integer> entry = iterator.next();
-            UUID entityUUID = entry.getKey();
-            int remaining = entry.getValue() - 1;
-            
-            if (remaining <= 0) {
-                LivingEntity entity = findEntityByUUID(event.getServer(), entityUUID);
-                if (entity != null) {
-                    AttributeInstance speedAttr = entity.getAttribute(Attributes.MOVEMENT_SPEED);
-                    if (speedAttr != null) {
-                        speedAttr.removeModifier(SPEED_MODIFIER_UUID);
-                    }
-                    
-                    AttributeInstance damageAttr = entity.getAttribute(Attributes.ATTACK_DAMAGE);
-                    if (damageAttr != null) {
-                        damageAttr.removeModifier(DAMAGE_MODIFIER_UUID);
+        // 清理击倒状态 - 遍历所有世界中的所有实体
+        for (ServerLevel level : event.getServer().getAllLevels()) {
+            for (Entity entity : level.getAllEntities()) {
+                if (entity instanceof LivingEntity livingEntity) {
+                    // 检查实体是否有击倒结束时间
+                    if (livingEntity.getPersistentData().contains(KNOCKDOWN_END_TIME_KEY)) {
+                        long endTime = livingEntity.getPersistentData().getLong(KNOCKDOWN_END_TIME_KEY);
+                        
+                        if (currentTime >= endTime) {
+                            // 击倒时间结束，移除效果
+                            removeKnockdown(livingEntity);
+                            livingEntity.getPersistentData().remove(KNOCKDOWN_END_TIME_KEY);
+                        }
                     }
                 }
-                iterator.remove();
-            } else {
-                entry.setValue(remaining);
             }
         }
         
@@ -242,6 +247,20 @@ public class SteadfastHandler {
             currentTime - e.getValue() > KNOCKDOWN_COOLDOWN_TICKS + 20);
         LAST_DASH_TIME.entrySet().removeIf(e -> 
             currentTime - e.getValue() > 100);
+    }
+    
+    private static void removeKnockdown(LivingEntity entity) {
+        // 移除移速修饰符
+        AttributeInstance speedAttr = entity.getAttribute(Attributes.MOVEMENT_SPEED);
+        if (speedAttr != null) {
+            speedAttr.removeModifier(SPEED_MODIFIER_UUID);
+        }
+        
+        // 移除攻击力修饰符
+        AttributeInstance damageAttr = entity.getAttribute(Attributes.ATTACK_DAMAGE);
+        if (damageAttr != null) {
+            damageAttr.removeModifier(DAMAGE_MODIFIER_UUID);
+        }
     }
     
     private static LivingEntity findEntityByUUID(net.minecraft.server.MinecraftServer server, UUID uuid) {

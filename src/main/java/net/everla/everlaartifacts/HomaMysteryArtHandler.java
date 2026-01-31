@@ -19,8 +19,10 @@ import net.minecraftforge.fml.common.Mod;
 import net.everla.everlaartifacts.item.HomaStaffItem;
 
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
+import java.util.WeakHashMap;
 
 @Mod.EventBusSubscriber(modid = "everlaartifacts")
 public class HomaMysteryArtHandler {
@@ -43,14 +45,18 @@ public class HomaMysteryArtHandler {
     private static final double TOTAL_HEIGHT = HEIGHT_BOTTOM + HEIGHT_TOP; // 4格
     
     // 粒子特效参数
-    private static final int FLAME_PARTICLES = 60;
-    private static final int SMOKE_PARTICLES = 40;
-    private static final int SPARK_PARTICLES = 30;
-    private static final int CENTER_BURST_PARTICLES = 25;
-    private static final int GROUND_RUNE_PARTICLES = 24; // 地面符文增加至24点（完美圆环）
+    private static final int FLAME_PARTICLES = 100; // 增加火焰粒子数量
+    private static final int SMOKE_PARTICLES = 80;  // 增加烟雾粒子数量
+    private static final int SPARK_PARTICLES = 50;  // 增加火花粒子数量
+    private static final int CENTER_BURST_PARTICLES = 40; // 增加中心爆发粒子
+    private static final int GROUND_RUNE_PARTICLES = 32; // 增加地面符文粒子
+    private static final int FIRE_WAVE_PARTICLES = 60; // 新增：火焰波纹粒子
     
     // 冷却完成提示跟踪
     private static final Set<UUID> NOTIFIED_PLAYERS = new HashSet<>();
+    
+    // 用于控制冷却检查频率的计数器
+    private static final java.util.Map<java.util.UUID, Integer> playerTickCounter = new java.util.WeakHashMap<>();
 
     @SubscribeEvent
     public static void onPlayerAttack(AttackEntityEvent event) {
@@ -87,6 +93,15 @@ public class HomaMysteryArtHandler {
         Level level = player.level();
         
         if (level.isClientSide() || !(player.getMainHandItem().getItem() instanceof HomaStaffItem)) {
+            return;
+        }
+        
+        // 每10个tick检查一次冷却状态，减少性能开销
+        UUID playerUUID = player.getUUID();
+        int currentTick = playerTickCounter.getOrDefault(playerUUID, 0) + 1;
+        playerTickCounter.put(playerUUID, currentTick);
+        
+        if (currentTick % 10 != 0) { // 每10个tick检查一次
             return;
         }
         
@@ -169,7 +184,7 @@ public class HomaMysteryArtHandler {
     private static void spawnMysteryArtParticles(Player player, ServerLevel level, Vec3 center, boolean hasHit) {
         double radius = hasHit ? RADIUS : RADIUS * 0.7;
         
-        // 1. 圆柱体边缘火焰漩涡（覆盖完整4格高度）
+        // 1. 火焰漩涡主效果（营造野火燎原的感觉）
         for (int i = 0; i < FLAME_PARTICLES; i++) {
             double angle = level.random.nextDouble() * Math.PI * 2;
             double dist = radius * (0.7 + level.random.nextDouble() * 0.3);
@@ -177,12 +192,17 @@ public class HomaMysteryArtHandler {
             double z = center.z + Math.sin(angle) * dist;
             double y = center.y - HEIGHT_BOTTOM + level.random.nextDouble() * TOTAL_HEIGHT; // 从y-1到y+3
             
+            // 添加随机速度，使火焰看起来更动态
+            double vx = (level.random.nextDouble() - 0.5) * 0.3;
+            double vy = level.random.nextDouble() * 0.2;
+            double vz = (level.random.nextDouble() - 0.5) * 0.3;
+            
             level.sendParticles(ParticleTypes.FLAME,
                 x, y, z,
-                1, 0.05, 0.05, 0.05, 0.02);
+                1, vx, vy, vz, 0.01);
         }
         
-        // 2. 上升烟雾轨迹（从地面开始）
+        // 2. 烟雾扩散效果（营造蔓延感）
         for (int i = 0; i < SMOKE_PARTICLES; i++) {
             double angle = level.random.nextDouble() * Math.PI * 2;
             double dist = radius * level.random.nextDouble();
@@ -190,12 +210,17 @@ public class HomaMysteryArtHandler {
             double z = center.z + Math.sin(angle) * dist;
             double y = center.y - HEIGHT_BOTTOM + 0.1; // 从y-1高度开始
             
+            // 烟雾向上扩散
+            double vx = (level.random.nextDouble() - 0.5) * 0.2;
+            double vy = 0.3 + level.random.nextDouble() * 0.4; // 向上速度更大
+            double vz = (level.random.nextDouble() - 0.5) * 0.2;
+            
             level.sendParticles(ParticleTypes.SMOKE,
                 x, y, z,
-                1, 0.1, 0.5, 0.1, 0.05); // 增大y扩散模拟更强上升效果
+                1, vx, vy, vz, 0.05);
         }
         
-        // 3. 金色火花效果（覆盖中层空间）
+        // 3. 火花飞溅效果（营造火焰扩散感）
         for (int i = 0; i < SPARK_PARTICLES; i++) {
             double angle = level.random.nextDouble() * Math.PI * 2;
             double dist = radius * 0.5 * level.random.nextDouble();
@@ -203,16 +228,21 @@ public class HomaMysteryArtHandler {
             double z = center.z + Math.sin(angle) * dist;
             double y = center.y - 0.5 + level.random.nextDouble() * 2.0; // y-0.5 到 y+1.5
             
-            level.sendParticles(ParticleTypes.FLAME,
+            // 火花随机扩散
+            double vx = (level.random.nextDouble() - 0.5) * 0.5;
+            double vy = (level.random.nextDouble() - 0.2) * 0.4;
+            double vz = (level.random.nextDouble() - 0.5) * 0.5;
+            
+            level.sendParticles(ParticleTypes.CRIMSON_SPORE, // 使用更暖色调的粒子
                 x, y, z,
-                1, 0.15, 0.15, 0.15, 0.03);
+                1, vx, vy, vz, 0.02);
         }
         
-        // 4. 玩家位置中心爆发
+        // 4. 玩家位置中心爆发（增强爆发感）
         for (int i = 0; i < CENTER_BURST_PARTICLES; i++) {
             double angle = level.random.nextDouble() * Math.PI * 2;
             double pitch = (level.random.nextDouble() - 0.5) * Math.PI / 4;
-            double speed = 0.6 + level.random.nextDouble() * 0.4;
+            double speed = 0.8 + level.random.nextDouble() * 0.6; // 增加速度
             
             double x = Math.cos(pitch) * Math.cos(angle) * speed;
             double y = Math.sin(pitch) * speed + 0.3;
@@ -220,32 +250,63 @@ public class HomaMysteryArtHandler {
             
             level.sendParticles(ParticleTypes.FLAME,
                 player.getX(), player.getY() + 1.2, player.getZ(),
-                1, x, y, z, 0.01);
+                1, x, y, z, 0.02); // 增加随机偏移
         }
         
-        // 5. 地面符文光效（精确位于y-1高度，24点完美圆环）
+        // 5. 地面火焰蔓延效果（营造野火燎原感）
         for (int i = 0; i < GROUND_RUNE_PARTICLES; i++) {
             double angle = i * (Math.PI * 2 / GROUND_RUNE_PARTICLES);
             double x = center.x + Math.cos(angle) * (radius * 0.95);
             double z = center.z + Math.sin(angle) * (radius * 0.95);
             double y = center.y - HEIGHT_BOTTOM + 0.05; // 精确位于y-1高度
             
+            // 地面火焰向上蔓延
+            double vx = (level.random.nextDouble() - 0.5) * 0.1;
+            double vy = level.random.nextDouble() * 0.3;
+            double vz = (level.random.nextDouble() - 0.5) * 0.1;
+            
             level.sendParticles(ParticleTypes.SOUL_FIRE_FLAME,
                 x, y, z,
-                1, 0.0, 0.0, 0.0, 0.015);
+                1, vx, vy, vz, 0.02);
         }
         
-        // 6. 新增：底部能量脉冲（强化向下扩展的视觉反馈）
-        for (int i = 0; i < 15; i++) {
+        // 6. 火焰波纹扩散效果（新增：营造野火向外蔓延的感觉）
+        for (int i = 0; i < FIRE_WAVE_PARTICLES; i++) {
+            // 创建同心圆波纹效果
+            double waveRadius = level.random.nextDouble() * radius;
             double angle = level.random.nextDouble() * Math.PI * 2;
-            double dist = radius * 0.6 * level.random.nextDouble();
-            double x = center.x + Math.cos(angle) * dist;
-            double z = center.z + Math.sin(angle) * dist;
-            double y = center.y - HEIGHT_BOTTOM + 0.02; // 紧贴地面
             
-            level.sendParticles(ParticleTypes.LAVA,
+            double x = center.x + Math.cos(angle) * waveRadius;
+            double z = center.z + Math.sin(angle) * waveRadius;
+            double y = center.y - HEIGHT_BOTTOM + 0.1; // 稍高于地面
+            
+            // 波纹向外扩散的速度
+            double outwardSpeed = 0.4 + level.random.nextDouble() * 0.3;
+            double vx = Math.cos(angle) * outwardSpeed;
+            double vy = 0.1 + level.random.nextDouble() * 0.2;
+            double vz = Math.sin(angle) * outwardSpeed;
+            
+            level.sendParticles(ParticleTypes.FLAME,
                 x, y, z,
-                1, 0.1, 0.05, 0.1, 0.01);
+                1, vx, vy, vz, 0.015);
+        }
+        
+        // 7. 高空火焰雨效果（营造从天而降的火焰感觉）
+        for (int i = 0; i < 20; i++) {
+            double offsetX = (level.random.nextDouble() - 0.5) * RADIUS * 2;
+            double offsetZ = (level.random.nextDouble() - 0.5) * RADIUS * 2;
+            double x = center.x + offsetX;
+            double z = center.z + offsetZ;
+            double y = center.y + HEIGHT_TOP; // 从最高点开始
+            
+            // 火焰向下坠落
+            double vx = (level.random.nextDouble() - 0.5) * 0.2;
+            double vy = -0.5 - level.random.nextDouble() * 0.5; // 向下速度
+            double vz = (level.random.nextDouble() - 0.5) * 0.2;
+            
+            level.sendParticles(ParticleTypes.FALLING_LAVA,
+                x, y, z,
+                1, vx, vy, vz, 0.01);
         }
     }
 }

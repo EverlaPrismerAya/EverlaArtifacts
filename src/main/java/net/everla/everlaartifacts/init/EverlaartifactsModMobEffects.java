@@ -15,6 +15,7 @@ import net.everla.everlaartifacts.potion.NuclearWaterRadiationMobEffect;
 import net.everla.everlaartifacts.potion.HomaPassiveMobEffect;
 import net.everla.everlaartifacts.potion.HomaActiveMobEffect;
 import net.everla.everlaartifacts.potion.GenshinStartMobEffect;
+import net.everla.everlaartifacts.potion.BlitzkriegMobEffect;
 import net.everla.everlaartifacts.potion.BedmicDestructionMobEffect;
 import net.everla.everlaartifacts.potion.AmericanStyleCutOverlayMobEffect;
 import net.everla.everlaartifacts.EverlaartifactsMod;
@@ -28,4 +29,5 @@ public class EverlaartifactsModMobEffects {
 	public static final RegistryObject<MobEffect> WAAOOO_OVERLAY = REGISTRY.register("waaooo_overlay", () -> new WaaoooOverlayMobEffect());
 	public static final RegistryObject<MobEffect> HOMA_PASSIVE = REGISTRY.register("homa_passive", () -> new HomaPassiveMobEffect());
 	public static final RegistryObject<MobEffect> HOMA_ACTIVE = REGISTRY.register("homa_active", () -> new HomaActiveMobEffect());
+	public static final RegistryObject<MobEffect> BLITZKRIEG = REGISTRY.register("blitzkrieg", () -> new BlitzkriegMobEffect());
 }

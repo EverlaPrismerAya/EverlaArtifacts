@@ -28,6 +28,7 @@ import net.everla.everlaartifacts.init.EverlaartifactsModFluidTypes;
 import net.everla.everlaartifacts.init.EverlaartifactsModEntities;
 import net.everla.everlaartifacts.init.EverlaartifactsModEnchantments;
 import net.everla.everlaartifacts.init.EverlaartifactsModBlocks;
+import net.everla.everlaartifacts.config.EverlaArtifactsConfig;
 
 import java.util.function.Supplier;
 import java.util.function.Function;
@@ -50,20 +51,17 @@ public class EverlaartifactsMod {
 		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 		EverlaartifactsModSounds.REGISTRY.register(bus);
 		EverlaartifactsModBlocks.REGISTRY.register(bus);
-
 		EverlaartifactsModItems.REGISTRY.register(bus);
 		EverlaartifactsModEntities.REGISTRY.register(bus);
 		EverlaartifactsModEnchantments.REGISTRY.register(bus);
 		EverlaartifactsModTabs.REGISTRY.register(bus);
-
 		EverlaartifactsModMobEffects.REGISTRY.register(bus);
 		EverlaartifactsModPotions.REGISTRY.register(bus);
 		EverlaartifactsModPaintings.REGISTRY.register(bus);
-
 		EverlaartifactsModFluids.REGISTRY.register(bus);
 		EverlaartifactsModFluidTypes.REGISTRY.register(bus);
-
 		// Start of user code block mod init
+		EverlaArtifactsConfig.register();
 		// End of user code block mod init
 	}
 

@@ -649,7 +649,7 @@
       "name": "NuclearWasteWater",
       "type": "fluid",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "nuclear_waste_water",
       "metadata": {
         "files": [
@@ -667,7 +667,7 @@
       "name": "NuclearWasteWaterRadiation",
       "type": "procedure",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "nuclear_waste_water_radiation",
       "metadata": {
         "files": [
@@ -695,7 +695,7 @@
       "name": "NuclearWaterRadiation",
       "type": "potioneffect",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "nuclear_water_radiation",
       "metadata": {
         "files": [
@@ -707,7 +707,7 @@
       "name": "NuclearWaterRadiationBuff",
       "type": "procedure",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "nuclear_water_radiation_buff",
       "metadata": {
         "files": [
@@ -1324,7 +1324,7 @@
       "name": "GenshinStart",
       "type": "potioneffect",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "genshin_start",
       "metadata": {
         "files": [
@@ -1366,7 +1366,7 @@
       "name": "AmericanStyleCutOverlay",
       "type": "potioneffect",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "american_style_cut_overlay",
       "metadata": {
         "files": [
@@ -2231,7 +2231,7 @@
       "name": "WaaooOverlay",
       "type": "overlay",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "waaoo_overlay",
       "metadata": {
         "files": [
@@ -2495,7 +2495,7 @@
       "name": "HomaPassive",
       "type": "potioneffect",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "homa_passive",
       "metadata": {
         "files": [
@@ -2507,7 +2507,7 @@
       "name": "HomaActive",
       "type": "potioneffect",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "homa_active",
       "metadata": {
         "files": [
@@ -2840,6 +2840,42 @@
       "metadata": {
         "files": [
           "src/main/java/net/everla/everlaartifacts/enchantment/TPAuraEnchantment.java"
+        ]
+      }
+    },
+    {
+      "name": "Deutsch",
+      "type": "enchantment",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "deutsch",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/enchantment/DeutschEnchantment.java"
+        ]
+      }
+    },
+    {
+      "name": "Blitzkrieg",
+      "type": "potioneffect",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "blitzkrieg",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/potion/BlitzkriegMobEffect.java"
+        ]
+      }
+    },
+    {
+      "name": "LayeredBuffer",
+      "type": "enchantment",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "layered_buffer",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/enchantment/LayeredBufferEnchantment.java"
         ]
       }
     }
@@ -3525,7 +3561,8 @@
     ],
     "DAMAGE_TYPES:minecraft:bypasses_cooldown": [],
     "ITEMS:everlaartifacts:rainbow_lore": [
-      "CUSTOM:Nilk"
+      "CUSTOM:Nilk",
+      "CUSTOM:HomaStaff"
     ],
     "ITEMS:everlaartifacts:rainbow_name": [
       "CUSTOM:Nilk",
@@ -3583,6 +3620,7 @@
       "item.everlaartifacts.homa_staff.description_11": "§fAdditionally, grants Attack Power equal to 16% of the holder\u0027s maximum HP.",
       "item.everlaartifacts.tokyo_ticket": "Plane Ticket to Tokyo",
       "item.everlaartifacts.homa_staff.description_12": "§fWhen the holder’s current HP drops to 50% or below, gains an additional 18% of maximum HP as Attack Power.",
+      "enchantment.everlaartifacts.displaytext.layeredbuffer": "Layered Buffer Durability: {0}/{1}",
       "item.everlaartifacts.nanomachine": "Music Disc",
       "item.everlaartifacts.hacker_gamer.desc": "黄勇,任浩铭 - 你看到的我",
       "item.everlaartifacts.manbo_no_more.desc": "Normal No More(不再曼波) - 还给我神ID",
@@ -3608,7 +3646,6 @@
       "item.everlaartifacts.homa_staff.description_1": "§aNormal Attack – Wangsheng Funeral Parlor\u0027s Secret Spear Technique:",
       "item.everlaartifacts.twisted_garden": "Music Disc",
       "item.everlaartifacts.homa_staff.description_20": "§cWhile wielding this weapon, any bonuses from off-hand items are disabled.",
-      "item.everlaartifacts.homa_staff.description_21": "§6§mWhat? You think I got this idea from playing Genshin Impact? Do you even know how many brain cells I burned making this? — EverlaPrismerAya",
       "item.everlaartifacts.lonely_guitar.desc": "結束バンド - ギターと孤独と蒼い惑星",
       "item.everlaartifacts.zako_uncle": "Zako Uncle",
       "item.everlaartifacts.music_disc_nilk.desc": "ennway - Nilk",
@@ -3622,8 +3659,7 @@
       "subtitles.nilk": "",
       "item.everlaartifacts.twisted_garden.desc": "Heart Plus Up! - Twisted Garden",
       "item.everlaartifacts.nanomachine.desc": "Platinum Mix - It Has To Be This Way",
-      "item.everlaartifacts.homa_staff.description_17": "§fThis buff increases Attack Power by an amount equal to 62.6% of the holder’s maximum HP.",
-      "item.everlaartifacts.homa_staff.description_18": "§fThe extra damage from this Attack Power boost ignores invincibility frames, but cannot exceed 800% of the holder’s base Attack Power.",
+      "item.everlaartifacts.homa_staff.description_17": "§fThis buff increases the holder\u0027s ATK by an amount equal to 62.6% of their Max HP, but cannot exceed 800% of the holder\u0027s ATK.",
       "item.everlaartifacts.homa_staff.description_19": "§cTwo-Handed Weapon Restriction:",
       "item.everlaartifacts.aleph_0.desc": "LeaF - Aleph-0",
       "item.everlaartifacts.raiden.desc": "Platinum Mix - Rules of Nature",
@@ -3632,6 +3668,7 @@
       "item.everlaartifacts.lonely_guitar": "Music Disc",
       "item.everlaartifacts.manbo_legend.description_0": "§cWarning: This music maybe will kill you",
       "item.everlaartifacts.galatic_destruction.desc": "Heart Plus Up! - Galactic Destruction",
+      "enchantment.everlaartifacts.layered_buffer": "Layered Buffer",
       "item.everlaartifacts.raiden": "Music Disc",
       "enchantment.everlaartifacts.steadfast": "Steadfast",
       "item.minecraft.splash_potion.effect.nuclear_waste_water_bottle": "Splash Nuclear Waste Water Bottle",
@@ -3681,6 +3718,7 @@
       "item.everlaartifacts.pot_of_pain.description_0": "§7Meh, soup",
       "item.everlaartifacts.nuclear_waste_water_bucket": "Nuclear Waste Water Bucket",
       "item.everlaartifacts.chalice_of_blood_god.description_5": "§d§owhereby I conquer, but what none",
+      "effect.everlaartifacts.blitzkrieg": "Blitzkrieg",
       "item.everlaartifacts.chalice_of_blood_god.description_6": "§d§ocan see is the strategy out of",
       "item.everlaartifacts.chalice_of_blood_god.description_7": "§d§owhich victory is evolved",
       "item.everlaartifacts.i_really_want_to_stay_at_your_house": "Music Disc",
@@ -3701,6 +3739,7 @@
       "item.everlaartifacts.yamato.desc": "Andrew Baena - Bury the light",
       "item.everlaartifacts.lonely_man_brokenhearted_song": "Music Disc",
       "item.everlaartifacts.manbo_legend": "Music Disc",
+      "text.rainbow_lore.everlaartifacts.homa_staff": "§o§mWhat? You think I got this idea from playing Genshin Impact? Do you even know how many brain cells I burned making this? — EverlaPrismerAya",
       "item.everlaartifacts.viscous_desperation": "Music Disc",
       "item.everlaartifacts.pay_to_win_crystal": "§6Pay To Win Crystal",
       "effect.everlaartifacts.waaooo_overlay": "Waaooo!!!",
@@ -3747,6 +3786,7 @@
       "item.everlaartifacts.aleph_0": "Music Disc",
       "item.everlaartifacts.lonely_man_brokenhearted_song.desc": "寂寞的人伤心的歌 - 龙梅子 杨海彪",
       "item.everlaartifacts.manbo_legend.desc": "Manbo Legend - CannonGary",
+      "enchantment.everlaartifacts.deutsch": "Deutsch",
       "item.everlaartifacts.chinese_dumpling": "Chinese Dumpling",
       "painting.everlaartifacts.technoblade_staring.title": "Technoblade Staring",
       "block.everlaartifacts.deepslate_auric_ore": "Deepslate Auric Ore"
@@ -3758,9 +3798,10 @@
       "item.everlaartifacts.homa_staff.description_16": "§f右击以损失30%当前生命为代价获得蝶引来生增益，持续9秒，冷却16秒，此损失生命的效果不致死",
       "item.everlaartifacts.chalice_of_blood_god": "血神圣杯",
       "item.everlaartifacts.homa_staff.description_10": "§f持有时最大生命值提高40%",
-      "item.everlaartifacts.tokyo_ticket": "飞往东京的机票",
       "item.everlaartifacts.homa_staff.description_11": "§f此外，基于持有者生命上限的16%，获得攻击力加成",
+      "item.everlaartifacts.tokyo_ticket": "飞往东京的机票",
       "item.everlaartifacts.homa_staff.description_12": "§f当持有者当前生命下降到50%及以下时，进一步获得18%基于生命值上限的攻击提升",
+      "enchantment.everlaartifacts.displaytext.layeredbuffer": "次数盾剩余耐久：{0}/{1}",
       "item.everlaartifacts.nanomachine": "音乐唱片",
       "item.everlaartifacts.hacker_gamer.desc": "黄勇,任浩铭 - 你看到的我",
       "item.everlaartifacts.manbo_no_more.desc": "Normal No More(不再曼波) - 还给我神ID",
@@ -3786,7 +3827,6 @@
       "item.everlaartifacts.homa_staff.description_1": "§a普通攻击·往生堂秘传枪法：",
       "item.everlaartifacts.twisted_garden": "音乐唱片",
       "item.everlaartifacts.homa_staff.description_20": "§c手持此武器时，副手物品的任何加成都将失效",
-      "item.everlaartifacts.homa_staff.description_21": "§6§m什么？你觉得我是玩原神玩的？你不知道当初做这玩意烧了我多少脑细胞吗？——EverlaPrismerAya",
       "item.everlaartifacts.lonely_guitar.desc": "結束バンド - ギターと孤独と蒼い惑星",
       "item.everlaartifacts.zako_uncle": "炸鱼薯黍",
       "item.everlaartifacts.music_disc_nilk.desc": "ennway - Nilk",
@@ -3800,8 +3840,7 @@
       "subtitles.nilk": "",
       "item.everlaartifacts.twisted_garden.desc": "Heart Plus Up! - Twisted Garden",
       "item.everlaartifacts.nanomachine.desc": "Platinum Mix - It Has To Be This Way",
-      "item.everlaartifacts.homa_staff.description_17": "§f此增益将使得持有者的攻击力提升，提升量相当于持有者生命值上限的62.6%",
-      "item.everlaartifacts.homa_staff.description_18": "§f此增益造成的攻击提升效果产生的额外伤害将无视无敌帧，但此伤害不能超过持有者攻击力的800%",
+      "item.everlaartifacts.homa_staff.description_17": "§f此增益将使得持有者的攻击力提升，提升量相当于持有者生命值上限的62.6%，但不会超过持有者攻击力的800%",
       "item.everlaartifacts.homa_staff.description_19": "§c双手武器限制：",
       "item.everlaartifacts.aleph_0.desc": "LeaF - Aleph-0",
       "item.everlaartifacts.raiden.desc": "Platinum Mix - Rules of Nature",
@@ -3810,6 +3849,7 @@
       "item.everlaartifacts.lonely_guitar": "音乐唱片",
       "item.everlaartifacts.manbo_legend.description_0": "§c警告：此音乐可能会把你难听死",
       "item.everlaartifacts.galatic_destruction.desc": "Heart Plus Up! - Galactic Destruction",
+      "enchantment.everlaartifacts.layered_buffer": "次数盾",
       "item.everlaartifacts.raiden": "音乐唱片",
       "enchantment.everlaartifacts.steadfast": "凝神定气",
       "item.minecraft.splash_potion.effect.nuclear_waste_water_bottle": "喷溅型核废水瓶",
@@ -3858,6 +3898,7 @@
       "item.everlaartifacts.pot_of_pain.description_0": "§7§o嘿嘿，汤",
       "item.everlaartifacts.nuclear_waste_water_bucket": "核废水桶",
       "item.everlaartifacts.chalice_of_blood_god.description_5": "§d§o然无人见我致胜之策，",
+      "effect.everlaartifacts.blitzkrieg": "闪电战",
       "item.everlaartifacts.chalice_of_blood_god.description_6": "§d§o此乃谋略所生之胜也，",
       "item.everlaartifacts.chalice_of_blood_god.description_7": "§d§o",
       "item.everlaartifacts.i_really_want_to_stay_at_your_house": "音乐唱片",
@@ -3877,6 +3918,7 @@
       "item.everlaartifacts.yamato.desc": "Andrew Baena - Bury the light",
       "item.everlaartifacts.lonely_man_brokenhearted_song": "音乐唱片",
       "item.everlaartifacts.manbo_legend": "音乐唱片",
+      "text.rainbow_lore.everlaartifacts.homa_staff": "§o§m什么？你觉得我是玩原神玩的？你不知道我为了做这玩意烧掉了多少脑细胞吗？——EverlaPrismerAya",
       "item.everlaartifacts.viscous_desperation": "音乐唱片",
       "item.everlaartifacts.pay_to_win_crystal": "§6抽象氪金结晶",
       "effect.everlaartifacts.waaooo_overlay": "哇袄！！！",
@@ -3922,6 +3964,7 @@
       "item.everlaartifacts.aleph_0": "音乐唱片",
       "item.everlaartifacts.lonely_man_brokenhearted_song.desc": "寂寞的人伤心的歌 - 龙梅子 杨海彪",
       "item.everlaartifacts.manbo_legend.desc": "Manbo Legend - CannonGary",
+      "enchantment.everlaartifacts.deutsch": "德意志",
       "item.everlaartifacts.chinese_dumpling": "饺子",
       "painting.everlaartifacts.technoblade_staring.title": "Technoblade之凝视",
       "block.everlaartifacts.deepslate_auric_ore": "深板岩圣金源矿石"

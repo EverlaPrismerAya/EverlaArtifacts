@@ -80,7 +80,6 @@ public class HomaStaffItem extends SwordItem {
         list.add(Component.translatable("item.everlaartifacts.homa_staff.description_15"));
         list.add(Component.translatable("item.everlaartifacts.homa_staff.description_16"));
         list.add(Component.translatable("item.everlaartifacts.homa_staff.description_17"));
-        list.add(Component.translatable("item.everlaartifacts.homa_staff.description_18"));
         
         list.add(Component.translatable("item.everlaartifacts.homa_staff.description_f0"));
         list.add(Component.translatable("item.everlaartifacts.homa_staff.description_f1"));
@@ -88,8 +87,6 @@ public class HomaStaffItem extends SwordItem {
         
         list.add(Component.translatable("item.everlaartifacts.homa_staff.description_19"));
         list.add(Component.translatable("item.everlaartifacts.homa_staff.description_20"));
-        
-        list.add(Component.translatable("item.everlaartifacts.homa_staff.description_21"));
     }
 
     @Override
