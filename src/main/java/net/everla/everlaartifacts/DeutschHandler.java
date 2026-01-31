@@ -53,12 +53,16 @@ public class DeutschHandler {
             // 检查玩家是否正处于负面效果期间
             boolean negativeEffectActive = isInNegativeEffectPeriod.getOrDefault(playerId, false);
             
-            // 如果不在负面效果期间，则给予Blitzkrieg效果
-            if (!negativeEffectActive) {
+            // 重要修复：即使在负面效果期间，也不应该给予Blitzkrieg效果
+            // 同时也要检查玩家是否已经有Blitzkrieg效果
+            boolean hasBlitzkriegEffect = player.hasEffect(EverlaartifactsModMobEffects.BLITZKRIEG.get());
+            
+            // 只有在没有负面效果且没有Blitzkrieg效果时才给予Blitzkrieg效果
+            if (!negativeEffectActive && !hasBlitzkriegEffect) {
                 // 给玩家添加Blitzkrieg状态效果（30秒，等级1）
                 MobEffectInstance blitzkriegEffect = new MobEffectInstance(
                     EverlaartifactsModMobEffects.BLITZKRIEG.get(), 
-                    600, // 30秒 * 20 ticks/second = 600 ticks
+                    600, // 30秒 * 20 ticks/秒 = 600 ticks
                     0); // 等级1 (内部表示为0)
                 
                 player.addEffect(blitzkriegEffect);

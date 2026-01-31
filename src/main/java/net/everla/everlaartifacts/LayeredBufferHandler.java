@@ -52,9 +52,15 @@ public class LayeredBufferHandler {
         }
         
         // 否则检查配置中指定的模组是否已加载
-        for (String modId : EverlaArtifactsConfig.getFullProtectionModIds()) {
-            if (ModList.get().isLoaded(modId)) {
-                return true;
+        String modIdsString = EverlaArtifactsConfig.getFullProtectionModIds();
+        if (modIdsString != null && !modIdsString.trim().isEmpty()) {
+            // 将逗号分隔的字符串转换为数组
+            String[] modIds = modIdsString.split(",");
+            for (String modId : modIds) {
+                String trimmedModId = modId.trim();
+                if (!trimmedModId.isEmpty() && ModList.get().isLoaded(trimmedModId)) {
+                    return true;
+                }
             }
         }
         return false;

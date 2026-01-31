@@ -190,7 +190,7 @@ public class SteadfastHandler {
             ));
         }
         
-        // 使用实体的持久化数据存储击倒状态
+        // 使用实体所在世界的game time存储击倒状态
         long endTime = level.getGameTime() + KNOCKDOWN_DURATION;
         entity.getPersistentData().putLong(KNOCKDOWN_END_TIME_KEY, endTime);
         
@@ -217,16 +217,13 @@ public class SteadfastHandler {
         
         serverTickCounter++;
         
-        // 每5个服务器tick执行一次清理，减少性能开销
-        if (serverTickCounter % 5 != 0) {
-            return;
-        }
-        
-        long currentTime = event.getServer().getTickCount();
-        
-        // 清理击倒状态 - 遍历所有世界中的所有实体
-        for (ServerLevel level : event.getServer().getAllLevels()) {
-            for (Entity entity : level.getAllEntities()) {
+        // 每个服务器tick都执行清理，确保击倒效果能准时恢复
+        // 注意：使用world的getGameTime()而不是server的getTickCount()
+        // 遍历所有世界中的所有实体
+        for (ServerLevel world : event.getServer().getAllLevels()) {
+            long currentTime = world.getGameTime(); // 使用世界的时间而不是服务器的tick计数
+            
+            for (Entity entity : world.getAllEntities()) {
                 if (entity instanceof LivingEntity livingEntity) {
                     // 检查实体是否有击倒结束时间
                     if (livingEntity.getPersistentData().contains(KNOCKDOWN_END_TIME_KEY)) {
@@ -243,10 +240,11 @@ public class SteadfastHandler {
         }
         
         // 清理冷却数据
+        long serverCurrentTime = event.getServer().getTickCount();
         PLAYER_KNOCKDOWN_COOLDOWN.entrySet().removeIf(e -> 
-            currentTime - e.getValue() > KNOCKDOWN_COOLDOWN_TICKS + 20);
+            serverCurrentTime - e.getValue() > KNOCKDOWN_COOLDOWN_TICKS + 20);
         LAST_DASH_TIME.entrySet().removeIf(e -> 
-            currentTime - e.getValue() > 100);
+            serverCurrentTime - e.getValue() > 100);
     }
     
     private static void removeKnockdown(LivingEntity entity) {

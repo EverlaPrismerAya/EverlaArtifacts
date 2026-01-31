@@ -2878,6 +2878,30 @@
           "src/main/java/net/everla/everlaartifacts/enchantment/LayeredBufferEnchantment.java"
         ]
       }
+    },
+    {
+      "name": "ScrapyardScrounger",
+      "type": "enchantment",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "scrapyard_scrounger",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/enchantment/ScrapyardScroungerEnchantment.java"
+        ]
+      }
+    },
+    {
+      "name": "MoneyBurnersCreed",
+      "type": "enchantment",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "money_burners_creed",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/enchantment/MoneyBurnersCreedEnchantment.java"
+        ]
+      }
     }
   ],
   "variable_elements": [],
@@ -3617,8 +3641,8 @@
       "item.everlaartifacts.homa_staff.description_16": "§fRight-click to consume 30% of current HP (non-lethal) and gain the \"Butterfly Brings Rebirth\" buff for 9 seconds (16-second cooldown).",
       "item.everlaartifacts.chalice_of_blood_god": "Chalice Of Blood God",
       "item.everlaartifacts.homa_staff.description_10": "§fIncreases maximum HP by 40% while held.",
-      "item.everlaartifacts.homa_staff.description_11": "§fAdditionally, grants Attack Power equal to 16% of the holder\u0027s maximum HP.",
       "item.everlaartifacts.tokyo_ticket": "Plane Ticket to Tokyo",
+      "item.everlaartifacts.homa_staff.description_11": "§fAdditionally, grants Attack Power equal to 16% of the holder\u0027s maximum HP.",
       "item.everlaartifacts.homa_staff.description_12": "§fWhen the holder’s current HP drops to 50% or below, gains an additional 18% of maximum HP as Attack Power.",
       "enchantment.everlaartifacts.displaytext.layeredbuffer": "Layered Buffer Durability: {0}/{1}",
       "item.everlaartifacts.nanomachine": "Music Disc",
@@ -3643,6 +3667,7 @@
       "item.everlaartifacts.worst_apple": "Music Disc",
       "text.everlaartifacts.penis_music_explosion": "That absurd music pelted %s with soundwaves and sent him flying",
       "item.everlaartifacts.homa_staff.description_0": "§eAfter loading the Better Combat mod, the attack pattern changes as follows:",
+      "enchantment.everlaartifacts.scrapyard_scrounger": "Scrapyard Scrounger",
       "item.everlaartifacts.homa_staff.description_1": "§aNormal Attack – Wangsheng Funeral Parlor\u0027s Secret Spear Technique:",
       "item.everlaartifacts.twisted_garden": "Music Disc",
       "item.everlaartifacts.homa_staff.description_20": "§cWhile wielding this weapon, any bonuses from off-hand items are disabled.",
@@ -3684,6 +3709,7 @@
       "item.everlaartifacts.pot_of_pain": "Pot Of Pain",
       "block.everlaartifacts.nuclear_waste_water": "Nuclear Waste Water",
       "item.everlaartifacts.homa_staff.description_n0": "§eWhen Apotheosis Loaded:",
+      "enchantment.everlaartifacts.displaytext.performance_based_damage_bonus": "{0} Current Damage Bonus: {1}",
       "item.everlaartifacts.homa_staff.description_n1": "§9+66.2% Critical Damage",
       "item.everlaartifacts.theonlythingiknowforreal.desc": "Maniac Agenda Mix - The Only Thing I Know For Real",
       "item.everlaartifacts.weird_cocktail": "Weird Cocktail",
@@ -3708,6 +3734,7 @@
       "item.minecraft.tipped_arrow.effect.nuclear_waste_water_bottle": "Arrow of Nuclear Waste Water",
       "item_group.everlaartifacts.everla_tweaker": "Everla Artifacts",
       "painting.everlaartifacts.technoblade_staring.author": "Unknown",
+      "enchantment.everlaartifacts.money_burners_creed": "Money-Burner\u0027s Creed",
       "item.everlaartifacts.chalice_of_blood_god.description_0": "§6Item Ability: Potato King",
       "item.everlaartifacts.chalice_of_blood_god.description_1": "§7Bestowed by §kNameless Deity§r§7 to the",
       "item.everlaartifacts.raw_auric": "Raw Auric",
@@ -3798,8 +3825,8 @@
       "item.everlaartifacts.homa_staff.description_16": "§f右击以损失30%当前生命为代价获得蝶引来生增益，持续9秒，冷却16秒，此损失生命的效果不致死",
       "item.everlaartifacts.chalice_of_blood_god": "血神圣杯",
       "item.everlaartifacts.homa_staff.description_10": "§f持有时最大生命值提高40%",
-      "item.everlaartifacts.homa_staff.description_11": "§f此外，基于持有者生命上限的16%，获得攻击力加成",
       "item.everlaartifacts.tokyo_ticket": "飞往东京的机票",
+      "item.everlaartifacts.homa_staff.description_11": "§f此外，基于持有者生命上限的16%，获得攻击力加成",
       "item.everlaartifacts.homa_staff.description_12": "§f当持有者当前生命下降到50%及以下时，进一步获得18%基于生命值上限的攻击提升",
       "enchantment.everlaartifacts.displaytext.layeredbuffer": "次数盾剩余耐久：{0}/{1}",
       "item.everlaartifacts.nanomachine": "音乐唱片",
@@ -3824,6 +3851,7 @@
       "item.everlaartifacts.worst_apple": "音乐唱片",
       "text.everlaartifacts.penis_music_explosion": "%s被神人音乐肘飞了",
       "item.everlaartifacts.homa_staff.description_0": "§e装载Better Combat模组后，攻击方式变为如下形式：",
+      "enchantment.everlaartifacts.scrapyard_scrounger": "图吧大佬",
       "item.everlaartifacts.homa_staff.description_1": "§a普通攻击·往生堂秘传枪法：",
       "item.everlaartifacts.twisted_garden": "音乐唱片",
       "item.everlaartifacts.homa_staff.description_20": "§c手持此武器时，副手物品的任何加成都将失效",
@@ -3865,6 +3893,7 @@
       "item.everlaartifacts.pot_of_pain": "山猪胡辣汤",
       "block.everlaartifacts.nuclear_waste_water": "核废水",
       "item.everlaartifacts.homa_staff.description_n0": "§e装载神化后：",
+      "enchantment.everlaartifacts.displaytext.performance_based_damage_bonus": "{0}当前伤害加成：{1}",
       "item.everlaartifacts.homa_staff.description_n1": "§9+66.2% 暴击伤害",
       "item.everlaartifacts.theonlythingiknowforreal.desc": "Maniac Agenda Mix - The Only Thing I Know For Real",
       "item.everlaartifacts.weird_cocktail": "奇怪的鸡尾酒",
@@ -3889,6 +3918,7 @@
       "item.minecraft.tipped_arrow.effect.nuclear_waste_water_bottle": "核废水之箭",
       "item_group.everlaartifacts.everla_tweaker": "七叶镜绫的杂物",
       "painting.everlaartifacts.technoblade_staring.author": "未知",
+      "enchantment.everlaartifacts.money_burners_creed": "卡吧大佬",
       "item.everlaartifacts.chalice_of_blood_god.description_0": "§6物品能力：土豆之王",
       "item.everlaartifacts.chalice_of_blood_god.description_1": "§7由§k无名光神§r§7赐予",
       "item.everlaartifacts.raw_auric": "粗圣金源",
