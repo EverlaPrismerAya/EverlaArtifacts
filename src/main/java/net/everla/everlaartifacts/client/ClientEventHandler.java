@@ -44,19 +44,19 @@ public class ClientEventHandler {
                     debugPerformanceScore = realPerformanceScore;
                 }
                 
-                // 使用正确的方法发送网络包到服务器
+                // 发送网络包到服务器
                 try {
                     ClientPerformanceReportPacket packet = new ClientPerformanceReportPacket(realPerformanceScore, debugPerformanceScore, realCPUCount, realAllocatedMemory);
                     EverlaartifactsMod.PACKET_HANDLER.sendToServer(packet);
-                    EverlaartifactsMod.LOGGER.info("成功发送性能报告到服务器 - 真实评分: {:.2f}, 调试评分: {:.2f}, CPU核心数: {}, 内存: {}MB", 
+                    EverlaartifactsMod.LOGGER.info("成功发送性能报告到服务器 - 真实评分: {}, 调试评分: {}, CPU核心数: {}, 内存: {}MB",
                         realPerformanceScore, debugPerformanceScore, realCPUCount, realAllocatedMemory);
                 } catch (Exception e) {
                     // 发送失败，忽略错误
+                    // 什么时候出bug什么时候来草窝
                 }
             } else {
                 // 没有连接，直接在本地设置性能评分（单人游戏情况）
                 double performanceScore = PerformanceMetrics.getClientPerformanceScore();
-                // 日志已被移除
                 if (event.getPlayer() instanceof net.minecraft.world.entity.player.Player) {
                     net.minecraft.world.entity.player.Player player = (net.minecraft.world.entity.player.Player) event.getPlayer();
                     PerformanceBasedThingsHandler.setPlayerPerformanceScore(player, performanceScore);
@@ -84,7 +84,6 @@ public class ClientEventHandler {
             if (originalData.contains("PerformanceScore")) {
                 double score = originalData.getDouble("PerformanceScore");
                 PerformanceBasedThingsHandler.setPlayerPerformanceScore(event.getEntity(), score);
-                // 日志已被移除
             }
         }
     }

@@ -193,10 +193,10 @@ public class PerformanceBasedThingsHandler {
                 // 根据不同的附魔类型计算伤害增加量
                 if (moneyBurnersCreedLevel > 0) {
                     // MoneyBurnersCreed: (评分-50)*2%
-                    damageMultiplier = 1.0 + ((performanceScore - 50.0) * 0.02);
+                    damageMultiplier = 1.0 + (Math.min(performanceScore, 90.0) * 0.01);
                 } else if (scrapyardScroungerLevel > 0) {
                     // ScrapyardScrounger: (50-评分)*2%
-                    damageMultiplier = 1.0 + ((50.0 - performanceScore) * 0.02);
+                    damageMultiplier = 1.0 - (Math.min(performanceScore, 90.0) * 0.01);
                 }
                 
                 // 应用伤害调整
@@ -242,25 +242,29 @@ public class PerformanceBasedThingsHandler {
             
             if (moneyBurnersCreedLevel > 0) {
                 // MoneyBurnersCreed: (评分-50)*2%
-                damageBonusPercentage = (performanceScore - 50.0) * 2.0;
+                damageBonusPercentage = Math.min(performanceScore, 90.0);
             } else if (scrapyardScroungerLevel > 0) {
                 // ScrapyardScrounger: (50-评分)*2%
-                damageBonusPercentage = (50.0 - performanceScore) * 2.0;
+                damageBonusPercentage = 0.0 - Math.min(performanceScore, 90.0);
             }
-            
+
             // 添加伤害加成信息到工具提示
             String bonusText = String.format("%.2f", damageBonusPercentage);
-            
+
             // 确定附魔名称
             String enchantmentName;
+            String enchantmentPrefix;
             if (moneyBurnersCreedLevel > 0) {
+                enchantmentPrefix = Component.translatable("enchantment.everlaartifacts.displaytext.performance_based_text_high").getString();
                 enchantmentName = Component.translatable("enchantment.everlaartifacts.money_burners_creed").getString();
             } else {
+                enchantmentPrefix = Component.translatable("enchantment.everlaartifacts.displaytext.performance_based_text_low").getString();
                 enchantmentName = Component.translatable("enchantment.everlaartifacts.scrapyard_scrounger").getString();
             }
-            
+
             // 使用组件构建工具提示，确保占位符被正确替换
-            event.getToolTip().add(Component.translatable("enchantment.everlaartifacts.displaytext.performance_based_damage_bonus", 
+            event.getToolTip().add(Component.translatable(enchantmentPrefix));
+            event.getToolTip().add(Component.translatable("enchantment.everlaartifacts.displaytext.performance_based_damage_bonus",
                 enchantmentName,
                 bonusText + "%")
                 .withStyle(net.minecraft.ChatFormatting.GOLD));

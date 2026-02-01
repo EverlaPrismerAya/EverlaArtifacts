@@ -37,8 +37,8 @@ public class EverlaArtifactsConfig {
         // 配置PerformanceDebugMode部分
         BUILDER.push("PerformanceDebugMode");
         performanceDebugMode = BUILDER.comment("性能调试模式：当启用时，使用自定义值代替真实硬件信息。警告：游戏默认开启安全验证阻止此自定义，须通过/gamerule ForceUseTruePerformance false禁用").define("performanceDebugMode", false);
-        customDebugCPUCount = BUILDER.comment("自定义调试CPU数量：当性能调试模式启用时使用的CPU核心数").defineInRange("customDebugCPUCount", 8, 1, 128);
-        customDebugMemorySize = BUILDER.comment("自定义调试内存大小：当性能调试模式启用时使用的内存大小(MB)").defineInRange("customDebugMemorySize", 8192, 512, 65536);
+        customDebugCPUCount = BUILDER.comment("自定义调试CPU数量：当性能调试模式启用时使用的CPU核心数").defineInRange("customDebugCPUCount", 8, 1, 512);
+        customDebugMemorySize = BUILDER.comment("自定义调试内存大小：当性能调试模式启用时使用的内存大小(MB)").defineInRange("customDebugMemorySize", 8192, 1024, 2147483647);
         BUILDER.pop();
 
         SPEC = BUILDER.build();

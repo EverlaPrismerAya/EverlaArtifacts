@@ -42,8 +42,6 @@ public class ClientPerformanceReportPacket {
         context.enqueueWork(() -> {
             try {
                 // 在服务端处理接收到的性能报告
-                // 日志已被移除
-                
                 // 获取当前网络上下文中的玩家
                 if (context.getSender() != null) {
                     // 根据游戏规则决定使用哪个性能评分

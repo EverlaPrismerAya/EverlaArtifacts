@@ -10,12 +10,16 @@ import java.util.Random;
  */
 public class PerformanceMetrics {
     // 评分函数参数
-    private static final double KC = 0.1;  // CPU评分曲线系数
-    private static final int C0 = 4;       // CPU评分中点
-    private static final double KM = 0.005; // 内存评分曲线系数
-    private static final int M0 = 2048;    // 内存评分中点 (MB)
-    private static final int WC = 50;      // CPU权重
-    private static final int WM = 50;      // 内存权重
+    private static final int BASE_CPU_CORES = 12;     // 基准CPU核心数
+    private static final int BASE_MEMORY_MB = 8192;   // 基准内存大小 (MB)
+    private static final int MAX_CPU_CORES = 32;      // 最大CPU核心数
+    private static final int MAX_MEMORY_MB = 16384;   // 最大内存大小 (MB)
+    private static final int MIN_CPU_CORES = 8;       // 最小CPU核心数
+    private static final int MIN_MEMORY_MB = 4096;    // 最小内存大小 (MB)
+    private static final int MAX_SCORE = 100;         // 最高分数
+    private static final int MIN_SCORE = -100;        // 最低分数
+    private static final double CPU_WEIGHT = 0.8;     // CPU权重
+    private static final double MEMORY_WEIGHT = 0.2;  // 内存权重
     
     private static final Random random = new Random();
     
@@ -25,31 +29,47 @@ public class PerformanceMetrics {
     
     // 存储从服务端接收的性能评分
     private static Double serverPerformanceScore = null;
+    
+    // 存储从服务端接收的硬件信息
+    private static Integer serverCPUCount = null;
+    private static Integer serverAllocatedMemory = null;
 
     /**
-     * CPU评分函数: F(c) = 100 / (1 + e^(-kc * (c - c0)))
+     * CPU评分函数: 根据CPU核心数计算相对于基准的评分
      *
      * @param cpuCore CPU核心数
      * @return CPU评分
      */
     public static double calculateCPUScore(int cpuCore) {
-        double exponent = -KC * (cpuCore - C0);
-        return 100.0 / (1 + Math.exp(exponent));
+        // 计算相对于基准值的比例
+        double cpuRatio = (double)(cpuCore - BASE_CPU_CORES) / (MAX_CPU_CORES - MIN_CPU_CORES);
+        
+        // 将比例转换为分数范围 [-100, 100]
+        double cpuScore = cpuRatio * (MAX_SCORE - MIN_SCORE);
+        
+        // 限制分数在范围内
+        return Math.max(MIN_SCORE, Math.min(MAX_SCORE, cpuScore));
     }
 
     /**
-     * 内存评分函数: G(m) = 100 / (1 + e^(-km * (m - m0)))
+     * 内存评分函数: 根据分配的内存大小计算相对于基准的评分
      *
      * @param allocatedMemory 分配的内存大小 (MB)
      * @return 内存评分
      */
     public static double calculateMemoryScore(int allocatedMemory) {
-        double exponent = -KM * (allocatedMemory - M0);
-        return 100.0 / (1 + Math.exp(exponent));
+        // 计算相对于基准值的比例
+        double memoryRatio = (double)(allocatedMemory - BASE_MEMORY_MB) / (MAX_MEMORY_MB - MIN_MEMORY_MB);
+        
+        // 将比例转换为分数范围 [-100, 100]
+        double memoryScore = memoryRatio * (MAX_SCORE - MIN_SCORE);
+        
+        // 限制分数在范围内
+        return Math.max(MIN_SCORE, Math.min(MAX_SCORE, memoryScore));
     }
 
     /**
-     * 总评分函数: S(c,m) = (wc * F(c) + wm * G(m)) / 100
+     * 总评分函数: S(c,m) = (wc * F(c) + wm * G(m))
      *
      * @param cpuCore         CPU核心数
      * @param allocatedMemory 分配的内存大小 (MB)
@@ -58,7 +78,7 @@ public class PerformanceMetrics {
     public static double calculateTotalScore(int cpuCore, int allocatedMemory) {
         double cpuScore = calculateCPUScore(cpuCore);
         double memoryScore = calculateMemoryScore(allocatedMemory);
-        return (WC * cpuScore + WM * memoryScore) / 100.0;
+        return CPU_WEIGHT * cpuScore + MEMORY_WEIGHT * memoryScore;
     }
 
     /**
@@ -92,6 +112,43 @@ public class PerformanceMetrics {
      */
     public static void resetClientPerformanceScore() {
         serverPerformanceScore = null;
+    }
+    
+    /**
+     * 设置从服务端接收的硬件信息
+     *
+     * @param cpuCount 服务器CPU核心数
+     * @param allocatedMemory 服务器分配内存大小（MB）
+     */
+    public static void setServerHardwareInfo(int cpuCount, int allocatedMemory) {
+        serverCPUCount = cpuCount;
+        serverAllocatedMemory = allocatedMemory;
+    }
+    
+    /**
+     * 获取从服务端接收的CPU核心数
+     *
+     * @return 服务器CPU核心数，如果未接收则返回null
+     */
+    public static Integer getServerCPUCount() {
+        return serverCPUCount;
+    }
+    
+    /**
+     * 获取从服务端接收的分配内存大小
+     *
+     * @return 服务器分配内存大小（MB），如果未接收则返回null
+     */
+    public static Integer getServerAllocatedMemory() {
+        return serverAllocatedMemory;
+    }
+    
+    /**
+     * 重置从服务端接收的硬件信息（例如玩家离开服务器时）
+     */
+    public static void resetServerHardwareInfo() {
+        serverCPUCount = null;
+        serverAllocatedMemory = null;
     }
     
     /**
