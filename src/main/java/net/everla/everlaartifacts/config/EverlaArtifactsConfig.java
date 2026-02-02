@@ -31,7 +31,7 @@ public class EverlaArtifactsConfig {
 
         // 配置FullProtectionModIds部分
         BUILDER.push("FullProtectionModIds");
-        fullProtectionModIds = BUILDER.comment("配置需要加载的模组ID列表，用于完整保护功能").define("fullProtectionModIds", "avaritia,re-avaritia,avaritia-reforged");
+        fullProtectionModIds = BUILDER.comment("配置需要加载的模组ID列表，用于完整保护功能").define("fullProtectionModIds", "avaritia,re-avaritia,avaritia-reforged,draconicevolution");
         BUILDER.pop();
         
         // 配置PerformanceDebugMode部分
