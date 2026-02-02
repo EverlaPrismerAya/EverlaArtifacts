@@ -66,7 +66,6 @@ public class EverlaartifactsMod {
 		EverlaartifactsModFluids.REGISTRY.register(bus);
 		EverlaartifactsModFluidTypes.REGISTRY.register(bus);
 		// Start of user code block mod init
-		EverlaartifactsModParticleTypes.REGISTRY.register(bus);
 		EverlaArtifactsConfig.register();
 		initializeSystemInfo();
 		registerNetworkPackets();
