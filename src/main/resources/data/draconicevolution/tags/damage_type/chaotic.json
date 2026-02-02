@@ -1,0 +1,14 @@
+{
+  "values": [
+    "apotheosis_modern_ragnarok:bullet_fire",
+    "apotheosis_modern_ragnarok:bullet_ice",
+    "apotheosis_modern_ragnarok:bullet_iceandfire",
+    "apotheosis_modern_ragnarok:execution",
+    "apotheosis_modern_ragnarok:mob_armor_piercing_attack",
+    "apotheosis_modern_ragnarok:player_armor_piercing_attack",
+    "tacz:bullet",
+    "tacz:bullet_ignore_armor",
+    "tacz:bullet_void",
+    "tacz:bullet_void_ignore_armor"
+  ]
+}
