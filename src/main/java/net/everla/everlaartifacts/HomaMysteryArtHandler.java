@@ -1,6 +1,10 @@
 package net.everla.everlaartifacts;
 
+import net.everla.everlaartifacts.init.EverlaartifactsModMobEffects;
+import net.everla.everlaartifacts.init.EverlaartifactsModParticleTypes;
+import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -40,17 +44,17 @@ public class HomaMysteryArtHandler {
     
     // 范围参数：高4格（-1~+3），半径5格的圆柱体
     private static final double RADIUS = 5.0;
-    private static final double HEIGHT_BOTTOM = 0.2;
-    private static final double HEIGHT_TOP = 4.1;    // 向上3格
+    private static final double HEIGHT_BOTTOM = 1.2;
+    private static final double HEIGHT_TOP = 3.1;    // 向上3格
     private static final double TOTAL_HEIGHT = HEIGHT_BOTTOM + HEIGHT_TOP; // 4格
     
     // 粒子特效参数
     private static final int FLAME_PARTICLES = 100; // 增加火焰粒子数量
-    private static final int SMOKE_PARTICLES = 80;  // 增加烟雾粒子数量
     private static final int SPARK_PARTICLES = 50;  // 增加火花粒子数量
     private static final int CENTER_BURST_PARTICLES = 40; // 增加中心爆发粒子
     private static final int GROUND_RUNE_PARTICLES = 32; // 增加地面符文粒子
     private static final int FIRE_WAVE_PARTICLES = 60; // 新增：火焰波纹粒子
+    private static final int BUTTERFLY_PARTICLES = 30; // 新增：蝴蝶粒子数量
     
     // 冷却完成提示跟踪
     private static final Set<UUID> NOTIFIED_PLAYERS = new HashSet<>();
@@ -156,6 +160,13 @@ public class HomaMysteryArtHandler {
                 if (entity.hurt(level.damageSources().playerAttack(player), (float) damage)) {
                     hitCount++;
                 }
+                
+                // 为被击中的实体施加BloodBlossom效果
+                entity.addEffect(new MobEffectInstance(
+                    EverlaartifactsModMobEffects.BLOOD_BLOSSOM.get(),
+                    200, // 持续时间 10秒 (200 ticks)
+                    0    // 等级 0
+                ));
             }
         }
         
@@ -190,7 +201,7 @@ public class HomaMysteryArtHandler {
             double dist = radius * (0.7 + level.random.nextDouble() * 0.3);
             double x = center.x + Math.cos(angle) * dist;
             double z = center.z + Math.sin(angle) * dist;
-            double y = center.y - HEIGHT_BOTTOM + level.random.nextDouble() * TOTAL_HEIGHT; // 从y-1到y+3
+            double y = center.y + level.random.nextDouble() * TOTAL_HEIGHT; // 从y-1到y+3
             
             // 添加随机速度，使火焰看起来更动态
             double vx = (level.random.nextDouble() - 0.5) * 0.3;
@@ -202,23 +213,7 @@ public class HomaMysteryArtHandler {
                 1, vx, vy, vz, 0.01);
         }
         
-        // 2. 烟雾扩散效果（营造蔓延感）
-        for (int i = 0; i < SMOKE_PARTICLES; i++) {
-            double angle = level.random.nextDouble() * Math.PI * 2;
-            double dist = radius * level.random.nextDouble();
-            double x = center.x + Math.cos(angle) * dist;
-            double z = center.z + Math.sin(angle) * dist;
-            double y = center.y - HEIGHT_BOTTOM + 0.1; // 从y-1高度开始
-            
-            // 烟雾向上扩散
-            double vx = (level.random.nextDouble() - 0.5) * 0.2;
-            double vy = 0.3 + level.random.nextDouble() * 0.4; // 向上速度更大
-            double vz = (level.random.nextDouble() - 0.5) * 0.2;
-            
-            level.sendParticles(ParticleTypes.SMOKE,
-                x, y, z,
-                1, vx, vy, vz, 0.05);
-        }
+        // 2. 烟雾扩散效果（已删除，按要求移除）
         
         // 3. 火花飞溅效果（营造火焰扩散感）
         for (int i = 0; i < SPARK_PARTICLES; i++) {
@@ -233,9 +228,7 @@ public class HomaMysteryArtHandler {
             double vy = (level.random.nextDouble() - 0.2) * 0.4;
             double vz = (level.random.nextDouble() - 0.5) * 0.5;
             
-            level.sendParticles(ParticleTypes.CRIMSON_SPORE, // 使用更暖色调的粒子
-                x, y, z,
-                1, vx, vy, vz, 0.02);
+            // 已删除绯红孢子粒子，按要求移除
         }
         
         // 4. 玩家位置中心爆发（增强爆发感）
@@ -258,16 +251,14 @@ public class HomaMysteryArtHandler {
             double angle = i * (Math.PI * 2 / GROUND_RUNE_PARTICLES);
             double x = center.x + Math.cos(angle) * (radius * 0.95);
             double z = center.z + Math.sin(angle) * (radius * 0.95);
-            double y = center.y - HEIGHT_BOTTOM + 0.05; // 精确位于y-1高度
+            double y = center.y + 0.05; // 精确位于y-1高度
             
             // 地面火焰向上蔓延
             double vx = (level.random.nextDouble() - 0.5) * 0.1;
             double vy = level.random.nextDouble() * 0.3;
             double vz = (level.random.nextDouble() - 0.5) * 0.1;
             
-            level.sendParticles(ParticleTypes.SOUL_FIRE_FLAME,
-                x, y, z,
-                1, vx, vy, vz, 0.02);
+            // 已删除灵魂火粒子，按要求移除
         }
         
         // 6. 火焰波纹扩散效果（新增：营造野火向外蔓延的感觉）
@@ -278,7 +269,7 @@ public class HomaMysteryArtHandler {
             
             double x = center.x + Math.cos(angle) * waveRadius;
             double z = center.z + Math.sin(angle) * waveRadius;
-            double y = center.y - HEIGHT_BOTTOM + 0.1; // 稍高于地面
+            double y = center.y + 0.1; // 稍高于地面
             
             // 波纹向外扩散的速度
             double outwardSpeed = 0.4 + level.random.nextDouble() * 0.3;
@@ -307,6 +298,29 @@ public class HomaMysteryArtHandler {
             level.sendParticles(ParticleTypes.FALLING_LAVA,
                 x, y, z,
                 1, vx, vy, vz, 0.01);
+        }
+        
+        // 8. 新增：蝴蝶粒子效果（营造野火燎原的神秘感）
+        for (int i = 0; i < BUTTERFLY_PARTICLES; i++) {
+            double angle = level.random.nextDouble() * Math.PI * 2;
+            double dist = RADIUS * level.random.nextDouble(); // 改为使用与攻击相同的范围
+            double x = center.x + Math.cos(angle) * dist;
+            double z = center.z + Math.sin(angle) * dist;
+            double y = center.y + level.random.nextDouble() * TOTAL_HEIGHT; // 在整个范围内分布
+            
+            // 蝴蝶粒子随机飘动，增加间距
+            double vx = (level.random.nextDouble() - 0.5) * 0.3; // 增加水平移动范围
+            double vy = (level.random.nextDouble() - 0.5) * 0.2; // 增加垂直移动范围
+            double vz = (level.random.nextDouble() - 0.5) * 0.3; // 增加水平移动范围
+            
+            // 随机选择蝴蝶粒子类型（GoldButterfly或FireButterfly）
+            ParticleOptions butterflyParticle = level.random.nextBoolean() ? 
+                EverlaartifactsModParticleTypes.GOLD_BUTTERFLY.get() : 
+                EverlaartifactsModParticleTypes.FIRE_BUTTERFLY.get();
+            
+            level.sendParticles(butterflyParticle,
+                x, y, z,
+                1, vx, vy, vz, 0.05); // 增加速度参数以扩大粒子间距
         }
     }
 }
