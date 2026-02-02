@@ -98,16 +98,14 @@ public class TPAuraHandler {
             // 重置玩家的下落高度
             player.fallDistance = 0.0F;
         } else {
-            // 使用简化的传送检查（只检查防穿墙）
+            // 使用防穿墙传送
             teleportPos = findSimpleTeleportPosition(level, randomPos, target);
         }
         
         if (teleportPos != null) {
             // 传送玩家到目标周围3.5方块的随机位置
             player.teleportTo(teleportPos.getX() + 0.5, teleportPos.getY(), teleportPos.getZ() + 0.5);
-            
-            // 重要：无论玩家是否在地上，都要触发攻击
-            // 创建一个攻击事件，让其他附魔正常工作
+            // 绿皮科技之硬编码附魔
             AttackEntityEvent attackEvent = new AttackEntityEvent(player, target);
             MinecraftForge.EVENT_BUS.post(attackEvent);
             
@@ -120,7 +118,6 @@ public class TPAuraHandler {
                     // 播放横扫攻击音效
                     level.playSound(null, target.getX(), target.getY(), target.getZ(), 
                             SoundEvents.PLAYER_ATTACK_SWEEP, SoundSource.PLAYERS, 1.0F, 1.0F);
-                    
                     // 生成横扫粒子效果
                     level.sendParticles(net.minecraft.core.particles.ParticleTypes.SWEEP_ATTACK,
                             target.getX(), target.getY() + 0.5, target.getZ(),
@@ -133,7 +130,7 @@ public class TPAuraHandler {
                 p.broadcastBreakEvent(InteractionHand.MAIN_HAND);
             });
         } else {
-            // 即使传送失败，也要尝试攻击（如果目标足够近）
+            // 绿皮之疯狂else，即使传送失败，也要尝试攻击
             // 检查玩家与目标的距离
             double playerTargetDistance = player.distanceTo(target);
             if (playerTargetDistance <= 3.0) { // 如果距离足够近，直接攻击

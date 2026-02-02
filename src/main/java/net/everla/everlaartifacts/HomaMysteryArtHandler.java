@@ -40,8 +40,8 @@ public class HomaMysteryArtHandler {
     
     // 范围参数：高4格（-1~+3），半径5格的圆柱体
     private static final double RADIUS = 5.0;
-    private static final double HEIGHT_BOTTOM = 1.0; // 向下扩展1格
-    private static final double HEIGHT_TOP = 3.0;    // 向上3格
+    private static final double HEIGHT_BOTTOM = 0.2;
+    private static final double HEIGHT_TOP = 4.1;    // 向上3格
     private static final double TOTAL_HEIGHT = HEIGHT_BOTTOM + HEIGHT_TOP; // 4格
     
     // 粒子特效参数

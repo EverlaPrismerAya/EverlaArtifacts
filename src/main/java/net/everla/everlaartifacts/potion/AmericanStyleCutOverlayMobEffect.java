@@ -40,12 +40,6 @@ public class AmericanStyleCutOverlayMobEffect extends MobEffect {
 			}
 		});
 	}
-	
-	@Override
-	public boolean isBeneficial() {
-		return false; // 设置为非有益效果，这样就不会被牛奶移除
-	}
-	
 	@Override
 	public List<ItemStack> getCurativeItems() {
 		return List.of(); // 返回空列表，防止被牛奶等物品治愈

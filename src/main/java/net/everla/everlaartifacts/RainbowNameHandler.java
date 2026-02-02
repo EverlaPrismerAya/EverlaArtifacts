@@ -94,7 +94,7 @@ public class RainbowNameHandler {
         int nameWidth = mc.font.width(rainbowName);
         int x = (screenWidth - nameWidth) / 2;
         
-        // ===== 新增：根据游戏模式和生命值计算Y位置 =====
+        // 根据游戏模式和生命值计算Y位置
         int y = calculateYPosition(screenHeight, mc.player);
         
         RenderSystem.enableBlend();
@@ -102,7 +102,7 @@ public class RainbowNameHandler {
 
         PoseStack poseStack = guiGraphics.pose();
         poseStack.pushPose();
-        poseStack.translate(0.0F, 0.0F, 1000.0F); // 覆盖原生中括号
+        poseStack.translate(0.0F, 0.0F, 1000.0F);
 
         int color = (alpha << 24) | 0xFFFFFF;
         guiGraphics.drawString(mc.font, rainbowName, x, y, color, false);
@@ -137,15 +137,15 @@ public class RainbowNameHandler {
                     return screenHeight - 69; // 有伤害吸收
                 }
             }else{
-                // 无冲突模组：使用基于生命值的计算
+                // 无联动模组：使用基于生命值的计算
                 double maxHealth = player.getMaxHealth();
                 double absorptionAmount = player.getAbsorptionAmount();
                 double totalEffectiveHealth = maxHealth + absorptionAmount;
 
                 int offset = calculateHealthBasedOffset(totalEffectiveHealth);
 
-                // 如果有伤害吸收，额外增加3
-                if (absorptionAmount > 0) {
+                // 魔↑数↓技↑巧↓
+                if (absorptionAmount > 180) {
                     offset += 3;
                 }
 
@@ -160,6 +160,7 @@ public class RainbowNameHandler {
      * @param maxHealth 最大生命值（包括伤害吸收）
      * @return 对应的文本偏移量
      */
+    // 终极绿皮核心
     private static int calculateHealthBasedOffset(double maxHealth) {
         if (maxHealth <= 20) {
             return 59;

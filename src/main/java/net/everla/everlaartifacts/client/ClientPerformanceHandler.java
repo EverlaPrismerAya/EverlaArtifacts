@@ -13,7 +13,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.network.NetworkDirection;
 
 @Mod.EventBusSubscriber(modid = "everlaartifacts", value = Dist.CLIENT)
-public class ClientEventHandler {
+public class ClientPerformanceHandler {
     
     // 使用 ClientPlayerNetworkEvent.LoggedInEvent 替代 PlayerEvent.PlayerLoggedInEvent
     @SubscribeEvent

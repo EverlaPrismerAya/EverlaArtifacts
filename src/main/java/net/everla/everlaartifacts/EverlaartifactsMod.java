@@ -22,6 +22,7 @@ import net.everla.everlaartifacts.network.ServerPerformanceScorePacket;
 import net.everla.everlaartifacts.init.EverlaartifactsModTabs;
 import net.everla.everlaartifacts.init.EverlaartifactsModSounds;
 import net.everla.everlaartifacts.init.EverlaartifactsModPotions;
+import net.everla.everlaartifacts.init.EverlaartifactsModParticleTypes;
 import net.everla.everlaartifacts.init.EverlaartifactsModPaintings;
 import net.everla.everlaartifacts.init.EverlaartifactsModMobEffects;
 import net.everla.everlaartifacts.init.EverlaartifactsModItems;
@@ -61,9 +62,11 @@ public class EverlaartifactsMod {
 		EverlaartifactsModMobEffects.REGISTRY.register(bus);
 		EverlaartifactsModPotions.REGISTRY.register(bus);
 		EverlaartifactsModPaintings.REGISTRY.register(bus);
+		EverlaartifactsModParticleTypes.REGISTRY.register(bus);
 		EverlaartifactsModFluids.REGISTRY.register(bus);
 		EverlaartifactsModFluidTypes.REGISTRY.register(bus);
 		// Start of user code block mod init
+		EverlaartifactsModParticleTypes.REGISTRY.register(bus);
 		EverlaArtifactsConfig.register();
 		initializeSystemInfo();
 		registerNetworkPackets();
@@ -97,6 +100,9 @@ public class EverlaartifactsMod {
 				net.everla.everlaartifacts.network.ClientPerformanceReportPacket::handle);
 		addNetworkMessage(net.everla.everlaartifacts.network.ServerPerformanceScorePacket.class, net.everla.everlaartifacts.network.ServerPerformanceScorePacket::encode, net.everla.everlaartifacts.network.ServerPerformanceScorePacket::new,
 				net.everla.everlaartifacts.network.ServerPerformanceScorePacket::handle);
+		// 添加BloodBlossomEntityPacket
+		addNetworkMessage(net.everla.everlaartifacts.network.BloodBlossomEntityPacket.class, net.everla.everlaartifacts.network.BloodBlossomEntityPacket::encode, net.everla.everlaartifacts.network.BloodBlossomEntityPacket::new,
+				net.everla.everlaartifacts.network.BloodBlossomEntityPacket::handle);
 	}
 
 	/**
@@ -115,7 +121,7 @@ public class EverlaartifactsMod {
 	public void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
 		// 在服务端环境，只记录日志
 		if (net.minecraftforge.fml.loading.FMLEnvironment.dist.isClient()) {
-			// 客户端逻辑已在ClientEventHandler中处理
+			// 客户端逻辑已在ClientPerformanceHandler中处理
 		} else {
 			// 在服务端环境（包括集成服务器），我们不做任何处理
 			// 因为性能评分应该通过网络包从客户端接收

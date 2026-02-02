@@ -193,10 +193,10 @@ public class PerformanceBasedThingsHandler {
                 // 根据不同的附魔类型计算伤害增加量
                 if (moneyBurnersCreedLevel > 0) {
                     // MoneyBurnersCreed: (评分-50)*2%
-                    damageMultiplier = 1.0 + (Math.min(performanceScore, 90.0) * 0.01);
+                    damageMultiplier = 1.0 + ((Math.min(performanceScore, 90.0)-25.0) * 0.01);
                 } else if (scrapyardScroungerLevel > 0) {
                     // ScrapyardScrounger: (50-评分)*2%
-                    damageMultiplier = 1.0 - (Math.min(performanceScore, 90.0) * 0.01);
+                    damageMultiplier = 1.0 - ((Math.min(performanceScore, 90.0)-25.0) * 0.01);
                 }
                 
                 // 应用伤害调整
@@ -242,10 +242,10 @@ public class PerformanceBasedThingsHandler {
             
             if (moneyBurnersCreedLevel > 0) {
                 // MoneyBurnersCreed: (评分-50)*2%
-                damageBonusPercentage = Math.min(performanceScore, 90.0);
+                damageBonusPercentage = Math.min(performanceScore, 90.0) - 25.0;
             } else if (scrapyardScroungerLevel > 0) {
                 // ScrapyardScrounger: (50-评分)*2%
-                damageBonusPercentage = 0.0 - Math.min(performanceScore, 90.0);
+                damageBonusPercentage = 0.0 - Math.min(performanceScore, 90.0) + 25.0;
             }
 
             // 添加伤害加成信息到工具提示

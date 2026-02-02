@@ -1,5 +1,7 @@
 package net.everla.everlaartifacts; // ← 请根据实际包名调整
 
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
@@ -7,7 +9,9 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.ModList;
@@ -189,6 +193,44 @@ public class HomaAttributeHandler {
             PASSIVE_CACHE.remove(oldUUID);
             ACTIVE_CACHE.remove(oldUUID);
             CRIT_DAMAGE_CACHE.remove(oldUUID);
+        }
+    }
+    
+    /**
+     * 当有HomaActive效果的玩家攻击实体时，在被攻击实体上存储攻击者UUID、当前攻击力和当前最大生命值，并应用BloodBlossom效果
+     */
+    @SubscribeEvent
+    public static void onPlayerAttackEntity(AttackEntityEvent event) {
+        if (event.getEntity().level().isClientSide()) return;
+        
+        Player player = event.getEntity();
+        Entity target = event.getTarget();
+        
+        // 检查玩家是否具有HomaActive效果
+        if (player.hasEffect(EverlaartifactsModMobEffects.HOMA_ACTIVE.get())) {
+            // 获取玩家的当前攻击力和最大生命值
+            AttributeInstance attackDamage = player.getAttribute(Attributes.ATTACK_DAMAGE);
+            double currentAttackDamage = attackDamage != null ? attackDamage.getValue() : 0.0;
+            double currentMaxHealth = player.getMaxHealth();
+            
+            // 获取目标实体的NBT数据
+            CompoundTag entityData = target.getPersistentData();
+            
+            // 存储攻击者UUID、当前攻击力和当前最大生命值
+            entityData.putUUID("AttackedByUUID", player.getUUID());
+            entityData.putDouble("AttackerCurrentAttackDamage", currentAttackDamage);
+            entityData.putDouble("AttackerCurrentMaxHealth", currentMaxHealth);
+            
+            // 为被攻击实体应用持续8.25秒的BloodBlossom效果
+            if (target instanceof LivingEntity livingTarget) {
+                // 8.25秒 = 8.25 * 20 = 165 ticks
+                MobEffectInstance bloodBlossomEffect = new MobEffectInstance(
+                    EverlaartifactsModMobEffects.BLOOD_BLOSSOM.get(), 
+                    165, // 持续时间（ticks）
+                    0    // 等级（0表示基础等级）
+                );
+                livingTarget.addEffect(bloodBlossomEffect);
+            }
         }
     }
 }
