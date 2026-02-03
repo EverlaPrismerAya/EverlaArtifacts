@@ -1,0 +1,26 @@
+{
+  "_fv": 77,
+  "_type": "enchantment",
+  "definition": {
+    "name": "Live Wire",
+    "supportedSlots": "any",
+    "weight": 5,
+    "anvilCost": 4,
+    "maxLevel": 2,
+    "damageModifier": 0,
+    "incompatibleEnchantments": [
+      {
+        "value": "FIRE_ASPECT"
+      }
+    ],
+    "supportedItems": [
+      {
+        "value": "TAG:minecraft:swords"
+      }
+    ],
+    "isTreasureEnchantment": false,
+    "isCurse": false,
+    "canGenerateInLootTables": true,
+    "canVillagerTrade": true
+  }
+}

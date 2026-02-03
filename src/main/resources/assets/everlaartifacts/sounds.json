@@ -639,5 +639,41 @@
         "stream": true
       }
     ]
+  },
+  "live_wire": {
+    "sounds": [
+      {
+        "name": "everlaartifacts:live_wire_0",
+        "stream": false
+      },
+      {
+        "name": "everlaartifacts:live_wire_1",
+        "stream": false
+      },
+      {
+        "name": "everlaartifacts:live_wire_3",
+        "stream": false
+      },
+      {
+        "name": "everlaartifacts:live_wire_4",
+        "stream": false
+      },
+      {
+        "name": "everlaartifacts:live_wire_5",
+        "stream": false
+      },
+      {
+        "name": "everlaartifacts:live_wire_6",
+        "stream": false
+      }
+    ]
+  },
+  "live_wire_homa_staff": {
+    "sounds": [
+      {
+        "name": "everlaartifacts:live_wire_homa_staff",
+        "stream": false
+      }
+    ]
   }
 }

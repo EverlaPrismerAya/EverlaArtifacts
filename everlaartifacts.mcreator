@@ -2940,6 +2940,18 @@
           "src/main/resources/assets/everlaartifacts/particles/fire_butterfly.json"
         ]
       }
+    },
+    {
+      "name": "LiveWire",
+      "type": "enchantment",
+      "compiles": true,
+      "locked_code": true,
+      "registry_name": "live_wire",
+      "metadata": {
+        "files": [
+          "src/main/java/net/everla/everlaartifacts/enchantment/LiveWireEnchantment.java"
+        ]
+      }
     }
   ],
   "variable_elements": [],
@@ -3551,6 +3563,27 @@
       ],
       "category": "record",
       "subtitle": ""
+    },
+    {
+      "name": "live_wire",
+      "files": [
+        "live_wire_0",
+        "live_wire_1",
+        "live_wire_3",
+        "live_wire_4",
+        "live_wire_5",
+        "live_wire_6"
+      ],
+      "category": "ambient",
+      "subtitle": ""
+    },
+    {
+      "name": "live_wire_homa_staff",
+      "files": [
+        "live_wire_homa_staff"
+      ],
+      "category": "neutral",
+      "subtitle": ""
     }
   ],
   "tag_elements": {
@@ -3717,6 +3750,7 @@
       "item.everlaartifacts.nilk": "Nilk",
       "item.everlaartifacts.two_bread_sandwiched_with_cheese.description_0": "§7Too Weak...",
       "item.everlaartifacts.kill_the_messenger.desc": "Rezodrone - KILL THE MESSENGER",
+      "enchantment.everlaartifacts.live_wire": "Live Wire",
       "item.everlaartifacts.electrical_stick_bone.desc": "欠债调音狮 - bones",
       "item.everlaartifacts.sweet_death": "Music Disc",
       "subtitles.nilk": "",
@@ -3752,6 +3786,7 @@
       "item.everlaartifacts.homa_staff.description_n0": "§eWhen Apotheosis Loaded:",
       "enchantment.everlaartifacts.displaytext.performance_based_damage_bonus": "§e{0} Current Damage Bonus: {1}",
       "item.everlaartifacts.homa_staff.description_n1": "§9+66.2% Critical Damage",
+      "subtitles.live_wire": "",
       "item.everlaartifacts.theonlythingiknowforreal.desc": "Maniac Agenda Mix - The Only Thing I Know For Real",
       "item.everlaartifacts.weird_cocktail": "Weird Cocktail",
       "item.everlaartifacts.delicate_weapon": "Music Disc",
@@ -3759,10 +3794,11 @@
       "item.everlaartifacts.delicate_weapon.desc": "Grimes _ Lizzy Wizzy - Delicate Weapon",
       "item.everlaartifacts.two_bread_sandwiched_with_cheese": "Two Bread Sandwiched With Cheese",
       "item.everlaartifacts.manbo_no_more.description_0": "§cWarning: This music maybe will kill you",
+      "subtitles.live_wire_homa_staff": "",
       "item.minecraft.lingering_potion.effect.nuclear_waste_water_bottle": "Lingering Nuclear Waste Water Bottle",
       "advancements.chalice_of_blood_god_challenge.title": "Chalice Of Blood God",
       "item.everlaartifacts.pay_to_win_shard_1": "§fPay To Win Shard I",
-      "effect.everlaartifacts.homa_passive": "Butterfly Brings Rebirth",
+      "effect.everlaartifacts.homa_passive": "Unbound Vermilion Butterfly",
       "item.everlaartifacts.homa_staff.description_17_75": "§bThe debuff deals damage every 4 seconds based on 100% of the player\u0027s Max HP + 115% of the player\u0027s current ATK.",
       "item.everlaartifacts.pay_to_win_shard_4": "§5Pay To Win Shard IV",
       "item.everlaartifacts.pay_to_win_shard_5": "§6Pay To Win Shard V",
@@ -3832,7 +3868,7 @@
       "item.minecraft.tipped_arrow.effect.flashbomb": "Arrow of Flashing",
       "item.everlaartifacts.cruel_angel.desc": "高橋洋子 - 残酷な天使のテーゼ",
       "enchantment.everlaartifacts.tp_aura": "TP Aura",
-      "effect.everlaartifacts.homa_active": "Unbound Vermilion Butterfly",
+      "effect.everlaartifacts.homa_active": "Butterfly Brings Rebirth",
       "item.everlaartifacts.fading_sky": "Music Disc",
       "item.everlaartifacts.condenced_potato_9": "§6Condenced Potato IX§r",
       "effect.everlaartifacts.blood_blossom": "Blood Blossom",
@@ -3907,6 +3943,7 @@
       "item.everlaartifacts.nilk": "谬奶",
       "item.everlaartifacts.two_bread_sandwiched_with_cheese.description_0": "§7太弱小了……",
       "item.everlaartifacts.kill_the_messenger.desc": "Rezodrone - KILL THE MESSENGER",
+      "enchantment.everlaartifacts.live_wire": "漏电",
       "item.everlaartifacts.electrical_stick_bone.desc": "欠债调音狮 - bones",
       "item.everlaartifacts.sweet_death": "音乐唱片",
       "subtitles.nilk": "",
@@ -3942,6 +3979,7 @@
       "item.everlaartifacts.homa_staff.description_n0": "§e装载神化后：",
       "enchantment.everlaartifacts.displaytext.performance_based_damage_bonus": "§e{0}当前伤害加成：{1}",
       "item.everlaartifacts.homa_staff.description_n1": "§9+66.2% 暴击伤害",
+      "subtitles.live_wire": "",
       "item.everlaartifacts.theonlythingiknowforreal.desc": "Maniac Agenda Mix - The Only Thing I Know For Real",
       "item.everlaartifacts.weird_cocktail": "奇怪的鸡尾酒",
       "item.everlaartifacts.delicate_weapon": "音乐唱片",
@@ -3949,6 +3987,7 @@
       "item.everlaartifacts.delicate_weapon.desc": "Grimes _ Lizzy Wizzy - Delicate Weapon",
       "item.everlaartifacts.two_bread_sandwiched_with_cheese": "两面包夹芝士",
       "item.everlaartifacts.manbo_no_more.description_0": "§c警告：此音乐可能会把你难听死",
+      "subtitles.live_wire_homa_staff": "",
       "item.minecraft.lingering_potion.effect.nuclear_waste_water_bottle": "滞留型核废水瓶",
       "advancements.chalice_of_blood_god_challenge.title": "血神圣杯",
       "item.everlaartifacts.pay_to_win_shard_1": "§f抽象氪金碎片 I",
@@ -4061,7 +4100,7 @@
     "description": "Some items and other things from my old mod",
     "author": "EverlaPrismerAya",
     "websiteURL": "https://space.bilibili.com/485238732?spm_id_from\u003d333.1007.0.0",
-    "license": "All Rights Reserved",
+    "license": "GNU General Public License version 3 (GPLv3)",
     "serverSideOnly": false,
     "modPicture": "pack",
     "requiredMods": [],

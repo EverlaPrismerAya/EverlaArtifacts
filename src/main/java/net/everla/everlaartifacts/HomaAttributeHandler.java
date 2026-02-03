@@ -72,7 +72,7 @@ public class HomaAttributeHandler {
 
         updateHomaPassive(player);
         updateHomaActive(player);
-        updateHomaCritDamage(player); // 新增：暴击伤害支持
+        updateHomaCritDamage(player);
     }
 
     /**

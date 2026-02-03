@@ -5,6 +5,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 
 import net.everla.everlaartifacts.init.EverlaartifactsModMobEffects;
 
@@ -23,5 +25,8 @@ public class HomaStaffFuncProcedure {
 			_entity.addEffect(new MobEffectInstance(EverlaartifactsModMobEffects.HOMA_ACTIVE.get(), 180, 0, true, true));
 		if (entity instanceof Player _player)
 			_player.getCooldowns().addCooldown(itemstack.getItem(), 320);
+		// 播放firecharge.use音效
+		entity.level().playSound(null, entity.getX(), entity.getY(), entity.getZ(), 
+			SoundEvents.FIRECHARGE_USE, SoundSource.PLAYERS, 1.0F, 1.0F);
 	}
 }
