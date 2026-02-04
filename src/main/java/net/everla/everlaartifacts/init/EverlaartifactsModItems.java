@@ -73,6 +73,7 @@ import net.everla.everlaartifacts.item.CondencedPotato1Item;
 import net.everla.everlaartifacts.item.ChineseDumplingItem;
 import net.everla.everlaartifacts.item.ChaliceOfBloodGodItem;
 import net.everla.everlaartifacts.item.BraisedPorkWithPlumCabbageItem;
+import net.everla.everlaartifacts.item.BracketsBladeItem;
 import net.everla.everlaartifacts.item.BeijingTicketItem;
 import net.everla.everlaartifacts.item.AuricScrapItem;
 import net.everla.everlaartifacts.item.AuricIngotItem;
@@ -148,6 +149,7 @@ public class EverlaartifactsModItems {
 	public static final RegistryObject<Item> NILK = REGISTRY.register("nilk", () -> new NilkItem());
 	public static final RegistryObject<Item> MUSIC_DISC_NILK = REGISTRY.register("music_disc_nilk", () -> new MusicDiscNilkItem());
 	public static final RegistryObject<Item> VENUS_SHELL = REGISTRY.register("venus_shell", () -> new VenusShellItem());
+	public static final RegistryObject<Item> BRACKETS_BLADE = REGISTRY.register("brackets_blade", () -> new BracketsBladeItem());
 
 	// Start of user code block custom items
 	// End of user code block custom items

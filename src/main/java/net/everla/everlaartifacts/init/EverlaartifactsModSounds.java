@@ -15,14 +15,6 @@ import net.everla.everlaartifacts.EverlaartifactsMod;
 
 public class EverlaartifactsModSounds {
 	public static final DeferredRegister<SoundEvent> REGISTRY = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, EverlaartifactsMod.MODID);
-	public static final RegistryObject<SoundEvent> EVERLABOSSTHEME1 = REGISTRY.register("everlabosstheme1", () -> SoundEvent.createVariableRangeEvent(new ResourceLocation("everlaartifacts", "everlabosstheme1")));
-	public static final RegistryObject<SoundEvent> EVERLABOSSTHEME2 = REGISTRY.register("everlabosstheme2", () -> SoundEvent.createVariableRangeEvent(new ResourceLocation("everlaartifacts", "everlabosstheme2")));
-	public static final RegistryObject<SoundEvent> EVERLABOSSTHEME3 = REGISTRY.register("everlabosstheme3", () -> SoundEvent.createVariableRangeEvent(new ResourceLocation("everlaartifacts", "everlabosstheme3")));
-	public static final RegistryObject<SoundEvent> EVERLABOSSTHEME4 = REGISTRY.register("everlabosstheme4", () -> SoundEvent.createVariableRangeEvent(new ResourceLocation("everlaartifacts", "everlabosstheme4")));
-	public static final RegistryObject<SoundEvent> EVERLAFAKEDEATH = REGISTRY.register("everlafakedeath", () -> SoundEvent.createVariableRangeEvent(new ResourceLocation("everlaartifacts", "everlafakedeath")));
-	public static final RegistryObject<SoundEvent> EVERLADEATH = REGISTRY.register("everladeath", () -> SoundEvent.createVariableRangeEvent(new ResourceLocation("everlaartifacts", "everladeath")));
-	public static final RegistryObject<SoundEvent> EVERLABOSSTHEME40 = REGISTRY.register("everlabosstheme40", () -> SoundEvent.createVariableRangeEvent(new ResourceLocation("everlaartifacts", "everlabosstheme40")));
-	public static final RegistryObject<SoundEvent> EVERLABOSSTHEME44 = REGISTRY.register("everlabosstheme44", () -> SoundEvent.createVariableRangeEvent(new ResourceLocation("everlaartifacts", "everlabosstheme44")));
 	public static final RegistryObject<SoundEvent> BULLSHIT = REGISTRY.register("bullshit", () -> SoundEvent.createVariableRangeEvent(new ResourceLocation("everlaartifacts", "bullshit")));
 	public static final RegistryObject<SoundEvent> LIGHTNING_STORM = REGISTRY.register("lightning_storm", () -> SoundEvent.createVariableRangeEvent(new ResourceLocation("everlaartifacts", "lightning_storm")));
 	public static final RegistryObject<SoundEvent> AVADA_KEDAVRA = REGISTRY.register("avada_kedavra", () -> SoundEvent.createVariableRangeEvent(new ResourceLocation("everlaartifacts", "avada_kedavra")));
