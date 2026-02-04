@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "everlaartifacts:venus_shell",
     "everlaartifacts:homa_staff"
   ]
 }

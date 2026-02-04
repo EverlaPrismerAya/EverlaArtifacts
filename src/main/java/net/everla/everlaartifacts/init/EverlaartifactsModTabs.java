@@ -100,6 +100,7 @@ public class EverlaartifactsModTabs {
 		if (tabData.getTabKey() == CreativeModeTabs.COMBAT) {
 			tabData.accept(EverlaartifactsModItems.FIRECRACKER.get());
 			tabData.accept(EverlaartifactsModItems.HOMA_STAFF.get());
+			tabData.accept(EverlaartifactsModItems.VENUS_SHELL.get());
 		}
 	}
 }

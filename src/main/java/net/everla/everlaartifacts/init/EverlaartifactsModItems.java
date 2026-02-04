@@ -17,6 +17,7 @@ import net.everla.everlaartifacts.item.YamatoItem;
 import net.everla.everlaartifacts.item.WorstAppleItem;
 import net.everla.everlaartifacts.item.WeirdCocktailItem;
 import net.everla.everlaartifacts.item.ViscousDesperationItem;
+import net.everla.everlaartifacts.item.VenusShellItem;
 import net.everla.everlaartifacts.item.TwoBreadSandwichedWithCheeseItem;
 import net.everla.everlaartifacts.item.TwistedGardenItem;
 import net.everla.everlaartifacts.item.TokyoTicketItem;
@@ -146,6 +147,7 @@ public class EverlaartifactsModItems {
 	public static final RegistryObject<Item> HOMA_STAFF = REGISTRY.register("homa_staff", () -> new HomaStaffItem());
 	public static final RegistryObject<Item> NILK = REGISTRY.register("nilk", () -> new NilkItem());
 	public static final RegistryObject<Item> MUSIC_DISC_NILK = REGISTRY.register("music_disc_nilk", () -> new MusicDiscNilkItem());
+	public static final RegistryObject<Item> VENUS_SHELL = REGISTRY.register("venus_shell", () -> new VenusShellItem());
 
 	// Start of user code block custom items
 	// End of user code block custom items

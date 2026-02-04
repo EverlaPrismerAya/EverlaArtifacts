@@ -12,37 +12,37 @@
     "recipeShapeless": false,
     "recipeSlots": [
       {
-        "value": "CUSTOM:ThreeInterwinedFate"
+        "value": "CUSTOM:PayToWinCrystal"
       },
       {
-        "value": "Items.REDSTONE"
+        "value": "CUSTOM:AuricIngot"
       },
       {
-        "value": "Items.NETHER_STAR"
+        "value": ""
       },
       {
-        "value": "CUSTOM:AuricScrap"
+        "value": "CUSTOM:AuricIngot"
       },
       {
-        "value": "Items.NETHERITE_SWORD"
+        "value": "Items.NAUTILUS_SHELL"
       },
       {
-        "value": "Items.REDSTONE"
+        "value": ""
       },
       {
-        "value": "Items.GOLD_INGOT"
+        "value": ""
       },
       {
-        "value": "CUSTOM:AuricScrap"
+        "value": ""
       },
       {
-        "value": "CUSTOM:ThreeInterwinedFate"
+        "value": "CUSTOM:AuricIngot"
       }
     ],
     "recipeReturnStack": {
-      "value": "CUSTOM:HomaStaff"
+      "value": "CUSTOM:VenusShell"
     },
-    "name": "homa_recipe",
+    "name": "venus_shell_recipe",
     "namespace": "mod"
   }
 }

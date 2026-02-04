@@ -57,8 +57,8 @@ public class LiveWireHandler {
         // 获取目标的护甲值
         float targetArmor = (float) target.getAttributeValue(net.minecraft.world.entity.ai.attributes.Attributes.ARMOR);
         
-        // 计算闪电伤害：基础攻击力 + 附魔等级 * 敌方护甲值 / 3
-        float lightningDamage = baseAttackDamage + (liveWireLevel * targetArmor / 3.0f);
+        // 计算闪电伤害：基础攻击力 + 附魔等级 * 敌方护甲值 / 10
+        float lightningDamage = baseAttackDamage + (liveWireLevel * targetArmor / 10.0f);
 
         // 应用攻击冷却影响（使用攻击强度比例）
         float attackStrength = player.getAttackStrengthScale(0.5f);

@@ -11,6 +11,8 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraft.world.effect.MobEffect;
 
 import net.everla.everlaartifacts.potion.WaaoooOverlayMobEffect;
+import net.everla.everlaartifacts.potion.VenusShellPassiveMobEffect;
+import net.everla.everlaartifacts.potion.VenusShellActiveMobEffect;
 import net.everla.everlaartifacts.potion.NuclearWaterRadiationMobEffect;
 import net.everla.everlaartifacts.potion.HomaPassiveMobEffect;
 import net.everla.everlaartifacts.potion.HomaActiveMobEffect;
@@ -32,4 +34,6 @@ public class EverlaartifactsModMobEffects {
 	public static final RegistryObject<MobEffect> HOMA_ACTIVE = REGISTRY.register("homa_active", () -> new HomaActiveMobEffect());
 	public static final RegistryObject<MobEffect> BLITZKRIEG = REGISTRY.register("blitzkrieg", () -> new BlitzkriegMobEffect());
 	public static final RegistryObject<MobEffect> BLOOD_BLOSSOM = REGISTRY.register("blood_blossom", () -> new BloodBlossomMobEffect());
+	public static final RegistryObject<MobEffect> VENUS_SHELL_PASSIVE = REGISTRY.register("venus_shell_passive", () -> new VenusShellPassiveMobEffect());
+	public static final RegistryObject<MobEffect> VENUS_SHELL_ACTIVE = REGISTRY.register("venus_shell_active", () -> new VenusShellActiveMobEffect());
 }
