@@ -31,6 +31,7 @@ import net.everla.everlaartifacts.init.EverlaartifactsModFluidTypes;
 import net.everla.everlaartifacts.init.EverlaartifactsModEntities;
 import net.everla.everlaartifacts.init.EverlaartifactsModEnchantments;
 import net.everla.everlaartifacts.init.EverlaartifactsModBlocks;
+import net.everla.everlaartifacts.generic.handlers.enchantment.PerformanceBasedThingsHandler;
 import net.everla.everlaartifacts.game_rules.ForceUseTruePerformance;
 import net.everla.everlaartifacts.config.EverlaArtifactsConfig;
 

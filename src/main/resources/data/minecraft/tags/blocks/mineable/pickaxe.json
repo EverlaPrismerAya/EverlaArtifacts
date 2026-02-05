@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "everlaartifacts:auric_scrap_block",
     "everlaartifacts:deepslate_auric_ore"
   ]
 }

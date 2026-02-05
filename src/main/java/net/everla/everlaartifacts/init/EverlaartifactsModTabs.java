@@ -26,7 +26,6 @@ public class EverlaartifactsModTabs {
 				tabData.accept(EverlaartifactsModBlocks.DEEPSLATE_AURIC_ORE.get().asItem());
 				tabData.accept(EverlaartifactsModItems.RAW_AURIC.get());
 				tabData.accept(EverlaartifactsModItems.AURIC_SCRAP.get());
-				tabData.accept(EverlaartifactsModBlocks.AURIC_SCRAP_BLOCK.get().asItem());
 				tabData.accept(EverlaartifactsModItems.AURIC_INGOT.get());
 				tabData.accept(EverlaartifactsModItems.RED_PACKET.get());
 				tabData.accept(EverlaartifactsModItems.NUCLEAR_WASTE_WATER_BUCKET.get());

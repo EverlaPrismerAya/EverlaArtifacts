@@ -1,13 +1,8 @@
 package net.everla.everlaartifacts.item;
 
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.item.Tier;
-import net.minecraft.world.item.SwordItem;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.InteractionResultHolder;
@@ -45,7 +40,7 @@ public class HomaStaffItem extends SwordItem {
             public Ingredient getRepairIngredient() {
                 return Ingredient.of(new ItemStack(Items.NETHERITE_INGOT));
             }
-        }, 3, -2f, new Item.Properties().fireResistant());
+        }, 3, -2f, new Item.Properties().fireResistant().rarity(Rarity.EPIC));
     }
 
     @Override

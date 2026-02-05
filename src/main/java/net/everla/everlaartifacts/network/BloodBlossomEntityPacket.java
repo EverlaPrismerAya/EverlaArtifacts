@@ -1,10 +1,9 @@
 package net.everla.everlaartifacts.network;
 
 import net.everla.everlaartifacts.EverlaartifactsMod;
+import net.everla.everlaartifacts.client.screens.BloodBlossomScreenOverlay;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.network.NetworkDirection;
 import net.minecraftforge.network.NetworkEvent;
 import net.minecraftforge.network.PacketDistributor;
@@ -65,11 +64,11 @@ public class BloodBlossomEntityPacket {
             // 在客户端处理接收到的数据
             // 逐个更新实体位置
             for (BloodBlossomEntityPacket.EntityData data : packet.entities) {
-                net.everla.everlaartifacts.client.BloodBlossomScreenOverlay.addWorldPosition(data.uuid, data.x, data.y, data.z);
+                BloodBlossomScreenOverlay.addWorldPosition(data.uuid, data.x, data.y, data.z);
             }
             
             // 清理长时间未更新的实体位置（包括死亡或离开范围的实体）
-            net.everla.everlaartifacts.client.BloodBlossomScreenOverlay.cleanupOldPositions();
+            BloodBlossomScreenOverlay.cleanupOldPositions();
         });
 
         ctx.get().setPacketHandled(true);

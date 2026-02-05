@@ -57,34 +57,6 @@
       }
     },
     {
-      "name": "AuricScrapBlock",
-      "type": "block",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "auric_scrap_block",
-      "metadata": {
-        "files": [
-          "src/main/resources/assets/everlaartifacts/models/item/auric_scrap_block.json",
-          "src/main/resources/assets/everlaartifacts/blockstates/auric_scrap_block.json",
-          "src/main/resources/assets/everlaartifacts/models/block/auric_scrap_block.json",
-          "src/main/resources/data/everlaartifacts/loot_tables/blocks/auric_scrap_block.json",
-          "src/main/java/net/everla/everlaartifacts/block/AuricScrapBlockBlock.java"
-        ]
-      }
-    },
-    {
-      "name": "AuricScrapBlockCrafting",
-      "type": "recipe",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "auric_scrap_block_crafting",
-      "metadata": {
-        "files": [
-          "src/main/resources/data/everlaartifacts/recipes/auric_scrap_block_crafting.json"
-        ]
-      }
-    },
-    {
       "name": "RawAuricSmelting",
       "type": "recipe",
       "compiles": true,
@@ -142,18 +114,6 @@
         "files": [
           "src/main/java/net/everla/everlaartifacts/item/AuricIngotItem.java",
           "src/main/resources/assets/everlaartifacts/models/item/auric_ingot.json"
-        ]
-      }
-    },
-    {
-      "name": "AuricIngotCrafting",
-      "type": "recipe",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "auric_ingot_crafting",
-      "metadata": {
-        "files": [
-          "src/main/resources/data/everlaartifacts/recipes/auric_ingot_crafting.json"
         ]
       }
     },
@@ -845,18 +805,6 @@
       "metadata": {
         "files": [
           "src/main/resources/data/everlaartifacts/recipes/three_interwined_fate_recipe.json"
-        ]
-      }
-    },
-    {
-      "name": "AuricScrapBlockDecrafting",
-      "type": "recipe",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "auric_scrap_block_decrafting",
-      "metadata": {
-        "files": [
-          "src/main/resources/data/everlaartifacts/recipes/auric_scrap_block_decrafting.json"
         ]
       }
     },
@@ -1650,18 +1598,6 @@
         "files": [
           "src/main/java/net/everla/everlaartifacts/item/ChaliceOfBloodGodItem.java",
           "src/main/resources/assets/everlaartifacts/models/item/chalice_of_blood_god.json"
-        ]
-      }
-    },
-    {
-      "name": "ChaliceOfBloodGodRecipe",
-      "type": "recipe",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "chalice_of_blood_god_recipe",
-      "metadata": {
-        "files": [
-          "src/main/resources/data/everlaartifacts/recipes/chalice_of_blood_god_recipe.json"
         ]
       }
     },
@@ -3629,11 +3565,9 @@
       "EntityItem"
     ],
     "BLOCKS:minecraft:needs_diamond_tool": [
-      "~CUSTOM:AuricScrapBlock",
       "~CUSTOM:DeepslateAuricOre"
     ],
     "BLOCKS:minecraft:mineable/pickaxe": [
-      "~CUSTOM:AuricScrapBlock",
       "~CUSTOM:DeepslateAuricOre"
     ],
     "BLOCKS:minecraft:replaceable": [
@@ -3768,7 +3702,6 @@
       "item.everlaartifacts.venus_shell.description_0": "§eWhen Apotheosis loaded:",
       "item.everlaartifacts.homa_staff.description_19": "§cTwo-Handed Weapon Restriction:",
       "enchantment.everlaartifacts.displaytext.performance_based_text_low": "§bTaste the strike of my only 2GB DDR3 1333 MT/s RAM!",
-      "block.everlaartifacts.auric_scrap_block": "Auric Scrap Block",
       "item.everlaartifacts.galatic_destruction.desc": "Heart Plus Up! - Galactic Destruction",
       "enchantment.everlaartifacts.layered_buffer": "Layered Buffer",
       "enchantment.everlaartifacts.displaytext.performance_based_text_high": "§bBehold the power of Lord R9-9950X3D!",
@@ -3833,6 +3766,7 @@
       "text.rainbow_lore.everlaartifacts.nilk": "§oTestas Greet！§r\\nAt least this thing won\u0027t give you photosensitive epilepsy.",
       "item.minecraft.potion.effect.flashbomb": "Self Flashbomb",
       "item.minecraft.tipped_arrow.effect.flashbomb": "Arrow of Flashing",
+      "item.brackets_blade.damage_boost": "§9Damage Boost: +%s (from %d brackets)",
       "item.everlaartifacts.condenced_potato_9": "§6Condenced Potato IX§r",
       "item.everlaartifacts.beijing_ticket": "Plane Ticket to Beijing",
       "item.everlaartifacts.condenced_potato_5": "Condenced Potato V",
@@ -3984,7 +3918,6 @@
       "item.everlaartifacts.venus_shell.description_0": "§e装载神化后：",
       "item.everlaartifacts.homa_staff.description_19": "§c双手武器限制：",
       "enchantment.everlaartifacts.displaytext.performance_based_text_low": "§b吃我仅有的2GB DDR3 1333MT/s内存的打击吧！",
-      "block.everlaartifacts.auric_scrap_block": "圣金源碎片块",
       "item.everlaartifacts.galatic_destruction.desc": "Heart Plus Up! - Galactic Destruction",
       "enchantment.everlaartifacts.layered_buffer": "次数盾",
       "enchantment.everlaartifacts.displaytext.performance_based_text_high": "§b这就是R9-9950X3D大人的力量！",
@@ -4047,6 +3980,7 @@
       "text.rainbow_lore.everlaartifacts.nilk": "§o濠河\\n§r至少这东西不会让你得光敏性癫痫",
       "item.minecraft.potion.effect.flashbomb": "我吃闪了！！",
       "item.minecraft.tipped_arrow.effect.flashbomb": "闪光之箭",
+      "item.brackets_blade.damage_boost": "§9伤害加成: +%s (来自 %d 对括号)",
       "item.everlaartifacts.condenced_potato_9": "§6九重压缩土豆§r",
       "item.everlaartifacts.beijing_ticket": "飞往北京的机票",
       "item.everlaartifacts.condenced_potato_5": "五重压缩土豆",

@@ -1,11 +1,8 @@
 
 package net.everla.everlaartifacts.item;
 
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.Tier;
-import net.minecraft.world.item.SwordItem;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Item;
 
 import net.everla.everlaartifacts.init.EverlaartifactsModItems;
 
@@ -35,6 +32,6 @@ public class BracketsBladeItem extends SwordItem {
 			public Ingredient getRepairIngredient() {
 				return Ingredient.of(new ItemStack(EverlaartifactsModItems.AURIC_INGOT.get()));
 			}
-		}, 3, -2.4f, new Item.Properties().fireResistant());
+		}, 3, -2.4f, new Item.Properties().fireResistant().rarity(Rarity.EPIC));
 	}
 }

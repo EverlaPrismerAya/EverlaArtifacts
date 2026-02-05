@@ -1,7 +1,7 @@
 
 /*
- *    MCreator note: This file will be REGENERATED on each build.
- */
+*    MCreator note: This file will be REGENERATED on each build.
+*/
 package net.everla.everlaartifacts.init;
 
 import net.minecraftforge.registries.RegistryObject;
@@ -76,6 +76,7 @@ import net.everla.everlaartifacts.item.BraisedPorkWithPlumCabbageItem;
 import net.everla.everlaartifacts.item.BracketsBladeItem;
 import net.everla.everlaartifacts.item.BeijingTicketItem;
 import net.everla.everlaartifacts.item.AuricScrapItem;
+import net.everla.everlaartifacts.item.AuricScrapBlockItem;
 import net.everla.everlaartifacts.item.AuricIngotItem;
 import net.everla.everlaartifacts.item.Aleph0Item;
 import net.everla.everlaartifacts.EverlaartifactsMod;
@@ -85,7 +86,6 @@ public class EverlaartifactsModItems {
 	public static final RegistryObject<Item> DEEPSLATE_AURIC_ORE = block(EverlaartifactsModBlocks.DEEPSLATE_AURIC_ORE);
 	public static final RegistryObject<Item> RAW_AURIC = REGISTRY.register("raw_auric", () -> new RawAuricItem());
 	public static final RegistryObject<Item> AURIC_SCRAP = REGISTRY.register("auric_scrap", () -> new AuricScrapItem());
-	public static final RegistryObject<Item> AURIC_SCRAP_BLOCK = block(EverlaartifactsModBlocks.AURIC_SCRAP_BLOCK);
 	public static final RegistryObject<Item> AURIC_INGOT = REGISTRY.register("auric_ingot", () -> new AuricIngotItem());
 	public static final RegistryObject<Item> ZAKO_UNCLE = REGISTRY.register("zako_uncle", () -> new ZakoUncleItem());
 	public static final RegistryObject<Item> POT_OF_PAIN = REGISTRY.register("pot_of_pain", () -> new PotOfPainItem());
@@ -150,8 +150,9 @@ public class EverlaartifactsModItems {
 	public static final RegistryObject<Item> MUSIC_DISC_NILK = REGISTRY.register("music_disc_nilk", () -> new MusicDiscNilkItem());
 	public static final RegistryObject<Item> VENUS_SHELL = REGISTRY.register("venus_shell", () -> new VenusShellItem());
 	public static final RegistryObject<Item> BRACKETS_BLADE = REGISTRY.register("brackets_blade", () -> new BracketsBladeItem());
-
 	// Start of user code block custom items
+	public static final RegistryObject<Item> AURIC_SCRAP_BLOCK = REGISTRY.register("auric_scrap_block", () -> new AuricScrapBlockItem(EverlaartifactsModBlocks.AURIC_SCRAP_BLOCK.get()));
+
 	// End of user code block custom items
 	private static RegistryObject<Item> block(RegistryObject<Block> block) {
 		return REGISTRY.register(block.getId().getPath(), () -> new BlockItem(block.get(), new Item.Properties()));

@@ -1,12 +1,10 @@
 package net.everla.everlaartifacts.network;
 
-import net.everla.everlaartifacts.PerformanceMetrics;
 import net.everla.everlaartifacts.EverlaartifactsMod;
-import net.everla.everlaartifacts.PerformanceBasedThingsHandler;
+import net.everla.everlaartifacts.generic.handlers.enchantment.PerformanceBasedThingsHandler;
 import net.everla.everlaartifacts.config.EverlaArtifactsConfig;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.network.NetworkEvent;
-import net.minecraftforge.fml.loading.FMLEnvironment;
 
 import java.util.function.Supplier;
 

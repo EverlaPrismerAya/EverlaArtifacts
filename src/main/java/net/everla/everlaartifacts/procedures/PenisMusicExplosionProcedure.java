@@ -11,14 +11,12 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.item.Item;
-import net.everla.everlaartifacts.EverlaKillHandler;
+import net.everla.everlaartifacts.server.handlers.commands.EverlaKillHandler;
 import net.everla.everlaartifacts.init.EverlaartifactsModMobEffects;
 
 import javax.annotation.Nullable;

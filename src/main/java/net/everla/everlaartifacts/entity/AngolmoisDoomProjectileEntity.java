@@ -1,6 +1,5 @@
 package net.everla.everlaartifacts.entity;
 
-import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -16,15 +15,11 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.util.RandomSource;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.Packet;
 
-import net.everla.everlaartifacts.VenusShellAngolmoisHandler;
-import net.everla.everlaartifacts.VenusShellAngolmoisHandler;
+import net.everla.everlaartifacts.server.handlers.items.venus_shell.VenusShellAngolmoisHandler;
 import net.everla.everlaartifacts.init.EverlaartifactsModEntities;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerLevel;
 
 @OnlyIn(value = Dist.CLIENT, _interface = ItemSupplier.class)

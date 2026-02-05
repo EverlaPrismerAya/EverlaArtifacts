@@ -1,10 +1,8 @@
 package net.everla.everlaartifacts.network;
 
-import net.everla.everlaartifacts.PerformanceBasedThingsHandler;
-import net.everla.everlaartifacts.EverlaartifactsMod;
+import net.everla.everlaartifacts.server.PerformanceMetrics;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.network.NetworkEvent;
-import net.minecraftforge.fml.loading.FMLEnvironment;
 
 import java.util.function.Supplier;
 
@@ -30,7 +28,7 @@ public class ServerPerformanceScorePacket {
                 // 在客户端处理接收到的性能评分
                 if (net.minecraftforge.fml.loading.FMLEnvironment.dist.isClient()) {
                     // 保存性能评分到客户端的存储中
-                    net.everla.everlaartifacts.PerformanceMetrics.setClientPerformanceScore(packet.performanceScore);
+                    PerformanceMetrics.setClientPerformanceScore(packet.performanceScore);
                 }
             } catch (Exception e) {
                 // 处理错误，忽略错误
