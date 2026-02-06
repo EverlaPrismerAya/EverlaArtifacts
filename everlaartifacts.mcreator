@@ -987,16 +987,6 @@
       }
     },
     {
-      "name": "WeirdThing",
-      "type": "tab",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "weird_thing",
-      "metadata": {
-        "files": []
-      }
-    },
-    {
       "name": "PayToWinShard1",
       "type": "item",
       "compiles": true,
@@ -1132,16 +1122,6 @@
         "files": [
           "src/main/resources/data/everlaartifacts/recipes/p2w_crystal.json"
         ]
-      }
-    },
-    {
-      "name": "EverlaDiscs",
-      "type": "tab",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "everla_discs",
-      "metadata": {
-        "files": []
       }
     },
     {
@@ -1351,16 +1331,6 @@
             "type": "entity"
           }
         ]
-      }
-    },
-    {
-      "name": "EverlaTweaker",
-      "type": "tab",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "everla_tweaker",
-      "metadata": {
-        "files": []
       }
     },
     {
@@ -3712,7 +3682,7 @@
       "item.everlaartifacts.i_really_want_to_stay_at_your_house.desc": "Rosa Walton - I Really Want to Stay At Your House",
       "item.everlaartifacts.music_disc_nilk": "Music Disc Nilk",
       "item.everlaartifacts.auric_scrap": "Auric Scrap",
-      "item_group.everlaartifacts.weird_thing": "Weird Thing",
+      "item_group.everlaartifacts.weird_thing": "EverlaPrismer\u0027s Cursed Thing",
       "item.minecraft.splash_potion.effect.flashbomb": "Flashbomb",
       "item.everlaartifacts.pot_of_pain": "Pot Of Pain",
       "block.everlaartifacts.nuclear_waste_water": "Nuclear Waste Water",
@@ -3729,7 +3699,7 @@
       "item.everlaartifacts.three_interwined_fate": "Three Interwined Fate",
       "item.everlaartifacts.sweet_death.desc": "ARIANNE - Komm, susser Tod （甘き死よ、来たれ）",
       "item.minecraft.tipped_arrow.effect.nuclear_waste_water_bottle": "Arrow of Nuclear Waste Water",
-      "item_group.everlaartifacts.everla_tweaker": "Everla Artifacts",
+      "item_group.everlaartifacts.everla_tweaker": "EverlaPrismer\u0027s Stuff",
       "painting.everlaartifacts.technoblade_staring.author": "Unknown",
       "item.everlaartifacts.chalice_of_blood_god.description_0": "§6Item Ability: Potato King",
       "item.everlaartifacts.chalice_of_blood_god.description_1": "§7Bestowed by §kNameless Deity§r§7 to the",
@@ -3845,7 +3815,7 @@
       "item.everlaartifacts.real_smoker": "Music Disc",
       "item.everlaartifacts.hacker_gamer": "Music Disc",
       "item.everlaartifacts.homa_staff.cooldown_ready": "§6Spirit Soother Ready!",
-      "item_group.everlaartifacts.everla_discs": "Everla Discs",
+      "item_group.everlaartifacts.everla_discs": "EverlaPrismer\u0027s Discs",
       "effect.everlaartifacts.venus_shell_passive": "The Specter of the Fabricated Metropolis",
       "item.everlaartifacts.glutinous_arbitration": "Music Disc",
       "item.everlaartifacts.tokyo_hot_disc": "Music Disc",
