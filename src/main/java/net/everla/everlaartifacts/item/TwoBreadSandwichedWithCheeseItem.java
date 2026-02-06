@@ -10,7 +10,7 @@ import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.network.chat.Component;
 
-import net.everla.everlaartifacts.procedures.TwoBreadSandwichedWithCheeseSoundProcedure;
+import net.everla.everlaartifacts.server.handlers.items.two_bread_sandwiched_with_cheese.TwoBreadSandwichedWithCheeseSoundHandler;
 
 import java.util.List;
 
@@ -31,7 +31,7 @@ public class TwoBreadSandwichedWithCheeseItem extends Item {
 		double x = entity.getX();
 		double y = entity.getY();
 		double z = entity.getZ();
-		TwoBreadSandwichedWithCheeseSoundProcedure.execute(world, x, y, z);
+		TwoBreadSandwichedWithCheeseSoundHandler.handleTwoBreadSandwichedWithCheeseSound(world, x, y, z);
 		return retval;
 	}
 }

@@ -1,4 +1,3 @@
-
 package net.everla.everlaartifacts.item;
 
 import net.minecraft.world.level.Level;
@@ -8,7 +7,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.entity.LivingEntity;
 
-import net.everla.everlaartifacts.procedures.ChineseDumplingAnnoyingSoundProcedure;
+import net.everla.everlaartifacts.server.handlers.items.chinese_dumpling.ChineseDumplingAnnoyingSoundHandler;
 
 public class ChineseDumplingItem extends Item {
 	public ChineseDumplingItem() {
@@ -21,7 +20,7 @@ public class ChineseDumplingItem extends Item {
 		double x = entity.getX();
 		double y = entity.getY();
 		double z = entity.getZ();
-		ChineseDumplingAnnoyingSoundProcedure.execute(world, x, y, z);
+		ChineseDumplingAnnoyingSoundHandler.handleChineseDumplingAnnoyingSound(world, x, y, z);
 		return retval;
 	}
 }

@@ -1,4 +1,3 @@
-
 package net.everla.everlaartifacts.block;
 
 import net.minecraft.world.level.material.PushReaction;
@@ -11,7 +10,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.core.BlockPos;
 
-import net.everla.everlaartifacts.procedures.NuclearWasteWaterRadiationProcedure;
+import net.everla.everlaartifacts.server.handlers.blocks.nuclear_waste_water.NuclearWasteWaterRadiationHandler;
 import net.everla.everlaartifacts.init.EverlaartifactsModFluids;
 
 public class NuclearWasteWaterBlock extends LiquidBlock {
@@ -23,6 +22,6 @@ public class NuclearWasteWaterBlock extends LiquidBlock {
 	@Override
 	public void entityInside(BlockState blockstate, Level world, BlockPos pos, Entity entity) {
 		super.entityInside(blockstate, world, pos, entity);
-		NuclearWasteWaterRadiationProcedure.execute(entity);
+		NuclearWasteWaterRadiationHandler.handleNuclearWasteWaterRadiation(entity);
 	}
 }

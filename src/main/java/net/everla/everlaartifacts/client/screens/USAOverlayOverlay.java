@@ -1,4 +1,3 @@
-
 package net.everla.everlaartifacts.client.screens;
 
 import org.checkerframework.checker.units.qual.h;
@@ -15,7 +14,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.Minecraft;
 
-import net.everla.everlaartifacts.procedures.USADisplayProcedure;
+import net.everla.everlaartifacts.client.handlers.effects.american_style_cut.USADisplayHandler;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.platform.GlStateManager;
@@ -43,7 +42,7 @@ public class USAOverlayOverlay {
 		RenderSystem.setShader(GameRenderer::getPositionTexShader);
 		RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
 		RenderSystem.setShaderColor(1, 1, 1, 1);
-		if (USADisplayProcedure.execute(entity)) {
+		if (USADisplayHandler.handleUSADisplay(entity)) {
 			event.getGuiGraphics().blit(new ResourceLocation("everlaartifacts:textures/screens/usa_flag_overlay.png"), 0, 0, 0, 0, w, h, w, h);
 		}
 		RenderSystem.depthMask(true);

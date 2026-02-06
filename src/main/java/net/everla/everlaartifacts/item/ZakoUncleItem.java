@@ -8,7 +8,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.entity.LivingEntity;
 
-import net.everla.everlaartifacts.procedures.ZakoZakoProcedure;
+import net.everla.everlaartifacts.client.handlers.items.zako_uncle.ZakoUncleSoundHandler;
 
 public class ZakoUncleItem extends Item {
 	public ZakoUncleItem() {
@@ -18,10 +18,13 @@ public class ZakoUncleItem extends Item {
 	@Override
 	public ItemStack finishUsingItem(ItemStack itemstack, Level world, LivingEntity entity) {
 		ItemStack retval = super.finishUsingItem(itemstack, world, entity);
-		double x = entity.getX();
-		double y = entity.getY();
-		double z = entity.getZ();
-		ZakoZakoProcedure.execute(world, x, y, z);
+		// 只在客户端执行音效播放
+		if (world.isClientSide()) {
+			double x = entity.getX();
+			double y = entity.getY();
+			double z = entity.getZ();
+			ZakoUncleSoundHandler.playZakoUncleSound(x, y, z);
+		}
 		return retval;
 	}
 }

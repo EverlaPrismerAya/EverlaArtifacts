@@ -17,7 +17,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-import net.everla.everlaartifacts.procedures.MakeEntityFlyProcedure;
+import net.everla.everlaartifacts.server.handlers.blocks.auric_ore.MakeEntityFlyHandler;
 
 public class DeepslateAuricOreBlock extends Block {
     // 静态冷却计数器：防止同一 tick 内重复生成粒子
@@ -75,7 +75,7 @@ public class DeepslateAuricOreBlock extends Block {
     @Override
     public void entityInside(BlockState blockstate, Level world, BlockPos pos, Entity entity) {
         super.entityInside(blockstate, world, pos, entity);
-        MakeEntityFlyProcedure.execute(world, entity);
+        MakeEntityFlyHandler.handleMakeEntityFly(world, entity);
 
         // ===== 灵魂火焰粒子：仅在服务端生成，且每 tick 限1次 =====
         if (!world.isClientSide() && world instanceof ServerLevel serverLevel) {

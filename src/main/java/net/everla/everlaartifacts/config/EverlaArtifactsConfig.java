@@ -17,11 +17,17 @@ public class EverlaArtifactsConfig {
     // 性能调试模式：当启用时，使用自定义值代替真实硬件信息
     public static ForgeConfigSpec.BooleanValue performanceDebugMode;
     
-    // 自定义调试CPU数量
+    // 自定调试CPU数量
     public static ForgeConfigSpec.IntValue customDebugCPUCount;
     
     // 自定义调试内存大小
     public static ForgeConfigSpec.IntValue customDebugMemorySize;
+    
+    // 红包掉落配置
+    public static ForgeConfigSpec.DoubleValue redPacketDropChanceNewYear;
+    public static ForgeConfigSpec.DoubleValue redPacketDropChanceChristmas;
+    public static ForgeConfigSpec.IntValue redPacketChristmasStartDate;
+    public static ForgeConfigSpec.IntValue redPacketChristmasEndDate;
 
     static {
         // 配置ForceEnableLayeredBuffer部分
@@ -39,6 +45,14 @@ public class EverlaArtifactsConfig {
         performanceDebugMode = BUILDER.comment("性能调试模式：当启用时，使用自定义值代替真实硬件信息。警告：游戏默认开启安全验证阻止此自定义，须通过/gamerule ForceUseTruePerformance false禁用").define("performanceDebugMode", false);
         customDebugCPUCount = BUILDER.comment("自定义调试CPU数量：当性能调试模式启用时使用的CPU核心数").defineInRange("customDebugCPUCount", 8, 1, 512);
         customDebugMemorySize = BUILDER.comment("自定义调试内存大小：当性能调试模式启用时使用的内存大小(MB)").defineInRange("customDebugMemorySize", 8192, 1024, 2147483647);
+        BUILDER.pop();
+
+        // 配置红包掉落部分
+        BUILDER.push("RedPacketDrop");
+        redPacketDropChanceNewYear = BUILDER.comment("新年期间红包掉落概率 (0.0-1.0, 例如 0.01 = 1%)").defineInRange("dropChanceNewYear", 0.01, 0.0, 1.0);
+        redPacketDropChanceChristmas = BUILDER.comment("圣诞节期间红包掉落概率 (0.0-1.0, 例如 0.01 = 1%)").defineInRange("dropChanceChristmas", 0.01, 0.0, 1.0);
+        redPacketChristmasStartDate = BUILDER.comment("圣诞节开始日期 (月份*100+日期, 例如 1224 = 12月24日)").defineInRange("christmasStartDate", 1224, 101, 1231);
+        redPacketChristmasEndDate = BUILDER.comment("圣诞节结束日期 (月份*100+日期, 例如 1231 = 12月31日)").defineInRange("christmasEndDate", 1231, 101, 1231);
         BUILDER.pop();
 
         SPEC = BUILDER.build();
@@ -62,6 +76,23 @@ public class EverlaArtifactsConfig {
     
     public static int getCustomDebugMemorySize() {
         return customDebugMemorySize.get();
+    }
+    
+    // 红包掉落配置的获取方法
+    public static double getRedPacketDropChanceNewYear() {
+        return redPacketDropChanceNewYear.get();
+    }
+    
+    public static double getRedPacketDropChanceChristmas() {
+        return redPacketDropChanceChristmas.get();
+    }
+    
+    public static int getRedPacketChristmasStartDate() {
+        return redPacketChristmasStartDate.get();
+    }
+    
+    public static int getRedPacketChristmasEndDate() {
+        return redPacketChristmasEndDate.get();
     }
     
     public static void register() {

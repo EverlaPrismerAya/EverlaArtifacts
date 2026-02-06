@@ -1,4 +1,3 @@
-
 package net.everla.everlaartifacts.item;
 
 import net.minecraft.world.level.Level;
@@ -13,7 +12,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.network.chat.Component;
 
-import net.everla.everlaartifacts.procedures.WeirdCocktailEffectProcedure;
+import net.everla.everlaartifacts.server.handlers.items.weird_cocktail.WeirdCocktailEffectHandler;
 
 import java.util.List;
 
@@ -41,7 +40,7 @@ public class WeirdCocktailItem extends Item {
 		double x = entity.getX();
 		double y = entity.getY();
 		double z = entity.getZ();
-		WeirdCocktailEffectProcedure.execute(entity);
+		WeirdCocktailEffectHandler.applyWeirdCocktailEffects(entity);
 		if (itemstack.isEmpty()) {
 			return retval;
 		} else {

@@ -9,8 +9,7 @@ import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.network.chat.Component;
 
-import net.everla.everlaartifacts.procedures.HomaTickFuncProcedure;
-import net.everla.everlaartifacts.procedures.HomaStaffFuncProcedure;
+import net.everla.everlaartifacts.server.handlers.items.homa_staff.HomaStaffHandler;
 
 import java.util.List;
 
@@ -47,7 +46,7 @@ public class HomaStaffItem extends SwordItem {
     public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
         // 右击：保持原功能（非潜行专属）
         InteractionResultHolder<ItemStack> ar = super.use(world, player, hand);
-        HomaStaffFuncProcedure.execute(player, ar.getObject());
+        HomaStaffHandler.handleHomaStaffActivation(player, ar.getObject());
         return ar;
     }
 
@@ -128,7 +127,7 @@ public class HomaStaffItem extends SwordItem {
     public void inventoryTick(ItemStack itemstack, Level world, Entity entity, int slot, boolean selected) {
         super.inventoryTick(itemstack, world, entity, slot, selected);
         if (selected && entity instanceof Player player) {
-            HomaTickFuncProcedure.execute(player);
+            HomaStaffHandler.handleHomaPassiveEffect(player);
         }
     }
 }

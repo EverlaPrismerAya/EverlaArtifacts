@@ -13,7 +13,7 @@ import net.minecraft.world.item.ItemStack;
 
 import java.util.List;
 
-import net.everla.everlaartifacts.procedures.WaaoooooProcedure;
+// 音效播放现在通过客户端事件处理器自动处理
 
 public class WaaoooOverlayMobEffect extends MobEffect {
 	public WaaoooOverlayMobEffect() {
@@ -23,7 +23,7 @@ public class WaaoooOverlayMobEffect extends MobEffect {
 	@Override
 	public void addAttributeModifiers(LivingEntity entity, AttributeMap attributeMap, int amplifier) {
 		super.addAttributeModifiers(entity, attributeMap, amplifier);
-		WaaoooooProcedure.execute(entity);
+		// 音效播放现在通过客户端事件处理器自动处理
 	}
 
 	@Override

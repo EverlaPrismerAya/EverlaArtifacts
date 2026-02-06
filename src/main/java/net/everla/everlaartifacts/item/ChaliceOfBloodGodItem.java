@@ -1,4 +1,3 @@
-
 package net.everla.everlaartifacts.item;
 
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -15,7 +14,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.network.chat.Component;
 
-import net.everla.everlaartifacts.procedures.ChaliceOfBloodGodRegenerateProcedure;
+import net.everla.everlaartifacts.server.handlers.items.chalice_of_blood_god.ChaliceOfBloodGodHandler;
 import net.everla.everlaartifacts.init.EverlaartifactsModItems;
 
 import java.util.List;
@@ -74,7 +73,7 @@ public class ChaliceOfBloodGodItem extends Item {
 		double x = entity.getX();
 		double y = entity.getY();
 		double z = entity.getZ();
-		ChaliceOfBloodGodRegenerateProcedure.execute(entity);
+		ChaliceOfBloodGodHandler.handleChaliceOfBloodGodRegenerate(entity);
 		if (itemstack.isEmpty()) {
 			return retval;
 		} else {

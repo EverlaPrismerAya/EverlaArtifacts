@@ -1,4 +1,3 @@
-
 package net.everla.everlaartifacts.item;
 
 import net.minecraft.world.level.Level;
@@ -11,7 +10,7 @@ import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.LivingEntity;
 
-import net.everla.everlaartifacts.procedures.NilkDiscProcedure;
+import net.everla.everlaartifacts.server.handlers.items.nilk.NilkDiscHandler;
 
 public class NilkItem extends Item {
 	public NilkItem() {
@@ -30,7 +29,7 @@ public class NilkItem extends Item {
 		double x = entity.getX();
 		double y = entity.getY();
 		double z = entity.getZ();
-		NilkDiscProcedure.execute(world, x, y, z, entity);
+		NilkDiscHandler.handleNilkDisc(world, x, y, z, entity);
 		if (itemstack.isEmpty()) {
 			return retval;
 		} else {

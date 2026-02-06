@@ -8,8 +8,8 @@ import net.minecraft.world.item.ItemStack;
 
 import java.util.List;
 
-import net.everla.everlaartifacts.procedures.GenshinStartSoundPlayProcedure;
-import net.everla.everlaartifacts.procedures.GenshinStartMobEffectProcedure;
+import net.everla.everlaartifacts.client.handlers.effects.genshin_start.GenshinStartSoundPlayHandler;
+import net.everla.everlaartifacts.server.handlers.effects.genshin_start.GenshinStartMobEffectHandler;
 
 public class GenshinStartMobEffect extends MobEffect {
 	public GenshinStartMobEffect() {
@@ -19,12 +19,12 @@ public class GenshinStartMobEffect extends MobEffect {
 	@Override
 	public void addAttributeModifiers(LivingEntity entity, AttributeMap attributeMap, int amplifier) {
 		super.addAttributeModifiers(entity, attributeMap, amplifier);
-		GenshinStartSoundPlayProcedure.execute(entity);
+		GenshinStartSoundPlayHandler.handleGenshinStartSoundPlay(entity);
 	}
 
 	@Override
 	public void applyEffectTick(LivingEntity entity, int amplifier) {
-		GenshinStartMobEffectProcedure.execute(entity);
+		GenshinStartMobEffectHandler.handleGenshinStartMobEffect(entity);
 	}
 
 	@Override

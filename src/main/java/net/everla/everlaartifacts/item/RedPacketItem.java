@@ -1,4 +1,3 @@
-
 package net.everla.everlaartifacts.item;
 
 import net.minecraft.world.level.Level;
@@ -9,7 +8,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.InteractionHand;
 
-import net.everla.everlaartifacts.procedures.RedPacketOpenProcedure;
+import net.everla.everlaartifacts.server.handlers.items.red_packet.RedPacketHandler;
 
 public class RedPacketItem extends Item {
 	public RedPacketItem() {
@@ -19,7 +18,7 @@ public class RedPacketItem extends Item {
 	@Override
 	public InteractionResultHolder<ItemStack> use(Level world, Player entity, InteractionHand hand) {
 		InteractionResultHolder<ItemStack> ar = super.use(world, entity, hand);
-		RedPacketOpenProcedure.execute(world, entity.getX(), entity.getY(), entity.getZ(), entity, ar.getObject());
+		RedPacketHandler.openRedPacket(world, entity.getX(), entity.getY(), entity.getZ(), entity, ar.getObject());
 		return ar;
 	}
 }

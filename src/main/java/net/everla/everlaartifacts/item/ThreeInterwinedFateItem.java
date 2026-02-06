@@ -9,7 +9,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.entity.LivingEntity;
 
-import net.everla.everlaartifacts.procedures.ThreeInterwinedFateEmotionalDamageProcedure;
+import net.everla.everlaartifacts.server.handlers.items.three_interwined_fate.ThreeInterwinedFateEmotionalDamageHandler;
 
 public class ThreeInterwinedFateItem extends Item {
 	public ThreeInterwinedFateItem() {
@@ -27,7 +27,7 @@ public class ThreeInterwinedFateItem extends Item {
 		double x = entity.getX();
 		double y = entity.getY();
 		double z = entity.getZ();
-		ThreeInterwinedFateEmotionalDamageProcedure.execute(world, x, y, z, entity);
+		ThreeInterwinedFateEmotionalDamageHandler.handleThreeInterwinedFateEmotionalDamage(world, x, y, z, entity);
 		return retval;
 	}
 }

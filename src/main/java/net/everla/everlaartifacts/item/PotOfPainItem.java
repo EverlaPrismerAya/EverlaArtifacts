@@ -12,7 +12,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.network.chat.Component;
 
-import net.everla.everlaartifacts.procedures.PotOfPainEffectProcedure;
+import net.everla.everlaartifacts.server.handlers.items.pot_of_pain.PotOfPainEffectHandler;
 import net.everla.everlaartifacts.init.EverlaartifactsModItems;
 
 import java.util.List;
@@ -45,7 +45,7 @@ public class PotOfPainItem extends Item {
 		double x = entity.getX();
 		double y = entity.getY();
 		double z = entity.getZ();
-		PotOfPainEffectProcedure.execute(world, entity);
+		PotOfPainEffectHandler.handlePotOfPainEffect(world, entity);
 		if (itemstack.isEmpty()) {
 			return retval;
 		} else {

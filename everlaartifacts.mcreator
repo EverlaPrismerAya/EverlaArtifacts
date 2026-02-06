@@ -121,42 +121,12 @@
       "name": "ZakoUncle",
       "type": "item",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "zako_uncle",
       "metadata": {
         "files": [
           "src/main/resources/assets/everlaartifacts/models/item/zako_uncle.json",
           "src/main/java/net/everla/everlaartifacts/item/ZakoUncleItem.java"
-        ]
-      }
-    },
-    {
-      "name": "ZakoZako",
-      "type": "procedure",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "zako_zako",
-      "metadata": {
-        "files": [
-          "src/main/java/net/everla/everlaartifacts/procedures/ZakoZakoProcedure.java"
-        ],
-        "dependencies": [
-          {
-            "name": "x",
-            "type": "number"
-          },
-          {
-            "name": "y",
-            "type": "number"
-          },
-          {
-            "name": "z",
-            "type": "number"
-          },
-          {
-            "name": "world",
-            "type": "world"
-          }
         ]
       }
     },
@@ -332,7 +302,7 @@
       "name": "PotOfPain",
       "type": "item",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "pot_of_pain",
       "metadata": {
         "files": [
@@ -342,32 +312,10 @@
       }
     },
     {
-      "name": "PotOfPainEffect",
-      "type": "procedure",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "pot_of_pain_effect",
-      "metadata": {
-        "files": [
-          "src/main/java/net/everla/everlaartifacts/procedures/PotOfPainEffectProcedure.java"
-        ],
-        "dependencies": [
-          {
-            "name": "entity",
-            "type": "entity"
-          },
-          {
-            "name": "world",
-            "type": "world"
-          }
-        ]
-      }
-    },
-    {
       "name": "ChineseDumpling",
       "type": "item",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "chinese_dumpling",
       "metadata": {
         "files": [
@@ -377,78 +325,10 @@
       }
     },
     {
-      "name": "ChineseDumplingAnnoyingSound",
-      "type": "procedure",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "chinese_dumpling_annoying_sound",
-      "metadata": {
-        "files": [
-          "src/main/java/net/everla/everlaartifacts/procedures/ChineseDumplingAnnoyingSoundProcedure.java"
-        ],
-        "dependencies": [
-          {
-            "name": "x",
-            "type": "number"
-          },
-          {
-            "name": "y",
-            "type": "number"
-          },
-          {
-            "name": "z",
-            "type": "number"
-          },
-          {
-            "name": "world",
-            "type": "world"
-          }
-        ]
-      }
-    },
-    {
-      "name": "RedPacketOpen",
-      "type": "procedure",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "red_packet_open",
-      "metadata": {
-        "files": [
-          "src/main/java/net/everla/everlaartifacts/procedures/RedPacketOpenProcedure.java"
-        ],
-        "dependencies": [
-          {
-            "name": "entity",
-            "type": "entity"
-          },
-          {
-            "name": "itemstack",
-            "type": "itemstack"
-          },
-          {
-            "name": "x",
-            "type": "number"
-          },
-          {
-            "name": "y",
-            "type": "number"
-          },
-          {
-            "name": "z",
-            "type": "number"
-          },
-          {
-            "name": "world",
-            "type": "world"
-          }
-        ]
-      }
-    },
-    {
       "name": "RedPacket",
       "type": "item",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "red_packet",
       "metadata": {
         "files": [
@@ -488,24 +368,6 @@
       }
     },
     {
-      "name": "NuclearWasteWaterRadiation",
-      "type": "procedure",
-      "compiles": true,
-      "locked_code": true,
-      "registry_name": "nuclear_waste_water_radiation",
-      "metadata": {
-        "files": [
-          "src/main/java/net/everla/everlaartifacts/procedures/NuclearWasteWaterRadiationProcedure.java"
-        ],
-        "dependencies": [
-          {
-            "name": "entity",
-            "type": "entity"
-          }
-        ]
-      }
-    },
-    {
       "name": "NuclearWasteWaterBottle",
       "type": "potion",
       "compiles": true,
@@ -524,24 +386,6 @@
       "metadata": {
         "files": [
           "src/main/java/net/everla/everlaartifacts/potion/NuclearWaterRadiationMobEffect.java"
-        ]
-      }
-    },
-    {
-      "name": "NuclearWaterRadiationBuff",
-      "type": "procedure",
-      "compiles": true,
-      "locked_code": true,
-      "registry_name": "nuclear_water_radiation_buff",
-      "metadata": {
-        "files": [
-          "src/main/java/net/everla/everlaartifacts/procedures/NuclearWaterRadiationBuffProcedure.java"
-        ],
-        "dependencies": [
-          {
-            "name": "entity",
-            "type": "entity"
-          }
         ]
       }
     },
@@ -574,7 +418,7 @@
       "name": "TwoBreadSandwichedWithCheese",
       "type": "item",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "two_bread_sandwiched_with_cheese",
       "metadata": {
         "files": [
@@ -584,74 +428,10 @@
       }
     },
     {
-      "name": "TwoBreadSandwichedWithCheeseSound",
-      "type": "procedure",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "two_bread_sandwiched_with_cheese_sound",
-      "metadata": {
-        "files": [
-          "src/main/java/net/everla/everlaartifacts/procedures/TwoBreadSandwichedWithCheeseSoundProcedure.java"
-        ],
-        "dependencies": [
-          {
-            "name": "x",
-            "type": "number"
-          },
-          {
-            "name": "y",
-            "type": "number"
-          },
-          {
-            "name": "z",
-            "type": "number"
-          },
-          {
-            "name": "world",
-            "type": "world"
-          }
-        ]
-      }
-    },
-    {
-      "name": "ThreeInterwinedFateEmotionalDamage",
-      "type": "procedure",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "three_interwined_fate_emotional_damage",
-      "metadata": {
-        "files": [
-          "src/main/java/net/everla/everlaartifacts/procedures/ThreeInterwinedFateEmotionalDamageProcedure.java"
-        ],
-        "dependencies": [
-          {
-            "name": "entity",
-            "type": "entity"
-          },
-          {
-            "name": "x",
-            "type": "number"
-          },
-          {
-            "name": "y",
-            "type": "number"
-          },
-          {
-            "name": "z",
-            "type": "number"
-          },
-          {
-            "name": "world",
-            "type": "world"
-          }
-        ]
-      }
-    },
-    {
       "name": "ThreeInterwinedFate",
       "type": "item",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "three_interwined_fate",
       "metadata": {
         "files": [
@@ -676,7 +456,7 @@
       "name": "WeirdCocktail",
       "type": "item",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "weird_cocktail",
       "metadata": {
         "files": [
@@ -686,50 +466,14 @@
       }
     },
     {
-      "name": "BedmicDestructionCheckIfPlayerLookAtBed",
-      "type": "procedure",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "bedmic_destruction_check_if_player_look_at_bed",
-      "metadata": {
-        "files": [
-          "src/main/java/net/everla/everlaartifacts/procedures/BedmicDestructionCheckIfPlayerLookAtBedProcedure.java"
-        ],
-        "dependencies": [
-          {
-            "name": "entity",
-            "type": "entity"
-          }
-        ]
-      }
-    },
-    {
       "name": "BedmicDestruction",
       "type": "potioneffect",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "bedmic_destruction",
       "metadata": {
         "files": [
           "src/main/java/net/everla/everlaartifacts/potion/BedmicDestructionMobEffect.java"
-        ]
-      }
-    },
-    {
-      "name": "WeirdCocktailEffect",
-      "type": "procedure",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "weird_cocktail_effect",
-      "metadata": {
-        "files": [
-          "src/main/java/net/everla/everlaartifacts/procedures/WeirdCocktailEffectProcedure.java"
-        ],
-        "dependencies": [
-          {
-            "name": "entity",
-            "type": "entity"
-          }
         ]
       }
     },
@@ -782,66 +526,10 @@
       }
     },
     {
-      "name": "BadAppleSound",
-      "type": "procedure",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "bad_apple_sound",
-      "metadata": {
-        "files": [
-          "src/main/java/net/everla/everlaartifacts/procedures/BadAppleSoundProcedure.java"
-        ],
-        "dependencies": [
-          {
-            "name": "entity",
-            "type": "entity"
-          },
-          {
-            "name": "itemstack",
-            "type": "itemstack"
-          }
-        ]
-      }
-    },
-    {
-      "name": "TakeoffAtAPowerOfFiveWatts",
-      "type": "procedure",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "takeoff_at_a_power_of_five_watts",
-      "metadata": {
-        "files": [
-          "src/main/java/net/everla/everlaartifacts/procedures/TakeoffAtAPowerOfFiveWattsProcedure.java"
-        ],
-        "dependencies": [
-          {
-            "name": "entity",
-            "type": "entity"
-          },
-          {
-            "name": "x",
-            "type": "number"
-          },
-          {
-            "name": "y",
-            "type": "number"
-          },
-          {
-            "name": "z",
-            "type": "number"
-          },
-          {
-            "name": "world",
-            "type": "world"
-          }
-        ]
-      }
-    },
-    {
       "name": "BraisedPorkWithPlumCabbage",
       "type": "item",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "braised_pork_with_plum_cabbage",
       "metadata": {
         "files": [
@@ -1170,30 +858,11 @@
       "name": "USAOverlay",
       "type": "overlay",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "usa_overlay",
       "metadata": {
         "files": [
           "src/main/java/net/everla/everlaartifacts/client/screens/USAOverlayOverlay.java"
-        ]
-      }
-    },
-    {
-      "name": "USADisplay",
-      "type": "procedure",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "usa_display",
-      "metadata": {
-        "return_type": "logic",
-        "files": [
-          "src/main/java/net/everla/everlaartifacts/procedures/USADisplayProcedure.java"
-        ],
-        "dependencies": [
-          {
-            "name": "entity",
-            "type": "entity"
-          }
         ]
       }
     },
@@ -1426,7 +1095,7 @@
       "name": "ChaliceOfBloodGod",
       "type": "item",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "chalice_of_blood_god",
       "metadata": {
         "files": [
@@ -1598,28 +1267,6 @@
       "metadata": {
         "files": [
           "src/main/resources/data/everlaartifacts/recipes/zako_uncle_recipe.json"
-        ]
-      }
-    },
-    {
-      "name": "MakeEntityFly",
-      "type": "procedure",
-      "compiles": true,
-      "locked_code": true,
-      "registry_name": "make_entity_fly",
-      "metadata": {
-        "files": [
-          "src/main/java/net/everla/everlaartifacts/procedures/MakeEntityFlyProcedure.java"
-        ],
-        "dependencies": [
-          {
-            "name": "entity",
-            "type": "entity"
-          },
-          {
-            "name": "world",
-            "type": "world"
-          }
         ]
       }
     },
@@ -1949,51 +1596,14 @@
       }
     },
     {
-      "name": "ChaliceOfBloodGodRegenerate",
-      "type": "procedure",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "chalice_of_blood_god_regenerate",
-      "metadata": {
-        "files": [
-          "src/main/java/net/everla/everlaartifacts/procedures/ChaliceOfBloodGodRegenerateProcedure.java"
-        ],
-        "dependencies": [
-          {
-            "name": "entity",
-            "type": "entity"
-          }
-        ]
-      }
-    },
-    {
       "name": "WaaoooOverlay",
       "type": "potioneffect",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "waaooo_overlay",
       "metadata": {
         "files": [
           "src/main/java/net/everla/everlaartifacts/potion/WaaoooOverlayMobEffect.java"
-        ]
-      }
-    },
-    {
-      "name": "WaaoooDisplay",
-      "type": "procedure",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "waaooo_display",
-      "metadata": {
-        "return_type": "logic",
-        "files": [
-          "src/main/java/net/everla/everlaartifacts/procedures/WaaoooDisplayProcedure.java"
-        ],
-        "dependencies": [
-          {
-            "name": "entity",
-            "type": "entity"
-          }
         ]
       }
     },
@@ -2006,24 +1616,6 @@
       "metadata": {
         "files": [
           "src/main/java/net/everla/everlaartifacts/client/screens/WaaooOverlayOverlay.java"
-        ]
-      }
-    },
-    {
-      "name": "Waaooooo",
-      "type": "procedure",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "waaooooo",
-      "metadata": {
-        "files": [
-          "src/main/java/net/everla/everlaartifacts/procedures/WaaoooooProcedure.java"
-        ],
-        "dependencies": [
-          {
-            "name": "entity",
-            "type": "entity"
-          }
         ]
       }
     },
@@ -2286,46 +1878,6 @@
       }
     },
     {
-      "name": "HomaStaffFunc",
-      "type": "procedure",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "homa_staff_func",
-      "metadata": {
-        "files": [
-          "src/main/java/net/everla/everlaartifacts/procedures/HomaStaffFuncProcedure.java"
-        ],
-        "dependencies": [
-          {
-            "name": "entity",
-            "type": "entity"
-          },
-          {
-            "name": "itemstack",
-            "type": "itemstack"
-          }
-        ]
-      }
-    },
-    {
-      "name": "HomaTickFunc",
-      "type": "procedure",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "homa_tick_func",
-      "metadata": {
-        "files": [
-          "src/main/java/net/everla/everlaartifacts/procedures/HomaTickFuncProcedure.java"
-        ],
-        "dependencies": [
-          {
-            "name": "entity",
-            "type": "entity"
-          }
-        ]
-      }
-    },
-    {
       "name": "HomaRecipe",
       "type": "recipe",
       "compiles": true,
@@ -2341,7 +1893,7 @@
       "name": "Nilk",
       "type": "item",
       "compiles": true,
-      "locked_code": false,
+      "locked_code": true,
       "registry_name": "nilk",
       "metadata": {
         "files": [
@@ -2372,40 +1924,6 @@
         "files": [
           "src/main/resources/assets/everlaartifacts/models/item/music_disc_nilk.json",
           "src/main/java/net/everla/everlaartifacts/item/MusicDiscNilkItem.java"
-        ]
-      }
-    },
-    {
-      "name": "NilkDisc",
-      "type": "procedure",
-      "compiles": true,
-      "locked_code": false,
-      "registry_name": "nilk_disc",
-      "metadata": {
-        "files": [
-          "src/main/java/net/everla/everlaartifacts/procedures/NilkDiscProcedure.java"
-        ],
-        "dependencies": [
-          {
-            "name": "entity",
-            "type": "entity"
-          },
-          {
-            "name": "x",
-            "type": "number"
-          },
-          {
-            "name": "y",
-            "type": "number"
-          },
-          {
-            "name": "z",
-            "type": "number"
-          },
-          {
-            "name": "world",
-            "type": "world"
-          }
         ]
       }
     },

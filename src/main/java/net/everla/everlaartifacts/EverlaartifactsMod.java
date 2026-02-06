@@ -18,6 +18,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.FriendlyByteBuf;
 
+import net.everla.everlaartifacts.server.handlers.items.red_packet.RedPacketHandler;
 import net.everla.everlaartifacts.network.ServerPerformanceScorePacket;
 import net.everla.everlaartifacts.init.EverlaartifactsModTabs;
 import net.everla.everlaartifacts.init.EverlaartifactsModSounds;
@@ -51,6 +52,8 @@ public class EverlaartifactsMod {
 
 	public EverlaartifactsMod() {
 		// Start of user code block mod constructor
+		// 注册红包处理器
+		MinecraftForge.EVENT_BUS.register(RedPacketHandler.class);
 		// End of user code block mod constructor
 		MinecraftForge.EVENT_BUS.register(this);
 		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();

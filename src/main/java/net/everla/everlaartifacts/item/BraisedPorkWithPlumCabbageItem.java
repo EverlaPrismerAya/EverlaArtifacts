@@ -10,7 +10,7 @@ import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.LivingEntity;
 
-import net.everla.everlaartifacts.procedures.TakeoffAtAPowerOfFiveWattsProcedure;
+import net.everla.everlaartifacts.server.handlers.items.braised_pork_with_plum_cabbage.TakeoffAtAPowerOfFiveWattsHandler;
 
 public class BraisedPorkWithPlumCabbageItem extends Item {
 	public BraisedPorkWithPlumCabbageItem() {
@@ -24,7 +24,7 @@ public class BraisedPorkWithPlumCabbageItem extends Item {
 		double x = entity.getX();
 		double y = entity.getY();
 		double z = entity.getZ();
-		TakeoffAtAPowerOfFiveWattsProcedure.execute(world, x, y, z, entity);
+		TakeoffAtAPowerOfFiveWattsHandler.handleTakeoffAtAPowerOfFiveWatts(world, x, y, z, entity);
 		if (itemstack.isEmpty()) {
 			return retval;
 		} else {

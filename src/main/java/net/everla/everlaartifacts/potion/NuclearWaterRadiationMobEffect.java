@@ -1,11 +1,10 @@
-
 package net.everla.everlaartifacts.potion;
 
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffect;
 
-import net.everla.everlaartifacts.procedures.NuclearWaterRadiationBuffProcedure;
+import net.everla.everlaartifacts.server.handlers.effects.nuclear_water_radiation.NuclearWaterRadiationBuffHandler;
 
 public class NuclearWaterRadiationMobEffect extends MobEffect {
 	public NuclearWaterRadiationMobEffect() {
@@ -14,7 +13,7 @@ public class NuclearWaterRadiationMobEffect extends MobEffect {
 
 	@Override
 	public void applyEffectTick(LivingEntity entity, int amplifier) {
-		NuclearWaterRadiationBuffProcedure.execute(entity);
+		NuclearWaterRadiationBuffHandler.handleNuclearWaterRadiationBuff(entity);
 	}
 
 	@Override
