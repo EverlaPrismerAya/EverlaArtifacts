@@ -65,51 +65,65 @@ public class FirecrackerProjectileEntity extends AbstractArrow implements ItemSu
 	protected void doPostHurtEffects(LivingEntity entity) {
 		super.doPostHurtEffects(entity);
 		entity.setArrowCount(entity.getArrowCount() - 1);
+		// 在造成伤害时触发爆炸
+		if (!this.level().isClientSide && !this.isRemoved()) {
+			explode();
+			this.discard();
+		}
 	}
 
 	@Override
 	public void playerTouch(Player entity) {
 		super.playerTouch(entity);
-		explode();
+		// 避免对自己爆炸，并确保只爆炸一次
+		if (this.getOwner() != entity && !this.level().isClientSide && !this.isRemoved()) {
+			explode();
+			this.discard();
+		}
 	}
 
 	@Override
 	public void onHitEntity(EntityHitResult entityHitResult) {
 		super.onHitEntity(entityHitResult);
-		explode();
+		// 确保只爆炸一次，但允许对大多数实体爆炸
+		if (!this.level().isClientSide && !this.isRemoved()) {
+			// 检查是否为Owner，避免自爆
+			if (this.getOwner() != entityHitResult.getEntity()) {
+				explode();
+				this.discard();
+			}
+		}
 	}
 
 	@Override
 	public void onHitBlock(BlockHitResult blockHitResult) {
 		super.onHitBlock(blockHitResult);
-		explode();
+		// 确保只爆炸一次
+		if (!this.level().isClientSide && !this.isRemoved()) {
+			explode();
+			this.discard();
+		}
 	}
 
 	@Override
 	public void tick() {
 		super.tick();
-		if (this.inGround) {
-			// 在地面上停留后也爆炸
+		if (this.inGround && !this.level().isClientSide && !this.isRemoved()) {
+			// 在地面上停留后爆炸并销毁
 			explode();
+			this.discard();
 		}
 	}
 
 	// 爆炸方法
 	private void explode() {
-		if (!this.level().isClientSide) {
+		if (!this.level().isClientSide && !this.isRemoved()) {
 			// 播放音效
 			this.level().playSound(null, this.getX(), this.getY(), this.getZ(), 
-				ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("everlaartifacts:deltarune_explosion")), 
+				ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("everlaartifacts:deltarune_explosion")),
 				SoundSource.PLAYERS, 1.0F, 1.0F);
-			
-			// 添加粒子效果
-			this.level().addParticle(ParticleTypes.EXPLOSION, this.getX(), this.getY(), this.getZ(), 0.1, 0.1, 0.1);
-			
 			// 小爆炸，不破坏方块
 			this.level().explode(null, this.getX(), this.getY(), this.getZ(), 1.0F, false, Level.ExplosionInteraction.NONE);
-			
-			// 销毁弹射物
-			this.discard();
 		}
 	}
 
@@ -128,6 +142,7 @@ public class FirecrackerProjectileEntity extends AbstractArrow implements ItemSu
 		entityarrow.setCritArrow(false);
 		entityarrow.setBaseDamage(damage); // 设置伤害
 		entityarrow.setKnockback(knockback);
+		entityarrow.setOwner(entity); // 设置Owner避免自爆
 		world.addFreshEntity(entityarrow);
 		world.playSound(null, entity.getX(), entity.getY(), entity.getZ(), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.firework_rocket.shoot")), SoundSource.PLAYERS, 1, 1f / (random.nextFloat() * 0.5f + 1) + (power / 2));
 		return entityarrow;
@@ -143,6 +158,7 @@ public class FirecrackerProjectileEntity extends AbstractArrow implements ItemSu
 		entityarrow.setBaseDamage(0); // 设置伤害为0
 		entityarrow.setKnockback(0);
 		entityarrow.setCritArrow(false);
+		entityarrow.setOwner(entity); // 设置Owner避免自爆
 		entity.level().addFreshEntity(entityarrow);
 		entity.level().playSound(null, entity.getX(), entity.getY(), entity.getZ(), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.firework_rocket.shoot")), SoundSource.PLAYERS, 1,
 				1f / (RandomSource.create().nextFloat() * 0.5f + 1));
