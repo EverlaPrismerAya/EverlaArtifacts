@@ -1,4 +1,3 @@
-
 package net.everla.everlaartifacts.entity;
 
 import net.minecraftforge.registries.ForgeRegistries;
@@ -19,12 +18,10 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.util.RandomSource;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.Packet;
 
-import net.everla.everlaartifacts.procedures.FirecrackerOwnerProcedure;
-import net.everla.everlaartifacts.procedures.FirecrackerExplodeProcedure;
-import net.everla.everlaartifacts.procedures.FirecrackerBlockExplodeProcedure;
 import net.everla.everlaartifacts.init.EverlaartifactsModItems;
 import net.everla.everlaartifacts.init.EverlaartifactsModEntities;
 
@@ -73,35 +70,55 @@ public class FirecrackerProjectileEntity extends AbstractArrow implements ItemSu
 	@Override
 	public void playerTouch(Player entity) {
 		super.playerTouch(entity);
-		FirecrackerExplodeProcedure.execute(this.level(), this.getX(), this.getY(), this.getZ(), entity, this.getOwner());
+		explode();
 	}
 
 	@Override
 	public void onHitEntity(EntityHitResult entityHitResult) {
 		super.onHitEntity(entityHitResult);
-		FirecrackerExplodeProcedure.execute(this.level(), this.getX(), this.getY(), this.getZ(), entityHitResult.getEntity(), this.getOwner());
+		explode();
 	}
 
 	@Override
 	public void onHitBlock(BlockHitResult blockHitResult) {
 		super.onHitBlock(blockHitResult);
-		FirecrackerBlockExplodeProcedure.execute(this.level(), blockHitResult.getBlockPos().getX(), blockHitResult.getBlockPos().getY(), blockHitResult.getBlockPos().getZ(), this);
+		explode();
 	}
 
 	@Override
 	public void tick() {
 		super.tick();
-		FirecrackerOwnerProcedure.execute(this.level(), this.getX(), this.getY(), this.getZ(), this.getOwner());
-		if (this.inGround)
+		if (this.inGround) {
+			// 在地面上停留后也爆炸
+			explode();
+		}
+	}
+
+	// 爆炸方法
+	private void explode() {
+		if (!this.level().isClientSide) {
+			// 播放音效
+			this.level().playSound(null, this.getX(), this.getY(), this.getZ(), 
+				ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("everlaartifacts:deltarune_explosion")), 
+				SoundSource.PLAYERS, 1.0F, 1.0F);
+			
+			// 添加粒子效果
+			this.level().addParticle(ParticleTypes.EXPLOSION, this.getX(), this.getY(), this.getZ(), 0.1, 0.1, 0.1);
+			
+			// 小爆炸，不破坏方块
+			this.level().explode(null, this.getX(), this.getY(), this.getZ(), 1.0F, false, Level.ExplosionInteraction.NONE);
+			
+			// 销毁弹射物
 			this.discard();
+		}
 	}
 
 	public static FirecrackerProjectileEntity shoot(Level world, LivingEntity entity, RandomSource source) {
-		return shoot(world, entity, source, 0.3f, 1, 0);
+		return shoot(world, entity, source, 0.3f, 0, 0); // 伤害设为0
 	}
 
 	public static FirecrackerProjectileEntity shoot(Level world, LivingEntity entity, RandomSource source, float pullingPower) {
-		return shoot(world, entity, source, pullingPower * 0.3f, 1, 0);
+		return shoot(world, entity, source, pullingPower * 0.3f, 0, 0); // 伤害设为0
 	}
 
 	public static FirecrackerProjectileEntity shoot(Level world, LivingEntity entity, RandomSource random, float power, double damage, int knockback) {
@@ -109,7 +126,7 @@ public class FirecrackerProjectileEntity extends AbstractArrow implements ItemSu
 		entityarrow.shoot(entity.getViewVector(1).x, entity.getViewVector(1).y, entity.getViewVector(1).z, power * 2, 0);
 		entityarrow.setSilent(true);
 		entityarrow.setCritArrow(false);
-		entityarrow.setBaseDamage(damage);
+		entityarrow.setBaseDamage(damage); // 设置伤害
 		entityarrow.setKnockback(knockback);
 		world.addFreshEntity(entityarrow);
 		world.playSound(null, entity.getX(), entity.getY(), entity.getZ(), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.firework_rocket.shoot")), SoundSource.PLAYERS, 1, 1f / (random.nextFloat() * 0.5f + 1) + (power / 2));
@@ -121,9 +138,9 @@ public class FirecrackerProjectileEntity extends AbstractArrow implements ItemSu
 		double dx = target.getX() - entity.getX();
 		double dy = target.getY() + target.getEyeHeight() - 1.1;
 		double dz = target.getZ() - entity.getZ();
-		entityarrow.shoot(dx, dy - entityarrow.getY() + Math.hypot(dx, dz) * 0.2F, dz, 0.3f * 2, 12.0F);
+		entityarrow.shoot(dx, dy - entityarrow.getY() + Math.hypot(dx, dz) * 0.2F, dz, 0.3f * 2, 0); // 伤害设为0
 		entityarrow.setSilent(true);
-		entityarrow.setBaseDamage(1);
+		entityarrow.setBaseDamage(0); // 设置伤害为0
 		entityarrow.setKnockback(0);
 		entityarrow.setCritArrow(false);
 		entity.level().addFreshEntity(entityarrow);

@@ -1,4 +1,3 @@
-
 package net.everla.everlaartifacts.command;
 
 import net.minecraftforge.fml.common.Mod;
@@ -8,11 +7,14 @@ import net.minecraftforge.common.util.FakePlayerFactory;
 
 import net.minecraft.world.level.Level;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.commands.Commands;
 
-import net.everla.everlaartifacts.procedures.SuicideFuncProcedure;
+import net.everla.everlaartifacts.server.handlers.commands.EverlaKillHandler;
 
 @Mod.EventBusSubscriber
 public class SuicideCommand {
@@ -32,7 +34,20 @@ public class SuicideCommand {
 					if (entity != null)
 						direction = entity.getDirection();
 
-					SuicideFuncProcedure.execute(entity);
+					// 直接实现自杀逻辑，不依赖Procedure
+					if (entity != null && entity instanceof Player player && !player.level().isClientSide()) {
+					    Component deathMessage = Component.translatable(
+					        "text.everlaartifacts.suicide",
+					        player.getDisplayName()
+					    );
+
+					    EverlaKillHandler.killPlayer(
+					        player,
+					        "everlaartifacts:suicide",
+					        deathMessage,
+					        ResourceLocation.tryParse("everlaartifacts:deltarune_explosion")
+					    );
+					}
 					return 0;
 				}));
 	}
