@@ -1,4 +1,4 @@
-package net.everla.everlaartifacts.server.handlers.effects;
+package net.everla.everlaartifacts.client.handlers.effects;
 
 import net.everla.everlaartifacts.init.EverlaartifactsModMobEffects;
 import net.everla.everlaartifacts.init.EverlaartifactsModParticleTypes;
@@ -34,8 +34,6 @@ public class HomaActiveAndBloodBlossomParticleHandler {
 
         Level level = minecraft.level;
         long currentTime = level.getGameTime();
-        
-        // 降低粒子生成频率至原来的一半（每2个tick处理一次，而不是每个tick）
         if (currentTime % 2 != 0) {
             return;
         }

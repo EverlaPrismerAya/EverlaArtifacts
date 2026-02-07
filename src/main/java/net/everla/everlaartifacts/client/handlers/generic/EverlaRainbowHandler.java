@@ -31,6 +31,8 @@ public final class EverlaRainbowHandler {
 
         MutableComponent result = Component.empty();
         boolean bold = false, italic = false, underline = false, strikethrough = false, obfuscated = false;
+        boolean useRainbow = true; // 控制是否使用彩虹色
+        Integer fixedColor = null; // 固定颜色值
         int charIndex = 0;
 
         for (int i = 0; i < text.length(); i++) {
@@ -38,27 +40,74 @@ public final class EverlaRainbowHandler {
             if (c == '§' && i + 1 < text.length()) {
                 char code = text.charAt(++i);
                 if (code == 'r') {
+                    // §r完全重置：清除所有格式并回到彩虹模式
                     bold = italic = underline = strikethrough = obfuscated = false;
+                    useRainbow = true;
+                    fixedColor = null;
+                    continue; // 处理完后继续循环
                 } else switch (code) {
                     case 'l' -> bold = true;
                     case 'o' -> italic = true;
                     case 'n' -> underline = true;
                     case 'm' -> strikethrough = true;
                     case 'k' -> obfuscated = true;
-                    // 颜色代码（0-9, a-f）被彩虹色覆盖，直接忽略
+                    // 颜色代码处理（0-9, a-f, A-F）
+                    case '0' -> { useRainbow = false; fixedColor = 0x000000; } // 黑色
+                    case '1' -> { useRainbow = false; fixedColor = 0x0000AA; } // 深蓝
+                    case '2' -> { useRainbow = false; fixedColor = 0x00AA00; } // 深绿
+                    case '3' -> { useRainbow = false; fixedColor = 0x00AAAA; } // 青色
+                    case '4' -> { useRainbow = false; fixedColor = 0xAA0000; } // 深红
+                    case '5' -> { useRainbow = false; fixedColor = 0xAA00AA; } // 紫色
+                    case '6' -> { useRainbow = false; fixedColor = 0xFFAA00; } // 金色
+                    case '7' -> { useRainbow = false; fixedColor = 0xAAAAAA; } // 灰色
+                    case '8' -> { useRainbow = false; fixedColor = 0x555555; } // 深灰
+                    case '9' -> { useRainbow = false; fixedColor = 0x5555FF; } // 蓝色
+                    case 'a', 'A' -> { useRainbow = false; fixedColor = 0x55FF55; } // 绿色
+                    case 'b', 'B' -> { useRainbow = false; fixedColor = 0x55FFFF; } // 天蓝色
+                    case 'c', 'C' -> { useRainbow = false; fixedColor = 0xFF5555; } // 红色
+                    case 'd', 'D' -> { useRainbow = false; fixedColor = 0xFF55FF; } // 粉色
+                    case 'e', 'E' -> { useRainbow = false; fixedColor = 0xFFFF55; } // 黄色
+                    case 'f', 'F' -> { useRainbow = false; fixedColor = 0xFFFFFF; } // 白色
                     default -> {}
                 }
                 continue; // 遇到格式代码时，不递增charIndex
             }
-            if (c == '\r' || c == '\n') continue; // 跳过换行符（由调用方处理多行）
+            // 只处理换行相关的控制字符
+            if (c == '\r') continue; // 忽略回车符
+            if (c == '\n') {
+                // 保留换行符，使用当前颜色和格式
+                int currentColor = useRainbow ? 
+                    hsvToRgb(((baseHue + charIndex * charHueOffset) % 360.0f + 360.0f) % 360.0f, 1.0f, 1.0f) : 
+                    (fixedColor != null ? fixedColor : 0xFFFFFF);
+                
+                Style lineBreakStyle = Style.EMPTY
+                    .withColor(currentColor)
+                    .withBold(bold)
+                    .withItalic(italic)
+                    .withUnderlined(underline)
+                    .withStrikethrough(strikethrough)
+                    .withObfuscated(obfuscated);
+                
+                result.append(Component.literal("\n").withStyle(lineBreakStyle));
+                if (useRainbow) charIndex++; // 只有在彩虹模式下才递增索引
+                continue;
+            }
+            // 注意：普通空格和其他空白字符会正常处理，不在此处过滤
 
-            // 字符级色相偏移
-            float charHue = ((baseHue + charIndex * charHueOffset) % 360.0f + 360.0f) % 360.0f; // 确保结果为正
-            int rgb = hsvToRgb(charHue, 1.0f, 1.0f);
-            charIndex++;
+            // 确定字符颜色
+            int charColor;
+            if (useRainbow) {
+                // 使用彩虹色
+                float charHue = ((baseHue + charIndex * charHueOffset) % 360.0f + 360.0f) % 360.0f; // 确保结果为正
+                charColor = hsvToRgb(charHue, 1.0f, 1.0f);
+                charIndex++;
+            } else {
+                // 使用固定颜色（确保有默认值）
+                charColor = (fixedColor != null) ? fixedColor : 0xFFFFFF; // 默认白色
+            }
 
             Style style = Style.EMPTY
-                .withColor(rgb)
+                .withColor(charColor)
                 .withBold(bold)
                 .withItalic(italic)
                 .withUnderlined(underline)

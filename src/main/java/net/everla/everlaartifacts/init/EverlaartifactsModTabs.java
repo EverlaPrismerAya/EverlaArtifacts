@@ -102,6 +102,7 @@ public class EverlaartifactsModTabs {
 			tabData.accept(EverlaartifactsModItems.HOMA_STAFF.get());
 			tabData.accept(EverlaartifactsModItems.VENUS_SHELL.get());
 			tabData.accept(EverlaartifactsModItems.BRACKETS_BLADE.get());
+			tabData.accept(EverlaartifactsModItems.PROCEDURE_SWORD.get());
 		}
 	}
 }

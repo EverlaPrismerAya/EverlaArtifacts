@@ -30,6 +30,7 @@ import net.everla.everlaartifacts.item.RedPacketItem;
 import net.everla.everlaartifacts.item.RealSmokerItem;
 import net.everla.everlaartifacts.item.RawAuricItem;
 import net.everla.everlaartifacts.item.RaidenItem;
+import net.everla.everlaartifacts.item.ProcedureSwordItem;
 import net.everla.everlaartifacts.item.PotOfPainItem;
 import net.everla.everlaartifacts.item.PayToWinShard5Item;
 import net.everla.everlaartifacts.item.PayToWinShard4Item;
@@ -150,6 +151,7 @@ public class EverlaartifactsModItems {
 	public static final RegistryObject<Item> MUSIC_DISC_NILK = REGISTRY.register("music_disc_nilk", () -> new MusicDiscNilkItem());
 	public static final RegistryObject<Item> VENUS_SHELL = REGISTRY.register("venus_shell", () -> new VenusShellItem());
 	public static final RegistryObject<Item> BRACKETS_BLADE = REGISTRY.register("brackets_blade", () -> new BracketsBladeItem());
+	public static final RegistryObject<Item> PROCEDURE_SWORD = REGISTRY.register("procedure_sword", () -> new ProcedureSwordItem());
 	// Start of user code block custom items
 	public static final RegistryObject<Item> AURIC_SCRAP_BLOCK = REGISTRY.register("auric_scrap_block", () -> new AuricScrapBlockItem(EverlaartifactsModBlocks.AURIC_SCRAP_BLOCK.get()));
 
