@@ -1,0 +1,9 @@
+package net.everla.everlaartifacts.item.disc;
+
+import net.everla.everlaartifacts.item.BaseRecordItem;
+
+public class TheonlythingiknowforrealItem extends BaseRecordItem {
+	public TheonlythingiknowforrealItem() {
+		super(9, "the_only_thing_i_know_for_real", 2840);
+	}
+}
