@@ -1,4 +1,4 @@
-package net.everla.everlaartifacts.client.handlers.generic;
+package net.everla.everlaartifacts.client.handlers.data_driven;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;

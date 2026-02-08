@@ -1,4 +1,4 @@
-package net.everla.everlaartifacts.server.handlers.items.everlasting;
+package net.everla.everlaartifacts.server.handlers.data_driven.everlasting;
 
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -38,8 +38,8 @@ public class EverlastingItemHandler {
     public static void onItemTooltip(ItemTooltipEvent event) {
         ItemStack stack = event.getItemStack();
         
-        // 检查物品是否具有永恒标签且有耐久度
-        if (hasEverlastingTag(stack) && hasDurability(stack)) {
+        // 检查物品是否具有永恒标签、有耐久度且尚未添加不可破坏标签
+        if (hasEverlastingTag(stack) && hasDurability(stack) && !hasUnbreakableTag(stack)) {
             // 添加不可破坏NBT标签
             addUnbreakableTag(stack);
         }
@@ -63,6 +63,16 @@ public class EverlastingItemHandler {
         
         // 检查物品的最大耐久度是否大于0
         return stack.getItem().getMaxDamage(stack) > 0;
+    }
+    
+    /**
+     * 检查物品是否已经具有不可破坏标签
+     */
+    private static boolean hasUnbreakableTag(ItemStack stack) {
+        if (stack.isEmpty()) return false;
+        
+        CompoundTag tag = stack.getTag();
+        return tag != null && tag.getBoolean("Unbreakable");
     }
     
     /**

@@ -1,4 +1,4 @@
-package net.everla.everlaartifacts.client.handlers.generic;
+package net.everla.everlaartifacts.client.handlers.data_driven;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.registries.Registries;
