@@ -28,6 +28,7 @@
   "enchantment.everlaartifacts.tp_aura": "TP Aura",
   "entity.everlaartifacts.angolmois_doom_projectile": "Angolmois Doom",
   "fluid.everlaartifacts.nuclear_waste_water": "Nuclear Waste Water",
+  "gamerule.ForceUseTruePerformance": "Enforce the use of real performance telemetry data",
   "item_group.everlaartifacts.everla_discs": "EverlaPrismer\u0027s Discs",
   "item_group.everlaartifacts.everla_tweaker": "EverlaPrismer\u0027s Stuff",
   "item_group.everlaartifacts.weird_thing": "EverlaPrismer\u0027s Cursed Thing",
