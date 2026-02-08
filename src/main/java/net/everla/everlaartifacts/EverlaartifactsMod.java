@@ -19,7 +19,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.FriendlyByteBuf;
 
 import net.everla.everlaartifacts.server.handlers.items.red_packet.RedPacketHandler;
-import net.everla.everlaartifacts.server.handlers.data_driven.everlasting.EverlastingItemHandler;
+import net.everla.everlaartifacts.generic.handlers.data_driven.EverlastingItemHandler;
 import net.everla.everlaartifacts.network.ServerPerformanceScorePacket;
 import net.everla.everlaartifacts.init.EverlaartifactsModTabs;
 import net.everla.everlaartifacts.init.EverlaartifactsModSounds;

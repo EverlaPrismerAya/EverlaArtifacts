@@ -1,10 +1,13 @@
-package net.everla.everlaartifacts.server.handlers.data_driven.everlasting;
+package net.everla.everlaartifacts.generic.handlers.data_driven;
 
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.common.util.*;
 
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
@@ -12,10 +15,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
-
-import net.everla.everlaartifacts.EverlaartifactsMod;
-
-import java.util.List;
 
 /**
  * 永恒物品处理器
@@ -30,21 +29,52 @@ public class EverlastingItemHandler {
         Registries.ITEM, 
         new ResourceLocation("everlaartifacts", "everlasting")
     );
-    
     /**
-     * 监听物品提示事件，为符合条件的物品添加不可破坏属性
+     * 监听事件给予真实的不可破坏
      */
+
     @SubscribeEvent
-    public static void onItemTooltip(ItemTooltipEvent event) {
-        ItemStack stack = event.getItemStack();
-        
-        // 检查物品是否具有永恒标签、有耐久度且尚未添加不可破坏标签
-        if (hasEverlastingTag(stack) && hasDurability(stack) && !hasUnbreakableTag(stack)) {
+    public static void onLivingAttack(LivingAttackEvent event) {
+        ItemStack stack = event.getEntity().getMainHandItem();
+        if (EverlastingUsable(stack)) {
             // 添加不可破坏NBT标签
             addUnbreakableTag(stack);
         }
     }
-    
+    @SubscribeEvent
+    public static void onLivingHurt(LivingHurtEvent event){
+        for(ItemStack armor : event.getEntity().getArmorSlots()){
+            if (EverlastingUsable(armor)){
+                addUnbreakableTag(armor);
+            } else return;
+        }
+    }
+
+    @SubscribeEvent
+    public static void ItemRightClick(PlayerInteractEvent.RightClickItem event){
+        ItemStack stack = event.getItemStack();
+        if (EverlastingUsable(stack)) {
+            // 添加不可破坏NBT标签
+            addUnbreakableTag(stack);
+        }
+    }
+    /**
+     * 监听物品提示事件，为符合条件的物品添加视觉上的不可破坏属性
+     */
+    @SubscribeEvent
+    public static void onItemTooltip(ItemTooltipEvent event) {
+        ItemStack stack = event.getItemStack();
+        if (EverlastingUsable(stack)) {
+            // 添加不可破坏NBT标签
+            addUnbreakableTag(stack);
+        }
+    }
+    // 检测是否符合要求
+    public static boolean EverlastingUsable(ItemStack stack){
+        if (hasEverlastingTag(stack) && hasDurability(stack) && !hasUnbreakableTag(stack)) {
+            return true;
+        } return false;
+    }
     /**
      * 检查物品是否具有永恒标签
      */
