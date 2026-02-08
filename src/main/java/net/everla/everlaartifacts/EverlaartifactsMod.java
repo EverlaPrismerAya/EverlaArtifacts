@@ -19,6 +19,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.FriendlyByteBuf;
 
 import net.everla.everlaartifacts.server.handlers.items.red_packet.RedPacketHandler;
+import net.everla.everlaartifacts.server.handlers.items.everlasting.EverlastingItemHandler;
 import net.everla.everlaartifacts.network.ServerPerformanceScorePacket;
 import net.everla.everlaartifacts.init.EverlaartifactsModTabs;
 import net.everla.everlaartifacts.init.EverlaartifactsModSounds;
@@ -51,10 +52,10 @@ public class EverlaartifactsMod {
 	public static final String MODID = "everlaartifacts";
 
 	public EverlaartifactsMod() {
-		// Start of user code block mod constructor
 		// 注册红包处理器
 		MinecraftForge.EVENT_BUS.register(RedPacketHandler.class);
-		// End of user code block mod constructor
+		// 注册永恒物品处理器
+		MinecraftForge.EVENT_BUS.register(EverlastingItemHandler.class);
 		MinecraftForge.EVENT_BUS.register(this);
 		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 		EverlaartifactsModSounds.REGISTRY.register(bus);
@@ -69,17 +70,12 @@ public class EverlaartifactsMod {
 		EverlaartifactsModParticleTypes.REGISTRY.register(bus);
 		EverlaartifactsModFluids.REGISTRY.register(bus);
 		EverlaartifactsModFluidTypes.REGISTRY.register(bus);
-		// Start of user code block mod init
 		EverlaArtifactsConfig.register();
 		initializeSystemInfo();
 		registerNetworkPackets();
 		// 确保游戏规则类被加载以触发注册
 		LOGGER.info("游戏规则 ForceUseTruePerformance 类加载: {}", ForceUseTruePerformance.FORCE_USE_TRUE_PERFORMANCE.toString());
-		// End of user code block mod init
 	}
-
-	// Start of user code block mod methods
-	// 系统信息全局变量
 	public static int CPUCoreCount = 0;
 	public static int AllocatedRam = 0; // 单位 MB
 
@@ -138,7 +134,6 @@ public class EverlaartifactsMod {
 		}
 	}
 
-	// End of user code block mod methods
 	private static final String PROTOCOL_VERSION = "1";
 	public static final SimpleChannel PACKET_HANDLER = NetworkRegistry.newSimpleChannel(new ResourceLocation(MODID, MODID), () -> PROTOCOL_VERSION, PROTOCOL_VERSION::equals, PROTOCOL_VERSION::equals);
 	private static int messageID = 0;
