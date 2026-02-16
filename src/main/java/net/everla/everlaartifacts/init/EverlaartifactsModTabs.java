@@ -61,6 +61,7 @@ public class EverlaartifactsModTabs {
 				tabData.accept(EverlaartifactsModItems.CONDENCED_POTATO_9.get());
 				tabData.accept(EverlaartifactsModItems.CHALICE_OF_BLOOD_GOD.get());
 				tabData.accept(EverlaartifactsModItems.NILK.get());
+				tabData.accept(EverlaartifactsModItems.WEIRD_FISH_STEW.get());
 			}).withTabsBefore(EVERLA_TWEAKER.getId()).build());
 	public static final RegistryObject<CreativeModeTab> EVERLA_DISCS = REGISTRY.register("everla_discs",
 			() -> CreativeModeTab.builder().title(Component.translatable("item_group.everlaartifacts.everla_discs")).icon(() -> new ItemStack(EverlaartifactsModItems.TWISTED_GARDEN.get())).displayItems((parameters, tabData) -> {

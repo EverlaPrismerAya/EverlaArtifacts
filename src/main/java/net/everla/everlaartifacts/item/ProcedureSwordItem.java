@@ -1,11 +1,8 @@
-
 package net.everla.everlaartifacts.item;
 
-import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.everla.everlaartifacts.EverlaartifactsMod;
 import net.minecraftforge.fml.common.Mod;
 
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.entity.player.Player;
@@ -18,18 +15,20 @@ import net.minecraft.world.level.Level;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.ExperienceOrb;
+import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
+import net.minecraft.world.entity.boss.EnderDragonPart;
 
 import net.everla.everlaartifacts.init.EverlaartifactsModItems;
-
-import java.util.List;
-import java.util.UUID;
-import java.util.concurrent.ConcurrentHashMap;
+import net.everla.everlaartifacts.init.EverlaartifactsModMobEffects;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 @Mod.EventBusSubscriber(modid = "everlaartifacts")
 public class ProcedureSwordItem extends SwordItem {
-	// 记录已触发特殊奖励的实体UUID，防止重复触发
-	private static final ConcurrentHashMap<UUID, Boolean> TRIGGERED_ENTITIES = new ConcurrentHashMap<>();
-
+	//大部分日志正常情况下应该注释掉
+	public static final Logger LOGGER = LogManager.getLogger(EverlaartifactsMod.class);
 	public ProcedureSwordItem() {
 		super(new Tier() {
 			public int getUses() {
@@ -61,64 +60,86 @@ public class ProcedureSwordItem extends SwordItem {
 	public boolean onLeftClickEntity(ItemStack stack, Player player, Entity entity) {
 		var level = player.level();
 
-		if (!level.isClientSide && level instanceof ServerLevel serverLevel && entity instanceof LivingEntity victim) {
-			// 检查实体是否被命名为"Procedure"
-			if (victim.hasCustomName() && "Procedure".equals(victim.getCustomName().getString())) {
-				// 安全检查：防止重复触发
-				UUID entityUUID = victim.getUUID();
-				if (TRIGGERED_ENTITIES.putIfAbsent(entityUUID, Boolean.TRUE) != null) {
-					// 该实体已触发过，使用普通攻击逻辑
-					return super.onLeftClickEntity(stack, player, entity);
-				}
-
-				// 完整的秒杀逻辑，仿照Infinity Sword
-				DamageSource damageSource = player.damageSources().playerAttack(player);
-
-				// 处理不同类型的受害者
-				if (victim instanceof net.minecraft.world.entity.boss.enderdragon.EnderDragon dragon) {
-					// 末影龙特殊处理
+		if (!level.isClientSide && level instanceof ServerLevel serverLevel) {
+			// 检查玩家是否具有认知错乱效果
+			boolean hasCognitiveDisorder = player.hasEffect(EverlaartifactsModMobEffects.COGNITIVE_DISORDER.get());
+			// 创建伤害源
+			var damageSource = player.damageSources().playerAttack(player);
+			// 末影龙特殊处理
+			if (entity instanceof EnderDragonPart dragonPart) {
+				EnderDragon dragon = dragonPart.parentMob;  // 获取真正的末影龙实体
+				if (hasCognitiveDisorder){
 					dragon.hurt(dragon.head, damageSource, Float.MAX_VALUE);
-				} else if (victim instanceof Player pvp) {
-					// PvP处理
-					this.hurt(victim, damageSource, Float.MAX_VALUE);
-				} else {
-					// 普通生物处理
-					this.hurt(victim, damageSource, Float.MAX_VALUE);
 				}
+			}
+			// 普通实体处理
+			if (entity instanceof LivingEntity victim){
 
-				// 特殊奖励处理（在死亡前执行）
-				// 给予99点经验值
-				player.giveExperiencePoints(99);
+				// 检查实体是否被命名为"Procedure"或者玩家具有认知错乱效果
+				if ((victim.hasCustomName() && "Procedure".equals(victim.getCustomName().getString())) || hasCognitiveDisorder) {
+					if (victim.getHealth() > 0){
+						// 特殊奖励处理
+						// 获取经验值
+						int experienceReward = victim.getExperienceReward() * 10;
+						// 掉落经验球
+						int orbCount = Math.min(experienceReward, 10); // 最多单组生成个数
+						int experiencePerOrb = experienceReward / orbCount;
+						int remainingExperience = experienceReward % orbCount;
 
-				// 从战利品表掉落10次物品
-				try {
-					java.lang.reflect.Method dropMethod = LivingEntity.class.getDeclaredMethod("dropFromLootTable", DamageSource.class, boolean.class);
-					dropMethod.setAccessible(true);
-					for (int i = 0; i < 10; i++) {
-						dropMethod.invoke(victim, damageSource, true);
+						for (int j = 0; j < orbCount; j++) {
+							int currentExp = experiencePerOrb + (j < remainingExperience ? 1 : 0);
+							ExperienceOrb orb = new ExperienceOrb(serverLevel, victim.getX(), victim.getY(), victim.getZ(), currentExp);
+							serverLevel.addFreshEntity(orb);
+						}
+						// 从战利品表掉落物品
+						try {
+							//反射获取战利品
+							java.lang.reflect.Method dropMethod = LivingEntity.class.getDeclaredMethod("dropFromLootTable", DamageSource.class, boolean.class);
+							dropMethod.setAccessible(true);
+							for (int i = 0; i < 10; i++){
+								//掉落战利品
+								dropMethod.invoke(victim, damageSource, true);
+								//下界之星是硬编码 所以说这里也硬编码
+								if (victim.getType() == net.minecraft.world.entity.EntityType.WITHER){
+									ItemEntity netherStar = new ItemEntity(serverLevel, victim.getX(), victim.getY(), victim.getZ(), new ItemStack(Items.NETHER_STAR));
+									netherStar.setPickUpDelay(10);
+									serverLevel.addFreshEntity(netherStar);
+								}
+							}
+						} catch (Exception e) {
+							System.out.println("Failed to drop loot: " + e.getMessage());
+						}
+
+						// 播放Deltarune爆炸音效
+						serverLevel.playSound(null, victim.getX(), victim.getY(), victim.getZ(),
+								net.minecraft.sounds.SoundEvent.createVariableRangeEvent(
+										net.minecraft.resources.ResourceLocation.fromNamespaceAndPath("everlaartifacts", "deltarune_explosion")
+								), net.minecraft.sounds.SoundSource.HOSTILE, 1.0F, 1.0F);
+
 					}
-				} catch (Exception e) {
-					System.out.println("Failed to drop loot: " + e.getMessage());
+					// 完整的秒杀逻辑，仿寰宇支配之剑
+					// 处理不同类型的受害者
+					if (victim instanceof Player pvp) {
+						// PvP处理
+						this.hurt(victim, damageSource, Float.MAX_VALUE);
+					} else {
+						// 普通生物处理
+						this.hurt(victim, damageSource, Float.MAX_VALUE);
+					}
+
+					// 死亡后处理
+					if (victim.isDeadOrDying()) {
+						victim.setHealth(0);
+						this.die(victim, damageSource);
+						player.killedEntity(serverLevel, victim);
+					}
+
+					return true;
 				}
-
-				// 播放Deltarune爆炸音效
-				serverLevel.playSound(null, victim.getX(), victim.getY(), victim.getZ(),
-						net.minecraft.sounds.SoundEvent.createVariableRangeEvent(
-								net.minecraft.resources.ResourceLocation.fromNamespaceAndPath("everlaartifacts", "deltarune_explosion")
-						), net.minecraft.sounds.SoundSource.HOSTILE, 1.0F, 1.0F);
-
-				// 死亡后处理
-				if (victim.isDeadOrDying()) {
-					victim.setHealth(0);
-					this.die(victim, damageSource);
-					player.killedEntity(serverLevel, victim);
-				}
-
-				return true;
 			}
 		}
 
-		// 如果不是名为"Procedure"的实体，则使用普通剑的攻击逻辑
+		// 如果不符合，则使用普通剑的攻击逻辑
 		return super.onLeftClickEntity(stack, player, entity);
 	}
 
@@ -258,15 +279,5 @@ public class ProcedureSwordItem extends SwordItem {
 				// 默认不生成凋零玫瑰
 			}
 		}
-	}
-	
-	/**
-	 * 监听实体死亡事件，清理UUID记录防止内存泄漏
-	 */
-	@SubscribeEvent
-	public static void onLivingDeath(LivingDeathEvent event) {
-		// 在实体死亡时移除其UUID记录
-		UUID entityUUID = event.getEntity().getUUID();
-		TRIGGERED_ENTITIES.remove(entityUUID);
 	}
 }

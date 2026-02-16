@@ -28,21 +28,17 @@ import net.everla.everlaartifacts.init.EverlaartifactsModEnchantments;
 
 @Mod.EventBusSubscriber(modid = "everlaartifacts")
 public class SteadfastHandler {
-    // ===== 核心修复：移除固定数组，改用线性公式计算 =====
     // 增伤公式：5 + (level - 1) * 3 = 2 + level * 3
     //   level 1: 2 + 1*3 = 5
     //   level 2: 2 + 2*3 = 8
     //   level 3: 2 + 3*3 = 11
-    //   level 4: 2 + 4*3 = 14（超限继续增长）
     private static double getAttackDamageBonus(int level) {
         return 2.0 + level * 3.0;
     }
-    
     // 突进伤害公式：10 + (level - 1) * 2 = 8 + level * 2
     //   level 1: 8 + 1*2 = 10
     //   level 2: 8 + 2*2 = 12
     //   level 3: 8 + 3*2 = 14
-    //   level 4: 8 + 4*2 = 16（超限继续增长）
     private static double getDashDamage(int level) {
         return 8.0 + level * 2.0;
     }
@@ -79,8 +75,7 @@ public class SteadfastHandler {
         ItemStack mainHand = player.getMainHandItem();
         int levelEnch = getSteadfastLevel(mainHand);
         if (levelEnch <= 0) return;
-        
-        // ===== 核心修复：使用公式计算增伤（支持超限等级）=====
+
         float attackStrength = player.getAttackStrengthScale(0.5f);
         double baseBonus = getAttackDamageBonus(levelEnch); // 线性公式
         double actualBonus = baseBonus * attackStrength;
@@ -117,8 +112,7 @@ public class SteadfastHandler {
             currentTime - LAST_DASH_TIME.get(playerId) < DASH_COOLDOWN_TICKS) {
             return;
         }
-        
-        // ===== 核心修复：使用公式计算突进伤害（支持超限等级）=====
+
         float attackStrength = player.getAttackStrengthScale(0.5f);
         double baseDashDamage = getDashDamage(levelEnch); // 线性公式
         performDash(player, baseDashDamage, attackStrength, (ServerLevel) level);
@@ -217,7 +211,6 @@ public class SteadfastHandler {
         serverTickCounter++;
         
         // 每个服务器tick都执行清理，确保击倒效果能准时恢复
-        // 注意：使用world的getGameTime()而不是server的getTickCount()
         // 遍历所有世界中的所有实体
         for (ServerLevel world : event.getServer().getAllLevels()) {
             long currentTime = world.getGameTime(); // 使用世界的时间而不是服务器的tick计数

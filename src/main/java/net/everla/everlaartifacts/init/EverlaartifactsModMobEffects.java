@@ -21,6 +21,8 @@ import net.everla.everlaartifacts.potion.BloodBlossomMobEffect;
 import net.everla.everlaartifacts.potion.BlitzkriegMobEffect;
 import net.everla.everlaartifacts.potion.BedmicDestructionMobEffect;
 import net.everla.everlaartifacts.potion.AmericanStyleCutOverlayMobEffect;
+import net.everla.everlaartifacts.potion.CognitiveDisorderMobEffect;
+import net.everla.everlaartifacts.potion.LethalPoisonMobEffect;
 import net.everla.everlaartifacts.EverlaartifactsMod;
 
 public class EverlaartifactsModMobEffects {
@@ -36,4 +38,6 @@ public class EverlaartifactsModMobEffects {
 	public static final RegistryObject<MobEffect> BLOOD_BLOSSOM = REGISTRY.register("blood_blossom", () -> new BloodBlossomMobEffect());
 	public static final RegistryObject<MobEffect> VENUS_SHELL_PASSIVE = REGISTRY.register("venus_shell_passive", () -> new VenusShellPassiveMobEffect());
 	public static final RegistryObject<MobEffect> VENUS_SHELL_ACTIVE = REGISTRY.register("venus_shell_active", () -> new VenusShellActiveMobEffect());
+	public static final RegistryObject<MobEffect> COGNITIVE_DISORDER = REGISTRY.register("cognitive_disorder", () -> new CognitiveDisorderMobEffect());
+	public static final RegistryObject<MobEffect> LETHAL_POISON = REGISTRY.register("lethal_poison", () -> new LethalPoisonMobEffect());
 }

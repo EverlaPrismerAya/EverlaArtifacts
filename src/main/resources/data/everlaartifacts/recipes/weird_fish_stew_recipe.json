@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:suspicious_stew"
+    },
+    {
+      "item": "minecraft:cooked_cod"
+    },
+    {
+      "item": "everlaartifacts:chalice_of_blood_god"
+    }
+  ],
+  "result": {
+    "item": "everlaartifacts:weird_fish_stew",
+    "count": 1
+  }
+}
