@@ -1,8 +1,5 @@
 package net.everla.everlaartifacts.item;
 
-import net.everla.everlaartifacts.EverlaartifactsMod;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraftforge.fml.common.Mod;
 
 import net.minecraft.world.item.*;
@@ -21,16 +18,17 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
 import net.minecraft.world.entity.boss.EnderDragonPart;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.server.MinecraftServer;
+import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import net.minecraftforge.fml.ModList;
 
 import net.everla.everlaartifacts.init.EverlaartifactsModItems;
 import net.everla.everlaartifacts.init.EverlaartifactsModMobEffects;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 @Mod.EventBusSubscriber(modid = "everlaartifacts")
 public class ProcedureSwordItem extends SwordItem {
 	//大部分日志正常情况下应该注释掉
-	public static final Logger LOGGER = LogManager.getLogger(EverlaartifactsMod.class);
 	public ProcedureSwordItem() {
 		super(new Tier() {
 			public int getUses() {
@@ -63,30 +61,36 @@ public class ProcedureSwordItem extends SwordItem {
 		var level = player.level();
 
 		if (!level.isClientSide && level instanceof ServerLevel serverLevel) {
+
 			// 检查玩家是否具有认知错乱效果
 			boolean hasCognitiveDisorder = player.hasEffect(EverlaartifactsModMobEffects.COGNITIVE_DISORDER.get());
 			// 创建伤害源
 			var damageSource = player.damageSources().playerAttack(player);
-			// 末影龙特殊处理
-			if (entity instanceof EnderDragonPart dragonPart) {
+			// 特殊处理
+			if (hasCognitiveDisorder){
+				// 末影龙
+				if (entity instanceof EnderDragonPart dragonPart) {
 				EnderDragon dragon = dragonPart.parentMob;  // 获取真正的末影龙实体
-				if (hasCognitiveDisorder){
 					dragon.hurt(dragon.head, damageSource, Float.MAX_VALUE);
 				}
-			}
-			ResourceLocation entityTypeId = BuiltInRegistries.ENTITY_TYPE.getKey(entity.getType());
-			if (entityTypeId != null && "draconicevolution".equals(entityTypeId.getNamespace())
-					&& "draconic_guardian".equals(entityTypeId.getPath())
-					&& hasCognitiveDisorder) {
-				// 设置生命值为0
-				// 对于非LivingEntity的实体，使用hurt方法造成致命伤害
-				if (entity instanceof LivingEntity livingEntity) {
-				    livingEntity.setHealth(0);
-				} else {
-				    entity.hurt(damageSource, Float.MAX_VALUE);
+				// 草飞混沌守卫
+				// 检查Draconic Evolution模组是否加载
+				if (ModList.get().isLoaded("draconicevolution")) {
+					try {
+						MinecraftServer server = serverLevel.getServer();
+						CommandSourceStack commandSource = server.createCommandSourceStack()
+							.withSuppressedOutput()
+							.withPermission(4)
+							.withPosition(player.position())
+							.withLevel(serverLevel);
+						String command = "data modify entity @e[type=draconicevolution:draconic_guardian,sort=nearest,limit=1] Health set value 0";
+						server.getCommands().performPrefixedCommand(commandSource, command);
+					} catch (Exception e) {
+						System.out.println("Failed to run command: " + e.getMessage());
+					}
 				}
-				return true;
 			}
+
 			// 普通实体处理
 			if (entity instanceof LivingEntity victim){
 
