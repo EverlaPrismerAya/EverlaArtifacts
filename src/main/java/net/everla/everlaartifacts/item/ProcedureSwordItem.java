@@ -83,7 +83,7 @@ public class ProcedureSwordItem extends SwordItem {
 							.withPermission(4)
 							.withPosition(player.position())
 							.withLevel(serverLevel);
-						String command = "data modify entity @e[type=draconicevolution:draconic_guardian,sort=nearest,limit=1] Health set value 0";
+						String command = "data modify entity @e[type=draconicevolution:draconic_guardian,sort=nearest,limit=1,distance=..10] Health set value 0";
 						server.getCommands().performPrefixedCommand(commandSource, command);
 					} catch (Exception e) {
 						System.out.println("Failed to run command: " + e.getMessage());
