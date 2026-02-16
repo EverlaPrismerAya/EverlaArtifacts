@@ -1,6 +1,8 @@
 package net.everla.everlaartifacts.item;
 
 import net.everla.everlaartifacts.EverlaartifactsMod;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraftforge.fml.common.Mod;
 
 import net.minecraft.world.item.*;
@@ -72,26 +74,42 @@ public class ProcedureSwordItem extends SwordItem {
 					dragon.hurt(dragon.head, damageSource, Float.MAX_VALUE);
 				}
 			}
+			ResourceLocation entityTypeId = BuiltInRegistries.ENTITY_TYPE.getKey(entity.getType());
+			if (entityTypeId != null && "draconicevolution".equals(entityTypeId.getNamespace())
+					&& "draconic_guardian".equals(entityTypeId.getPath())
+					&& hasCognitiveDisorder) {
+				// 设置生命值为0
+				// 对于非LivingEntity的实体，使用hurt方法造成致命伤害
+				if (entity instanceof LivingEntity livingEntity) {
+				    livingEntity.setHealth(0);
+				} else {
+				    entity.hurt(damageSource, Float.MAX_VALUE);
+				}
+				return true;
+			}
 			// 普通实体处理
 			if (entity instanceof LivingEntity victim){
 
 				// 检查实体是否被命名为"Procedure"或者玩家具有认知错乱效果
 				if ((victim.hasCustomName() && "Procedure".equals(victim.getCustomName().getString())) || hasCognitiveDisorder) {
-					if (victim.getHealth() > 0){
+					//哦还活着
+					if (victim.getHealth() > 0 ){
 						// 特殊奖励处理
-						// 获取经验值
-						int experienceReward = victim.getExperienceReward() * 10;
-						// 掉落经验球
-						int orbCount = Math.min(experienceReward, 10); // 最多单组生成个数
-						int experiencePerOrb = experienceReward / orbCount;
-						int remainingExperience = experienceReward % orbCount;
+						// 经验值处理
+						if (victim.getExperienceReward() > 0){
+							int experienceReward = victim.getExperienceReward() * 10;
+							// 掉落经验球
+							int orbCount = Math.min(experienceReward, 10); // 最多单组生成个数
+							int experiencePerOrb = experienceReward / orbCount;
+							int remainingExperience = experienceReward % orbCount;
 
-						for (int j = 0; j < orbCount; j++) {
-							int currentExp = experiencePerOrb + (j < remainingExperience ? 1 : 0);
-							ExperienceOrb orb = new ExperienceOrb(serverLevel, victim.getX(), victim.getY(), victim.getZ(), currentExp);
-							serverLevel.addFreshEntity(orb);
+							for (int j = 0; j < orbCount; j++) {
+								int currentExp = experiencePerOrb + (j < remainingExperience ? 1 : 0);
+								ExperienceOrb orb = new ExperienceOrb(serverLevel, victim.getX(), victim.getY(), victim.getZ(), currentExp);
+								serverLevel.addFreshEntity(orb);
+							}
 						}
-						// 从战利品表掉落物品
+						// 掉落物处理
 						try {
 							//反射获取战利品
 							java.lang.reflect.Method dropMethod = LivingEntity.class.getDeclaredMethod("dropFromLootTable", DamageSource.class, boolean.class);
@@ -133,7 +151,6 @@ public class ProcedureSwordItem extends SwordItem {
 						this.die(victim, damageSource);
 						player.killedEntity(serverLevel, victim);
 					}
-
 					return true;
 				}
 			}
