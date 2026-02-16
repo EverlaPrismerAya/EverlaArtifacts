@@ -71,19 +71,21 @@ public class ProcedureSwordItem extends SwordItem {
 				// 末影龙
 				if (entity instanceof EnderDragonPart dragonPart) {
 				EnderDragon dragon = dragonPart.parentMob;  // 获取真正的末影龙实体
-					dragon.hurt(dragon.head, damageSource, Float.MAX_VALUE);
+					dragon.hurt(dragon.head, damageSource, 33550336.0F);
 				}
 				// 草飞混沌守卫
 				// 检查Draconic Evolution模组是否加载
 				if (ModList.get().isLoaded("draconicevolution")) {
 					try {
 						MinecraftServer server = serverLevel.getServer();
-						CommandSourceStack commandSource = server.createCommandSourceStack()
+						//获取命令执行者
+						CommandSourceStack commandSource = entity.createCommandSourceStack()
 							.withSuppressedOutput()
 							.withPermission(4)
-							.withPosition(player.position())
+							.withPosition(entity.position())
 							.withLevel(serverLevel);
-						String command = "data modify entity @e[type=draconicevolution:draconic_guardian,sort=nearest,limit=1,distance=..10] Health set value 0";
+						//使用Data命令设置生命值为0而非SetHealth以绕过龙研反作弊检测
+						String command = "execute as @e[type=draconicevolution:draconic_guardian,distance=..10] run data modify entity @s Health set value 0";
 						server.getCommands().performPrefixedCommand(commandSource, command);
 					} catch (Exception e) {
 						System.out.println("Failed to run command: " + e.getMessage());
@@ -143,10 +145,10 @@ public class ProcedureSwordItem extends SwordItem {
 					// 处理不同类型的受害者
 					if (victim instanceof Player pvp) {
 						// PvP处理
-						this.hurt(victim, damageSource, Float.MAX_VALUE);
+						this.hurt(victim, damageSource, 33550336.0F);
 					} else {
 						// 普通生物处理
-						this.hurt(victim, damageSource, Float.MAX_VALUE);
+						this.hurt(victim, damageSource, 33550336.0F);
 					}
 
 					// 死亡后处理
