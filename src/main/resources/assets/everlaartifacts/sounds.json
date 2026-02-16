@@ -8,38 +8,11 @@
       }
     ]
   },
-  "lightning_storm": {
-    "subtitle": "subtitles.lightning_storm",
-    "sounds": [
-      {
-        "name": "everlaartifacts:lightning_storm",
-        "stream": false
-      }
-    ]
-  },
-  "avada_kedavra": {
-    "subtitle": "subtitles.avada_kedavra",
-    "sounds": [
-      {
-        "name": "everlaartifacts:avada_kedavra",
-        "stream": false
-      }
-    ]
-  },
   "waaooo": {
     "subtitle": "subtitles.waaooo",
     "sounds": [
       {
         "name": "everlaartifacts:waaooo",
-        "stream": false
-      }
-    ]
-  },
-  "tnnd": {
-    "subtitle": "subtitles.tnnd",
-    "sounds": [
-      {
-        "name": "everlaartifacts:tnnd",
         "stream": false
       }
     ]
@@ -50,24 +23,6 @@
       {
         "name": "everlaartifacts:genshin_start",
         "stream": false
-      }
-    ]
-  },
-  "noob": {
-    "subtitle": "subtitles.noob",
-    "sounds": [
-      {
-        "name": "everlaartifacts:noob",
-        "stream": false
-      }
-    ]
-  },
-  "storm": {
-    "subtitle": "subtitles.storm",
-    "sounds": [
-      {
-        "name": "everlaartifacts:storm",
-        "stream": true
       }
     ]
   },
@@ -89,83 +44,11 @@
       }
     ]
   },
-  "reload": {
-    "subtitle": "subtitles.reload",
-    "sounds": [
-      {
-        "name": "everlaartifacts:reload",
-        "stream": false
-      }
-    ]
-  },
-  "xeloc": {
-    "subtitle": "subtitles.xeloc",
-    "sounds": [
-      {
-        "name": "everlaartifacts:xeloc",
-        "stream": false
-      }
-    ]
-  },
-  "quaso": {
-    "subtitle": "subtitles.quaso",
-    "sounds": [
-      {
-        "name": "everlaartifacts:quaso",
-        "stream": false
-      }
-    ]
-  },
   "iwilltellingyourdream": {
     "subtitle": "subtitles.iwilltellingyourdream",
     "sounds": [
       {
         "name": "everlaartifacts:iwilltellingyourdream",
-        "stream": false
-      }
-    ]
-  },
-  "harryroad_cyclone": {
-    "subtitle": "subtitles.harryroad_cyclone",
-    "sounds": [
-      {
-        "name": "everlaartifacts:harryroad_cyclone",
-        "stream": false
-      }
-    ]
-  },
-  "fuckyou": {
-    "subtitle": "subtitles.fuckyou",
-    "sounds": [
-      {
-        "name": "everlaartifacts:fuckyou",
-        "stream": false
-      }
-    ]
-  },
-  "gohell": {
-    "subtitle": "subtitles.gohell",
-    "sounds": [
-      {
-        "name": "everlaartifacts:gohell",
-        "stream": false
-      }
-    ]
-  },
-  "fuckout": {
-    "subtitle": "subtitles.fuckout",
-    "sounds": [
-      {
-        "name": "everlaartifacts:fuckout",
-        "stream": false
-      }
-    ]
-  },
-  "gfbhurt": {
-    "subtitle": "subtitles.gfbhurt",
-    "sounds": [
-      {
-        "name": "everlaartifacts:everlagfbhurt",
         "stream": false
       }
     ]
@@ -214,14 +97,6 @@
     "sounds": [
       {
         "name": "everlaartifacts:ireallywant2stayaturhouse",
-        "stream": true
-      }
-    ]
-  },
-  "gfbfinalbgm": {
-    "sounds": [
-      {
-        "name": "everlaartifacts:gfbfinalbgm",
         "stream": true
       }
     ]
@@ -339,56 +214,11 @@
       }
     ]
   },
-  "murasama_swing": {
-    "subtitle": "subtitles.murasama_swing",
-    "sounds": [
-      {
-        "name": "everlaartifacts:murasama_swing",
-        "stream": false
-      }
-    ]
-  },
-  "murasama_swing_heavy": {
-    "subtitle": "subtitles.murasama_swing_heavy",
-    "sounds": [
-      {
-        "name": "everlaartifacts:murasama_swing_heavy",
-        "stream": false
-      }
-    ]
-  },
-  "murasama_hit_organic": {
-    "subtitle": "subtitles.murasama_hit_organic",
-    "sounds": [
-      {
-        "name": "everlaartifacts:murasama_hit_organic",
-        "stream": false
-      }
-    ]
-  },
-  "murasama_hit_inorganic": {
-    "subtitle": "subtitles.murasama_hit_inorganic",
-    "sounds": [
-      {
-        "name": "everlaartifacts:murasama_hit_inorganic",
-        "stream": false
-      }
-    ]
-  },
   "emotional_damage": {
     "subtitle": "subtitles.emotional_damage",
     "sounds": [
       {
         "name": "everlaartifacts:emotional_damage",
-        "stream": false
-      }
-    ]
-  },
-  "godslayerdash": {
-    "subtitle": "subtitles.godslayerdash",
-    "sounds": [
-      {
-        "name": "everlaartifacts:godslayerdash",
         "stream": false
       }
     ]
@@ -476,7 +306,7 @@
   "placeholder_snd": {
     "sounds": [
       {
-        "name": "everlaartifacts:plaaceholder",
+        "name": "everlaartifacts:placeholder",
         "stream": false
       }
     ]
@@ -489,46 +319,11 @@
       }
     ]
   },
-  "everla_blaster_shoot": {
-    "subtitle": "subtitles.everla_blaster_shoot",
-    "sounds": [
-      {
-        "name": "everlaartifacts:everla_blaster_shoot",
-        "stream": false
-      }
-    ]
-  },
-  "everla_blaster_charge": {
-    "subtitle": "subtitles.everla_blaster_charge",
-    "sounds": [
-      {
-        "name": "everlaartifacts:everla_blaster_charge",
-        "stream": false
-      }
-    ]
-  },
-  "fuckyoustupidflagandpride": {
-    "sounds": [
-      {
-        "name": "everlaartifacts:fuckyoustupidflagandpride",
-        "stream": false
-      }
-    ]
-  },
   "deltarune_explosion": {
     "subtitle": "subtitles.deltarune_explosion",
     "sounds": [
       {
         "name": "everlaartifacts:deltarune_explosion",
-        "stream": false
-      }
-    ]
-  },
-  "fumofumo": {
-    "subtitle": "subtitles.fumofumo",
-    "sounds": [
-      {
-        "name": "everlaartifacts:fumofumo",
         "stream": false
       }
     ]
