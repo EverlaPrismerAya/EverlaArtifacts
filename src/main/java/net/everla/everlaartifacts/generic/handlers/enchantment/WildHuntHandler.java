@@ -90,9 +90,19 @@ public class WildHuntHandler {
             boolean isLowHealth = currentHealth <= IMMUNITY_THRESHOLD;
             
             if ((isFatalDamage || isLowHealth) && !isHyperLethalDamage) {
-                activateWildHunt(entity, serverLevel);
-                event.setCanceled(true);
-                return;
+                // 检查是否在无敌帧期间
+                if (entity.invulnerableTime > 0) {
+                    // 如果在无敌帧期间，先取消当前伤害事件
+                    event.setCanceled(true);
+                    // 然后立即激活狂猎状态
+                    activateWildHunt(entity, serverLevel);
+                    return;
+                } else {
+                    // 不在无敌帧期间，正常激活狂猎
+                    activateWildHunt(entity, serverLevel);
+                    event.setCanceled(true);
+                    return;
+                }
             }
             // 如果是非致命伤害且生命值>1，让伤害正常处理
             else {
@@ -140,6 +150,20 @@ public class WildHuntHandler {
         // 检查是否处于狂猎状态
         if (isEntityInWildHunt(entity)) {
             // 取消死亡，因为狂猎状态下免疫致命伤害
+            event.setCanceled(true);
+            entity.setHealth(IMMUNITY_THRESHOLD);
+            return;
+        }
+        
+        // 额外检查：如果实体穿着狂猎胸甲且即将死亡，尝试激活狂猎状态
+        ItemStack chestArmor = entity.getItemBySlot(EquipmentSlot.CHEST);
+        int wildHuntLevel = EnchantmentHelper.getItemEnchantmentLevel(
+            EverlaartifactsModEnchantments.WILD_HUNT.get(), chestArmor);
+        
+        if (wildHuntLevel > 0 && entity.getMaxHealth() > IMMUNITY_THRESHOLD) {
+            // 激活狂猎状态并取消死亡
+            ServerLevel serverLevel = (ServerLevel) entity.level();
+            activateWildHunt(entity, serverLevel);
             event.setCanceled(true);
             entity.setHealth(IMMUNITY_THRESHOLD);
         }
@@ -534,6 +558,12 @@ public class WildHuntHandler {
         
         // 检查是否处于狂猎状态
         boolean currentlyInWildHunt = isEntityInWildHunt(entity);
+        
+        // 添加安全检查：如果实体生命值过低但在狂猎状态中，强制恢复
+        if (currentlyInWildHunt && entity.getHealth() <= 0) {
+            entity.setHealth(IMMUNITY_THRESHOLD);
+        }
+        
         if (currentlyInWildHunt) {
             long startTime = getEntityStartTime(entity);
             boolean isDurationExpired = (currentTick - startTime) >= WILD_HUNT_DURATION;
