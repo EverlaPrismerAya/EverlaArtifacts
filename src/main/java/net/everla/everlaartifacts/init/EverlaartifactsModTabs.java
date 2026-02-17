@@ -29,11 +29,12 @@ public class EverlaartifactsModTabs {
 				tabData.accept(EverlaartifactsModItems.AURIC_SCRAP_BLOCK.get());
 				tabData.accept(EverlaartifactsModItems.AURIC_INGOT.get());
 				tabData.accept(EverlaartifactsModItems.RED_PACKET.get());
-				tabData.accept(EverlaartifactsModItems.NUCLEAR_WASTE_WATER_BUCKET.get());
-				tabData.accept(EverlaartifactsModItems.INNER_QUARTZ_OUTER_NUCLEAR.get());
-				tabData.accept(EverlaartifactsModItems.BEIJING_TICKET.get());
-				tabData.accept(EverlaartifactsModItems.NANJING_TICKET.get());
-				tabData.accept(EverlaartifactsModItems.TOKYO_TICKET.get());
+				tabData.accept(EverlaartifactsModItems.THREE_INTERWINED_FATE.get());
+				tabData.accept(EverlaartifactsModItems.FIRECRACKER.get());
+				tabData.accept(EverlaartifactsModItems.HOMA_STAFF.get());
+				tabData.accept(EverlaartifactsModItems.VENUS_SHELL.get());
+				tabData.accept(EverlaartifactsModItems.BRACKETS_BLADE.get());
+				tabData.accept(EverlaartifactsModItems.PROCEDURE_SWORD.get());
 			}).build());
 	public static final RegistryObject<CreativeModeTab> WEIRD_THING = REGISTRY.register("weird_thing",
 			() -> CreativeModeTab.builder().title(Component.translatable("item_group.everlaartifacts.weird_thing")).icon(() -> new ItemStack(EverlaartifactsModItems.BRAISED_PORK_WITH_PLUM_CABBAGE.get())).displayItems((parameters, tabData) -> {
@@ -41,9 +42,10 @@ public class EverlaartifactsModTabs {
 				tabData.accept(EverlaartifactsModItems.POT_OF_PAIN.get());
 				tabData.accept(EverlaartifactsModItems.CHINESE_DUMPLING.get());
 				tabData.accept(EverlaartifactsModItems.TWO_BREAD_SANDWICHED_WITH_CHEESE.get());
-				tabData.accept(EverlaartifactsModItems.THREE_INTERWINED_FATE.get());
 				tabData.accept(EverlaartifactsModItems.WEIRD_COCKTAIL.get());
 				tabData.accept(EverlaartifactsModItems.BRAISED_PORK_WITH_PLUM_CABBAGE.get());
+				tabData.accept(EverlaartifactsModItems.NILK.get());
+				tabData.accept(EverlaartifactsModItems.WEIRD_FISH_STEW.get());
 				tabData.accept(EverlaartifactsModItems.PAY_TO_WIN_SHARD_1.get());
 				tabData.accept(EverlaartifactsModItems.PAY_TO_WIN_SHARD_2.get());
 				tabData.accept(EverlaartifactsModItems.PAY_TO_WIN_SHARD_3.get());
@@ -60,8 +62,11 @@ public class EverlaartifactsModTabs {
 				tabData.accept(EverlaartifactsModItems.CONDENCED_POTATO_8.get());
 				tabData.accept(EverlaartifactsModItems.CONDENCED_POTATO_9.get());
 				tabData.accept(EverlaartifactsModItems.CHALICE_OF_BLOOD_GOD.get());
-				tabData.accept(EverlaartifactsModItems.NILK.get());
-				tabData.accept(EverlaartifactsModItems.WEIRD_FISH_STEW.get());
+				tabData.accept(EverlaartifactsModItems.NUCLEAR_WASTE_WATER_BUCKET.get());
+				tabData.accept(EverlaartifactsModItems.INNER_QUARTZ_OUTER_NUCLEAR.get());
+				tabData.accept(EverlaartifactsModItems.BEIJING_TICKET.get());
+				tabData.accept(EverlaartifactsModItems.NANJING_TICKET.get());
+				tabData.accept(EverlaartifactsModItems.TOKYO_TICKET.get());
 			}).withTabsBefore(EVERLA_TWEAKER.getId()).build());
 	public static final RegistryObject<CreativeModeTab> EVERLA_DISCS = REGISTRY.register("everla_discs",
 			() -> CreativeModeTab.builder().title(Component.translatable("item_group.everlaartifacts.everla_discs")).icon(() -> new ItemStack(EverlaartifactsModItems.TWISTED_GARDEN.get())).displayItems((parameters, tabData) -> {
