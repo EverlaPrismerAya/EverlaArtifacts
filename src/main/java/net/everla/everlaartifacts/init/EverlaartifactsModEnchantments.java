@@ -10,6 +10,7 @@ import net.minecraftforge.registries.DeferredRegister;
 
 import net.minecraft.world.item.enchantment.Enchantment;
 
+import net.everla.everlaartifacts.enchantment.WildHuntEnchantment;
 import net.everla.everlaartifacts.enchantment.TPAuraEnchantment;
 import net.everla.everlaartifacts.enchantment.SteadfastEnchantment;
 import net.everla.everlaartifacts.enchantment.ScrapyardScroungerEnchantment;
@@ -28,4 +29,5 @@ public class EverlaartifactsModEnchantments {
 	public static final RegistryObject<Enchantment> SCRAPYARD_SCROUNGER = REGISTRY.register("scrapyard_scrounger", () -> new ScrapyardScroungerEnchantment());
 	public static final RegistryObject<Enchantment> MONEY_BURNERS_CREED = REGISTRY.register("money_burners_creed", () -> new MoneyBurnersCreedEnchantment());
 	public static final RegistryObject<Enchantment> LIVE_WIRE = REGISTRY.register("live_wire", () -> new LiveWireEnchantment());
+	public static final RegistryObject<Enchantment> WILD_HUNT = REGISTRY.register("wild_hunt", () -> new WildHuntEnchantment());
 }

@@ -143,9 +143,9 @@ public class BloodBlossomDamageHandler {
 
         // 如果找不到攻击者，使用普通的魔法伤害源
         if (attacker != null) {
-            return target.damageSources().indirectMagic(attacker, null);
+            return target.damageSources().mobAttack(attacker);
         } else {
-            return target.damageSources().magic();
+            return target.damageSources().generic();
         }
     }
 
