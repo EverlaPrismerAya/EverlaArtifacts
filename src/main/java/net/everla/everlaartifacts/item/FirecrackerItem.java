@@ -14,7 +14,7 @@ import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.server.level.ServerPlayer;
 
-import net.everla.everlaartifacts.entity.FirecrackerProjectileEntity;
+import net.everla.everlaartifacts.entity.projectiles.FirecrackerProjectileEntity;
 
 public class FirecrackerItem extends Item {
 	public FirecrackerItem() {

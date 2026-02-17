@@ -8,7 +8,7 @@ import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.MultiBufferSource;
 
-import net.everla.everlaartifacts.entity.AngolmoisDoomProjectileEntity;
+import net.everla.everlaartifacts.entity.projectiles.AngolmoisDoomProjectileEntity;
 import net.everla.everlaartifacts.client.model.Modelangolmois_doom;
 
 import com.mojang.math.Axis;

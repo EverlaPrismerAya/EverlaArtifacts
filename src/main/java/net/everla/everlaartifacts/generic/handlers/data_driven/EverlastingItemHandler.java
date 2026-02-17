@@ -37,7 +37,6 @@ public class EverlastingItemHandler {
     public static void onLivingAttack(LivingAttackEvent event) {
         ItemStack stack = event.getEntity().getMainHandItem();
         if (EverlastingUsable(stack)) {
-            // 添加不可破坏NBT标签
             addUnbreakableTag(stack);
         }
     }
@@ -54,7 +53,6 @@ public class EverlastingItemHandler {
     public static void ItemRightClick(PlayerInteractEvent.RightClickItem event){
         ItemStack stack = event.getItemStack();
         if (EverlastingUsable(stack)) {
-            // 添加不可破坏NBT标签
             addUnbreakableTag(stack);
         }
     }

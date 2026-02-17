@@ -1,6 +1,6 @@
 package net.everla.everlaartifacts.server.handlers.items.venus_shell;
 
-import net.everla.everlaartifacts.entity.AngolmoisDoomProjectileEntity;
+import net.everla.everlaartifacts.entity.projectiles.AngolmoisDoomProjectileEntity;
 import net.everla.everlaartifacts.init.EverlaartifactsModEntities;
 import net.everla.everlaartifacts.item.VenusShellItem;
 import net.minecraft.core.particles.ParticleTypes;
@@ -35,7 +35,7 @@ public class VenusShellAngolmoisHandler {
     private static final int RANDOM_PROJECTILES = 5; // 弹射物B数量
     private static final int GUARANTEED_PROJECTILE = 1; // 弹射物A数量
     private static final double SPAWN_HEIGHT = 10.0; // 距离实体头顶10方块
-    private static final double SPAWN_RADIUS = 5.0; // 半径5方块的随机位置
+    private static final double SPAWN_RADIUS = 10.0; // 半径5方块的随机位置
     private static final double EXPLOSION_RADIUS = 8.0; // 爆炸半径8方块
     
     // 冷却完成提示跟踪

@@ -9,7 +9,7 @@ import net.minecraft.world.item.ItemStack;
 import java.util.List;
 
 import net.everla.everlaartifacts.client.handlers.effects.genshin_start.GenshinStartSoundPlayHandler;
-import net.everla.everlaartifacts.server.handlers.effects.genshin_start.GenshinStartMobEffectHandler;
+import net.everla.everlaartifacts.server.handlers.effects.GenshinStartMobEffectHandler;
 
 public class GenshinStartMobEffect extends MobEffect {
 	public GenshinStartMobEffect() {

@@ -1,4 +1,4 @@
-package net.everla.everlaartifacts.server.handlers.effects.genshin_start;
+package net.everla.everlaartifacts.server.handlers.effects;
 
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.Entity;

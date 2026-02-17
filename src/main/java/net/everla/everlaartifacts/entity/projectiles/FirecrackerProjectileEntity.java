@@ -1,4 +1,4 @@
-package net.everla.everlaartifacts.entity;
+package net.everla.everlaartifacts.entity.projectiles;
 
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.network.PlayMessages;
@@ -18,7 +18,6 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.util.RandomSource;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.Packet;
 

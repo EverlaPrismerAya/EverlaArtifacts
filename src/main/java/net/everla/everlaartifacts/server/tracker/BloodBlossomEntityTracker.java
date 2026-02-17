@@ -1,4 +1,4 @@
-package net.everla.everlaartifacts.server;
+package net.everla.everlaartifacts.server.tracker;
 
 import net.everla.everlaartifacts.init.EverlaartifactsModMobEffects;
 import net.everla.everlaartifacts.network.BloodBlossomEntityPacket;

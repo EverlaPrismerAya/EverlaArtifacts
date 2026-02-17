@@ -4,7 +4,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffect;
 
-import net.everla.everlaartifacts.server.handlers.effects.nuclear_water_radiation.NuclearWaterRadiationBuffHandler;
+import net.everla.everlaartifacts.server.handlers.effects.NuclearWaterRadiationBuffHandler;
 
 public class NuclearWaterRadiationMobEffect extends MobEffect {
 	public NuclearWaterRadiationMobEffect() {

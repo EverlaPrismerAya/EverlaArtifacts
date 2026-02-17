@@ -1,5 +1,7 @@
 package net.everla.everlaartifacts.item;
 
+import net.minecraft.world.entity.TamableAnimal;
+import net.minecraft.world.entity.boss.wither.WitherBoss;
 import net.minecraftforge.fml.common.Mod;
 
 import net.minecraft.world.item.*;
@@ -7,24 +9,34 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.level.Level;
-import net.minecraft.advancements.CriteriaTriggers;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
 import net.minecraft.world.entity.boss.EnderDragonPart;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.server.MinecraftServer;
+
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.minecraftforge.fml.ModList;
 
 import net.everla.everlaartifacts.init.EverlaartifactsModItems;
 import net.everla.everlaartifacts.init.EverlaartifactsModMobEffects;
+
+import static net.minecraft.resources.ResourceLocation.fromNamespaceAndPath;
+import static net.minecraft.sounds.SoundEvent.createVariableRangeEvent;
+import static net.minecraft.sounds.SoundSource.HOSTILE;
+import static net.minecraft.tags.DamageTypeTags.*;
+import static net.minecraft.world.entity.EntityType.WITHER;
+import static net.minecraft.world.entity.Pose.DYING;
+import static net.minecraft.world.level.gameevent.GameEvent.ENTITY_DAMAGE;
+import static net.minecraft.world.level.gameevent.GameEvent.ENTITY_DIE;
 
 @Mod.EventBusSubscriber(modid = "everlaartifacts")
 public class ProcedureSwordItem extends SwordItem {
@@ -124,7 +136,7 @@ public class ProcedureSwordItem extends SwordItem {
 								//掉落战利品
 								dropMethod.invoke(victim, damageSource, true);
 								//下界之星是硬编码 所以说这里也硬编码
-								if (victim.getType() == net.minecraft.world.entity.EntityType.WITHER){
+								if (victim.getType() == WITHER){
 									ItemEntity netherStar = new ItemEntity(serverLevel, victim.getX(), victim.getY(), victim.getZ(), new ItemStack(Items.NETHER_STAR));
 									netherStar.setPickUpDelay(10);
 									serverLevel.addFreshEntity(netherStar);
@@ -136,9 +148,9 @@ public class ProcedureSwordItem extends SwordItem {
 
 						// 播放Deltarune爆炸音效
 						serverLevel.playSound(null, victim.getX(), victim.getY(), victim.getZ(),
-								net.minecraft.sounds.SoundEvent.createVariableRangeEvent(
-										net.minecraft.resources.ResourceLocation.fromNamespaceAndPath("everlaartifacts", "deltarune_explosion")
-								), net.minecraft.sounds.SoundSource.HOSTILE, 1.0F, 1.0F);
+								createVariableRangeEvent(
+										fromNamespaceAndPath("everlaartifacts", "deltarune_explosion")
+								), HOSTILE, 1.0F, 1.0F);
 
 					}
 					// 完整的秒杀逻辑，仿寰宇支配之剑
@@ -185,21 +197,21 @@ public class ProcedureSwordItem extends SwordItem {
 			victim.invulnerableTime = 20;
 			victim.getCombatTracker().recordDamage(pSource, pAmount);
 			victim.setHealth(victim.getHealth() - pAmount);
-			victim.gameEvent(net.minecraft.world.level.gameevent.GameEvent.ENTITY_DAMAGE);
+			victim.gameEvent(ENTITY_DAMAGE);
 			victim.hurtDuration = 10;
 			victim.hurtTime = victim.hurtDuration;
 
 			Entity entity1 = pSource.getEntity();
 			if (entity1 != null) {
 				if (entity1 instanceof LivingEntity livingentity1) {
-					if (!pSource.is(net.minecraft.tags.DamageTypeTags.NO_ANGER)) {
+					if (!pSource.is(NO_ANGER)) {
 						victim.setLastHurtByMob(livingentity1);
 					}
 				}
 
 				if (entity1 instanceof Player player1) {
 					victim.setLastHurtByPlayer(player1);
-				} else if (entity1 instanceof net.minecraft.world.entity.TamableAnimal tamableEntity) {
+				} else if (entity1 instanceof TamableAnimal tamableEntity) {
 					if (tamableEntity.isTame()) {
 						LivingEntity livingentity2 = tamableEntity.getOwner();
 						if (livingentity2 instanceof Player player2) {
@@ -213,11 +225,11 @@ public class ProcedureSwordItem extends SwordItem {
 
 			victim.level().broadcastDamageEvent(victim, pSource);
 
-			if (!pSource.is(net.minecraft.tags.DamageTypeTags.NO_IMPACT)) {
+			if (!pSource.is(NO_IMPACT)) {
 				victim.hurtMarked = true;
 			}
 
-			if (entity1 != null && !pSource.is(net.minecraft.tags.DamageTypeTags.IS_EXPLOSION)) {
+			if (entity1 != null && !pSource.is(IS_EXPLOSION)) {
 				double d0 = entity1.getX() - victim.getX();
 				double d1;
 				for (d1 = entity1.getZ() - victim.getZ(); d0 * d0 + d1 * d1 < 1.0E-4D; d1 = (Math.random() - Math.random()) * 0.01D) {
@@ -276,14 +288,14 @@ public class ProcedureSwordItem extends SwordItem {
 
 			if (level instanceof ServerLevel serverlevel) {
 				if (entity == null || entity.killedEntity(serverlevel, victim)) {
-					victim.gameEvent(net.minecraft.world.level.gameevent.GameEvent.ENTITY_DIE);
+					victim.gameEvent(ENTITY_DIE);
 					this.createWitherRose(victim, livingentity);
 				}
 
 				victim.level().broadcastEntityEvent(victim, (byte) 3);
 			}
 
-			victim.setPose(net.minecraft.world.entity.Pose.DYING);
+			victim.setPose(DYING);
 		}
 	}
 
@@ -293,7 +305,7 @@ public class ProcedureSwordItem extends SwordItem {
 	protected void createWitherRose(LivingEntity victim, LivingEntity pEntitySource) {
 		if (!victim.level().isClientSide) {
 			boolean flag = false;
-			if (pEntitySource instanceof net.minecraft.world.entity.boss.wither.WitherBoss) {
+			if (pEntitySource instanceof WitherBoss) {
 				// 凋零boss击杀时生成凋零玫瑰
 				flag = true;
 			}

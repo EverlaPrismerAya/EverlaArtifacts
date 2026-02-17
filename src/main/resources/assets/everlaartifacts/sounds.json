@@ -1,13 +1,4 @@
 {
-  "bullshit": {
-    "subtitle": "subtitles.bullshit",
-    "sounds": [
-      {
-        "name": "everlaartifacts:bullshit",
-        "stream": false
-      }
-    ]
-  },
   "waaooo": {
     "subtitle": "subtitles.waaooo",
     "sounds": [
@@ -31,15 +22,6 @@
     "sounds": [
       {
         "name": "everlaartifacts:metal_pipe",
-        "stream": false
-      }
-    ]
-  },
-  "gun": {
-    "subtitle": "subtitles.gun",
-    "sounds": [
-      {
-        "name": "everlaartifacts:fire",
         "stream": false
       }
     ]

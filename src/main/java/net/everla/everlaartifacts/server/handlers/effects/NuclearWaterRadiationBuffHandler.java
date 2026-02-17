@@ -1,4 +1,4 @@
-package net.everla.everlaartifacts.server.handlers.effects.nuclear_water_radiation;
+package net.everla.everlaartifacts.server.handlers.effects;
 
 import net.minecraftforge.fml.ModList;
 

@@ -1,4 +1,4 @@
-package net.everla.everlaartifacts.entity;
+package net.everla.everlaartifacts.entity.projectiles;
 
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.network.NetworkHooks;
