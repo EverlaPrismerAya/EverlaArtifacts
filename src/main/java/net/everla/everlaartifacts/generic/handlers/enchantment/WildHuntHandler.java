@@ -134,7 +134,6 @@ public class WildHuntHandler {
             }
         } else {
             // 如果是超高伤害，则添加无视保护标签
-            setEntityInWildHunt(entity, false);
             setHyperLethalDamageKey(entity, true);
         }
     }
@@ -147,8 +146,8 @@ public class WildHuntHandler {
         
         LivingEntity entity = event.getEntity();
         
-        // 检查是否因最大生命值降到1以下而死亡
-        if (entity.getMaxHealth() <= IMMUNITY_THRESHOLD) {
+        // 检查是否因最大生命值降到1以下或受到超高伤害而死亡
+        if (entity.getMaxHealth() <= IMMUNITY_THRESHOLD || isEntityKilledByHyperLethal(entity)) {
             // 允许正常死亡，并清除所有狂猎数据
             cleanupEntityWildHuntData(entity);
             return;
