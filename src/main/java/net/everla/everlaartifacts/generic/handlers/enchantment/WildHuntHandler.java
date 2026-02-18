@@ -176,7 +176,75 @@ public class WildHuntHandler {
             }
         }
     }
-    
+
+    @SubscribeEvent
+    public static void onLivingTick(LivingEvent.LivingTickEvent event) {
+        if (event.getEntity().level().isClientSide()) {
+            return;
+        }
+
+        LivingEntity entity = event.getEntity();
+        ServerLevel serverLevel = (ServerLevel) entity.level();
+        UUID entityUUID = entity.getUUID();
+        long currentTick = serverLevel.getGameTime();
+        if (isEntityKilledByHyperLethal(entity)){
+            return;
+        }
+        // 检查是否处于狂猎状态
+        boolean currentlyInWildHunt = isEntityInWildHunt(entity) && !isEntityKilledByHyperLethal(entity);
+
+        // 安全检查：如果实体生命值过低但在狂猎状态中，强制恢复
+        if (currentlyInWildHunt && entity.getHealth() <= 1) {
+            entity.setHealth(IMMUNITY_THRESHOLD);
+        }
+
+        if (currentlyInWildHunt) {
+            long startTime = getEntityStartTime(entity);
+            boolean isDurationExpired = (currentTick - startTime) >= WILD_HUNT_DURATION;
+
+            // 检查是否仍然穿着带有狂猎附魔的胸甲
+            ItemStack chestArmor = entity.getItemBySlot(EquipmentSlot.CHEST);
+            int wildHuntLevel = EnchantmentHelper.getItemEnchantmentLevel(
+                    EverlaartifactsModEnchantments.WILD_HUNT.get(), chestArmor);
+
+            // 应用属性减益效果
+            applyWildHuntAttributeModifiers(entity);
+
+            // 生成持续的黑烟粒子
+            spawnWildHuntParticles(entity, serverLevel);
+
+            // 如果狂猎状态已结束
+            if (isDurationExpired) {
+                // 结束狂猎状态但保留最大生命值减少
+                setEntityInWildHunt(entity, false);
+                // 移除移动速度和攻击力减益修饰符
+                removeTemporaryAttributeModifiers(entity);
+                // 重新应用最大生命值减少修饰符
+                reapplyMaxHealthReductionModifier(entity);
+
+                // 如果当前最大生命值仍大于1，则应用额外8%减少
+                if (entity.getMaxHealth() > IMMUNITY_THRESHOLD) {
+                    applyAdditionalHealthReduction(entity);
+                }
+
+                // 恢复生命值到当前最大生命值（此时已经是减少后的最大生命值）
+                entity.setHealth(entity.getMaxHealth());
+            }
+            // 如果在狂猎期间脱下盔甲，则立即死亡（仅对玩家）
+            else if (!isDurationExpired && wildHuntLevel <= 0) {
+                // 移除属性修饰符
+                removeWildHuntAttributeModifiers(entity);
+                // 强制杀死玩家
+                if (entity instanceof Player player) {
+                    player.hurt(player.damageSources().genericKill(), Float.MAX_VALUE);
+                    cleanupEntityWildHuntData(player);
+                }
+            }
+        } else {
+            // 如果不在狂猎状态，确保移除属性修饰符
+            removeTemporaryAttributeModifiers(entity);
+        }
+    }
     @SubscribeEvent
     public static void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
         Player player = event.getEntity();
@@ -553,78 +621,6 @@ public class WildHuntHandler {
                 // 重新应用最大生命值减少修饰符
                 reapplyMaxHealthReductionModifier(entity);
             }
-        }
-    }
-    
-    // 检查实体是否在狂猎状态结束时脱下盔甲的处理器
-    @SubscribeEvent
-    public static void onLivingTick(LivingEvent.LivingTickEvent event) {
-        if (event.getEntity().level().isClientSide()) {
-            return;
-        }
-        
-        LivingEntity entity = event.getEntity();
-        ServerLevel serverLevel = (ServerLevel) entity.level();
-        UUID entityUUID = entity.getUUID();
-        long currentTick = serverLevel.getGameTime();
-        
-        // 检查是否处于狂猎状态
-        boolean currentlyInWildHunt = isEntityInWildHunt(entity) && !isEntityKilledByHyperLethal(entity);
-        
-        // 添加安全检查：如果实体生命值过低但在狂猎状态中，强制恢复
-        if (currentlyInWildHunt && entity.getHealth() <= 0) {
-            entity.setHealth(IMMUNITY_THRESHOLD);
-        }
-        
-        if (currentlyInWildHunt) {
-            long startTime = getEntityStartTime(entity);
-            boolean isDurationExpired = (currentTick - startTime) >= WILD_HUNT_DURATION;
-            
-            // 检查是否仍然穿着带有狂猎附魔的胸甲
-            ItemStack chestArmor = entity.getItemBySlot(EquipmentSlot.CHEST);
-            int wildHuntLevel = EnchantmentHelper.getItemEnchantmentLevel(
-                EverlaartifactsModEnchantments.WILD_HUNT.get(), chestArmor);
-            
-            // 应用属性减益效果
-            applyWildHuntAttributeModifiers(entity);
-            
-            // 每5刻强制锁定生命值为1
-            entity.setHealth(IMMUNITY_THRESHOLD);
-            
-            // 生成持续的黑烟粒子
-            spawnWildHuntParticles(entity, serverLevel);
-            
-            
-            // 如果狂猎状态已结束
-            if (isDurationExpired) {
-                // 结束狂猎状态但保留最大生命值减少
-                setEntityInWildHunt(entity, false);
-                // 移除移动速度和攻击力减益修饰符
-                removeTemporaryAttributeModifiers(entity);
-                // 重新应用最大生命值减少修饰符
-                reapplyMaxHealthReductionModifier(entity);
-                
-                // 如果当前最大生命值仍大于1，则应用额外8%减少
-                if (entity.getMaxHealth() > IMMUNITY_THRESHOLD) {
-                    applyAdditionalHealthReduction(entity);
-                }
-                
-                // 恢复生命值到当前最大生命值（此时已经是减少后的最大生命值）
-                entity.setHealth(entity.getMaxHealth());
-            }
-            // 如果在狂猎期间脱下盔甲，则立即死亡（仅对玩家）
-            else if (!isDurationExpired && wildHuntLevel <= 0) {
-                // 移除属性修饰符
-                removeWildHuntAttributeModifiers(entity);
-                // 强制杀死玩家
-                if (entity instanceof Player player) {
-                    player.hurt(player.damageSources().genericKill(), Float.MAX_VALUE);
-                    cleanupEntityWildHuntData(player);
-                }
-            }
-        } else {
-            // 如果不在狂猎状态，确保移除属性修饰符
-            removeTemporaryAttributeModifiers(entity);
         }
     }
 }
