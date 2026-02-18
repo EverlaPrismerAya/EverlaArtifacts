@@ -35,6 +35,7 @@ public class WildHuntHandler {
     private static final String WILD_HUNT_ACTIVE_KEY = "WildHuntActive";
     private static final String WILD_HUNT_START_TIME_KEY = "WildHuntStartTime";
     private static final String WILD_HUNT_MAX_HEALTH_REDUCTION_KEY = "WildHuntMaxHealthReduction";
+    private static final String HYPER_LETHAL_DAMAGE_KEY = "HyperLethalDamage";
     
     // 常量
     private static final int WILD_HUNT_DURATION = 200; // 10秒 = 200 ticks
@@ -52,6 +53,7 @@ public class WildHuntHandler {
     // 实体状态追踪（内存缓存，用于性能优化）
     private static final Map<UUID, Boolean> entityInWildHuntMap = new WeakHashMap<>();
     private static final Map<UUID, Double> entityMaxHealthReductionMap = new WeakHashMap<>();
+    private static final Map<UUID, Boolean> entityHyperLethalDamageMap = new WeakHashMap<>();
     
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void onLivingHurt(LivingHurtEvent event) {
@@ -131,10 +133,9 @@ public class WildHuntHandler {
                 }
             }
         } else {
-            // 如果是超高伤害，则直接杀死实体并清除所有狂猎数据
-            reduceEntityMaxHealth(entity, entity.getMaxHealth() - 1);
-            entity.kill();
+            // 如果是超高伤害，则添加无视保护标签
             setEntityInWildHunt(entity, false);
+            setHyperLethalDamageKey(entity, true);
         }
     }
     
@@ -153,25 +154,27 @@ public class WildHuntHandler {
             return;
         }
         
-        // 检查是否处于狂猎状态
-        if (isEntityInWildHunt(entity)) {
-            // 取消死亡，因为狂猎状态下免疫致命伤害
-            event.setCanceled(true);
-            entity.setHealth(IMMUNITY_THRESHOLD);
-            return;
-        }
-        
-        // 基于死亡判断的绕过原版无敌帧机制
-        ItemStack chestArmor = entity.getItemBySlot(EquipmentSlot.CHEST);
-        int wildHuntLevel = EnchantmentHelper.getItemEnchantmentLevel(
-            EverlaartifactsModEnchantments.WILD_HUNT.get(), chestArmor);
-        
-        if (wildHuntLevel > 0 && entity.getMaxHealth() > IMMUNITY_THRESHOLD) {
-            // 激活狂猎状态并取消死亡
-            ServerLevel serverLevel = (ServerLevel) entity.level();
-            activateWildHunt(entity, serverLevel);
-            event.setCanceled(true);
-            entity.setHealth(IMMUNITY_THRESHOLD);
+        // 检查是否处于狂猎状态且未受到超高伤害
+        if (!isEntityKilledByHyperLethal(entity)) {
+            if (isEntityInWildHunt(entity)) {
+                // 取消死亡，因为狂猎状态下免疫致命伤害
+                event.setCanceled(true);
+                entity.setHealth(IMMUNITY_THRESHOLD);
+                return;
+            }
+
+            // 基于死亡判断的绕过原版无敌帧机制
+            ItemStack chestArmor = entity.getItemBySlot(EquipmentSlot.CHEST);
+            int wildHuntLevel = EnchantmentHelper.getItemEnchantmentLevel(
+                    EverlaartifactsModEnchantments.WILD_HUNT.get(), chestArmor);
+
+            if (wildHuntLevel > 0 && entity.getMaxHealth() > IMMUNITY_THRESHOLD) {
+                // 激活狂猎状态并取消死亡
+                ServerLevel serverLevel = (ServerLevel) entity.level();
+                activateWildHunt(entity, serverLevel);
+                event.setCanceled(true);
+                entity.setHealth(IMMUNITY_THRESHOLD);
+            }
         }
     }
     
@@ -285,11 +288,22 @@ public class WildHuntHandler {
         CompoundTag persistentData = entity.getPersistentData();
         return persistentData.getBoolean(WILD_HUNT_ACTIVE_KEY);
     }
+
+    private static boolean isEntityKilledByHyperLethal(LivingEntity entity){
+        CompoundTag persistentData = entity.getPersistentData();
+        return persistentData.getBoolean(HYPER_LETHAL_DAMAGE_KEY);
+    }
     
     private static void setEntityInWildHunt(LivingEntity entity, boolean active) {
         CompoundTag persistentData = entity.getPersistentData();
         persistentData.putBoolean(WILD_HUNT_ACTIVE_KEY, active);
         entityInWildHuntMap.put(entity.getUUID(), active);
+    }
+
+    private static void setHyperLethalDamageKey(LivingEntity entity, boolean active) {
+        CompoundTag persistentData = entity.getPersistentData();
+        persistentData.putBoolean(HYPER_LETHAL_DAMAGE_KEY, active);
+        entityHyperLethalDamageMap.put(entity.getUUID(), active);
     }
     
     private static long getEntityStartTime(LivingEntity entity) {
@@ -396,11 +410,12 @@ public class WildHuntHandler {
         CompoundTag persistentData = entity.getPersistentData();
         persistentData.remove(WILD_HUNT_ACTIVE_KEY);
         persistentData.remove(WILD_HUNT_START_TIME_KEY);
-        // 注意：不移除WILD_HUNT_MAX_HEALTH_REDUCTION_KEY
+        persistentData.remove(HYPER_LETHAL_DAMAGE_KEY);
         
         // 清除内存缓存
         entityInWildHuntMap.remove(entityUUID);
         entityMaxHealthReductionMap.remove(entityUUID);
+        entityHyperLethalDamageMap.remove(entityUUID);
     }
     
     private static void clearMaxHealthReduction(LivingEntity entity) {
@@ -431,10 +446,12 @@ public class WildHuntHandler {
         persistentData.remove(WILD_HUNT_ACTIVE_KEY);
         persistentData.remove(WILD_HUNT_START_TIME_KEY);
         persistentData.remove(WILD_HUNT_MAX_HEALTH_REDUCTION_KEY);
+        persistentData.remove(HYPER_LETHAL_DAMAGE_KEY);
         
         // 清除所有内存缓存
         entityInWildHuntMap.remove(entityUUID);
         entityMaxHealthReductionMap.remove(entityUUID);
+        entityHyperLethalDamageMap.remove(entityUUID);
     }
     
     private static void updateMaxHealthModifier(LivingEntity entity, double reductionAmount) {
@@ -553,7 +570,7 @@ public class WildHuntHandler {
         long currentTick = serverLevel.getGameTime();
         
         // 检查是否处于狂猎状态
-        boolean currentlyInWildHunt = isEntityInWildHunt(entity);
+        boolean currentlyInWildHunt = isEntityInWildHunt(entity) && !isEntityKilledByHyperLethal(entity);
         
         // 添加安全检查：如果实体生命值过低但在狂猎状态中，强制恢复
         if (currentlyInWildHunt && entity.getHealth() <= 0) {
