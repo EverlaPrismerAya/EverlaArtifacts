@@ -81,54 +81,60 @@ public class WildHuntHandler {
         
         // 检查是否已经处于狂猎状态
         boolean isInWildHunt = isEntityInWildHunt(entity);
-        
-        // 如果不在狂猎状态
-        if (!isInWildHunt) {
-            // 只在实体受到致死伤害或生命值<=1 并且不是Kill命令之类的超高伤害时激活狂猎
-            boolean isHyperLethalDamage = originalDamage >= 2147483647.0f;
-            boolean isFatalDamage = (currentHealth - originalDamage) <= 0;
-            boolean isLowHealth = currentHealth <= IMMUNITY_THRESHOLD;
-            
-            if ((isFatalDamage || isLowHealth) && !isHyperLethalDamage) {
-                // 检查是否在无敌帧期间
-                if (entity.invulnerableTime > 0) {
-                    // 如果在无敌帧期间，先取消当前伤害事件
-                    event.setCanceled(true);
-                    // 然后立即激活狂猎状态
-                    activateWildHunt(entity, serverLevel);
-                    return;
-                } else {
-                    // 不在无敌帧期间，正常激活狂猎
-                    activateWildHunt(entity, serverLevel);
-                    event.setCanceled(true);
-                    return;
+        boolean isHyperLethalDamage = originalDamage >= 2147483647.0f;
+        boolean isFatalDamage = (currentHealth - originalDamage) <= 0;
+        boolean isLowHealth = currentHealth <= IMMUNITY_THRESHOLD;
+        // 如果不是超高伤害
+        if (!isHyperLethalDamage) {
+            // 如果不在狂猎状态
+            if (!isInWildHunt) {
+                // 只在实体受到致死伤害或生命值<=1 并且不是Kill命令之类的超高伤害时激活狂猎
+                if (isFatalDamage || isLowHealth) {
+                    // 检查是否在无敌帧期间
+                    if (entity.invulnerableTime > 0) {
+                        // 如果在无敌帧期间，先取消当前伤害事件
+                        event.setCanceled(true);
+                        // 然后立即激活狂猎状态
+                        activateWildHunt(entity, serverLevel);
+                        return;
+                    } else {
+                        // 不在无敌帧期间，正常激活狂猎
+                        activateWildHunt(entity, serverLevel);
+                        event.setCanceled(true);
+                        return;
+                    }
+                }
+                // 如果是非致命伤害且生命值>1，让伤害正常处理
+                else {
+                    return; // 不做任何处理，让原版伤害系统处理
                 }
             }
-            // 如果是非致命伤害且生命值>1，让伤害正常处理
+            // 如果在狂猎状态中
             else {
-                return; // 不做任何处理，让原版伤害系统处理
+                long currentTime = serverLevel.getGameTime();
+                long startTime = getEntityStartTime(entity);
+                boolean isDurationExpired = (currentTime - startTime) >= WILD_HUNT_DURATION;
+
+                // 应用45%免伤
+                float reducedDamage = originalDamage * (float)(1.0 - DAMAGE_REDUCTION_PERCENTAGE);
+                event.setAmount(reducedDamage);
+
+                // 锁定生命值为1点
+                entity.setHealth(IMMUNITY_THRESHOLD);
+
+                // 减少最大生命值
+                reduceEntityMaxHealth(entity, reducedDamage);
+
+                // 如果持续时间结束且最大生命值大于1，则额外减少8%
+                if (isDurationExpired && entity.getMaxHealth() > IMMUNITY_THRESHOLD) {
+                    applyAdditionalHealthReduction(entity);
+                }
             }
-        }
-        // 如果在狂猎状态中
-        else {
-            long currentTime = serverLevel.getGameTime();
-            long startTime = getEntityStartTime(entity);
-            boolean isDurationExpired = (currentTime - startTime) >= WILD_HUNT_DURATION;
-            
-            // 应用45%免伤
-            float reducedDamage = originalDamage * (float)(1.0 - DAMAGE_REDUCTION_PERCENTAGE);
-            event.setAmount(reducedDamage);
-            
-            // 锁定生命值为1点
-            entity.setHealth(IMMUNITY_THRESHOLD);
-            
-            // 减少最大生命值
-            reduceEntityMaxHealth(entity, reducedDamage);
-            
-            // 如果持续时间结束且最大生命值大于1，则额外减少8%
-            if (isDurationExpired && entity.getMaxHealth() > IMMUNITY_THRESHOLD) {
-                applyAdditionalHealthReduction(entity);
-            }
+        } else {
+            // 如果是超高伤害，则直接杀死实体并清除所有狂猎数据
+            reduceEntityMaxHealth(entity, entity.getMaxHealth() - 1);
+            entity.kill();
+            setEntityInWildHunt(entity, false);
         }
     }
     
@@ -155,7 +161,7 @@ public class WildHuntHandler {
             return;
         }
         
-        // 额外检查：如果实体穿着狂猎胸甲且即将死亡，尝试激活狂猎状态
+        // 基于死亡判断的绕过原版无敌帧机制
         ItemStack chestArmor = entity.getItemBySlot(EquipmentSlot.CHEST);
         int wildHuntLevel = EnchantmentHelper.getItemEnchantmentLevel(
             EverlaartifactsModEnchantments.WILD_HUNT.get(), chestArmor);
@@ -190,24 +196,19 @@ public class WildHuntHandler {
         // 玩家重生时完全清空所有狂猎状态数据
         cleanupAllEntityWildHuntData(player);
     }
-    
+
+    // 检查实体是否处于狂猎状态 是则完全阻止治疗
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void onLivingHeal(LivingHealEvent event) {
         if (event.getEntity().level().isClientSide()) {
             return;
         }
-        
         LivingEntity entity = event.getEntity();
-        
-        // 检查实体是否处于狂猎状态
         if (isEntityInWildHunt(entity)) {
-            // 完全阻止治疗
             event.setCanceled(true);
         }
     }
-    
-    // ========== 私有方法 ==========
-    
+
     private static void activateWildHunt(LivingEntity entity, ServerLevel serverLevel) {
         UUID entityUUID = entity.getUUID();
         
@@ -223,11 +224,6 @@ public class WildHuntHandler {
         
         // 锁定生命值为1
         entity.setHealth(IMMUNITY_THRESHOLD);
-        
-        // 初始粒子效果
-        spawnWildHuntParticles(entity, serverLevel);
-        
-        // 内存缓存已经在上面同步了
     }
     
     private static void reduceEntityMaxHealth(LivingEntity entity, float damage) {
@@ -277,11 +273,11 @@ public class WildHuntHandler {
             entity.getX(),
             entity.getY() + entity.getBbHeight() / 2.0,
             entity.getZ(),
-            3, // 减少粒子数量以降低性能消耗
-            entity.getBbWidth() / 4.0, // x轴扩散
-            entity.getBbHeight() / 4.0, // y轴扩散
-            entity.getBbWidth() / 4.0, // z轴扩散
-            0.02 // 降低粒子速度
+            3,
+            entity.getBbWidth() / 4.0,
+            entity.getBbHeight() / 4.0,
+            entity.getBbWidth() / 4.0,
+            0.02
         );
     }
     
