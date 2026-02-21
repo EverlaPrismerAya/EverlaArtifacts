@@ -10,14 +10,14 @@ import net.minecraftforge.registries.DeferredRegister;
 
 import net.minecraft.world.item.enchantment.Enchantment;
 
-import net.everla.everlaartifacts.enchantment.WildHuntEnchantment;
-import net.everla.everlaartifacts.enchantment.TPAuraEnchantment;
-import net.everla.everlaartifacts.enchantment.SteadfastEnchantment;
-import net.everla.everlaartifacts.enchantment.ScrapyardScroungerEnchantment;
-import net.everla.everlaartifacts.enchantment.MoneyBurnersCreedEnchantment;
-import net.everla.everlaartifacts.enchantment.LiveWireEnchantment;
-import net.everla.everlaartifacts.enchantment.LayeredBufferEnchantment;
-import net.everla.everlaartifacts.enchantment.DeutschEnchantment;
+import net.everla.everlaartifacts.common.enchantment.WildHuntEnchantment;
+import net.everla.everlaartifacts.common.enchantment.TPAuraEnchantment;
+import net.everla.everlaartifacts.common.enchantment.SteadfastEnchantment;
+import net.everla.everlaartifacts.common.enchantment.ScrapyardScroungerEnchantment;
+import net.everla.everlaartifacts.common.enchantment.MoneyBurnersCreedEnchantment;
+import net.everla.everlaartifacts.common.enchantment.LiveWireEnchantment;
+import net.everla.everlaartifacts.common.enchantment.LayeredBufferEnchantment;
+import net.everla.everlaartifacts.common.enchantment.DeutschEnchantment;
 import net.everla.everlaartifacts.EverlaartifactsMod;
 
 public class EverlaartifactsModEnchantments {

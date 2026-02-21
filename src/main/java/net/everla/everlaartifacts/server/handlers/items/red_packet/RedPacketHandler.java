@@ -1,6 +1,6 @@
 package net.everla.everlaartifacts.server.handlers.items.red_packet;
 
-import net.everla.everlaartifacts.config.EverlaArtifactsConfig;
+import net.everla.everlaartifacts.common.config.EverlaArtifactsConfig;
 import net.everla.everlaartifacts.init.EverlaartifactsModItems;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -32,7 +32,6 @@ public class RedPacketHandler {
                 if (_ent instanceof net.minecraft.server.level.ServerPlayer _serverPlayer) {
                     return _serverPlayer.gameMode.getGameModeForPlayer() == GameType.CREATIVE;
                 } else if (_ent.level().isClientSide() && _ent instanceof Player _player) {
-                    // 修复客户端侧的创造性模式检测
                     net.minecraft.client.multiplayer.ClientPacketListener connection = 
                         net.minecraft.client.Minecraft.getInstance().getConnection();
                     if (connection != null) {

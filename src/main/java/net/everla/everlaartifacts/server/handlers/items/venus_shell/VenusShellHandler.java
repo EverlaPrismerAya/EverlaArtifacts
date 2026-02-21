@@ -1,7 +1,7 @@
 package net.everla.everlaartifacts.server.handlers.items.venus_shell;
 
 import net.everla.everlaartifacts.init.EverlaartifactsModMobEffects;
-import net.everla.everlaartifacts.item.VenusShellItem;
+import net.everla.everlaartifacts.common.item.VenusShellItem;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;

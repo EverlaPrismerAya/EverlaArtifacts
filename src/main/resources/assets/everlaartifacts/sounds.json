@@ -386,5 +386,13 @@
         "stream": false
       }
     ]
+  },
+  "difficult_switch": {
+    "sounds": [
+      {
+        "name": "everlaartifacts:difficult_switch",
+        "stream": false
+      }
+    ]
   }
 }

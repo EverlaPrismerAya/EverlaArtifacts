@@ -17,7 +17,7 @@ import net.minecraft.world.level.material.FlowingFluid;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 
-import net.everla.everlaartifacts.fluid.NuclearWasteWaterFluid;
+import net.everla.everlaartifacts.common.fluid.NuclearWasteWaterFluid;
 import net.everla.everlaartifacts.EverlaartifactsMod;
 
 public class EverlaartifactsModFluids {

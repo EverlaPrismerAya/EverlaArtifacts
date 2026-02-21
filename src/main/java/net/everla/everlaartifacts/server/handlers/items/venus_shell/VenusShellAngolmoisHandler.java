@@ -1,8 +1,8 @@
 package net.everla.everlaartifacts.server.handlers.items.venus_shell;
 
-import net.everla.everlaartifacts.entity.projectiles.AngolmoisDoomProjectileEntity;
+import net.everla.everlaartifacts.common.entity.projectiles.AngolmoisDoomProjectileEntity;
 import net.everla.everlaartifacts.init.EverlaartifactsModEntities;
-import net.everla.everlaartifacts.item.VenusShellItem;
+import net.everla.everlaartifacts.common.item.VenusShellItem;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;

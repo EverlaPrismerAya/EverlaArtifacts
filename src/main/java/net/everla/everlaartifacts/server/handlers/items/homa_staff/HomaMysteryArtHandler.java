@@ -20,7 +20,7 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-import net.everla.everlaartifacts.item.HomaStaffItem;
+import net.everla.everlaartifacts.common.item.HomaStaffItem;
 
 import java.util.HashSet;
 import java.util.Set;

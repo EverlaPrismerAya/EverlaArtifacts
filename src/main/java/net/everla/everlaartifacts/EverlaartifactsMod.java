@@ -1,5 +1,9 @@
 package net.everla.everlaartifacts;
 
+import net.everla.everlaartifacts.server.network.BloodBlossomEntityPacket;
+import net.everla.everlaartifacts.server.network.ClientPerformanceReportPacket;
+import net.everla.everlaartifacts.server.network.DifficultyChangePacket;
+import net.everla.everlaartifacts.server.network.DifficultySyncPacket;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
@@ -17,10 +21,12 @@ import net.minecraftforge.common.MinecraftForge;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.world.Difficulty;
+import net.minecraft.world.level.GameRules;
 
 import net.everla.everlaartifacts.server.handlers.items.red_packet.RedPacketHandler;
-import net.everla.everlaartifacts.generic.handlers.data_driven.EverlastingItemHandler;
-import net.everla.everlaartifacts.network.ServerPerformanceScorePacket;
+import net.everla.everlaartifacts.common.handlers.data_driven.EverlastingItemHandler;
+import net.everla.everlaartifacts.server.network.ServerPerformanceScorePacket;
 import net.everla.everlaartifacts.init.EverlaartifactsModTabs;
 import net.everla.everlaartifacts.init.EverlaartifactsModSounds;
 import net.everla.everlaartifacts.init.EverlaartifactsModPotions;
@@ -33,9 +39,10 @@ import net.everla.everlaartifacts.init.EverlaartifactsModFluidTypes;
 import net.everla.everlaartifacts.init.EverlaartifactsModEntities;
 import net.everla.everlaartifacts.init.EverlaartifactsModEnchantments;
 import net.everla.everlaartifacts.init.EverlaartifactsModBlocks;
-import net.everla.everlaartifacts.generic.handlers.enchantment.PerformanceBasedThingsHandler;
-import net.everla.everlaartifacts.game_rules.ForceUseTruePerformance;
-import net.everla.everlaartifacts.config.EverlaArtifactsConfig;
+import net.everla.everlaartifacts.common.handlers.enchantment.PerformanceBasedThingsHandler;
+import net.everla.everlaartifacts.common.game_rules.ForceUseTruePerformance;
+import net.everla.everlaartifacts.common.game_rules.EnableLunaticMode;
+import net.everla.everlaartifacts.common.config.EverlaArtifactsConfig;
 
 import java.util.function.Supplier;
 import java.util.function.Function;
@@ -75,9 +82,14 @@ public class EverlaartifactsMod {
 		registerNetworkPackets();
 		// 确保游戏规则类被加载以触发注册
 		LOGGER.info("游戏规则 ForceUseTruePerformance 类加载: {}", ForceUseTruePerformance.FORCE_USE_TRUE_PERFORMANCE.toString());
+		LOGGER.info("游戏规则 EnableLunaticMode 类加载: {}", EnableLunaticMode.ENABLE_LUNATIC_MODE.toString());
 	}
 	public static int CPUCoreCount = 0;
 	public static int AllocatedRam = 0; // 单位 MB
+	
+	// 客户端难度状态
+	private static String clientDifficultyName = "NORMAL";
+	private static boolean clientIsLunaticMode = false;
 
 	/**
 	* 初始化系统信息，获取CPU核心数和内存分配大小
@@ -90,18 +102,46 @@ public class EverlaartifactsMod {
 		AllocatedRam = (int) (maxMemory / (1024 * 1024)); // 转换为MB
 		LOGGER.info("系统信息初始化完成 - CPU核心数: {} 核, 分配内存: {} MB", CPUCoreCount, AllocatedRam);
 	}
-
+	
+	/**
+	* 获取客户端当前难度名称
+	*/
+	public static String getClientDifficultyName() {
+		return clientDifficultyName;
+	}
+	
+	/**
+	* 获取客户端是否处于月狂模式
+	*/
+	public static boolean isClientLunaticMode() {
+		return clientIsLunaticMode;
+	}
+	
+	/**
+	* 设置客户端难度状态
+	*/
+	public static void setClientDifficulty(String difficultyName, boolean isLunaticMode) {
+		clientDifficultyName = difficultyName;
+		clientIsLunaticMode = isLunaticMode;
+	}
+	
 	/**
 	* 注册网络包
 	*/
 	private void registerNetworkPackets() {
-		addNetworkMessage(net.everla.everlaartifacts.network.ClientPerformanceReportPacket.class, net.everla.everlaartifacts.network.ClientPerformanceReportPacket::encode, net.everla.everlaartifacts.network.ClientPerformanceReportPacket::new,
-				net.everla.everlaartifacts.network.ClientPerformanceReportPacket::handle);
-		addNetworkMessage(net.everla.everlaartifacts.network.ServerPerformanceScorePacket.class, net.everla.everlaartifacts.network.ServerPerformanceScorePacket::encode, net.everla.everlaartifacts.network.ServerPerformanceScorePacket::new,
-				net.everla.everlaartifacts.network.ServerPerformanceScorePacket::handle);
+		addNetworkMessage(ClientPerformanceReportPacket.class, ClientPerformanceReportPacket::encode, ClientPerformanceReportPacket::new,
+				ClientPerformanceReportPacket::handle);
+		addNetworkMessage(ServerPerformanceScorePacket.class, ServerPerformanceScorePacket::encode, ServerPerformanceScorePacket::new,
+				ServerPerformanceScorePacket::handle);
 		// 添加BloodBlossomEntityPacket
-		addNetworkMessage(net.everla.everlaartifacts.network.BloodBlossomEntityPacket.class, net.everla.everlaartifacts.network.BloodBlossomEntityPacket::encode, net.everla.everlaartifacts.network.BloodBlossomEntityPacket::new,
-				net.everla.everlaartifacts.network.BloodBlossomEntityPacket::handle);
+		addNetworkMessage(BloodBlossomEntityPacket.class, BloodBlossomEntityPacket::encode, BloodBlossomEntityPacket::new,
+				BloodBlossomEntityPacket::handle);
+		// 添加难度切换网络包
+		addNetworkMessage(DifficultyChangePacket.class, DifficultyChangePacket::encode, DifficultyChangePacket::new,
+				DifficultyChangePacket::handle);
+		// 添加难度同步网络包
+		addNetworkMessage(DifficultySyncPacket.class, DifficultySyncPacket::encode, DifficultySyncPacket::new,
+				DifficultySyncPacket::handle);
 	}
 
 	/**
@@ -114,23 +154,18 @@ public class EverlaartifactsMod {
 	}
 
 	/**
-	* 当玩家加入世界时，处理性能评分
+	* 当玩家加入世界时，处理性能评分和难度同步
 	*/
 	@SubscribeEvent
 	public void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
-		// 在服务端环境，只记录日志
-		if (net.minecraftforge.fml.loading.FMLEnvironment.dist.isClient()) {
-			// 客户端逻辑已在ClientPerformanceHandler中处理
-		} else {
-			// 在服务端环境（包括集成服务器），我们不做任何处理
-			// 因为性能评分应该通过网络包从客户端接收
-			// 日志已被移除
-		}
 		// 如果是服务端环境，发送当前玩家的性能评分到客户端
 		if (!net.minecraftforge.fml.loading.FMLEnvironment.dist.isClient() && event.getEntity() instanceof net.minecraft.server.level.ServerPlayer serverPlayer) {
 			// 先确保玩家的性能评分已设置
 			double playerPerformanceScore = PerformanceBasedThingsHandler.getPlayerPerformanceScore(serverPlayer);
 			sendPerformanceScoreToClient(serverPlayer, playerPerformanceScore);
+			
+			// 使用专门的同步处理器来同步难度状态
+			net.everla.everlaartifacts.server.handlers.DifficultySyncHandler.syncSinglePlayer(serverPlayer);
 		}
 	}
 

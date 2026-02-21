@@ -1,7 +1,7 @@
 package net.everla.everlaartifacts.server.tracker;
 
 import net.everla.everlaartifacts.init.EverlaartifactsModMobEffects;
-import net.everla.everlaartifacts.network.BloodBlossomEntityPacket;
+import net.everla.everlaartifacts.server.network.BloodBlossomEntityPacket;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;

@@ -9,7 +9,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.fluids.FluidType;
 
-import net.everla.everlaartifacts.fluid.types.NuclearWasteWaterFluidType;
+import net.everla.everlaartifacts.common.fluid.types.NuclearWasteWaterFluidType;
 import net.everla.everlaartifacts.EverlaartifactsMod;
 
 public class EverlaartifactsModFluidTypes {

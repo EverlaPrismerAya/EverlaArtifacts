@@ -1,10 +1,10 @@
 package net.everla.everlaartifacts.client.handlers.generic;
 
 import net.everla.everlaartifacts.EverlaartifactsMod;
-import net.everla.everlaartifacts.generic.handlers.enchantment.PerformanceBasedThingsHandler;
+import net.everla.everlaartifacts.common.handlers.enchantment.PerformanceBasedThingsHandler;
 import net.everla.everlaartifacts.server.PerformanceMetrics;
-import net.everla.everlaartifacts.config.EverlaArtifactsConfig;
-import net.everla.everlaartifacts.network.ClientPerformanceReportPacket;
+import net.everla.everlaartifacts.common.config.EverlaArtifactsConfig;
+import net.everla.everlaartifacts.server.network.ClientPerformanceReportPacket;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.ClientPlayerNetworkEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;

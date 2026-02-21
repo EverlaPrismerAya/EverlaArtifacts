@@ -61,4 +61,5 @@ public class EverlaartifactsModSounds {
 	public static final RegistryObject<SoundEvent> NILK = REGISTRY.register("nilk", () -> SoundEvent.createVariableRangeEvent(new ResourceLocation("everlaartifacts", "nilk")));
 	public static final RegistryObject<SoundEvent> LIVE_WIRE = REGISTRY.register("live_wire", () -> SoundEvent.createVariableRangeEvent(new ResourceLocation("everlaartifacts", "live_wire")));
 	public static final RegistryObject<SoundEvent> LIVE_WIRE_HOMA_STAFF = REGISTRY.register("live_wire_homa_staff", () -> SoundEvent.createVariableRangeEvent(new ResourceLocation("everlaartifacts", "live_wire_homa_staff")));
+	public static final RegistryObject<SoundEvent> DIFFICULT_SWITCH = REGISTRY.register("difficult_switch", () -> SoundEvent.createVariableRangeEvent(new ResourceLocation("everlaartifacts", "difficult_switch")));
 }

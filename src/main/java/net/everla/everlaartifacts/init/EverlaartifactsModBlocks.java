@@ -10,9 +10,9 @@ import net.minecraftforge.registries.DeferredRegister;
 
 import net.minecraft.world.level.block.Block;
 
-import net.everla.everlaartifacts.block.NuclearWasteWaterBlock;
-import net.everla.everlaartifacts.block.DeepslateAuricOreBlock;
-import net.everla.everlaartifacts.block.AuricScrapBlockBlock;
+import net.everla.everlaartifacts.common.block.NuclearWasteWaterBlock;
+import net.everla.everlaartifacts.common.block.DeepslateAuricOreBlock;
+import net.everla.everlaartifacts.common.block.AuricScrapBlockBlock;
 import net.everla.everlaartifacts.EverlaartifactsMod;
 
 public class EverlaartifactsModBlocks {

@@ -1,6 +1,6 @@
 package net.everla.everlaartifacts.server;
 
-import net.everla.everlaartifacts.config.EverlaArtifactsConfig;
+import net.everla.everlaartifacts.common.config.EverlaArtifactsConfig;
 
 import java.util.Random;
 
@@ -22,7 +22,7 @@ public class PerformanceMetrics {
     
     private static final Random random = new Random();
     
-    // 存储调试模式下的固定随机数
+    // 存储调试模式下的自定义数
     private static Integer debugCPUCount = null;
     private static Integer debugMemorySize = null;
     

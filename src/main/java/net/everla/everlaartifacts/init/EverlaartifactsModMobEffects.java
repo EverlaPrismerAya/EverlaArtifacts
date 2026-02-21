@@ -10,19 +10,19 @@ import net.minecraftforge.registries.DeferredRegister;
 
 import net.minecraft.world.effect.MobEffect;
 
-import net.everla.everlaartifacts.potion.WaaoooOverlayMobEffect;
-import net.everla.everlaartifacts.potion.VenusShellPassiveMobEffect;
-import net.everla.everlaartifacts.potion.VenusShellActiveMobEffect;
-import net.everla.everlaartifacts.potion.NuclearWaterRadiationMobEffect;
-import net.everla.everlaartifacts.potion.HomaPassiveMobEffect;
-import net.everla.everlaartifacts.potion.HomaActiveMobEffect;
-import net.everla.everlaartifacts.potion.GenshinStartMobEffect;
-import net.everla.everlaartifacts.potion.BloodBlossomMobEffect;
-import net.everla.everlaartifacts.potion.BlitzkriegMobEffect;
-import net.everla.everlaartifacts.potion.BedmicDestructionMobEffect;
-import net.everla.everlaartifacts.potion.AmericanStyleCutOverlayMobEffect;
-import net.everla.everlaartifacts.potion.CognitiveDisorderMobEffect;
-import net.everla.everlaartifacts.potion.LethalPoisonMobEffect;
+import net.everla.everlaartifacts.common.effects.WaaoooOverlayMobEffect;
+import net.everla.everlaartifacts.common.effects.VenusShellPassiveMobEffect;
+import net.everla.everlaartifacts.common.effects.VenusShellActiveMobEffect;
+import net.everla.everlaartifacts.common.effects.NuclearWaterRadiationMobEffect;
+import net.everla.everlaartifacts.common.effects.HomaPassiveMobEffect;
+import net.everla.everlaartifacts.common.effects.HomaActiveMobEffect;
+import net.everla.everlaartifacts.common.effects.GenshinStartMobEffect;
+import net.everla.everlaartifacts.common.effects.BloodBlossomMobEffect;
+import net.everla.everlaartifacts.common.effects.BlitzkriegMobEffect;
+import net.everla.everlaartifacts.common.effects.BedmicDestructionMobEffect;
+import net.everla.everlaartifacts.common.effects.AmericanStyleCutOverlayMobEffect;
+import net.everla.everlaartifacts.common.effects.CognitiveDisorderMobEffect;
+import net.everla.everlaartifacts.common.effects.LethalPoisonMobEffect;
 import net.everla.everlaartifacts.EverlaartifactsMod;
 
 public class EverlaartifactsModMobEffects {

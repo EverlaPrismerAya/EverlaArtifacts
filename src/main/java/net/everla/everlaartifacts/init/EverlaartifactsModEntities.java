@@ -13,8 +13,8 @@ import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Entity;
 
-import net.everla.everlaartifacts.entity.projectiles.FirecrackerProjectileEntity;
-import net.everla.everlaartifacts.entity.projectiles.AngolmoisDoomProjectileEntity;
+import net.everla.everlaartifacts.common.entity.projectiles.FirecrackerProjectileEntity;
+import net.everla.everlaartifacts.common.entity.projectiles.AngolmoisDoomProjectileEntity;
 import net.everla.everlaartifacts.EverlaartifactsMod;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)

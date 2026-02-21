@@ -1,0 +1,47 @@
+package net.everla.everlaartifacts.common.effects;
+
+import net.minecraftforge.client.extensions.common.IClientMobEffectExtensions;
+
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.client.gui.screens.inventory.EffectRenderingInventoryScreen;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.world.item.ItemStack;
+
+import java.util.List;
+
+public class AmericanStyleCutOverlayMobEffect extends MobEffect {
+	public AmericanStyleCutOverlayMobEffect() {
+		super(MobEffectCategory.HARMFUL, -16776961);
+	}
+
+	@Override
+	public boolean isDurationEffectTick(int duration, int amplifier) {
+		return true;
+	}
+
+	@Override
+	public void initializeClient(java.util.function.Consumer<IClientMobEffectExtensions> consumer) {
+		consumer.accept(new IClientMobEffectExtensions() {
+			@Override
+			public boolean isVisibleInInventory(MobEffectInstance effect) {
+				return false;
+			}
+
+			@Override
+			public boolean renderInventoryText(MobEffectInstance instance, EffectRenderingInventoryScreen<?> screen, GuiGraphics guiGraphics, int x, int y, int blitOffset) {
+				return false;
+			}
+
+			@Override
+			public boolean isVisibleInGui(MobEffectInstance effect) {
+				return false;
+			}
+		});
+	}
+	@Override
+	public List<ItemStack> getCurativeItems() {
+		return List.of(); // 返回空列表，防止被牛奶等物品治愈
+	}
+}
