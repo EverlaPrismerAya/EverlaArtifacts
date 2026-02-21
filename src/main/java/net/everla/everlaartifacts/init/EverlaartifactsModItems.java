@@ -81,6 +81,7 @@ import net.everla.everlaartifacts.common.item.AuricScrapBlockItem;
 import net.everla.everlaartifacts.common.item.AuricIngotItem;
 import net.everla.everlaartifacts.common.item.disc.Aleph0Item;
 import net.everla.everlaartifacts.common.item.weird_thing.WeirdFishStewItem;
+import net.everla.everlaartifacts.common.item.DragonSoulFragmentItem;
 import net.everla.everlaartifacts.EverlaartifactsMod;
 
 public class EverlaartifactsModItems {
@@ -154,6 +155,7 @@ public class EverlaartifactsModItems {
 	public static final RegistryObject<Item> BRACKETS_BLADE = REGISTRY.register("brackets_blade", () -> new BracketsBladeItem());
 	public static final RegistryObject<Item> PROCEDURE_SWORD = REGISTRY.register("procedure_sword", () -> new ProcedureSwordItem());
 	public static final RegistryObject<Item> WEIRD_FISH_STEW = REGISTRY.register("weird_fish_stew", () -> new WeirdFishStewItem());
+	public static final RegistryObject<Item> DRAGON_SOUL_FRAGMENT = REGISTRY.register("dragon_soul_fragment", () -> new DragonSoulFragmentItem());
 	// Start of user code block custom items
 	public static final RegistryObject<Item> AURIC_SCRAP_BLOCK = REGISTRY.register("auric_scrap_block", () -> new AuricScrapBlockItem(EverlaartifactsModBlocks.AURIC_SCRAP_BLOCK.get()));
 

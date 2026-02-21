@@ -2,15 +2,20 @@ package net.everla.everlaartifacts.common.difficulty;
 
 import net.everla.everlaartifacts.common.game_rules.EnableLunaticMode;
 import net.everla.everlaartifacts.common.config.EverlaArtifactsConfig;
+import net.everla.everlaartifacts.init.EverlaartifactsModItems;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
 import net.minecraft.world.entity.boss.enderdragon.EndCrystal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.monster.EnderMan;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.phys.AABB;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -23,6 +28,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.IntArrayTag;
 
 import java.util.*;
+import java.util.HashSet;
 
 /**
  * 末影龙Boss处理器
@@ -58,8 +64,12 @@ public class DragonBossHandler {
     private static final String CRYSTAL_POSITIONS_KEY = "StoredCrystalPositions";
     private static final String HAS_RESTORATION_OCCURRED_KEY = "HasRestorationOccurred";
     
+    // 末影人仇恨系统相关
+    // 移除了不再需要的目标追踪数据结构
+    
     /**
      * 监听生物受伤事件，处理末影龙的伤害免疫、动态减伤、防秒杀和生命值恢复逻辑
+     * 同时处理月狂模式下末影人攻击末影龙目标的机制
      */
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void onLivingHurt(LivingHurtEvent event) {
@@ -95,6 +105,69 @@ public class DragonBossHandler {
         
         // 处理生命值恢复逻辑
         processHealthRestoration(dragon);
+        
+        // 注意：这里不需要记录末影龙受到的伤害
+        // 末影人仇恨系统在单独的事件监听器中处理
+    }
+    
+    /**
+     * 监听末影人受攻击事件，处理月狂模式下末影人免疫末影龙攻击
+     */
+    @SubscribeEvent(priority = EventPriority.HIGHEST)
+    public static void onEndermanAttack(LivingAttackEvent event) {
+        // 只在服务端处理
+        if (event.getEntity().level().isClientSide()) {
+            return;
+        }
+        
+        // 检查受伤实体是否为末影人
+        if (!(event.getEntity() instanceof EnderMan)) {
+            return;
+        }
+        
+        // 检查是否启用了月狂模式
+        if (!isLunaticModeEnabled(event.getEntity().level())) {
+            return;
+        }
+        
+        // 检查攻击者是否为末影龙
+        Entity attacker = event.getSource().getEntity();
+        if (attacker instanceof EnderDragon) {
+            // 取消攻击事件，使末影人在月狂模式下完全免疫末影龙攻击
+            // 这会阻止伤害、击退、闪红等所有攻击效果
+            event.setCanceled(true);
+            return;
+        }
+    }
+    
+    /**
+     * 监听所有生物受伤事件，处理月狂模式下末影人对末影龙攻击目标的仇恨转移
+     */
+    @SubscribeEvent(priority = EventPriority.LOW)
+    public static void onEntityHurt(LivingHurtEvent event) {
+        // 只在服务端处理
+        if (event.getEntity().level().isClientSide()) {
+            return;
+        }
+        
+        // 检查是否启用了月狂模式
+        if (!isLunaticModeEnabled(event.getEntity().level())) {
+            return;
+        }
+        
+        // 检查攻击者是否为末影龙
+        Entity attacker = event.getSource().getEntity();
+        if (!(attacker instanceof EnderDragon dragon)) {
+            return;
+        }
+        
+        // 检查受伤实体是否在免疫列表中（排除特定实体）
+        if (isEntityImmuneToEndermanAggression(event.getEntity())) {
+            return;
+        }
+        
+        // 末影龙攻击了非末影人目标，触发附近末影人的仇恨
+        triggerEndermanAggression(dragon, event.getEntity());
     }
     
     /**
@@ -114,6 +187,72 @@ public class DragonBossHandler {
         }).size() > 0;
     }
     
+
+    /**
+     * 触发附近末影人对末影龙目标的攻击
+     * 
+     * @param dragon 末影龙实体
+     * @param target 被攻击的目标
+     */
+    private static void triggerEndermanAggression(EnderDragon dragon, Entity target) {
+        // 确保目标是活体实体
+        if (!(target instanceof net.minecraft.world.entity.LivingEntity livingTarget)) {
+            return;
+        }
+        
+        // 搜索附近的末影人（以被攻击目标为中心，32方块半径）
+        AABB searchArea = livingTarget.getBoundingBox().inflate(32.0);
+        List<EnderMan> nearbyEndermen = livingTarget.level().getEntitiesOfClass(
+            EnderMan.class, searchArea);
+            
+        int triggeredCount = 0;
+        for (EnderMan enderman : nearbyEndermen) {
+            // 排除已经被激怒的末影人
+            if (enderman.getTarget() != null) {
+                continue;
+            }
+            
+            // 检查末影人是否能看见目标
+            if (!enderman.getSensing().hasLineOfSight(livingTarget)) {
+                continue;
+            }
+                
+            // 设置末影人的目标为末影龙攻击的目标
+            enderman.setTarget(livingTarget);
+            triggeredCount++;
+        }
+    }
+        
+
+    /**
+     * 检查实体是否免疫末影人的协同攻击
+     * 
+     * @param entity 要检查的实体
+     * @return 如果实体免疫末影人协同攻击返回true，否则返回false
+     */
+    private static boolean isEntityImmuneToEndermanAggression(Entity entity) {
+        // 获取实体的注册名
+        String entityName = net.minecraftforge.registries.ForgeRegistries.ENTITY_TYPES.getKey(entity.getType()).toString();
+        
+        // 检查是否在配置的免疫列表中
+        return EverlaArtifactsConfig.getImmuneToEndermanAggressionSet().contains(entityName);
+    }
+        
+    /**
+     * 检查是否启用了月狂模式
+     * 
+     * @param level 世界对象
+     * @return 是否处于月狂模式
+     */
+    private static boolean isLunaticModeEnabled(net.minecraft.world.level.Level level) {
+        if (level.getDifficulty() != Difficulty.HARD) {
+            return false;
+        }
+            
+        GameRules gameRules = level.getGameRules();
+        return gameRules.getBoolean(EnableLunaticMode.ENABLE_LUNATIC_MODE);
+    }
+        
     /**
      * 检查末地水晶是否位于末地传送门底座上
      * 
@@ -567,7 +706,7 @@ public class DragonBossHandler {
     }
     
     /**
-     * 监听末影龙死亡事件，清理相关数据
+     * 监听末影龙死亡事件，清理相关数据并在月狂模式下生成龙魂碎片
      */
     @SubscribeEvent
     public static void onLivingDeath(LivingDeathEvent event) {
@@ -576,6 +715,69 @@ public class DragonBossHandler {
             CompoundTag persistentData = dragon.getPersistentData();
             persistentData.remove(CRYSTAL_POSITIONS_KEY);
             persistentData.remove(HAS_RESTORATION_OCCURRED_KEY);
+            
+            // 检查是否为月狂模式下的末影龙死亡
+            if (isLunaticModeDragon(dragon)) {
+                spawnDragonSoulFragments(dragon);
+            }
+        }
+    }
+    
+    /**
+     * 检查是否为月狂模式下的末影龙
+     * 
+     * @param dragon 末影龙实体
+     * @return 是否为月狂模式
+     */
+    private static boolean isLunaticModeDragon(EnderDragon dragon) {
+        return dragon.level().getDifficulty() == Difficulty.HARD && 
+               dragon.level().getGameRules().getBoolean(EnableLunaticMode.ENABLE_LUNATIC_MODE);
+    }
+    
+    /**
+     * 在末影龙时生成龙魂碎片
+     * 
+     * @param dragon 死亡的末影龙实体
+     */
+    private static void spawnDragonSoulFragments(EnderDragon dragon) {
+        try {
+            // 计算生成位置（祭坛上方Y=72）
+            BlockPos spawnPos = new BlockPos(
+                END_PORTAL_CENTER.getX(),
+                72,
+                END_PORTAL_CENTER.getZ()
+            );
+            
+            // 生成8-12个龙魂碎片
+            int fragmentCount = 8 + dragon.level().random.nextInt(5); // 8-12之间随机
+            for (int i = 0; i < fragmentCount; i++) {
+                // 创建物品栈
+                ItemStack fragmentStack = new ItemStack(EverlaartifactsModItems.DRAGON_SOUL_FRAGMENT.get(), 1);
+                
+                // 创建物品实体
+                ItemEntity itemEntity = new ItemEntity(
+                    dragon.level(),
+                    spawnPos.getX() + 0.5,
+                    spawnPos.getY(),
+                    spawnPos.getZ() + 0.5,
+                    fragmentStack
+                );
+                
+                // 设置物品实体为失重悬浮状态（无动量）
+                itemEntity.setDeltaMovement(0, 0, 0);
+                itemEntity.setNoGravity(true);
+                
+                // 设置无限拾取延迟
+                itemEntity.setUnlimitedLifetime();
+                
+                // 设置发光效果
+                itemEntity.setGlowingTag(true);
+                
+                // 生成物品实体
+                dragon.level().addFreshEntity(itemEntity);
+            }
+        } catch (Exception e) {
+            System.out.println("[DragonBossHandler] 错误：生成龙魂碎片时发生异常: " + e.getMessage());
         }
     }
     

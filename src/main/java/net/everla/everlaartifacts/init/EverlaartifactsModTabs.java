@@ -28,6 +28,7 @@ public class EverlaartifactsModTabs {
 				tabData.accept(EverlaartifactsModItems.AURIC_SCRAP.get());
 				tabData.accept(EverlaartifactsModItems.AURIC_SCRAP_BLOCK.get());
 				tabData.accept(EverlaartifactsModItems.AURIC_INGOT.get());
+				tabData.accept(EverlaartifactsModItems.DRAGON_SOUL_FRAGMENT.get());
 				tabData.accept(EverlaartifactsModItems.RED_PACKET.get());
 				tabData.accept(EverlaartifactsModItems.THREE_INTERWINED_FATE.get());
 				tabData.accept(EverlaartifactsModItems.FIRECRACKER.get());

@@ -36,6 +36,9 @@ public class EverlaArtifactsConfig {
     
     // 禁用真伤的Boss实体ID列表配置
     public static ForgeConfigSpec.ConfigValue<String> disabledTrueDamageBosses;
+    
+    // 不会被末影人协同攻击的实体ID列表配置
+    public static ForgeConfigSpec.ConfigValue<String> immuneToEndermanAggression;
 
     static {
         // 配置末影龙水晶重生机制部分
@@ -46,6 +49,11 @@ public class EverlaArtifactsConfig {
         // 配置禁用真伤的Boss列表部分
         BUILDER.push("DisabledTrueDamageBosses");
         disabledTrueDamageBosses = BUILDER.comment("月狂模式下禁用真伤效果的Boss实体ID列表，用逗号分隔").define("disabledTrueDamageBosses", "draconicevolution:draconic_guardian,goety:apostle,goety_revelation:summon_apollyon,goety_revelation:apostle_servant");
+        BUILDER.pop();
+        
+        // 配置不会被末影人协同攻击的实体列表部分
+        BUILDER.push("ImmuneToEndermanAggression");
+        immuneToEndermanAggression = BUILDER.comment("月狂模式下不会被末影人协同攻击的实体ID列表，用逗号分隔").define("immuneToEndermanAggression", "minecraft:enderman,minecraft:shulker,minecraft:endermite,minecraft:ender_dragon");
         BUILDER.pop();
 
         // 配置红包掉落部分
@@ -129,6 +137,23 @@ public class EverlaArtifactsConfig {
             return java.util.Collections.emptySet();
         }
         return java.util.Arrays.stream(bossesString.split(","))
+                .map(String::trim)
+                .filter(s -> !s.isEmpty())
+                .collect(java.util.stream.Collectors.toSet());
+    }
+    
+    // 不会被末影人协同攻击的实体配置的获取方法
+    public static String getImmuneToEndermanAggression() {
+        return immuneToEndermanAggression.get();
+    }
+    
+    // 获取解析后不会被末影人协同攻击的实体集合
+    public static java.util.Set<String> getImmuneToEndermanAggressionSet() {
+        String entitiesString = immuneToEndermanAggression.get();
+        if (entitiesString == null || entitiesString.trim().isEmpty()) {
+            return java.util.Collections.emptySet();
+        }
+        return java.util.Arrays.stream(entitiesString.split(","))
                 .map(String::trim)
                 .filter(s -> !s.isEmpty())
                 .collect(java.util.stream.Collectors.toSet());
