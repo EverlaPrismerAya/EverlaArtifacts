@@ -28,7 +28,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.IntArrayTag;
 
 import java.util.*;
-import java.util.HashSet;
 
 /**
  * 末影龙Boss处理器
@@ -37,7 +36,7 @@ import java.util.HashSet;
  * 同时实现动态减伤与防秒杀机制
  */
 @Mod.EventBusSubscriber
-public class DragonBossHandler {
+public class LunaticDragonBossHandler {
     
     // 检测范围半径（200方块）
     private static final double DETECTION_RADIUS = 200.0;
@@ -461,7 +460,7 @@ public class DragonBossHandler {
         
         // 必须要有记录的水晶位置才能执行恢复
         if (storedPositions.isEmpty()) {
-            System.out.println("[DragonBossHandler] 警告：没有记录的水晶位置，无法执行恢复");
+            System.out.println("[LunaticDragonBossHandler] 警告：没有记录的水晶位置，无法执行恢复");
             return;
         }
         
@@ -515,7 +514,7 @@ public class DragonBossHandler {
      */
     private static void respawnCrystals(EnderDragon dragon, List<BlockPos> positions) {
         if (positions.isEmpty()) {
-            System.out.println("[DragonBossHandler] 警告：没有记录的水晶位置");
+            System.out.println("[LunaticDragonBossHandler] 警告：没有记录的水晶位置");
             return;
         }
         
@@ -541,10 +540,10 @@ public class DragonBossHandler {
                 if (dragon.level().addFreshEntity(crystal)) {
                     spawnedCount++; // 成功重生水晶
                 } else {
-                    System.out.println("[DragonBossHandler] 失败：无法在位置 " + pos + " 生成水晶");
+                    System.out.println("[LunaticDragonBossHandler] 失败：无法在位置 " + pos + " 生成水晶");
                 }
             } catch (Exception e) {
-                System.out.println("[DragonBossHandler] 错误：在位置 " + pos + " 重生水晶时发生异常: " + e.getMessage());
+                System.out.println("[LunaticDragonBossHandler] 错误：在位置 " + pos + " 重生水晶时发生异常: " + e.getMessage());
             }
         }
         // 水晶重生完成
@@ -579,7 +578,7 @@ public class DragonBossHandler {
             // 标记位置已更新
             dragon.hurtMarked = true;
         } catch (Exception e) {
-            System.out.println("[DragonBossHandler] 错误：瞬移末影龙时发生异常: " + e.getMessage());
+            System.out.println("[LunaticDragonBossHandler] 错误：瞬移末影龙时发生异常: " + e.getMessage());
         }
     }
     
@@ -701,7 +700,7 @@ public class DragonBossHandler {
         if (!positions.isEmpty()) {
             storeCrystalPositions(dragon, positions);
         } else {
-            System.out.println("[DragonBossHandler] 警告：末影龙生成时未找到有底座的水晶");
+            System.out.println("[LunaticDragonBossHandler] 警告：末影龙生成时未找到有底座的水晶");
         }
     }
     
@@ -777,7 +776,7 @@ public class DragonBossHandler {
                 dragon.level().addFreshEntity(itemEntity);
             }
         } catch (Exception e) {
-            System.out.println("[DragonBossHandler] 错误：生成龙魂碎片时发生异常: " + e.getMessage());
+            System.out.println("[LunaticDragonBossHandler] 错误：生成龙魂碎片时发生异常: " + e.getMessage());
         }
     }
     

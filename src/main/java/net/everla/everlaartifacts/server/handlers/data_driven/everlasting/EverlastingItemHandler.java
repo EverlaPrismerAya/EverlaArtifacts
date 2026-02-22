@@ -1,4 +1,4 @@
-package net.everla.everlaartifacts.server.handlers.items.everlasting;
+package net.everla.everlaartifacts.server.handlers.data_driven.everlasting;
 
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;

@@ -1,5 +1,6 @@
 package net.everla.everlaartifacts;
 
+import net.everla.everlaartifacts.server.handlers.difficulty.DifficultySyncHandler;
 import net.everla.everlaartifacts.server.network.BloodBlossomEntityPacket;
 import net.everla.everlaartifacts.server.network.ClientPerformanceReportPacket;
 import net.everla.everlaartifacts.server.network.DifficultyChangePacket;
@@ -21,8 +22,6 @@ import net.minecraftforge.common.MinecraftForge;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.world.Difficulty;
-import net.minecraft.world.level.GameRules;
 
 import net.everla.everlaartifacts.server.handlers.items.red_packet.RedPacketHandler;
 import net.everla.everlaartifacts.common.handlers.data_driven.EverlastingItemHandler;
@@ -165,7 +164,7 @@ public class EverlaartifactsMod {
 			sendPerformanceScoreToClient(serverPlayer, playerPerformanceScore);
 			
 			// 使用专门的同步处理器来同步难度状态
-			net.everla.everlaartifacts.server.handlers.DifficultySyncHandler.syncSinglePlayer(serverPlayer);
+			DifficultySyncHandler.syncSinglePlayer(serverPlayer);
 		}
 	}
 

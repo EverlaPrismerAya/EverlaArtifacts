@@ -1,7 +1,6 @@
-package net.everla.everlaartifacts.server.handlers;
+package net.everla.everlaartifacts.server.handlers.difficulty;
 
 import net.everla.everlaartifacts.EverlaartifactsMod;
-import net.everla.everlaartifacts.common.difficulty.DifficultyLevel;
 import net.everla.everlaartifacts.common.game_rules.EnableLunaticMode;
 import net.everla.everlaartifacts.server.network.DifficultySyncPacket;
 import net.minecraft.server.MinecraftServer;
@@ -10,7 +9,6 @@ import net.minecraft.world.Difficulty;
 import net.minecraft.world.level.GameRules;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.server.ServerStartedEvent;
-import net.minecraftforge.event.server.ServerStoppingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -23,19 +21,58 @@ public class DifficultySyncHandler {
     
     /**
      * 服务器启动时同步难度状态
+     * 特殊种子世界下确保启用月狂模式游戏规则
      */
     @SubscribeEvent
     public static void onServerStarted(ServerStartedEvent event) {
         MinecraftServer server = event.getServer();
+        
+        // 检查是否为特殊种子世界
+        if (WorldSeedChecker.isSpecialSeedWorld()) {
+            GameRules gameRules = server.getGameRules();
+            boolean isLunaticModeEnabled = gameRules.getBoolean(EnableLunaticMode.ENABLE_LUNATIC_MODE);
+            
+            // 仅在非困难难度时执行难度设置和锁定
+            if (server.getWorldData().getDifficulty() != Difficulty.HARD) {
+                server.setDifficulty(net.minecraft.world.Difficulty.HARD, true);
+                server.setDifficultyLocked(true);
+            }
+            
+            // 如果月狂模式未启用，则启用它
+            if (!isLunaticModeEnabled) {
+                gameRules.getRule(EnableLunaticMode.ENABLE_LUNATIC_MODE).set(true, server);
+            }
+        }
+        
         syncAllPlayers(server);
     }
     
     /**
      * 玩家登录时同步难度状态
+     * 特殊种子世界下确保启用月狂模式游戏规则
      */
     @SubscribeEvent
     public static void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event) {
         if (event.getEntity() instanceof ServerPlayer serverPlayer) {
+            MinecraftServer server = serverPlayer.server;
+            
+            // 检查是否为特殊种子世界
+            if (WorldSeedChecker.isSpecialSeedWorld()) {
+                GameRules gameRules = server.getGameRules();
+                boolean isLunaticModeEnabled = gameRules.getBoolean(EnableLunaticMode.ENABLE_LUNATIC_MODE);
+
+                // 仅在非困难难度时执行难度设置和锁定
+                if (server.getWorldData().getDifficulty() != Difficulty.HARD) {
+                    server.setDifficulty(net.minecraft.world.Difficulty.HARD, true);
+                    server.setDifficultyLocked(true);
+                }
+
+                // 如果月狂模式未启用，则启用它
+                if (!isLunaticModeEnabled) {
+                    gameRules.getRule(EnableLunaticMode.ENABLE_LUNATIC_MODE).set(true, server);
+                }
+            }
+            
             syncSinglePlayer(serverPlayer);
         }
     }
@@ -64,8 +101,9 @@ public class DifficultySyncHandler {
         GameRules gameRules = server.getGameRules();
         boolean isLunaticMode = gameRules.getBoolean(EnableLunaticMode.ENABLE_LUNATIC_MODE) 
                               && currentDifficulty == Difficulty.HARD;
+        boolean isSpecialSeedWorld = WorldSeedChecker.isSpecialSeedWorld();
         
-        DifficultySyncPacket.sendToClient(player, currentDifficulty, isLunaticMode);
+        DifficultySyncPacket.sendToClient(player, currentDifficulty, isLunaticMode, isSpecialSeedWorld);
     }
     
     /**
@@ -80,10 +118,11 @@ public class DifficultySyncHandler {
         GameRules gameRules = server.getGameRules();
         boolean isLunaticMode = gameRules.getBoolean(EnableLunaticMode.ENABLE_LUNATIC_MODE) 
                               && currentDifficulty == Difficulty.HARD;
+        boolean isSpecialSeedWorld = WorldSeedChecker.isSpecialSeedWorld();
         
         // 向所有在线玩家发送同步包
         for (ServerPlayer player : server.getPlayerList().getPlayers()) {
-            DifficultySyncPacket.sendToClient(player, currentDifficulty, isLunaticMode);
+            DifficultySyncPacket.sendToClient(player, currentDifficulty, isLunaticMode, isSpecialSeedWorld);
         }
     }
     

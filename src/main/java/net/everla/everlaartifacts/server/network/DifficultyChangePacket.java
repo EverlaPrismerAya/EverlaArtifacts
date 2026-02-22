@@ -1,11 +1,9 @@
 package net.everla.everlaartifacts.server.network;
 
-import net.everla.everlaartifacts.EverlaartifactsMod;
 import net.everla.everlaartifacts.common.difficulty.DifficultyLevel;
 import net.everla.everlaartifacts.common.game_rules.EnableLunaticMode;
-import net.everla.everlaartifacts.server.handlers.DifficultySyncHandler;
+import net.everla.everlaartifacts.server.handlers.difficulty.DifficultySyncHandler;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.world.Difficulty;
 import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;

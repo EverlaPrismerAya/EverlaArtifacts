@@ -23,6 +23,8 @@ import net.minecraft.network.protocol.Packet;
 
 import net.everla.everlaartifacts.init.EverlaartifactsModItems;
 import net.everla.everlaartifacts.init.EverlaartifactsModEntities;
+import net.everla.everlaartifacts.server.handlers.difficulty.WorldSeedChecker;
+import net.everla.everlaartifacts.common.difficulty.DifficultyLevel;
 
 @OnlyIn(value = Dist.CLIENT, _interface = ItemSupplier.class)
 public class FirecrackerProjectileEntity extends AbstractArrow implements ItemSupplier {
@@ -121,8 +123,21 @@ public class FirecrackerProjectileEntity extends AbstractArrow implements ItemSu
 			this.level().playSound(null, this.getX(), this.getY(), this.getZ(), 
 				ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("everlaartifacts:deltarune_explosion")),
 				SoundSource.PLAYERS, 1.0F, 1.0F);
-			// 小爆炸，不破坏方块
-			this.level().explode(null, this.getX(), this.getY(), this.getZ(), 1.0F, false, Level.ExplosionInteraction.NONE);
+			
+			// 检查是否为Extra难度
+			boolean isExtraDifficulty = false;
+			if (this.level() instanceof net.minecraft.server.level.ServerLevel serverLevel) {
+				isExtraDifficulty = WorldSeedChecker.isSpecialSeedWorld() && 
+					WorldSeedChecker.getCurrentWorldDifficulty(serverLevel.getServer()) == DifficultyLevel.EXTRA;
+			}
+			
+			if (isExtraDifficulty) {
+				// Extra难度下：大爆炸，会破坏方块
+				this.level().explode(null, this.getX(), this.getY(), this.getZ(), 10.0F, true, Level.ExplosionInteraction.MOB);
+			} else {
+				// 普通难度下：小爆炸，不破坏方块
+				this.level().explode(null, this.getX(), this.getY(), this.getZ(), 1.0F, false, Level.ExplosionInteraction.NONE);
+			}
 		}
 	}
 

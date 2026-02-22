@@ -7,6 +7,10 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.server.MinecraftServer;
+
+import net.everla.everlaartifacts.server.handlers.difficulty.WorldSeedChecker;
+import net.everla.everlaartifacts.common.difficulty.DifficultyLevel;
 
 import net.everla.everlaartifacts.init.EverlaartifactsModMobEffects;
 import net.everla.everlaartifacts.EverlaartifactsMod;
@@ -24,6 +28,8 @@ public class PotOfPainEffectHandler {
     private static final int REGEN_AMPLIFIER = 1;
     private static final int OVERLAY_AMPLIFIER = 255;
     private static final int DELAY_TICKS = 60; // 3秒延迟
+    private static final int HEALTH_BOOST_DURATION = 24000; // 20分钟 (20 * 60 * 20)
+    private static final int HEALTH_BOOST_AMPLIFIER = 76;   // 等级77
     
     // 痛苦效果列表
     private static final List<MobEffectData> PAIN_EFFECTS = List.of(
@@ -56,11 +62,27 @@ public class PotOfPainEffectHandler {
             return;
         }
         
+        // 检查是否为特殊种子世界且难度为EXTRA
+        boolean isExtraDifficulty = false;
+        if (entity.level() != null && !entity.level().isClientSide()) {
+            MinecraftServer server = entity.level().getServer();
+            if (server != null) {
+                isExtraDifficulty = WorldSeedChecker.isSpecialSeedWorld() && 
+                    WorldSeedChecker.getCurrentWorldDifficulty(server) == DifficultyLevel.EXTRA;
+            }
+        }
+        
         // 立即应用再生效果
         applyRegenerationEffect(livingEntity);
         
-        // 延迟应用痛苦效果
-        schedulePainEffects(livingEntity);
+        // 根据难度决定应用哪种效果
+        if (isExtraDifficulty) {
+            // Extra难度下应用Health Boost效果
+            scheduleHealthBoostEffect(livingEntity);
+        } else {
+            // 普通难度下应用痛苦效果
+            schedulePainEffects(livingEntity);
+        }
     }
     
     /**
@@ -90,6 +112,16 @@ public class PotOfPainEffectHandler {
     }
     
     /**
+     * 调度Health Boost效果的应用（仅在Extra难度下）
+     */
+    private static void scheduleHealthBoostEffect(LivingEntity entity) {
+        EverlaartifactsMod.queueServerWork(DELAY_TICKS, () -> {
+            // 应用Health Boost效果
+            applyHealthBoostEffect(entity);
+        });
+    }
+    
+    /**
      * 应用视觉覆盖效果
      */
     private static void applyVisualOverlay(LivingEntity entity) {
@@ -115,6 +147,19 @@ public class PotOfPainEffectHandler {
                 true
             ));
         }
+    }
+    
+    /**
+     * 应用Health Boost效果（仅在Extra难度下）
+     */
+    private static void applyHealthBoostEffect(LivingEntity entity) {
+        entity.addEffect(new MobEffectInstance(
+            MobEffects.HEALTH_BOOST,
+            HEALTH_BOOST_DURATION,
+            HEALTH_BOOST_AMPLIFIER,
+            false,
+            true
+        ));
     }
     
     /**

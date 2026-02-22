@@ -9,6 +9,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 import net.everla.everlaartifacts.init.EverlaartifactsModItems;
+import net.everla.everlaartifacts.server.network.DifficultySyncPacket;
 
 @Mod.EventBusSubscriber(value = Dist.CLIENT, modid = "everlaartifacts")
 public class BracketsBladeTooltipHandler {
@@ -30,12 +31,45 @@ public class BracketsBladeTooltipHandler {
                 bracketPairs = 8;  // 默认8对括号
             }
             
-            // 显示当前括号数量带来的伤害加成
-            double damageBoost = bracketPairs * 0.5; // 每对括号增加0.5点伤害
+            // 检查是否为Extra难度（通过客户端同步包）
+            boolean isExtraDifficulty = DifficultySyncPacket.isClientSpecialSeedWorld();
             
-            event.getToolTip().add(Component.translatable("item.brackets_blade.damage_boost", 
-                String.format("%.1f", damageBoost), bracketPairs)
-                .withStyle(ChatFormatting.BLUE));
+            String tooltipKey;
+            Object[] tooltipArgs;
+            ChatFormatting color;
+            
+            if (isExtraDifficulty) {
+                // Extra难度下的特殊机制
+                double damageBoost;
+                if (bracketPairs <= 8) {
+                    // 小于等于8对：每减少1对，伤害提升10点
+                    damageBoost = (8 - bracketPairs) * 10.0;
+                    tooltipKey = "item.brackets_blade.extra_damage_boost_positive";
+                    color = ChatFormatting.GREEN;
+                } else {
+                    // 大于8对：每多1对，伤害降低1点
+                    damageBoost = -(bracketPairs - 8) * 1.0;
+                    tooltipKey = "item.brackets_blade.extra_damage_boost_negative";
+                    color = ChatFormatting.RED;
+                }
+                // 8对时显示无加成
+                if (bracketPairs == 8) {
+                    tooltipKey = "item.brackets_blade.extra_damage_boost_neutral";
+                    tooltipArgs = new Object[]{bracketPairs};
+                    color = ChatFormatting.YELLOW;
+                } else {
+                    tooltipArgs = new Object[]{String.format("%.1f", Math.abs(damageBoost)), bracketPairs};
+                }
+            } else {
+                // 非Extra难度下保持原有机制
+                double damageBoost = bracketPairs * 0.5; // 每对括号增加0.5点伤害
+                tooltipKey = "item.brackets_blade.damage_boost";
+                tooltipArgs = new Object[]{String.format("%.1f", damageBoost), bracketPairs};
+                color = ChatFormatting.BLUE;
+            }
+            
+            event.getToolTip().add(Component.translatable(tooltipKey, tooltipArgs)
+                .withStyle(color));
         }
     }
 

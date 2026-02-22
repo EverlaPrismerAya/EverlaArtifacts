@@ -10,6 +10,8 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 import net.everla.everlaartifacts.init.EverlaartifactsModItems;
+import net.everla.everlaartifacts.common.difficulty.DifficultyLevel;
+import net.everla.everlaartifacts.server.handlers.difficulty.WorldSeedChecker;
 
 import java.util.Map;
 import java.util.UUID;
@@ -52,7 +54,10 @@ public class BracketsBladeAttributeHandler {
 
     /**
      * 更新BracketsBlade伤害加成：基于自定义名称中"「」"符号对的数量
-     * 每一对增加0.5点伤害，受攻击冷却影响
+     * 在Extra难度下实现特殊机制：
+     * - 小于等于8对：每减少1对，伤害提升10点
+     * - 等于8对（默认）：无加成
+     * - 大于8对：每多1对，伤害降低1点
      */
     private static void updateBracketsBladeBonus(Player player) {
         UUID uuid = player.getUUID();
@@ -78,24 +83,43 @@ public class BracketsBladeAttributeHandler {
                 bracketPairs = 8;  // 默认8对括号
             }
             
-            // 计算基础伤害加成（每对0.5点）
-            double baseBonus = bracketPairs * 0.5;
+            // 检查是否为Extra难度
+            boolean isExtraDifficulty = WorldSeedChecker.isSpecialSeedWorld() || 
+                (player.level().getServer() != null && 
+                 WorldSeedChecker.getCurrentWorldDifficulty(player.level().getServer()) == DifficultyLevel.EXTRA);
+            
+            double damageBonus = 0.0;
+            
+            if (isExtraDifficulty) {
+                // Extra难度下的特殊机制
+                if (bracketPairs <= 8) {
+                    // 小于等于8对：每减少1对，伤害提升10点
+                    damageBonus = (8 - bracketPairs) * 10.0;
+                } else {
+                    // 大于8对：每多1对，伤害降低1点
+                    damageBonus = -(bracketPairs - 8) * 1.0;
+                }
+                // 8对时无加成（damageBonus = 0）
+            } else {
+                // 非Extra难度下保持原有机制：每对0.5点伤害
+                damageBonus = bracketPairs * 0.5;
+            }
             
             // 只有当值变化时才更新属性（避免不必要的计算）
             if (!BRACKET_BONUS_CACHE.containsKey(uuid) || 
-                Math.abs(BRACKET_BONUS_CACHE.get(uuid) - baseBonus) > 0.01) {
+                Math.abs(BRACKET_BONUS_CACHE.get(uuid) - damageBonus) > 0.01) {
                 
                 attackDamage.removeModifier(modifierUUID);
-                if (baseBonus > 0) {
+                if (Math.abs(damageBonus) > 0.01) { // 只有当伤害加成不为0时才添加修饰符
                     AttributeModifier modifier = new AttributeModifier(
                         modifierUUID, 
                         "Brackets Blade Bonus", 
-                        baseBonus, 
+                        damageBonus, 
                         AttributeModifier.Operation.ADDITION
                     );
                     attackDamage.addTransientModifier(modifier);
                 }
-                BRACKET_BONUS_CACHE.put(uuid, baseBonus);
+                BRACKET_BONUS_CACHE.put(uuid, damageBonus);
             }
         } else {
             // 不持有BracketsBlade时移除修饰符

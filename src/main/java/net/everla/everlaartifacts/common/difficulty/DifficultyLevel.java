@@ -11,7 +11,8 @@ public enum DifficultyLevel {
     EASY(0, "easy"),          // 纹理Y=0 (简单)
     NORMAL(1, "normal"),      // 纹理Y=32 (普通)
     HARD(2, "hard"),          // 纹理Y=64 (困难)
-    LUNATIC(3, "lunatic");   // 纹理Y=96 (月狂)
+    LUNATIC(3, "lunatic"),   // 纹理Y=96 (月狂)
+    EXTRA(4, "extra");       // 纹理Y=0 (额外)
     
     private final int id;
     private final String name;
@@ -52,15 +53,27 @@ public enum DifficultyLevel {
             case NORMAL: return Difficulty.NORMAL;
             case HARD: return Difficulty.HARD;
             case LUNATIC: return Difficulty.HARD; // 月狂暂时映射到困难
+            case EXTRA: return Difficulty.HARD;   // Extra映射到困难
             default: return Difficulty.NORMAL;
         }
     }
     
     /**
      * 获取纹理中的Y偏移量（每32像素一个难度）
+     * EXTRA难度特殊处理，始终返回Y=0
      */
     public int getTextureYOffset() {
+        if (this == EXTRA) {
+            return 0; // EXTRA难度始终使用Y=0的纹理
+        }
         return this.id * 32;
+    }
+    
+    /**
+     * 是否为Extra难度
+     */
+    public boolean isExtra() {
+        return this == EXTRA;
     }
     
     /**

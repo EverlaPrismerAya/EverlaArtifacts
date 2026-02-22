@@ -30,6 +30,8 @@ import net.minecraftforge.fml.common.Mod;
 public class DifficultyButtonScreenOverlay {
     private static final ResourceLocation DIFFICULTY_TEXTURE = ResourceLocation.fromNamespaceAndPath(
         EverlaartifactsMod.MODID, "textures/misc/difficulty.png");
+    private static final ResourceLocation GFB_DIFFICULTY_TEXTURE = ResourceLocation.fromNamespaceAndPath(
+        EverlaartifactsMod.MODID, "textures/misc/gfb_difficulty.png");
     
     // 按钮基础属性（缩小50%）
     private static final int BUTTON_WIDTH = 72;  // 原来的50%
@@ -42,6 +44,7 @@ public class DifficultyButtonScreenOverlay {
     private static DifficultyLevel currentDifficulty = DifficultyLevel.NORMAL;
     private static long lastClickTime = 0;
     private static final long CLICK_COOLDOWN = 200; // 200ms点击冷却
+    private static boolean isSpecialSeedWorld = false; // 是否为特殊种子世界
     
     // 展开菜单的位置和尺寸
     private static int menuX = 0;
@@ -71,13 +74,20 @@ public class DifficultyButtonScreenOverlay {
         String clientDifficultyName = EverlaartifactsMod.getClientDifficultyName();
         boolean isLunaticMode = EverlaartifactsMod.isClientLunaticMode();
         
+        // 检查是否为特殊种子世界
+        isSpecialSeedWorld = net.everla.everlaartifacts.server.network.DifficultySyncPacket.isClientSpecialSeedWorld();
+        
         // 根据客户端状态设置当前难度
         try {
             Difficulty clientDifficulty = Difficulty.valueOf(clientDifficultyName);
             currentDifficulty = DifficultyLevel.fromVanillaDifficulty(clientDifficulty);
             
-            // 如果客户端标记为月狂模式，则强制显示为月狂
-            if (isLunaticMode) {
+            // 特殊种子世界下强制显示为Extra难度
+            if (isSpecialSeedWorld) {
+                currentDifficulty = DifficultyLevel.EXTRA;
+            }
+            // 如果客户端标记为月狂模式，则强制显示为月狂（但不覆盖特殊种子世界的Extra难度）
+            else if (isLunaticMode) {
                 currentDifficulty = DifficultyLevel.LUNATIC;
             }
         } catch (IllegalArgumentException e) {
@@ -144,7 +154,10 @@ public class DifficultyButtonScreenOverlay {
         
         // 检查是否点击主按钮（仅在主按钮可见时）
         if (isMainButtonVisible && isMouseOver(mouseX, mouseY, mainButtonX, mainButtonY, BUTTON_WIDTH, BUTTON_HEIGHT)) {
-            isExpanded = !isExpanded;
+            // 特殊种子世界禁用展开功能
+            if (!isSpecialSeedWorld) {
+                isExpanded = !isExpanded;
+            }
             lastClickTime = currentTime;
             event.setCanceled(true);
             return;
@@ -166,17 +179,28 @@ public class DifficultyButtonScreenOverlay {
     
     private static void renderMainButton(GuiGraphics guiGraphics, int x, int y, PoseStack poseStack) {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
-        RenderSystem.setShaderTexture(0, DIFFICULTY_TEXTURE);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         
-        // 根据当前难度选择纹理位置
-        int textureY = currentDifficulty.getTextureYOffset();
-        
-        // 使用缩放渲染，保持材质框选范围不变
-        poseStack.pushPose();
-        poseStack.scale(0.5f, 0.5f, 1.0f);
-        guiGraphics.blit(DIFFICULTY_TEXTURE, x * 2, y * 2, 0, textureY, 144, 32, 144, 128);
-        poseStack.popPose();
+        if (isSpecialSeedWorld) {
+            // 特殊种子世界：直接使用gfb_difficulty.png材质
+            RenderSystem.setShaderTexture(0, GFB_DIFFICULTY_TEXTURE);
+            // 直接渲染整个图片，不需要选择区域
+            poseStack.pushPose();
+            poseStack.scale(0.5f, 0.5f, 1.0f);
+            guiGraphics.blit(GFB_DIFFICULTY_TEXTURE, x * 2, y * 2, 0, 0, 144, 32, 144, 32);
+            poseStack.popPose();
+        } else {
+            // 普通世界：使用原有逻辑
+            RenderSystem.setShaderTexture(0, DIFFICULTY_TEXTURE);
+            // 根据当前难度选择纹理位置
+            int textureY = currentDifficulty.getTextureYOffset();
+            
+            // 使用缩放渲染，保持材质框选范围不变
+            poseStack.pushPose();
+            poseStack.scale(0.5f, 0.5f, 1.0f);
+            guiGraphics.blit(DIFFICULTY_TEXTURE, x * 2, y * 2, 0, textureY, 144, 32, 144, 128);
+            poseStack.popPose();
+        }
     }
     
     private static void renderExpandedMenu(GuiGraphics guiGraphics, int mainButtonX, int mainButtonY, PoseStack poseStack) {
