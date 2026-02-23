@@ -15,6 +15,7 @@ import net.minecraft.world.entity.Entity;
 
 import net.everla.everlaartifacts.common.entity.projectiles.FirecrackerProjectileEntity;
 import net.everla.everlaartifacts.common.entity.projectiles.AngolmoisDoomProjectileEntity;
+import net.everla.everlaartifacts.common.entity.bosses.watari_nina.WatariNinaEntity;
 import net.everla.everlaartifacts.EverlaartifactsMod;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -26,6 +27,14 @@ public class EverlaartifactsModEntities {
 	public static final RegistryObject<EntityType<AngolmoisDoomProjectileEntity>> ANGOLMOIS_DOOM_PROJECTILE = register("angolmois_doom_projectile",
 			EntityType.Builder.<AngolmoisDoomProjectileEntity>of(AngolmoisDoomProjectileEntity::new, MobCategory.MISC).setCustomClientFactory(AngolmoisDoomProjectileEntity::new).setShouldReceiveVelocityUpdates(true).setTrackingRange(64)
 					.setUpdateInterval(1).sized(1.0f, 1.0f));
+
+	// Watari Nina Boss Entity
+	public static final RegistryObject<EntityType<WatariNinaEntity>> WATARI_NINA = register("watari_nina",
+			EntityType.Builder.of(WatariNinaEntity::new, MobCategory.MONSTER)
+					.fireImmune()
+					.sized(0.6f, 1.8f)
+					.clientTrackingRange(10)
+					.updateInterval(3));
 
 	// End of user code block custom entities
 	private static <T extends Entity> RegistryObject<EntityType<T>> register(String registryname, EntityType.Builder<T> entityTypeBuilder) {

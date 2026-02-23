@@ -3,7 +3,6 @@ package net.everla.everlaartifacts.common.difficulty;
 import net.everla.everlaartifacts.common.game_rules.EnableLunaticMode;
 import net.everla.everlaartifacts.init.EverlaartifactsModEnchantments;
 import net.everla.everlaartifacts.server.handlers.difficulty.WorldSeedChecker;
-import net.everla.everlaartifacts.common.difficulty.DifficultyLevel;
 import net.everla.everlaartifacts.common.config.EverlaArtifactsConfig;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.entity.boss.wither.WitherBoss;
@@ -240,8 +239,8 @@ public class LunaticWitherBossHandler {
             initializeWitherData(wither);
             
             // 记录生成时间并明确禁用特殊攻击
-            WitherSpecialAttack.setSpawnTime(wither, wither.level().getGameTime());
-            WitherSpecialAttack.setSpecialAttackEnabled(wither, false);
+            LunaticWitherSpecialAttack.setSpawnTime(wither, wither.level().getGameTime());
+            LunaticWitherSpecialAttack.setSpecialAttackEnabled(wither, false);
             
             // 确保初始化所有相关NBT数据
             initializeWitherSpecialAttackData(wither);
@@ -680,25 +679,25 @@ public class LunaticWitherBossHandler {
         CompoundTag persistentData = wither.getPersistentData();
         
         // 明确初始化特殊攻击状态为false
-        persistentData.putBoolean(WitherSpecialAttack.SPECIAL_ATTACK_ENABLED_KEY, false);
+        persistentData.putBoolean(LunaticWitherSpecialAttack.SPECIAL_ATTACK_ENABLED_KEY, false);
         
         // 初始化生成时间
-        if (!persistentData.contains(WitherSpecialAttack.SPAWN_TIME_KEY)) {
-            persistentData.putLong(WitherSpecialAttack.SPAWN_TIME_KEY, wither.level().getGameTime());
+        if (!persistentData.contains(LunaticWitherSpecialAttack.SPAWN_TIME_KEY)) {
+            persistentData.putLong(LunaticWitherSpecialAttack.SPAWN_TIME_KEY, wither.level().getGameTime());
         }
         
         // 初始化其他相关状态
-        if (!persistentData.contains(WitherSpecialAttack.LAST_CHARGE_TIME_KEY)) {
-            persistentData.putLong(WitherSpecialAttack.LAST_CHARGE_TIME_KEY, 0L);
+        if (!persistentData.contains(LunaticWitherSpecialAttack.LAST_CHARGE_TIME_KEY)) {
+            persistentData.putLong(LunaticWitherSpecialAttack.LAST_CHARGE_TIME_KEY, 0L);
         }
-        if (!persistentData.contains(WitherSpecialAttack.LAST_SMASH_TIME_KEY)) {
-            persistentData.putLong(WitherSpecialAttack.LAST_SMASH_TIME_KEY, 0L);
+        if (!persistentData.contains(LunaticWitherSpecialAttack.LAST_SMASH_TIME_KEY)) {
+            persistentData.putLong(LunaticWitherSpecialAttack.LAST_SMASH_TIME_KEY, 0L);
         }
-        if (!persistentData.contains(WitherSpecialAttack.IS_CHARGING_KEY)) {
-            persistentData.putBoolean(WitherSpecialAttack.IS_CHARGING_KEY, false);
+        if (!persistentData.contains(LunaticWitherSpecialAttack.IS_CHARGING_KEY)) {
+            persistentData.putBoolean(LunaticWitherSpecialAttack.IS_CHARGING_KEY, false);
         }
-        if (!persistentData.contains(WitherSpecialAttack.IS_SMASHING_KEY)) {
-            persistentData.putBoolean(WitherSpecialAttack.IS_SMASHING_KEY, false);
+        if (!persistentData.contains(LunaticWitherSpecialAttack.IS_SMASHING_KEY)) {
+            persistentData.putBoolean(LunaticWitherSpecialAttack.IS_SMASHING_KEY, false);
         }
     }
 
@@ -728,22 +727,22 @@ public class LunaticWitherBossHandler {
             
             for (WitherBoss wither : withers) {
                 // 检查是否可以启用特殊攻击（基于Invul标签判断）
-                if (!WitherSpecialAttack.canEnableSpecialAttack(wither)) {
+                if (!LunaticWitherSpecialAttack.canEnableSpecialAttack(wither)) {
                     // 如果不能启用且当前状态为启用，则禁用特殊攻击
-                    if (WitherSpecialAttack.isSpecialAttackEnabled(wither)) {
-                        WitherSpecialAttack.setSpecialAttackEnabled(wither, false);
+                    if (LunaticWitherSpecialAttack.isSpecialAttackEnabled(wither)) {
+                        LunaticWitherSpecialAttack.setSpecialAttackEnabled(wither, false);
                     }
                     continue;
                 }
                 
                 // 如果可以启用但当前状态为禁用，则启用特殊攻击
-                if (!WitherSpecialAttack.isSpecialAttackEnabled(wither)) {
-                    WitherSpecialAttack.setSpecialAttackEnabled(wither, true);
+                if (!LunaticWitherSpecialAttack.isSpecialAttackEnabled(wither)) {
+                    LunaticWitherSpecialAttack.setSpecialAttackEnabled(wither, true);
                 }
                 
                 // 处理凋灵特殊攻击逻辑（每刻触发）
-                WitherSpecialAttack.processWitherChargeAttack(wither);
-                WitherSpecialAttack.processWitherSmashAttack(wither);
+                LunaticWitherSpecialAttack.processWitherChargeAttack(wither);
+                LunaticWitherSpecialAttack.processWitherSmashAttack(wither);
             }
         }
     }

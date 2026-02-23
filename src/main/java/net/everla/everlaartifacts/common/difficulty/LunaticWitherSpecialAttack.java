@@ -14,7 +14,7 @@ import net.minecraft.core.BlockPos;
  * 凋灵特殊攻击处理类
  * 负责管理凋灵的所有特殊攻击行为，包括冲撞攻击和下砸技能
  */
-public class WitherSpecialAttack {
+public class LunaticWitherSpecialAttack {
     
     // 凋灵冲撞攻击相关常量
     private static final double HEALTH_CHARGE_THRESHOLD = 0.5; // 50%生命值阈值

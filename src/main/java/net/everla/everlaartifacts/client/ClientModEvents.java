@@ -7,6 +7,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 
 import net.everla.everlaartifacts.client.renderer.AngolmoisDoomProjectileRenderer;
+import net.everla.everlaartifacts.client.renderer.WatariNinaRenderer;
 import net.everla.everlaartifacts.client.model.Modelangolmois_doom;
 import net.everla.everlaartifacts.init.EverlaartifactsModEntities;
 
@@ -19,6 +20,12 @@ public class ClientModEvents {
             net.minecraft.client.renderer.entity.EntityRenderers.register(
                 EverlaartifactsModEntities.ANGOLMOIS_DOOM_PROJECTILE.get(), 
                 AngolmoisDoomProjectileRenderer::new
+            );
+            
+            // 注册Watari Nina渲染器
+            net.minecraft.client.renderer.entity.EntityRenderers.register(
+                EverlaartifactsModEntities.WATARI_NINA.get(),
+                WatariNinaRenderer::new
             );
         });
     }
