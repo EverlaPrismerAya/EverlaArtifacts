@@ -31,7 +31,7 @@ import java.util.*;
 
 /**
  * 末影龙Boss处理器
- * 当月狂模式开启时（游戏难度为困难且enableLunaticMode游戏规则为true），
+ * 当月狂或额外模式开启时（游戏难度为困难且enableLunaticMode游戏规则为true），
  * 当末影龙附近200方块范围内存在有底座的末地水晶时，末影龙免疫任何伤害
  * 同时实现动态减伤与防秒杀机制
  */
@@ -68,7 +68,7 @@ public class LunaticDragonBossHandler {
     
     /**
      * 监听生物受伤事件，处理末影龙的伤害免疫、动态减伤、防秒杀和生命值恢复逻辑
-     * 同时处理月狂模式下末影人攻击末影龙目标的机制
+     * 同时处理月狂或额外模式下末影人攻击末影龙目标的机制
      */
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void onLivingHurt(LivingHurtEvent event) {
@@ -82,7 +82,7 @@ public class LunaticDragonBossHandler {
             return;
         }
         
-        // 检查是否启用了月狂模式且世界难度为困难
+        // 检查是否启用了月狂或额外模式且世界难度为困难
         if (dragon.level().getDifficulty() != Difficulty.HARD) {
             return;
         }
@@ -110,7 +110,7 @@ public class LunaticDragonBossHandler {
     }
     
     /**
-     * 监听末影人受攻击事件，处理月狂模式下末影人免疫末影龙攻击
+     * 监听末影人受攻击事件，处理月狂或额外模式下末影人免疫末影龙攻击
      */
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void onEndermanAttack(LivingAttackEvent event) {
@@ -124,7 +124,7 @@ public class LunaticDragonBossHandler {
             return;
         }
         
-        // 检查是否启用了月狂模式
+        // 检查是否启用了月狂或额外模式
         if (!isLunaticModeEnabled(event.getEntity().level())) {
             return;
         }
@@ -132,7 +132,7 @@ public class LunaticDragonBossHandler {
         // 检查攻击者是否为末影龙
         Entity attacker = event.getSource().getEntity();
         if (attacker instanceof EnderDragon) {
-            // 取消攻击事件，使末影人在月狂模式下完全免疫末影龙攻击
+            // 取消攻击事件，使末影人在月狂或额外模式下完全免疫末影龙攻击
             // 这会阻止伤害、击退、闪红等所有攻击效果
             event.setCanceled(true);
             return;
@@ -140,7 +140,7 @@ public class LunaticDragonBossHandler {
     }
     
     /**
-     * 监听所有生物受伤事件，处理月狂模式下末影人对末影龙攻击目标的仇恨转移
+     * 监听所有生物受伤事件，处理月狂或额外模式下末影人对末影龙攻击目标的仇恨转移
      */
     @SubscribeEvent(priority = EventPriority.LOW)
     public static void onEntityHurt(LivingHurtEvent event) {
@@ -149,7 +149,7 @@ public class LunaticDragonBossHandler {
             return;
         }
         
-        // 检查是否启用了月狂模式
+        // 检查是否启用了月狂或额外模式
         if (!isLunaticModeEnabled(event.getEntity().level())) {
             return;
         }
@@ -238,10 +238,10 @@ public class LunaticDragonBossHandler {
     }
         
     /**
-     * 检查是否启用了月狂模式
+     * 检查是否启用了月狂或额外模式
      * 
      * @param level 世界对象
-     * @return 是否处于月狂模式
+     * @return 是否处于月狂或额外模式
      */
     private static boolean isLunaticModeEnabled(net.minecraft.world.level.Level level) {
         if (level.getDifficulty() != Difficulty.HARD) {
@@ -661,7 +661,7 @@ public class LunaticDragonBossHandler {
     @SubscribeEvent
     public static void onEntityJoinLevel(EntityJoinLevelEvent event) {
         if (event.getEntity() instanceof EnderDragon dragon && !event.getLevel().isClientSide()) {
-            // 检查是否启用了月狂模式
+            // 检查是否启用了月狂或额外模式
             if (dragon.level().getDifficulty() != Difficulty.HARD) {
                 return;
             }
@@ -705,7 +705,7 @@ public class LunaticDragonBossHandler {
     }
     
     /**
-     * 监听末影龙死亡事件，清理相关数据并在月狂模式下生成龙魂碎片
+     * 监听末影龙死亡事件，清理相关数据并在月狂或额外模式下生成龙魂碎片
      */
     @SubscribeEvent
     public static void onLivingDeath(LivingDeathEvent event) {
@@ -715,7 +715,7 @@ public class LunaticDragonBossHandler {
             persistentData.remove(CRYSTAL_POSITIONS_KEY);
             persistentData.remove(HAS_RESTORATION_OCCURRED_KEY);
             
-            // 检查是否为月狂模式下的末影龙死亡
+            // 检查是否为月狂或额外模式下的末影龙死亡
             if (isLunaticModeDragon(dragon)) {
                 spawnDragonSoulFragments(dragon);
             }
@@ -723,10 +723,10 @@ public class LunaticDragonBossHandler {
     }
     
     /**
-     * 检查是否为月狂模式下的末影龙
+     * 检查是否为月狂或额外模式下的末影龙
      * 
      * @param dragon 末影龙实体
-     * @return 是否为月狂模式
+     * @return 是否为月狂或额外模式
      */
     private static boolean isLunaticModeDragon(EnderDragon dragon) {
         return dragon.level().getDifficulty() == Difficulty.HARD && 

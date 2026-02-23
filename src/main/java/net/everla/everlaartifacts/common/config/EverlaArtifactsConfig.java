@@ -39,8 +39,20 @@ public class EverlaArtifactsConfig {
     
     // 不会被末影人协同攻击的实体ID列表配置
     public static ForgeConfigSpec.ConfigValue<String> immuneToEndermanAggression;
+    
+    // 凋灵特殊攻击配置
+    public static ForgeConfigSpec.BooleanValue enableWitherSpecialAttacks;
+    public static ForgeConfigSpec.BooleanValue enableWitherSkeletonSummoning;
+    public static ForgeConfigSpec.DoubleValue witherSkeletonSummonHealthThreshold;
 
     static {
+        // 配置凋灵特殊攻击部分
+        BUILDER.push("WitherSpecialAttacks");
+        enableWitherSpecialAttacks = BUILDER.comment("启用月狂模式下的凋灵特殊攻击机制").define("enableWitherSpecialAttacks", true);
+        enableWitherSkeletonSummoning = BUILDER.comment("启用月狂模式下凋灵生命值低于阈值时召唤特殊凋灵骷髅").define("enableWitherSkeletonSummoning", true);
+        witherSkeletonSummonHealthThreshold = BUILDER.comment("凋灵召唤特殊凋灵骷髅的生命值阈值 (0.0-1.0, 例如 0.5 = 50%)").defineInRange("witherSkeletonSummonHealthThreshold", 0.5, 0.0, 1.0);
+        BUILDER.pop();
+
         // 配置末影龙水晶重生机制部分
         BUILDER.push("EnderDragonCrystalRespawn");
         enableEnderDragonCrystalRespawn = BUILDER.comment("启用月狂模式下的末影龙水晶重生机制：当生命值低于30%时重生末地水晶并恢复全部生命值").define("enableEnderDragonCrystalRespawn", true);
@@ -157,6 +169,19 @@ public class EverlaArtifactsConfig {
                 .map(String::trim)
                 .filter(s -> !s.isEmpty())
                 .collect(java.util.stream.Collectors.toSet());
+    }
+    
+    // 凋灵特殊攻击配置的获取方法
+    public static boolean isWitherSpecialAttacksEnabled() {
+        return enableWitherSpecialAttacks.get();
+    }
+    
+    public static boolean isWitherSkeletonSummoningEnabled() {
+        return enableWitherSkeletonSummoning.get();
+    }
+    
+    public static double getWitherSkeletonSummonHealthThreshold() {
+        return witherSkeletonSummonHealthThreshold.get();
     }
     
     public static void register() {

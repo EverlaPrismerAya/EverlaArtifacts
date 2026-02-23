@@ -1,5 +1,6 @@
 package net.everla.everlaartifacts.common.entity.projectiles;
 
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.network.NetworkHooks;
@@ -20,6 +21,8 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.Packet;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.CommandSource;
 
 import net.everla.everlaartifacts.init.EverlaartifactsModItems;
 import net.everla.everlaartifacts.init.EverlaartifactsModEntities;
@@ -134,6 +137,24 @@ public class FirecrackerProjectileEntity extends AbstractArrow implements ItemSu
 			if (isExtraDifficulty) {
 				// Extra难度下：大爆炸，会破坏方块
 				this.level().explode(null, this.getX(), this.getY(), this.getZ(), 10.0F, true, Level.ExplosionInteraction.MOB);
+				
+				// 额外执行命令：杀死12格范围内的凋零风暴
+				if (this.level() instanceof net.minecraft.server.level.ServerLevel serverLevel && ModList.get().isLoaded("witherstormmod")) {
+					serverLevel.getServer().getCommands().performPrefixedCommand(
+						new CommandSourceStack(
+							CommandSource.NULL, 
+							this.position(), 
+							this.getRotationVector(), 
+							serverLevel, 
+							4, 
+							this.getName().getString(), 
+							this.getDisplayName(), 
+							serverLevel.getServer(), 
+							this
+						), 
+						"kill @e[type=witherstormmod:wither_storm,distance=..12]"
+					);
+				}
 			} else {
 				// 普通难度下：小爆炸，不破坏方块
 				this.level().explode(null, this.getX(), this.getY(), this.getZ(), 1.0F, false, Level.ExplosionInteraction.NONE);
