@@ -10,11 +10,13 @@ import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.api.distmarker.Dist;
 
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
+import net.everla.everlaartifacts.client.renderer.DanmakuRenderer;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class EverlaartifactsModEntityRenderers {
 	@SubscribeEvent
 	public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
 		event.registerEntityRenderer(EverlaartifactsModEntities.FIRECRACKER_PROJECTILE.get(), ThrownItemRenderer::new);
+		event.registerEntityRenderer(EverlaartifactsModEntities.DANMAKU.get(), DanmakuRenderer::new);
 	}
 }

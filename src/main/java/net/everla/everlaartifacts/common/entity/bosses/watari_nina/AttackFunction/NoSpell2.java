@@ -1,55 +1,55 @@
 package net.everla.everlaartifacts.common.entity.bosses.watari_nina.AttackFunction;
 
-import net.everla.everlaartifacts.common.entity.projectiles.DanmakuEntity;
 import net.everla.everlaartifacts.common.entity.bosses.watari_nina.AttackManager;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
+import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.Util;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.util.RandomSource;
+import net.everla.everlaartifacts.common.entity.projectiles.DanmakuEntity;
+import org.joml.Vector3f;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * NoSpell1攻击实现
- * 攻击机制：BOSS瞬移到玩家附近距玩家10方块，距地面3方块的随机位置，
- * 于最近玩家-boss为点连线，以boss为圆心形成的半径为4的圆产生6枚均匀分布的
- * 由boss发射的黑色凋灵之首，随后沿切线的逆时针方向飞出。
- * 下次发射转为顺时针且发射角度旋转20度，以此类推，持续30秒。
+ * NoSpell2非符攻击实现（强化版）
+ * 攻击机制：与NoSpell1类似，但弹幕初始速度更慢，常态速度更快，弹幕数量增加到9，每次发射旋转30度
+ * 持续时间：30秒（600 ticks）
+ * 触发条件：Boss的Attack值为2时执行
  */
-public class NoSpell1 {
+public class NoSpell2 {
     
-    private static final Logger LOGGER = LoggerFactory.getLogger(NoSpell1.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(NoSpell2.class);
     
     // 攻击参数常量
     private static final double TELEPORT_DISTANCE = 10.0; // 瞬移距离
     private static final double HEIGHT_ABOVE_GROUND = 3.0; // 距地面高度
     private static final double CIRCLE_RADIUS = 2.0; // 圆形弹幕半径
-    private static final int DANMAKU_COUNT = 8; // 每次发射的弹幕数量
-    private static final double ROTATION_INCREMENT = Math.toRadians(20); // 每次旋转20度
+    private static final int DANMAKU_COUNT = 9; // 每次发射的弹幕数量（增加到9）
+    private static final double ROTATION_INCREMENT = Math.toRadians(30); // 每次旋转30度（增加角度）
     private static final int SHOOT_INTERVAL = 5; // 发射间隔（ticks）
-    private static final double DANMAKU_SPEED = 0.2; // 弹幕初始速度
-    private static final double DANMAKU_ACCELERATION_POWER = 0.2; // 弹幕常态速度
+    private static final double DANMAKU_SPEED = 0.1; // 弹幕初始速度（更慢）
+    private static final double DANMAKU_ACCELERATION_POWER = 0.3; // 弹幕常态速度（更快）
     private static final double ROTATION_SPEED = Math.toRadians(5); // 围绕目标旋转速度（每tick旋转5度）
     private static final double ORBIT_RADIUS = 10.0; // 围绕半径
     private static final double PLAYER_LOCK_RANGE = 128.0; // 玩家锁定范围（方块）
     
     // NBT标签键
-    public static final String CURRENT_ANGLE_KEY = "NoSpell1CurrentAngle";
-    public static final String IS_CLOCKWISE_KEY = "NoSpell1IsClockwise";
-    public static final String LAST_SHOOT_TIME_KEY = "NoSpell1LastShootTime";
-    public static final String SHOOT_COUNTER_KEY = "NoSpell1ShootCounter";
-    public static final String ORBIT_ANGLE_KEY = "NoSpell1OrbitAngle";
-    public static final String TARGET_POS_X_KEY = "NoSpell1TargetX";
-    public static final String TARGET_POS_Y_KEY = "NoSpell1TargetY";
-    public static final String TARGET_POS_Z_KEY = "NoSpell1TargetZ";
-    public static final String ATTACK_ELAPSED_SECONDS_KEY = "NoSpell1ElapsedSeconds"; // 攻击已进行的秒数
-    public static final String ATTACK_PAUSED_KEY = "NoSpell1Paused"; // 攻击暂停状态
+    public static final String CURRENT_ANGLE_KEY = "NoSpell2CurrentAngle";
+    public static final String IS_CLOCKWISE_KEY = "NoSpell2IsClockwise";
+    public static final String LAST_SHOOT_TIME_KEY = "NoSpell2LastShootTime";
+    public static final String SHOOT_COUNTER_KEY = "NoSpell2ShootCounter";
+    public static final String ORBIT_ANGLE_KEY = "NoSpell2OrbitAngle";
+    public static final String TARGET_POS_X_KEY = "NoSpell2TargetX";
+    public static final String TARGET_POS_Y_KEY = "NoSpell2TargetY";
+    public static final String TARGET_POS_Z_KEY = "NoSpell2TargetZ";
+    public static final String ATTACK_ELAPSED_SECONDS_KEY = "NoSpell2ElapsedSeconds";
+    public static final String ATTACK_PAUSED_KEY = "NoSpell2Paused";
     
     /**
-     * 开始NoSpell1攻击
+     * 开始NoSpell2攻击
      * 
      * @param boss Watari Nina实体
      * @param target 目标玩家
@@ -186,7 +186,7 @@ public class NoSpell1 {
         net.everla.everlaartifacts.EverlaartifactsMod.queueServerWork(SHOOT_INTERVAL, () -> {
             if (!boss.isRemoved() && !target.isRemoved() && AttackManager.isAttacking(boss)) {
                 int currentAttack = AttackManager.getAttack(boss);
-                if (currentAttack == 0) {
+                if (currentAttack == 2) {
                     scheduleNextShot(boss, target, serverLevel);
                 } else {
                     endAttack(boss);
@@ -232,7 +232,6 @@ public class NoSpell1 {
         Vec3 bossToPlayer = nearestPlayer.position().subtract(boss.position()).normalize();
         
         // 创建圆盘的坐标系
-        // 圆盘应该平行于Boss-目标连线，所以法向量应该垂直于连线方向
         Vec3 diskNormal = calculateDiskNormal(bossToPlayer);
         
         // 创建圆盘的两个正交基向量（在圆盘平面内）
@@ -247,7 +246,7 @@ public class NoSpell1 {
         // 上向量 = 法向量 × 右向量
         diskUp = diskNormal.cross(diskRight).normalize();
         
-        // 生成6枚Danmaku弹幕，均匀分布在圆周上
+        // 生成9枚Danmaku弹幕，均匀分布在圆周上
         for (int i = 0; i < DANMAKU_COUNT; i++) {
             // 计算在圆周上的基础角度（相对于圆盘）
             double circleAngle = (2 * Math.PI * i) / DANMAKU_COUNT;
@@ -293,7 +292,7 @@ public class NoSpell1 {
             
             // 设置Danmaku的特殊属性
             if (danmaku != null) {
-                danmaku.getPersistentData().putBoolean("IsNoSpell1Danmaku", true);
+                danmaku.getPersistentData().putBoolean("IsNoSpell2Danmaku", true);
                 danmaku.setAccelerationPower(DANMAKU_ACCELERATION_POWER); // 设置较高的加速度
                 danmaku.setConstantVelocity(
                     tangentWorld.x() * DANMAKU_SPEED,
@@ -307,8 +306,6 @@ public class NoSpell1 {
         int shootCount = boss.getPersistentData().getInt(SHOOT_COUNTER_KEY);
         boss.getPersistentData().putInt(SHOOT_COUNTER_KEY, shootCount + 1);
     }
-    
-
     
     /**
      * 获取最近的有效玩家（排除创造模式和旁观模式，限制128方块范围内）
@@ -349,10 +346,6 @@ public class NoSpell1 {
         Vec3 originalNormal = calculateOriginalNormal(bossToPlayer);
         
         // 以玩家-Boss连线为轴旋转90度
-        // 旋转轴就是bossToPlayer本身
-        // 使用罗德里格斯旋转公式：v_rot = v*cos(θ) + (k×v)*sin(θ) + k*(k·v)*(1-cos(θ))
-        // 其中k是旋转轴，θ是旋转角度
-        
         double theta = Math.toRadians(90); // 90度
         double cosTheta = Math.cos(theta);
         double sinTheta = Math.sin(theta);
@@ -453,7 +446,7 @@ public class NoSpell1 {
         int elapsedSeconds = (int) ((currentTime - startTime) / 20); // 转换为秒
         boss.getPersistentData().putInt(ATTACK_ELAPSED_SECONDS_KEY, elapsedSeconds);
         
-        LOGGER.info("NoSpell1攻击暂停，已进行{}秒", elapsedSeconds);
+        LOGGER.info("NoSpell2攻击暂停，已进行{}秒", elapsedSeconds);
     }
     
     /**
@@ -465,7 +458,7 @@ public class NoSpell1 {
         // 清除暂停状态
         boss.getPersistentData().putBoolean(ATTACK_PAUSED_KEY, false);
         
-        LOGGER.info("NoSpell1攻击恢复");
+        LOGGER.info("NoSpell2攻击恢复");
     }
     
     /**
@@ -541,13 +534,13 @@ public class NoSpell1 {
     }
     
     /**
-     * 结束NoSpell1攻击
+     * 结束NoSpell2攻击
      * 
      * @param boss Watari Nina实体
      */
     public static void endAttack(LivingEntity boss) {
-        // 设置attack值为1
-        AttackManager.setAttack(boss, 1);
+        // 设置attack值为3
+        AttackManager.setAttack(boss, 3);
         AttackManager.setAttacking(boss, false);
         
         // 攻击结束时回满血
@@ -566,10 +559,8 @@ public class NoSpell1 {
         boss.getPersistentData().remove(ATTACK_PAUSED_KEY);
     }
     
-
-    
     /**
-     * 将Boss回满血（符卡击破条机制）
+     * 将Boss回满血
      * 
      * @param boss Watari Nina实体
      */

@@ -244,5 +244,8 @@
   "death.attack.homa_overburn.player_item": "%1$s被猩红蝶火吞噬了，凶手是%2$s的%3$s",
   "chat.everlaartifacts.extra.homa_staff": "笑死，你不是胡桃还想用这玩意？",
   "chat.everlaartifacts.extra.homa_staff.why": "诶你怎么不死啊？",
-  "chat.everlaartifacts.extra.homa_staff.enrage": "死！"
+  "chat.everlaartifacts.extra.homa_staff.enrage": "死！",
+  "jei.everlaartifacts.flashbomb.desc": "通过在酿造台中用荧石对夜视药水进行酿造获得。饮用后会产生短暂的强光闪烁效果。",
+  "jei.everlaartifacts.nuclear_waste_water.desc": "通过在酿造台中用核废水桶对玻璃瓶进行酿造获得。饮用后会造成核辐射伤害。",
+  "entity.everlaartifacts.watari_nina":"渡里贝子"
 }

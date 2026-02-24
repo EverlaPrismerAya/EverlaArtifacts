@@ -245,5 +245,8 @@
   "death.attack.homa_overburn.player_item": "%1$s was devoured by Crimson Butterfly Fire, the culprit is %2$s\u0027s %3$s",
   "chat.everlaartifacts.extra.homa_staff": "LMAO. You think you can use this without being Hu Tao?",
   "chat.everlaartifacts.extra.homa_staff.why": "Why won't you die？！",
-  "chat.everlaartifacts.extra.homa_staff.enrage": "DIE！"
+  "chat.everlaartifacts.extra.homa_staff.enrage": "DIE！",
+  "jei.everlaartifacts.flashbomb.desc": "Obtained by brewing Glowstone on Night Vision Potion in a brewing stand. Drinking it will produce a brief flash effect.",
+  "jei.everlaartifacts.nuclear_waste_water.desc": "Obtained by brewing Nuclear Waste Water Bucket on Glass Bottle in a brewing stand. Drinking it will cause nuclear radiation damage.",
+  "entity.everlaartifacts.watari_nina":"Watari Nina"
 }

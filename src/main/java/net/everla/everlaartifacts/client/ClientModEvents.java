@@ -8,7 +8,9 @@ import net.minecraftforge.client.event.EntityRenderersEvent;
 
 import net.everla.everlaartifacts.client.renderer.AngolmoisDoomProjectileRenderer;
 import net.everla.everlaartifacts.client.renderer.WatariNinaRenderer;
+import net.everla.everlaartifacts.client.renderer.DanmakuRenderer;
 import net.everla.everlaartifacts.client.model.Modelangolmois_doom;
+import net.everla.everlaartifacts.client.model.ModelDanmaku;
 import net.everla.everlaartifacts.init.EverlaartifactsModEntities;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
@@ -27,6 +29,12 @@ public class ClientModEvents {
                 EverlaartifactsModEntities.WATARI_NINA.get(),
                 WatariNinaRenderer::new
             );
+            
+            // 注册Danmaku渲染器
+            net.minecraft.client.renderer.entity.EntityRenderers.register(
+                EverlaartifactsModEntities.DANMAKU.get(),
+                DanmakuRenderer::new
+            );
         });
     }
     
@@ -34,6 +42,9 @@ public class ClientModEvents {
     public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
         // 注册Angolmois Doom模型层定义
         event.registerLayerDefinition(Modelangolmois_doom.LAYER_LOCATION, Modelangolmois_doom::createBodyLayer);
+        
+        // 注册Danmaku模型层定义
+        event.registerLayerDefinition(ModelDanmaku.LAYER_LOCATION, ModelDanmaku::createBodyLayer);
     }
     
     @SubscribeEvent

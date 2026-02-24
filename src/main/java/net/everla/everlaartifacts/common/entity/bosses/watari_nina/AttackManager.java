@@ -16,7 +16,7 @@ public class AttackManager {
     public static final String CURRENT_ATTACK_INDEX_KEY = "CurrentAttackIndex";
     
     // 攻击相关常量
-    private static final int MAX_ATTACK_COUNT = 2; // Attack超过2时不再复活
+    private static final int MAX_ATTACK_COUNT = 4; // Attack达到4时才真正死亡
     private static final int ATTACK_DURATION = 600; // 30秒 = 600 ticks
     
     /**
@@ -39,6 +39,12 @@ public class AttackManager {
     public static void setAttack(LivingEntity entity, int attack) {
         CompoundTag persistentData = entity.getPersistentData();
         persistentData.putInt(ATTACK_KEY, attack);
+        
+        // 如果正在攻击，结束当前攻击
+        if (isAttacking(entity)) {
+            setAttacking(entity, false);
+            cleanupAttackSpecificData(entity);
+        }
     }
     
     /**
@@ -49,6 +55,19 @@ public class AttackManager {
     public static void incrementAttack(LivingEntity entity) {
         int currentAttack = getAttack(entity);
         setAttack(entity, currentAttack + 1);
+    }
+    
+    /**
+     * 清理特定攻击的数据
+     * 
+     * @param entity Watari Nina实体
+     */
+    private static void cleanupAttackSpecificData(LivingEntity entity) {
+        CompoundTag persistentData = entity.getPersistentData();
+        
+        // 清理所有攻击相关数据
+        persistentData.getAllKeys().removeIf(key -> 
+            key.startsWith("NoSpell1") || key.startsWith("NoSpell2") || key.startsWith("SpellCard1"));
     }
     
     /**

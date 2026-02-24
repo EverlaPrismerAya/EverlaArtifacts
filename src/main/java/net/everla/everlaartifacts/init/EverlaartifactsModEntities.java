@@ -15,6 +15,7 @@ import net.minecraft.world.entity.Entity;
 
 import net.everla.everlaartifacts.common.entity.projectiles.FirecrackerProjectileEntity;
 import net.everla.everlaartifacts.common.entity.projectiles.AngolmoisDoomProjectileEntity;
+import net.everla.everlaartifacts.common.entity.projectiles.DanmakuEntity;
 import net.everla.everlaartifacts.common.entity.bosses.watari_nina.WatariNinaEntity;
 import net.everla.everlaartifacts.EverlaartifactsMod;
 
@@ -35,6 +36,15 @@ public class EverlaartifactsModEntities {
 					.sized(0.6f, 1.8f)
 					.clientTrackingRange(10)
 					.updateInterval(3));
+
+	// Danmaku Projectile Entity
+	public static final RegistryObject<EntityType<DanmakuEntity>> DANMAKU = register("danmaku",
+			EntityType.Builder.<DanmakuEntity>of(DanmakuEntity::new, MobCategory.MISC)
+					.setShouldReceiveVelocityUpdates(true)
+					.setTrackingRange(64)
+					.setUpdateInterval(1)
+					.sized(0.25f, 0.25f)
+					.fireImmune());
 
 	// End of user code block custom entities
 	private static <T extends Entity> RegistryObject<EntityType<T>> register(String registryname, EntityType.Builder<T> entityTypeBuilder) {

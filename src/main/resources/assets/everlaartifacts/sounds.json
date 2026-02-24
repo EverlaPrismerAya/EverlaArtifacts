@@ -8,15 +8,6 @@
       }
     ]
   },
-  "genshin_start": {
-    "subtitle": "subtitles.genshin_start",
-    "sounds": [
-      {
-        "name": "everlaartifacts:genshin_start",
-        "stream": false
-      }
-    ]
-  },
   "metal_pipe": {
     "subtitle": "subtitles.metal_pipe",
     "sounds": [

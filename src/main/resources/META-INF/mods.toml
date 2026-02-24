@@ -18,3 +18,10 @@ description="Some items and other things from my old mod"
     versionRange="[1.20.1]"
     ordering="AFTER"
     side="BOTH"
+
+[[dependencies.everlaartifacts]]
+    modId="jei"
+    mandatory=false
+    versionRange="[15.2.0.27,)"
+    ordering="AFTER"
+    side="BOTH"

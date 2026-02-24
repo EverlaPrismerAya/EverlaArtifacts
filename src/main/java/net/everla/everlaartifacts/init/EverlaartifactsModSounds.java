@@ -16,7 +16,6 @@ import net.everla.everlaartifacts.EverlaartifactsMod;
 public class EverlaartifactsModSounds {
 	public static final DeferredRegister<SoundEvent> REGISTRY = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, EverlaartifactsMod.MODID);
 	public static final RegistryObject<SoundEvent> WAAOOO = REGISTRY.register("waaooo", () -> SoundEvent.createVariableRangeEvent(new ResourceLocation("everlaartifacts", "waaooo")));
-	public static final RegistryObject<SoundEvent> GENSHIN_START = REGISTRY.register("genshin_start", () -> SoundEvent.createVariableRangeEvent(new ResourceLocation("everlaartifacts", "genshin_start")));
 	public static final RegistryObject<SoundEvent> GALATIC_DESTRUCTION = REGISTRY.register("galatic_destruction", () -> SoundEvent.createVariableRangeEvent(new ResourceLocation("everlaartifacts", "galatic_destruction")));
 	public static final RegistryObject<SoundEvent> GLUTINOUS_ARBITRATION = REGISTRY.register("glutinous_arbitration", () -> SoundEvent.createVariableRangeEvent(new ResourceLocation("everlaartifacts", "glutinous_arbitration")));
 	public static final RegistryObject<SoundEvent> VISCOUS_DESPERATION = REGISTRY.register("viscous_desperation", () -> SoundEvent.createVariableRangeEvent(new ResourceLocation("everlaartifacts", "viscous_desperation")));

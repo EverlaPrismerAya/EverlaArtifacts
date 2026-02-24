@@ -5,6 +5,7 @@ import net.everla.everlaartifacts.server.network.BloodBlossomEntityPacket;
 import net.everla.everlaartifacts.server.network.ClientPerformanceReportPacket;
 import net.everla.everlaartifacts.server.network.DifficultyChangePacket;
 import net.everla.everlaartifacts.server.network.DifficultySyncPacket;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
@@ -58,12 +59,11 @@ public class EverlaartifactsMod {
 	public static final String MODID = "everlaartifacts";
 
 	public EverlaartifactsMod() {
-		// 注册红包处理器
 		MinecraftForge.EVENT_BUS.register(RedPacketHandler.class);
-		// 注册永恒物品处理器
 		MinecraftForge.EVENT_BUS.register(EverlastingItemHandler.class);
 		MinecraftForge.EVENT_BUS.register(this);
 		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+		bus.addListener(this::commonSetup);
 		EverlaartifactsModSounds.REGISTRY.register(bus);
 		EverlaartifactsModBlocks.REGISTRY.register(bus);
 		EverlaartifactsModItems.REGISTRY.register(bus);
@@ -71,7 +71,7 @@ public class EverlaartifactsMod {
 		EverlaartifactsModEnchantments.REGISTRY.register(bus);
 		EverlaartifactsModTabs.REGISTRY.register(bus);
 		EverlaartifactsModMobEffects.REGISTRY.register(bus);
-		EverlaartifactsModPotions.REGISTRY.register(bus);
+		EverlaartifactsModPotions.POTIONS.register(bus);
 		EverlaartifactsModPaintings.REGISTRY.register(bus);
 		EverlaartifactsModParticleTypes.REGISTRY.register(bus);
 		EverlaartifactsModFluids.REGISTRY.register(bus);
@@ -82,6 +82,9 @@ public class EverlaartifactsMod {
 		// 确保游戏规则类被加载以触发注册
 		LOGGER.info("游戏规则 ForceUseTruePerformance 类加载: {}", ForceUseTruePerformance.FORCE_USE_TRUE_PERFORMANCE.toString());
 		LOGGER.info("游戏规则 EnableLunaticMode 类加载: {}", EnableLunaticMode.ENABLE_LUNATIC_MODE.toString());
+	}
+	public void commonSetup(final FMLCommonSetupEvent event){
+		EverlaartifactsModPotions.init();
 	}
 	public static int CPUCoreCount = 0;
 	public static int AllocatedRam = 0; // 单位 MB

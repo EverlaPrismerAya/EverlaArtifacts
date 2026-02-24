@@ -47,9 +47,9 @@ public class LunaticWitherBossHandler {
     private static final double MAX_DAMAGE_REDUCTION = 0.95; // 最大95%减伤
     private static final double ANTI_OHK_THRESHOLD = 0.3; // 防秒杀阈值：单次伤害不超过最大生命值的30%
     
-    // DPS跟踪数据结构
-    private static final Map<UUID, List<DamageRecord>> playerDamageHistory = new HashMap<>();
-    private static final Map<UUID, Long> lastDamageTime = new HashMap<>();
+    // DPS跟踪数据结构 - 使用Boss实体UUID+玩家UUID作为复合键
+    private static final Map<String, List<DamageRecord>> entityPlayerDamageHistory = new HashMap<>();
+    private static final Map<String, Long> entityPlayerLastDamageTime = new HashMap<>();
     
     // 清理计数器
     private static int cleanupCounter = 0;
@@ -297,14 +297,15 @@ public class LunaticWitherBossHandler {
         }
         
         UUID playerUUID = player.getUUID();
+        UUID entityUUID = wither.getUUID();
         float originalDamage = event.getAmount();
         long currentTime = wither.level().getGameTime();
         
-        // 记录伤害历史
-        recordPlayerDamage(playerUUID, originalDamage, currentTime);
+        // 记录伤害历史（按实体隔离）
+        recordPlayerDamage(entityUUID, playerUUID, originalDamage, currentTime);
         
-        // 计算玩家当前DPS
-        double currentDPS = calculatePlayerDPS(playerUUID, currentTime);
+        // 计算玩家当前DPS（按实体隔离）
+        double currentDPS = calculatePlayerDPS(entityUUID, playerUUID, currentTime);
         
         // 计算目标有效DPS (总血量/120秒)
         double targetDPS = calculateTargetDPS(wither);
@@ -321,8 +322,8 @@ public class LunaticWitherBossHandler {
         // 设置最终伤害值
         event.setAmount(antiOHKDamage);
         
-        // 更新最后一次伤害时间
-        lastDamageTime.put(playerUUID, currentTime);
+        // 更新最后一次伤害时间（按实体隔离）
+        entityPlayerLastDamageTime.put(getEntityPlayerKey(entityUUID, playerUUID), currentTime);
     }
 
     /**
@@ -542,26 +543,41 @@ public class LunaticWitherBossHandler {
     // 以下方法复制自LunaticDragonBossHandler的动态减伤逻辑
     
     /**
-     * 记录玩家伤害历史
+     * 生成实体-玩家复合键
      * 
+     * @param entityUUID 实体UUID
+     * @param playerUUID 玩家UUID
+     * @return 复合键字符串
+     */
+    private static String getEntityPlayerKey(UUID entityUUID, UUID playerUUID) {
+        return entityUUID.toString() + ":" + playerUUID.toString();
+    }
+    
+    /**
+     * 记录玩家伤害历史（按实体隔离）
+     * 
+     * @param entityUUID 实体UUID
      * @param playerUUID 玩家UUID
      * @param damage 伤害值
      * @param timestamp 时间戳
      */
-    private static void recordPlayerDamage(UUID playerUUID, float damage, long timestamp) {
-        playerDamageHistory.computeIfAbsent(playerUUID, k -> new ArrayList<>())
+    private static void recordPlayerDamage(UUID entityUUID, UUID playerUUID, float damage, long timestamp) {
+        String key = getEntityPlayerKey(entityUUID, playerUUID);
+        entityPlayerDamageHistory.computeIfAbsent(key, k -> new ArrayList<>())
             .add(new DamageRecord(damage, timestamp));
     }
     
     /**
-     * 计算玩家当前DPS
+     * 计算玩家当前DPS（按实体隔离）
      * 
+     * @param entityUUID 实体UUID
      * @param playerUUID 玩家UUID
      * @param currentTime 当前时间
      * @return 玩家当前DPS
      */
-    private static double calculatePlayerDPS(UUID playerUUID, long currentTime) {
-        List<DamageRecord> damageRecords = playerDamageHistory.get(playerUUID);
+    private static double calculatePlayerDPS(UUID entityUUID, UUID playerUUID, long currentTime) {
+        String key = getEntityPlayerKey(entityUUID, playerUUID);
+        List<DamageRecord> damageRecords = entityPlayerDamageHistory.get(key);
         if (damageRecords == null || damageRecords.isEmpty()) {
             return 0.0;
         }
@@ -748,11 +764,6 @@ public class LunaticWitherBossHandler {
     }
     
     /**
-     * 清理过期的伤害记录和时间数据
-     * 
-     * @param currentTime 当前服务器tick时间
-     */
-    /**
      * 清理无效的凋灵缓存
      * 
      * @param levels 所有世界
@@ -793,17 +804,22 @@ public class LunaticWitherBossHandler {
         });
     }
     
+    /**
+     * 清理过期的伤害记录和时间数据（按实体隔离）
+     * 
+     * @param currentTime 当前服务器tick时间
+     */
     private static void cleanupExpiredData(long currentTime) {
-        // 清理长时间未活动玩家的数据
-        lastDamageTime.entrySet().removeIf(entry -> 
+        // 清理长时间未活动的实体-玩家数据
+        entityPlayerLastDamageTime.entrySet().removeIf(entry -> 
             currentTime - entry.getValue() > DPS_CALCULATION_WINDOW * 2);
         
-        // 清理对应玩家的伤害记录
-        playerDamageHistory.entrySet().removeIf(entry -> 
-            !lastDamageTime.containsKey(entry.getKey()));
+        // 清理对应的伤害记录
+        entityPlayerDamageHistory.entrySet().removeIf(entry -> 
+            !entityPlayerLastDamageTime.containsKey(entry.getKey()));
         
         // 清理空的伤害记录列表
-        playerDamageHistory.values().removeIf(List::isEmpty);
+        entityPlayerDamageHistory.values().removeIf(List::isEmpty);
     }
     
     /**
@@ -850,8 +866,8 @@ public class LunaticWitherBossHandler {
      * 注意：仅用于测试环境
      */
     public static void clearTestData() {
-        playerDamageHistory.clear();
-        lastDamageTime.clear();
+        entityPlayerDamageHistory.clear();
+        entityPlayerLastDamageTime.clear();
         cleanupCounter = 0;
         specialAttackCheckCounter = 0;
         witherCache.clear();

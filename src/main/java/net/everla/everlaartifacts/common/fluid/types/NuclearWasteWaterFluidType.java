@@ -44,8 +44,13 @@ public class NuclearWasteWaterFluidType extends FluidType {
 			}
 
 			@Override
+			public int getTintColor() {
+				return 0xDB4c7384; // 青绿色半透明
+			}
+
+			@Override
 			public Vector3f modifyFogColor(Camera camera, float partialTick, ClientLevel level, int renderDistance, float darkenWorldAmount, Vector3f fluidFogColor) {
-				return new Vector3f(0f, 0.6f, 0.6f);
+				return new Vector3f(0f, 0.3f, 0.3f);
 			}
 
 			@Override
@@ -54,7 +59,7 @@ public class NuclearWasteWaterFluidType extends FluidType {
 				Level world = entity.level();
 				RenderSystem.setShaderFogShape(FogShape.SPHERE);
 				RenderSystem.setShaderFogStart(0f);
-				RenderSystem.setShaderFogEnd(Math.min(48f, renderDistance));
+				RenderSystem.setShaderFogEnd(Math.min(16f, renderDistance));
 			}
 		});
 	}
