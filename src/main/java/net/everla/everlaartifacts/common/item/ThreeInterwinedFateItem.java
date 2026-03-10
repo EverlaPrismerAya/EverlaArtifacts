@@ -44,7 +44,11 @@ public class ThreeInterwinedFateItem extends Item {
 	private static void handleThreeInterwinedFateEmotionalDamage(LevelAccessor world, double x, double y, double z, Entity entity) {
 		if (entity == null)
 			return;
+		
+		// 施加伤害
 		entity.hurt(new DamageSource(world.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.GENERIC)), 20);
+		
+		// 播放音效
 		if (world instanceof Level _level) {
 			if (!_level.isClientSide()) {
 				_level.playSound(null, BlockPos.containing(x, y, z), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("everlaartifacts:emotional_damage")), SoundSource.NEUTRAL, 1, 1);
@@ -52,13 +56,13 @@ public class ThreeInterwinedFateItem extends Item {
 				_level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("everlaartifacts:emotional_damage")), SoundSource.NEUTRAL, 1, 1, false);
 			}
 		}
-		if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
-			_entity.addEffect(new MobEffectInstance(MobEffects.ABSORPTION, 4800, 3, false, true));
-		if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
-			_entity.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 2400, 1, false, true));
-		if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
-			_entity.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 7200, 0, false, true));
-		if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
-			_entity.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 7200, 0, false, true));
+		
+		// 施加状态效果（仅服务端）
+		if (entity instanceof LivingEntity livingEntity && !livingEntity.level().isClientSide()) {
+			livingEntity.addEffect(new MobEffectInstance(MobEffects.ABSORPTION, 4800, 3, false, true));
+			livingEntity.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 2400, 1, false, true));
+			livingEntity.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 7200, 0, false, true));
+			livingEntity.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 7200, 0, false, true));
+		}
 	}
 }

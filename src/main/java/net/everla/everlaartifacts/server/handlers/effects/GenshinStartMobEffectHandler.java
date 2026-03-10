@@ -10,5 +10,6 @@ public class GenshinStartMobEffectHandler {
 		mob.getNavigation().stop();
 		mob.setTarget(null);
 		mob.setLastHurtByMob(null);
+		mob.setLastHurtByPlayer(null);
 	}
 }

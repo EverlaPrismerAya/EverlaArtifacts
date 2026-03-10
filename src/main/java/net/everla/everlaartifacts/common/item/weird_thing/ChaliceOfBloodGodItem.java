@@ -86,26 +86,39 @@ public class ChaliceOfBloodGodItem extends Item {
 		}
 	}
 
+	/**
+	 * 替换实体手中的血神之杯为被消耗的物品（保留 NBT）
+	 */
 	private static void replaceChaliceofBloodGod(Entity entity) {
-		if (entity == null)
+		if (entity == null || !(entity instanceof LivingEntity livingEntity))
 			return;
-		if ((entity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getItem() == EverlaartifactsModItems.CHALICE_OF_BLOOD_GOD.get()) {
-			if (entity instanceof LivingEntity _entity) {
-				ItemStack _setstack = new ItemStack(EverlaartifactsModItems.CHALICE_OF_BLOOD_GOD.get()).copy();
-				_setstack.setCount(1);
-				_entity.setItemInHand(InteractionHand.MAIN_HAND, _setstack);
-				if (_entity instanceof Player _player)
-					_player.getInventory().setChanged();
-			}
-		}
-		if ((entity instanceof LivingEntity _livEnt ? _livEnt.getOffhandItem() : ItemStack.EMPTY).getItem() == EverlaartifactsModItems.CHALICE_OF_BLOOD_GOD.get()) {
-			if (entity instanceof LivingEntity _entity) {
-				ItemStack _setstack = new ItemStack(EverlaartifactsModItems.CHALICE_OF_BLOOD_GOD.get()).copy();
-				_setstack.setCount(1);
-				_entity.setItemInHand(InteractionHand.OFF_HAND, _setstack);
-				if (_entity instanceof Player _player)
-					_player.getInventory().setChanged();
-			}
+		
+		// 检查并替换主手物品
+		replaceHandItem(livingEntity, InteractionHand.MAIN_HAND);
+		
+		// 检查并替换副手物品
+		replaceHandItem(livingEntity, InteractionHand.OFF_HAND);
+	}
+	
+	/**
+	 * 替换指定手上的物品为被消耗的物品（保留 NBT）
+	 */
+	private static void replaceHandItem(LivingEntity entity, InteractionHand hand) {
+		ItemStack currentStack = entity.getItemInHand(hand);
+		
+		// 如果当前手持的是血神之杯
+		if (currentStack.getItem() == EverlaartifactsModItems.CHALICE_OF_BLOOD_GOD.get()) {
+			// 创建被消耗物品的 ItemStack，复制原物品的 NBT
+			ItemStack consumedStack = new ItemStack(EverlaartifactsModItems.CHALICE_OF_BLOOD_GOD.get());
+			consumedStack.setTag(currentStack.getTag()); // 保留 NBT 数据
+			consumedStack.setCount(1);
+			
+			// 设置物品
+			entity.setItemInHand(hand, consumedStack);
+			
+			// 同步玩家背包
+			if (entity instanceof Player player)
+				player.getInventory().setChanged();
 		}
 	}
 }
