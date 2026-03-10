@@ -1,5 +1,9 @@
 package net.everla.everlaartifacts.common.item.weird_thing;
 
+import net.everla.everlaartifacts.init.EverlaartifactsModMobEffects;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.item.TooltipFlag;
@@ -11,8 +15,6 @@ import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.network.chat.Component;
-
-import net.everla.everlaartifacts.server.handlers.items.weird_cocktail.WeirdCocktailEffectHandler;
 
 import java.util.List;
 
@@ -40,7 +42,7 @@ public class WeirdCocktailItem extends Item {
 		double x = entity.getX();
 		double y = entity.getY();
 		double z = entity.getZ();
-		WeirdCocktailEffectHandler.applyWeirdCocktailEffects(entity);
+		applyWeirdCocktailEffects(entity);
 		if (itemstack.isEmpty()) {
 			return retval;
 		} else {
@@ -50,5 +52,18 @@ public class WeirdCocktailItem extends Item {
 			}
 			return itemstack;
 		}
+	}
+
+	private static void applyWeirdCocktailEffects(Entity entity) {
+		if (entity == null || !(entity instanceof LivingEntity livingEntity) || entity.level().isClientSide()) {
+			return;
+		}
+
+		// 应用所有药水效果
+		livingEntity.addEffect(new MobEffectInstance(EverlaartifactsModMobEffects.BEDMIC_DESTRUCTION.get(), 6000, 0, false, true));
+		livingEntity.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 3600, 9, false, true));
+		livingEntity.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 3600, 1, false, true));
+		livingEntity.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 1200, 2, false, true));
+		livingEntity.addEffect(new MobEffectInstance(MobEffects.ABSORPTION, 1200, 14, false, true));
 	}
 }

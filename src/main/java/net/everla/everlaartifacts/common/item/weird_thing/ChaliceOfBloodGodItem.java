@@ -1,5 +1,7 @@
 package net.everla.everlaartifacts.common.item.weird_thing;
 
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.Entity;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.api.distmarker.Dist;
 
@@ -14,7 +16,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.network.chat.Component;
 
-import net.everla.everlaartifacts.server.handlers.items.chalice_of_blood_god.ChaliceOfBloodGodHandler;
 import net.everla.everlaartifacts.init.EverlaartifactsModItems;
 
 import java.util.List;
@@ -73,7 +74,7 @@ public class ChaliceOfBloodGodItem extends Item {
 		double x = entity.getX();
 		double y = entity.getY();
 		double z = entity.getZ();
-		ChaliceOfBloodGodHandler.handleChaliceOfBloodGodRegenerate(entity);
+		replaceChaliceofBloodGod(entity);
 		if (itemstack.isEmpty()) {
 			return retval;
 		} else {
@@ -82,6 +83,29 @@ public class ChaliceOfBloodGodItem extends Item {
 					player.drop(retval, false);
 			}
 			return itemstack;
+		}
+	}
+
+	private static void replaceChaliceofBloodGod(Entity entity) {
+		if (entity == null)
+			return;
+		if ((entity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getItem() == EverlaartifactsModItems.CHALICE_OF_BLOOD_GOD.get()) {
+			if (entity instanceof LivingEntity _entity) {
+				ItemStack _setstack = new ItemStack(EverlaartifactsModItems.CHALICE_OF_BLOOD_GOD.get()).copy();
+				_setstack.setCount(1);
+				_entity.setItemInHand(InteractionHand.MAIN_HAND, _setstack);
+				if (_entity instanceof Player _player)
+					_player.getInventory().setChanged();
+			}
+		}
+		if ((entity instanceof LivingEntity _livEnt ? _livEnt.getOffhandItem() : ItemStack.EMPTY).getItem() == EverlaartifactsModItems.CHALICE_OF_BLOOD_GOD.get()) {
+			if (entity instanceof LivingEntity _entity) {
+				ItemStack _setstack = new ItemStack(EverlaartifactsModItems.CHALICE_OF_BLOOD_GOD.get()).copy();
+				_setstack.setCount(1);
+				_entity.setItemInHand(InteractionHand.OFF_HAND, _setstack);
+				if (_entity instanceof Player _player)
+					_player.getInventory().setChanged();
+			}
 		}
 	}
 }

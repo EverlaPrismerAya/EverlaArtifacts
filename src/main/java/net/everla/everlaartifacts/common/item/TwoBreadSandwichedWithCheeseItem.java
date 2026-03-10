@@ -1,6 +1,9 @@
 
 package net.everla.everlaartifacts.common.item;
 
+import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.Rarity;
@@ -10,7 +13,8 @@ import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.network.chat.Component;
 
-import net.everla.everlaartifacts.server.handlers.items.two_bread_sandwiched_with_cheese.TwoBreadSandwichedWithCheeseSoundHandler;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.List;
 
@@ -31,7 +35,17 @@ public class TwoBreadSandwichedWithCheeseItem extends Item {
 		double x = entity.getX();
 		double y = entity.getY();
 		double z = entity.getZ();
-		TwoBreadSandwichedWithCheeseSoundHandler.handleTwoBreadSandwichedWithCheeseSound(world, x, y, z);
+		handleTwoBreadSandwichedWithCheeseSound(world, x, y, z);
 		return retval;
+	}
+
+	private static void handleTwoBreadSandwichedWithCheeseSound(LevelAccessor world, double x, double y, double z) {
+		if (world instanceof Level _level) {
+			if (!_level.isClientSide()) {
+				_level.playSound(null, BlockPos.containing(x, y, z), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("everlaartifacts:twobreadsandwichedwithcheese")), SoundSource.PLAYERS, 1, 1);
+			} else {
+				_level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("everlaartifacts:twobreadsandwichedwithcheese")), SoundSource.PLAYERS, 1, 1, false);
+			}
+		}
 	}
 }
