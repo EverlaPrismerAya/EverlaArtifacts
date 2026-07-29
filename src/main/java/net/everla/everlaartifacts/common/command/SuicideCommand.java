@@ -34,7 +34,7 @@ public class SuicideCommand {
 					if (entity != null)
 						direction = entity.getDirection();
 
-					// 直接实现自杀逻辑，不依赖Procedure
+					// 直接实现自杀逻辑，不依赖Procedure 我操这个mcreator怎么这么坏啊
 					if (entity != null && entity instanceof Player player && !player.level().isClientSide()) {
 					    Component deathMessage = Component.translatable(
 					        "text.everlaartifacts.suicide",

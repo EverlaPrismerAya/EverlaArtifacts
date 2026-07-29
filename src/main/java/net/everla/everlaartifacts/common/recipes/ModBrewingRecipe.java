@@ -17,3 +17,4 @@ public class ModBrewingRecipe extends BrewingRecipe {
         return super.isInput(stack) && PotionUtils.getPotion(stack) == PotionUtils.getPotion(inputStack);
     }
 }
+//实现参考自 https://github.com/CreepingCreeper/Tinkers-Thinking

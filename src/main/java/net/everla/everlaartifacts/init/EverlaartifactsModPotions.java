@@ -36,3 +36,4 @@ public class EverlaartifactsModPotions {
 		POTIONS.register(eventBus);
 	}
 }
+//实现逻辑参考自
