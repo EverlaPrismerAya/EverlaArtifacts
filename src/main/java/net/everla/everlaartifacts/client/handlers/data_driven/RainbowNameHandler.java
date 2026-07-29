@@ -28,7 +28,7 @@ public class RainbowNameHandler {
     private static float hueOffset = (System.currentTimeMillis() % 36000) / 100.0f;
     private static final TagKey<Item> RAINBOW_NAME_TAG = TagKey.create(Registries.ITEM,
             ResourceLocation.tryParse("everlaartifacts:rainbow_name"));
-    
+
     private static ItemStack lastStack = ItemStack.EMPTY;
     private static long lastSwitchTime = 0L;
 
@@ -93,10 +93,10 @@ public class RainbowNameHandler {
         int screenHeight = mc.getWindow().getGuiScaledHeight();
         int nameWidth = mc.font.width(rainbowName);
         int x = (screenWidth - nameWidth) / 2;
-        
+
         // 根据游戏模式和生命值计算Y位置
         int y = calculateYPosition(screenHeight, mc.player);
-        
+
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
 
@@ -110,21 +110,21 @@ public class RainbowNameHandler {
         poseStack.popPose();
         RenderSystem.enableDepthTest();
     }
-    
+
     /**
      * 根据游戏模式和生命值计算Y位置
-     * 
+     *
      * 冲突模组检测：
      * - 有冲突模组：创造=45，生存/冒险+无伤害吸收=59，生存/冒险+有伤害吸收=69
      * - 无冲突模组：使用基于(最大生命值+伤害吸收生命值)的函数，有伤害吸收额外+3
-     * 
+     *
      * @param screenHeight 屏幕高度
      * @param player 玩家实体
      * @return 计算出的Y坐标
      */
     private static int calculateYPosition(int screenHeight, Player player) {
         // 检查是否加载了colorfulhearts或overflowingbars模组
-        boolean hasConflictingMods = ModList.get().isLoaded("colorfulhearts") || 
+        boolean hasConflictingMods = ModList.get().isLoaded("colorfulhearts") ||
                                    ModList.get().isLoaded("overflowingbars");
         if (player.isCreative()){
             return screenHeight - 45;
@@ -145,7 +145,7 @@ public class RainbowNameHandler {
                 int offset = calculateHealthBasedOffset(totalEffectiveHealth);
 
                 // 魔↑数↓技↑巧↓
-                if (absorptionAmount > 180) {
+                if (absorptionAmount > 180 || maxHealth > 200) {
                     offset += 3;
                 }
 
@@ -153,10 +153,10 @@ public class RainbowNameHandler {
             }
         }
     }
-    
+
     /**
      * 根据最大生命值计算文本偏移量
-     * 
+     *
      * @param maxHealth 最大生命值（包括伤害吸收）
      * @return 对应的文本偏移量
      */
