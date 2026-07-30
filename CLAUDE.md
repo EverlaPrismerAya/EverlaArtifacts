@@ -7,7 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 EverlaArtifacts is a Minecraft Forge 1.20.1 mod (modId: `everlaartifacts`) that adds custom items, music discs, enchantments, mob effects, a difficulty system, and various "random ideas." Partially MCreator-generated, partially hand-written.
 
 - **Group**: `net.everla` / **Package**: `net.everla.everlaartifacts`
-- **Java**: 17 (toolchain locked) / **Forge**: 1.20.1-47.4.0 / **Mappings**: official
+- **Java**: 17 (toolchain locked) / **Forge**: 1.20.1-47.4.21 / **Mappings**: official
 - **Dependencies**: JEI 15.2.0.27 (compileOnly for API, runtimeOnly for full jar)
 
 ## Build Commands

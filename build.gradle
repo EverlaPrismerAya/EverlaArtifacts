@@ -66,15 +66,23 @@ repositories {
         name = 'JEI Maven'
         url = 'https://maven.blamejared.com/'
     }
+    //maven {
+    //    name = "Iron's Maven - Release"
+    //    url = "https://code.redspace.io/releases"
+    //}
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.20.1-47.4.0'
+    minecraft 'net.minecraftforge:forge:1.20.1-47.4.21'
     
     // JEI Integration
     compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
     compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}")
     runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
+    //irons_spellbooks
+    //runtimeOnly fg.deobf("io.redspace:irons_lib:1.20.1-${irons_lib_version}")
+    //compileOnly fg.deobf("io.redspace:irons_spellbooks:1.20.1-${irons_spell_version}:api")
+    //runtimeOnly fg.deobf("io.redspace:irons_spellbooks:1.20.1-${irons_spell_version}")
 }
 
 tasks.withType(JavaCompile).configureEach {
