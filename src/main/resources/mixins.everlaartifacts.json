@@ -6,7 +6,11 @@
     "refmap": "mixins.everlaartifacts.refmap.json",
     "mixins": [
         "ItemStackEverlastingMixin",
-        "ItemEntityEverlastingMixin"
+        "ItemEntityEverlastingMixin",
+        "ImpalingEnchantmentMixin",
+        "PlayerAttackImpalingMixin",
+        "ThrownTridentImpalingMixin",
+        "AbstractArrowAccessor"
     ],
     "client": [
         "LocalPlayerSprintMixin",

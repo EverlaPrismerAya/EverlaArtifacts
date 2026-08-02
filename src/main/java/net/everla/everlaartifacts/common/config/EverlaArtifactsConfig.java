@@ -25,6 +25,9 @@ public class EverlaArtifactsConfig {
     // 自定义调试内存大小
     public static ForgeConfigSpec.IntValue customDebugMemorySize;
     
+    // 穿刺附魔加强配置
+    public static ForgeConfigSpec.BooleanValue enhanceImpaling;
+
     // 红包掉落配置
     public static ForgeConfigSpec.DoubleValue redPacketDropChanceNewYear;
     public static ForgeConfigSpec.DoubleValue redPacketDropChanceChristmas;
@@ -46,6 +49,11 @@ public class EverlaArtifactsConfig {
     public static ForgeConfigSpec.DoubleValue witherSkeletonSummonHealthThreshold;
 
     static {
+        // 配置穿刺附魔加强
+        BUILDER.push("EnhanceImpaling");
+        enhanceImpaling = BUILDER.comment("启用穿刺附魔加强：修改伤害公式（等级1+2，后续每级+2.5），并将增伤条件改为任何在雨中、水中或熔岩中的生物").define("enhanceImpaling", true);
+        BUILDER.pop();
+
         // 配置凋灵特殊攻击部分
         BUILDER.push("WitherSpecialAttacks");
         enableWitherSpecialAttacks = BUILDER.comment("启用月狂模式下的凋灵特殊攻击机制").define("enableWitherSpecialAttacks", true);
@@ -95,6 +103,10 @@ public class EverlaArtifactsConfig {
         SPEC = BUILDER.build();
     }
     
+    public static boolean isEnhanceImpaling() {
+        return enhanceImpaling.get();
+    }
+
     public static boolean isForceEnableLayeredBuffer() {
         return forceEnableLayeredBuffer.get();
     }
