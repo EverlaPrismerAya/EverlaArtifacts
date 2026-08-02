@@ -30,12 +30,15 @@ public class EverlastingItemHandler {
     );
 
     /**
-     * 检查物品是否具有永恒标签且有耐久度。
+     * 检查物品是否具有永恒标签。
      * 供 mixin 和其他需要判断永恒的代码使用。
+     * <p>
+     * 注意：此方法不检查耐久度。对于耐久消耗保护（{@code hurtAndBreak}），
+     * 原版代码内部已有 {@code isDamageableItem()} 守卫；
+     * 对于爆炸/火焰免疫，不需要耐久度条件。
      */
     public static boolean isEverlasting(ItemStack stack) {
         if (stack.isEmpty()) return false;
-        if (stack.getItem().getMaxDamage(stack) <= 0) return false;
         return stack.is(EVERLASTING_TAG);
     }
 
