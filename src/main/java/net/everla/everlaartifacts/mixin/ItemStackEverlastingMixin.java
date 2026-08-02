@@ -19,8 +19,6 @@ import java.util.function.Consumer;
  * prevents any durability loss from occurring. The item never takes
  * damage, so it doesn't need to carry an NBT flag.
  * <p>
- * This replaces the event-driven approach in {@link EverlastingItemHandler}
- * that used to apply the NBT tag reactively.
  */
 @Mixin(ItemStack.class)
 public abstract class ItemStackEverlastingMixin {
