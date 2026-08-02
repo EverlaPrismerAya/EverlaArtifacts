@@ -1,0 +1,14 @@
+{
+  "sources": [
+    {
+      "type": "minecraft:directory",
+      "prefix": "misc/",
+      "source": "misc"
+    },
+    {
+      "type": "minecraft:directory",
+      "prefix": "mask/",
+      "source": "mask"
+    }
+  ]
+}

@@ -1,6 +1,11 @@
 {
   "parent": "item/handheld",
   "textures": {
-    "layer0": "everlaartifacts:item/procedure_sword"
+    "layer0": "everlaartifacts:item/procedure_sword",
+    "particle": "everlaartifacts:misc/mcreator/mcreator"
+  },
+  "loader": "everlaartifacts:cosmic",
+  "cosmic": {
+    "mask": "everlaartifacts:mask/item/procedure_sword"
   }
 }

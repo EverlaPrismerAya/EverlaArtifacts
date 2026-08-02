@@ -6,7 +6,8 @@
     "refmap": "mixins.everlaartifacts.refmap.json",
     "mixins": [],
     "client": [
-        "LocalPlayerSprintMixin"
+        "LocalPlayerSprintMixin",
+        "ItemRendererMixin"
     ],
     "server": []
 }
