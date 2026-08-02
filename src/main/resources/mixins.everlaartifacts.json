@@ -4,7 +4,9 @@
     "package": "net.everla.everlaartifacts.mixin",
     "compatibilityLevel": "JAVA_17",
     "refmap": "mixins.everlaartifacts.refmap.json",
-    "mixins": [],
+    "mixins": [
+        "ItemStackEverlastingMixin"
+    ],
     "client": [
         "LocalPlayerSprintMixin",
         "ItemRendererMixin"

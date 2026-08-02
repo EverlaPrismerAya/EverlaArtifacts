@@ -278,5 +278,7 @@
   "jei.everlaartifacts.nuclear_waste_water.desc": "通过在酿造台中用核废水桶对玻璃瓶进行酿造获得。饮用后会造成核辐射伤害。",
 
   "fluid_type.everlaartifacts.nuclear_waste_water": "核废水",
-  "item.everlaartifacts.chalice_of_blood_god.description_3": " "
+  "item.everlaartifacts.chalice_of_blood_god.description_3": " ",
+
+  "tooltip.everlaartifacts.everlasting": "◆ 永恒"
 }

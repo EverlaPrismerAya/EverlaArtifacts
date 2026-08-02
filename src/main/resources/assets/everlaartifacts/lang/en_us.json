@@ -278,5 +278,7 @@
   "jei.everlaartifacts.flashbomb.desc": "Obtained by brewing Glowstone on Night Vision Potion in a brewing stand. Drinking it will produce a brief flash effect.",
   "jei.everlaartifacts.nuclear_waste_water.desc": "Obtained by brewing Nuclear Waste Water Bucket on Glass Bottle in a brewing stand. Drinking it will cause nuclear radiation damage.",
 
-  "fluid_type.everlaartifacts.nuclear_waste_water": "Nuclear Waste Water"
+  "fluid_type.everlaartifacts.nuclear_waste_water": "Nuclear Waste Water",
+
+  "tooltip.everlaartifacts.everlasting": "◆ Everlasting"
 }
