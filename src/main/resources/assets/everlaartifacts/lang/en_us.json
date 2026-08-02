@@ -1,9 +1,11 @@
 {
   "advancements.chalice_of_blood_god_challenge.descr": "Win the Greate Potato War",
   "advancements.chalice_of_blood_god_challenge.title": "Chalice Of Blood God",
+
   "block.everlaartifacts.auric_scrap_block": "Auric Scrap Block",
   "block.everlaartifacts.deepslate_auric_ore": "Deepslate Auric Ore",
   "block.everlaartifacts.nuclear_waste_water": "Nuclear Waste Water",
+
   "effect.everlaartifacts.american_style_cut_overlay": "Power of U.S.A",
   "effect.everlaartifacts.bedmic_destruction": "Bedmic Desturction",
   "effect.everlaartifacts.blitzkrieg": "Blitzkrieg",
@@ -39,14 +41,20 @@
   "enchantment.everlaartifacts.tp_aura.desc": "Automatically locks onto enemies and attacks them when right-clicking",
   "enchantment.everlaartifacts.wild_hunt": "Wild Hunt",
   "enchantment.everlaartifacts.wild_hunt.desc": "When your health is depleted, damage is instead taken from your maximum health",
+  "enchantment.everlaartifacts.death_sprint": "Death Sprint",
+  "enchantment.everlaartifacts.death_sprint.desc": "When hunger is depleted, consume health to maintain sprinting",
 
   "entity.everlaartifacts.angolmois_doom_projectile": "Angolmois Doom",
+
   "fluid.everlaartifacts.nuclear_waste_water": "Nuclear Waste Water",
+
   "gamerule.ForceUseTruePerformance": "Enforce the use of real performance telemetry data",
   "gamerule.enableLunaticMode": "Enable Lunatic Mode (only effective when world difficulty is Hard or higher)",
+
   "item_group.everlaartifacts.everla_discs": "EverlaPrismer\u0027s Discs",
   "item_group.everlaartifacts.everla_tweaker": "EverlaPrismer\u0027s Stuff",
   "item_group.everlaartifacts.weird_thing": "EverlaPrismer\u0027s Cursed Thing",
+
   "item.brackets_blade.damage_boost": "§9Damage Boost: +%s (from %d brackets)",
   "item.brackets_blade.extra_damage_boost_positive": "§aExtra Mode Damage Boost: +%s (from %d brackets)",
   "item.brackets_blade.extra_damage_boost_negative": "§cExtra Mode Damage Reduction: %s (from %d brackets)",
@@ -228,15 +236,19 @@
   "item.minecraft.splash_potion.effect.nuclear_waste_water_bottle": "Splash Nuclear Waste Water Bottle",
   "item.minecraft.tipped_arrow.effect.flashbomb": "Arrow of Flashing",
   "item.minecraft.tipped_arrow.effect.nuclear_waste_water_bottle": "Arrow of Nuclear Waste Water",
+
   "painting.everlaartifacts.technoblade_staring.author": "Unknown",
   "painting.everlaartifacts.technoblade_staring.title": "Technoblade Staring",
+
   "subtitles.deltarune_explosion": "Deltarune Explosion",
+
   "text.everlaartifacts.penis_music_explosion": "That absurd music pelted %s with soundwaves and sent them flying",
   "text.everlaartifacts.suicide": "%s vanished without a trace, Bermuda Triangle-style",
   "text.everlaartifacts.homa_kill": "%s Thinks they can hold the attack",
   "text.rainbow_lore.everlaartifacts.homa_staff": "§o§mWhat? You think I got this idea from playing Genshin Impact? Do you even know how many brain cells I burned making this? — EverlaPrismerAya",
   "text.rainbow_lore.everlaartifacts.nilk": "§oTestas Greet！§r\\nAt least this thing won\u0027t give you photosensitive epilepsy.",
   "text.rainbow_lore.everlaartifacts.procedure_sword": "§7For entities named \"Procedure\":\n§r 33550336 §2Attack Damage\n§2 1.6 Attack Speed ",
+
   "difficulty.everlaartifacts.easy": "§aEasy",
   "difficulty.everlaartifacts.normal": "§bNormal",
   "difficulty.everlaartifacts.hard": "§9Hard",
@@ -247,17 +259,22 @@
   "difficulty.everlaartifacts.hard.desc": "§9Challenging journey, suitable for experienced players\n§7Face true challenges and test your skills.",
   "difficulty.everlaartifacts.lunatic.desc": "§dStep into a perilous journey, unsuitable for anyone\n§7This is beyond belief.\n§r§7· Damage from monsters is increased by §c20 Percent. \n§7· Most bosses deal an additional §c5 Percent§7 of your Max HP as true damage.\n§7· Certain vanilla mobs receive additional enhancements.\n§7· Significantly increases the chance of obtaining rare drops.\n§7· You can obtain and use unique items.",
   "difficulty.everlaartifacts.extra.desc": "§c A Descent into Madness – Let Us Reach the Madness Summit Together\n§7 I'm done talking.\n§r§7· Retains all traits of Lunatic mode\n§7· All damage increased by 50%\n§7· Features unique gameplay mechanics and challenges",
+
   "message.everlaartifacts.difficulty_change": "§d[EverlaArtifacts] §fWorld difficulty has been changed by §b%s §fto %s",
+
   "death.attack.destiny_kill": "%s couldn\u0027t escape the manipulation of fate",
   "death.attack.destiny_kill.player": "%1$s couldn\u0027t escape the manipulation of fate by %2$s",
   "death.attack.destiny_kill.player_item": "%1$s couldn\u0027t escape the manipulation of fate, the culprit is %2$s\u0027s %3$s",
   "death.attack.homa_overburn": "%1$s was devoured by Crimson Butterfly Fire",
   "death.attack.homa_overburn.player": "%1$s was devoured by Crimson Butterfly Fire by %2$s",
   "death.attack.homa_overburn.player_item": "%1$s was devoured by Crimson Butterfly Fire, the culprit is %2$s\u0027s %3$s",
+
   "chat.everlaartifacts.extra.homa_staff": "LMAO. You think you can use this without being Hu Tao?",
   "chat.everlaartifacts.extra.homa_staff.why": "Why won't you die？！",
   "chat.everlaartifacts.extra.homa_staff.enrage": "DIE！",
+
   "jei.everlaartifacts.flashbomb.desc": "Obtained by brewing Glowstone on Night Vision Potion in a brewing stand. Drinking it will produce a brief flash effect.",
   "jei.everlaartifacts.nuclear_waste_water.desc": "Obtained by brewing Nuclear Waste Water Bucket on Glass Bottle in a brewing stand. Drinking it will cause nuclear radiation damage.",
+
   "fluid_type.everlaartifacts.nuclear_waste_water": "Nuclear Waste Water"
 }

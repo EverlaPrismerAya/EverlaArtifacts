@@ -1,23 +1,12 @@
-
-/*
- *	MCreator note: This file will be REGENERATED on each build.
- */
 package net.everla.everlaartifacts.init;
 
+import net.everla.everlaartifacts.common.enchantment.*;
 import net.minecraftforge.registries.RegistryObject;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.DeferredRegister;
 
 import net.minecraft.world.item.enchantment.Enchantment;
 
-import net.everla.everlaartifacts.common.enchantment.WildHuntEnchantment;
-import net.everla.everlaartifacts.common.enchantment.TPAuraEnchantment;
-import net.everla.everlaartifacts.common.enchantment.SteadfastEnchantment;
-import net.everla.everlaartifacts.common.enchantment.ScrapyardScroungerEnchantment;
-import net.everla.everlaartifacts.common.enchantment.MoneyBurnersCreedEnchantment;
-import net.everla.everlaartifacts.common.enchantment.LiveWireEnchantment;
-import net.everla.everlaartifacts.common.enchantment.LayeredBufferEnchantment;
-import net.everla.everlaartifacts.common.enchantment.DeutschEnchantment;
 import net.everla.everlaartifacts.EverlaartifactsMod;
 
 public class EverlaartifactsModEnchantments {
@@ -30,4 +19,5 @@ public class EverlaartifactsModEnchantments {
 	public static final RegistryObject<Enchantment> MONEY_BURNERS_CREED = REGISTRY.register("money_burners_creed", () -> new MoneyBurnersCreedEnchantment());
 	public static final RegistryObject<Enchantment> LIVE_WIRE = REGISTRY.register("live_wire", () -> new LiveWireEnchantment());
 	public static final RegistryObject<Enchantment> WILD_HUNT = REGISTRY.register("wild_hunt", () -> new WildHuntEnchantment());
+	public static final RegistryObject<Enchantment> DEATH_SPRINT = REGISTRY.register("death_sprint", () -> new DeathSprintEnchantment());
 }

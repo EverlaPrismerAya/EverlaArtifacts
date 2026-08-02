@@ -1,9 +1,11 @@
 {
   "advancements.chalice_of_blood_god_challenge.descr": "赢得伟大的土豆战争",
   "advancements.chalice_of_blood_god_challenge.title": "血神圣杯",
+
   "block.everlaartifacts.auric_scrap_block": "辉金碎片块",
   "block.everlaartifacts.deepslate_auric_ore": "深板岩辉金矿石",
   "block.everlaartifacts.nuclear_waste_water": "核废水",
+
   "effect.everlaartifacts.american_style_cut_overlay": "美利坚之力",
   "effect.everlaartifacts.bedmic_destruction": "床板毁灭",
   "effect.everlaartifacts.blitzkrieg": "闪电战",
@@ -39,13 +41,20 @@
   "enchantment.everlaartifacts.tp_aura.desc": "右击时自动锁定敌人进行攻击",
   "enchantment.everlaartifacts.wild_hunt": "狂猎",
   "enchantment.everlaartifacts.wild_hunt.desc": "在生命值消耗殆尽时使用生命值上限承伤",
+  "enchantment.everlaartifacts.death_sprint": "死亡冲刺",
+  "enchantment.everlaartifacts.death_sprint.desc": "当饥饿值耗尽后使用生命值维持疾跑\n§8§m你跑不过我你信吗",
+
   "entity.everlaartifacts.angolmois_doom_projectile": "安哥鲁莫亚大玉",
+
   "fluid.everlaartifacts.nuclear_waste_water": "核废水",
+
   "gamerule.ForceUseTruePerformance": "强制使用真实的性能遥测数据",
   "gamerule.enableLunaticMode": "启用月狂模式（仅在世界难度为困难及以上生效）",
+
   "item_group.everlaartifacts.everla_discs": "七叶镜绫的唱片",
   "item_group.everlaartifacts.everla_tweaker": "七叶镜绫的杂物",
   "item_group.everlaartifacts.weird_thing": "七叶镜绫的抽象",
+
   "item.brackets_blade.damage_boost": "§9伤害加成: +%s (来自 %d 对括号)",
   "item.brackets_blade.extra_damage_boost_positive": "§a额外模式伤害加成: +%s (来自 %d 对括号)",
   "item.brackets_blade.extra_damage_boost_negative": "§c额外模式伤害降低: %s (来自 %d 对括号)",
@@ -226,15 +235,19 @@
   "item.minecraft.splash_potion.effect.nuclear_waste_water_bottle": "喷溅型核废水瓶",
   "item.minecraft.tipped_arrow.effect.flashbomb": "闪光之箭",
   "item.minecraft.tipped_arrow.effect.nuclear_waste_water_bottle": "核废水之箭",
+
   "painting.everlaartifacts.technoblade_staring.author": "未知",
   "painting.everlaartifacts.technoblade_staring.title": "Technoblade之凝视",
+
   "subtitles.deltarune_explosion": "三角符文高级爆炸特效",
+
   "text.everlaartifacts.penis_music_explosion": "%s被神人音乐肘飞了",
   "text.everlaartifacts.suicide": "%s百慕大三角式人间蒸发",
   "text.everlaartifacts.homa_kill": "%s以为自己扛的过去",
   "text.rainbow_lore.everlaartifacts.homa_staff": "§o§m什么？你觉得我是玩原神玩的？你不知道我为了做这玩意烧掉了多少脑细胞吗？——EverlaPrismerAya",
   "text.rainbow_lore.everlaartifacts.nilk": "§o濠河\\n§r至少这东西不会让你得光敏性癫痫",
   "text.rainbow_lore.everlaartifacts.procedure_sword": "§7对于被命名为Procedure的实体:\n§r 33550336§2 攻击伤害\n§2 1.6 攻击速度",
+
   "difficulty.everlaartifacts.easy": "§a简单",
   "difficulty.everlaartifacts.normal": "§b普通",
   "difficulty.everlaartifacts.hard": "§9困难",
@@ -245,17 +258,22 @@
   "difficulty.everlaartifacts.hard.desc": "§9有挑战性的旅程，适合老玩家\n§7面对真正的挑战，考验你的技术。",
   "difficulty.everlaartifacts.lunatic.desc": "§d步入险恶的征程，不适合任何人\n§7请输入文本。\n§r§7· 来源于怪物的伤害擢升§c百分之20。\n§7· 大多数BOSS对你额外造成§c百分之5§7最大生命值的真实伤害。\n§7· 原版部分生物获得额外增强。\n§7· 大幅增加获得稀有掉落的概率\n§7· 你可以获得与使用独特物品。",
   "difficulty.everlaartifacts.extra.desc": "§c走向癫狂的挑战，让我们一起癫疯\n§7我不想说话了。\n§r§7· 具有月狂模式所有特性\n§7· 所有伤害擢升百分之50\n§7· 含有独特的游戏机制和挑战",
+
   "message.everlaartifacts.difficulty_change": "§d[EverlaArtifacts] §f世界难度已被§b%s§f更改为%s",
+
   "death.attack.destiny_kill": "%s没能逃脱命运之手的操控",
   "death.attack.destiny_kill.player": "%1$s没能逃脱%2$s命运之手的操控",
   "death.attack.destiny_kill.player_item": "%1$s没能逃脱命运之手的操控，凶手是%2$s的%3$s",
   "death.attack.homa_overburn": "%1$s被猩红蝶火吞噬了",
   "death.attack.homa_overburn.player": "%1$s被%2$s的猩红蝶火吞噬了",
   "death.attack.homa_overburn.player_item": "%1$s被猩红蝶火吞噬了，凶手是%2$s的%3$s",
+
   "chat.everlaartifacts.extra.homa_staff": "笑死，你不是胡桃还想用这玩意？",
   "chat.everlaartifacts.extra.homa_staff.why": "诶你怎么不死啊？",
   "chat.everlaartifacts.extra.homa_staff.enrage": "死！",
+
   "jei.everlaartifacts.flashbomb.desc": "通过在酿造台中用荧石对夜视药水进行酿造获得。饮用后会产生短暂的强光闪烁效果。",
   "jei.everlaartifacts.nuclear_waste_water.desc": "通过在酿造台中用核废水桶对玻璃瓶进行酿造获得。饮用后会造成核辐射伤害。",
+
   "fluid_type.everlaartifacts.nuclear_waste_water": "核废水"
 }
