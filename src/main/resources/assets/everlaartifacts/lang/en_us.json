@@ -45,6 +45,8 @@
   "enchantment.everlaartifacts.wild_hunt.desc": "When your health is depleted, damage is instead taken from your maximum health",
   "enchantment.everlaartifacts.death_sprint": "Death Sprint",
   "enchantment.everlaartifacts.death_sprint.desc": "When hunger is depleted, consume health to maintain sprinting",
+  "enchantment.everlaartifacts.chinese_can_fly": "Chinese Can Fly",
+  "enchantment.everlaartifacts.chinese_can_fly.desc": "Grants flight to zh-language users (horizontal speed is 1/2 of creative flight)",
 
   "entity.everlaartifacts.angolmois_doom_projectile": "Angolmois Doom",
 

@@ -5,6 +5,7 @@ import net.everla.everlaartifacts.server.network.BloodBlossomEntityPacket;
 import net.everla.everlaartifacts.server.network.ClientPerformanceReportPacket;
 import net.everla.everlaartifacts.server.network.DifficultyChangePacket;
 import net.everla.everlaartifacts.server.network.DifficultySyncPacket;
+import net.everla.everlaartifacts.server.network.LanguageSyncPacket;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
@@ -144,6 +145,9 @@ public class EverlaartifactsMod {
 		// 添加难度同步网络包
 		addNetworkMessage(DifficultySyncPacket.class, DifficultySyncPacket::encode, DifficultySyncPacket::new,
 				DifficultySyncPacket::handle);
+		// 添加语言同步网络包（客户端→服务端，用于中国人能飞附魔）
+		addNetworkMessage(LanguageSyncPacket.class, LanguageSyncPacket::encode, LanguageSyncPacket::new,
+				LanguageSyncPacket::handle);
 	}
 
 	/**

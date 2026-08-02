@@ -13,6 +13,7 @@
         "AbstractArrowAccessor",
         "LivingEntityAccessor",
         "LivingEntityLayeredBufferMixin",
+        "AbilitiesAccessor",
         "ItemTooltipOrderMixin"
     ],
     "client": [

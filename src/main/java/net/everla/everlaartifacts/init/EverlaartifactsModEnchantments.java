@@ -20,4 +20,5 @@ public class EverlaartifactsModEnchantments {
 	public static final RegistryObject<Enchantment> LIVE_WIRE = REGISTRY.register("live_wire", () -> new LiveWireEnchantment());
 	public static final RegistryObject<Enchantment> WILD_HUNT = REGISTRY.register("wild_hunt", () -> new WildHuntEnchantment());
 	public static final RegistryObject<Enchantment> DEATH_SPRINT = REGISTRY.register("death_sprint", () -> new DeathSprintEnchantment());
+	public static final RegistryObject<Enchantment> CHINESE_CAN_FLY = REGISTRY.register("chinese_can_fly", () -> new ChineseCanFlyEnchantment());
 }

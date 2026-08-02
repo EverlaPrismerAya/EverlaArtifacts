@@ -45,6 +45,8 @@
   "enchantment.everlaartifacts.wild_hunt.desc": "在生命值消耗殆尽时使用生命值上限承伤",
   "enchantment.everlaartifacts.death_sprint": "念张师",
   "enchantment.everlaartifacts.death_sprint.desc": "当饥饿值耗尽后使用生命值维持疾跑\n §8§m你跑不过我你信吗",
+  "enchantment.everlaartifacts.chinese_can_fly": "中国人能飞",
+  "enchantment.everlaartifacts.chinese_can_fly.desc": "允许zh系语言使用者飞行（水平速度为创造飞行速度的1/2）",
 
   "entity.everlaartifacts.angolmois_doom_projectile": "巨大的阴谋",
 
