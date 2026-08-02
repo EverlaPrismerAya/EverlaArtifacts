@@ -47,6 +47,10 @@
   "enchantment.everlaartifacts.death_sprint.desc": "当饥饿值耗尽后使用生命值维持疾跑\n §8§m你跑不过我你信吗",
   "enchantment.everlaartifacts.chinese_can_fly": "中国人能飞",
   "enchantment.everlaartifacts.chinese_can_fly.desc": "允许zh系语言使用者飞行（水平速度为创造飞行速度的1/2）",
+  "enchantment.everlaartifacts.nvidia_network_quality": "N卡网速快",
+  "enchantment.everlaartifacts.nvidia_network_quality.desc": "第一级提升20%攻击速度，后续每级提升5%，上限50%",
+  "enchantment.everlaartifacts.amd_sound_quality": "A卡音质高",
+  "enchantment.everlaartifacts.amd_sound_quality.desc": "使用极致的音质震慑对方。对声音敏感的生物有额外效果",
 
   "entity.everlaartifacts.angolmois_doom_projectile": "安哥鲁莫亚大玉",
 

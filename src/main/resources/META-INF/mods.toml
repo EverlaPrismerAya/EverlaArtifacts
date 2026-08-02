@@ -10,7 +10,7 @@ displayURL="https://space.bilibili.com/485238732?spm_id_from=333.1007.0.0"
 logoFile="logo.png"
 credits="fumofumo, fumofumofumo"
 authors="EverlaPrismerAya"
-description="Some items and other things from my old mod"
+description="Some items and other things from my random idea"
 
 [[dependencies.everlaartifacts]]
     modId="minecraft"

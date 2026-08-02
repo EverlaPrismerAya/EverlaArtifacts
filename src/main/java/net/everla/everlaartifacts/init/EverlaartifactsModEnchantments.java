@@ -21,4 +21,6 @@ public class EverlaartifactsModEnchantments {
 	public static final RegistryObject<Enchantment> WILD_HUNT = REGISTRY.register("wild_hunt", () -> new WildHuntEnchantment());
 	public static final RegistryObject<Enchantment> DEATH_SPRINT = REGISTRY.register("death_sprint", () -> new DeathSprintEnchantment());
 	public static final RegistryObject<Enchantment> CHINESE_CAN_FLY = REGISTRY.register("chinese_can_fly", () -> new ChineseCanFlyEnchantment());
+	public static final RegistryObject<Enchantment> NVIDIA_NETWORK_QUALITY = REGISTRY.register("nvidia_network_quality", () -> new NvidiaNetworkQualityEnchantment());
+	public static final RegistryObject<Enchantment> AMD_SOUND_QUALITY = REGISTRY.register("amd_sound_quality", () -> new AmdSoundQualityEnchantment());
 }
