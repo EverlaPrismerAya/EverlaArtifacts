@@ -260,7 +260,7 @@
   "difficulty.everlaartifacts.normal.desc": "§bExpected Minecraft journey, suitable for most players\n§7The standard Minecraft experience awaits you.",
   "difficulty.everlaartifacts.hard.desc": "§9Challenging journey, suitable for experienced players\n§7Face true challenges and test your skills.",
   "difficulty.everlaartifacts.lunatic.desc": "§dStep into a perilous journey, unsuitable for anyone\n§7This is beyond belief.\n§r§7· Damage from monsters is increased by §c20 Percent. \n§7· Most bosses deal an additional §c5 Percent§7 of your Max HP as true damage.\n§7· Certain vanilla mobs receive additional enhancements.\n§7· Significantly increases the chance of obtaining rare drops.\n§7· You can obtain and use unique items.",
-  "difficulty.everlaartifacts.extra.desc": "§c A Descent into Madness – Let Us Reach the Madness Summit Together\n§7 I'm done talking.\n§r§7· Retains all traits of Lunatic mode\n§7· All damage increased by 50%\n§7· Features unique gameplay mechanics and challenges",
+  "difficulty.everlaartifacts.extra.desc": "§c A Descent into Madness, Let Us Reach the Madness Summit Together\n§7 I'm done talking.\n§r§7· Retains all traits of Lunatic mode\n§7· All damage increased by 50%\n§7· Features unique gameplay mechanics and challenges",
 
   "message.everlaartifacts.difficulty_change": "§d[EverlaArtifacts] §fWorld difficulty has been changed by §b%s §fto %s",
 
