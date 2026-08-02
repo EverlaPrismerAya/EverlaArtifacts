@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:bone"
+    },
+    "title": {
+      "translate": "advancements.everlaartifacts.death_sprint_death.title"
+    },
+    "description": {
+      "translate": "advancements.everlaartifacts.death_sprint_death.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "criteria": {
+    "death_by_destiny_kill": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    ["death_by_destiny_kill"]
+  ],
+  "parent": "minecraft:adventure/root"
+}

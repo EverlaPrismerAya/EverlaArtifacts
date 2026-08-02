@@ -13,12 +13,12 @@ public class DeathSprintEnchantment extends Enchantment {
 
     @Override
     public int getMinCost(int level) {
-        return 6 + level * 10;
+        return 8 + level * 10;
     }
 
     @Override
     public int getMaxCost(int level) {
-        return 12 + level * 10;
+        return 16 + level * 10;
     }
 
     @Override
@@ -28,7 +28,7 @@ public class DeathSprintEnchantment extends Enchantment {
 
     @Override
     public boolean isTreasureOnly() {
-        return true;
+        return false;
     }
 
     @Override
