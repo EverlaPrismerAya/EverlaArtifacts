@@ -42,7 +42,7 @@
   "enchantment.everlaartifacts.wild_hunt": "狂猎",
   "enchantment.everlaartifacts.wild_hunt.desc": "在生命值消耗殆尽时使用生命值上限承伤",
   "enchantment.everlaartifacts.death_sprint": "死亡冲刺",
-  "enchantment.everlaartifacts.death_sprint.desc": "当饥饿值耗尽后使用生命值维持疾跑\n§8§m你跑不过我你信吗",
+  "enchantment.everlaartifacts.death_sprint.desc": "当饥饿值耗尽后使用生命值维持疾跑\n §8§m你跑不过我你信吗",
 
   "entity.everlaartifacts.angolmois_doom_projectile": "安哥鲁莫亚大玉",
 
@@ -275,5 +275,6 @@
   "jei.everlaartifacts.flashbomb.desc": "通过在酿造台中用荧石对夜视药水进行酿造获得。饮用后会产生短暂的强光闪烁效果。",
   "jei.everlaartifacts.nuclear_waste_water.desc": "通过在酿造台中用核废水桶对玻璃瓶进行酿造获得。饮用后会造成核辐射伤害。",
 
-  "fluid_type.everlaartifacts.nuclear_waste_water": "核废水"
+  "fluid_type.everlaartifacts.nuclear_waste_water": "核废水",
+  "item.everlaartifacts.chalice_of_blood_god.description_3": " "
 }

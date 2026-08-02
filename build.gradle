@@ -1,6 +1,12 @@
 plugins {
     id 'eclipse'
     id 'net.minecraftforge.gradle' version '[6.0.16,6.2)'
+    id 'org.spongepowered.mixin' version '0.7.+'
+}
+
+mixin {
+    add sourceSets.main, 'mixins.everlaartifacts.refmap.json'
+    config 'mixins.everlaartifacts.json'
 }
 
 // 从 mods.toml 文件中读取版本信息
@@ -74,7 +80,10 @@ repositories {
 
 dependencies {
     minecraft 'net.minecraftforge:forge:1.20.1-47.4.21'
-    
+
+    // Mixin 注解处理器 — 生成 refmap 文件（生产环境必需）
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+
     // JEI Integration
     compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
     compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}")

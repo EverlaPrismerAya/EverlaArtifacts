@@ -1,0 +1,12 @@
+{
+    "required": true,
+    "minVersion": "0.8",
+    "package": "net.everla.everlaartifacts.mixin",
+    "compatibilityLevel": "JAVA_17",
+    "refmap": "mixins.everlaartifacts.refmap.json",
+    "mixins": [],
+    "client": [
+        "LocalPlayerSprintMixin"
+    ],
+    "server": []
+}
