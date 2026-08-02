@@ -10,7 +10,10 @@
         "ImpalingEnchantmentMixin",
         "PlayerAttackImpalingMixin",
         "ThrownTridentImpalingMixin",
-        "AbstractArrowAccessor"
+        "AbstractArrowAccessor",
+        "LivingEntityAccessor",
+        "LivingEntityLayeredBufferMixin",
+        "ItemTooltipOrderMixin"
     ],
     "client": [
         "LocalPlayerSprintMixin",

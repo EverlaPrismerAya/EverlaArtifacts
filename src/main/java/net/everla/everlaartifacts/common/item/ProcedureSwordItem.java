@@ -32,6 +32,7 @@ import net.minecraftforge.fml.ModList;
 
 import net.everla.everlaartifacts.init.EverlaartifactsModItems;
 import net.everla.everlaartifacts.init.EverlaartifactsModMobEffects;
+import net.everla.everlaartifacts.mixin.LivingEntityAccessor;
 
 import static net.minecraft.resources.ResourceLocation.fromNamespaceAndPath;
 import static net.minecraft.sounds.SoundEvent.createVariableRangeEvent;
@@ -131,23 +132,17 @@ public class ProcedureSwordItem extends SwordItem {
 								serverLevel.addFreshEntity(orb);
 							}
 						}
-						// 掉落物处理
-						try {
-							//反射获取战利品
-							java.lang.reflect.Method dropMethod = LivingEntity.class.getDeclaredMethod("dropFromLootTable", DamageSource.class, boolean.class);
-							dropMethod.setAccessible(true);
-							for (int i = 0; i < 10; i++){
-								//掉落战利品
-								dropMethod.invoke(victim, damageSource, true);
-								//下界之星是硬编码 所以说这里也硬编码
-								if (victim.getType() == WITHER){
-									ItemEntity netherStar = new ItemEntity(serverLevel, victim.getX(), victim.getY(), victim.getZ(), new ItemStack(Items.NETHER_STAR));
-									netherStar.setPickUpDelay(10);
-									serverLevel.addFreshEntity(netherStar);
-								}
+						// 掉落物处理（通过 Mixin @Invoker 调用 protected 方法，避免反射）
+						LivingEntityAccessor accessor = (LivingEntityAccessor) victim;
+						for (int i = 0; i < 10; i++) {
+							// 掉落战利品
+							accessor.everlaartifacts$invokeDropFromLootTable(damageSource, true);
+							// 下界之星是硬编码 所以说这里也硬编码
+							if (victim.getType() == WITHER) {
+								ItemEntity netherStar = new ItemEntity(serverLevel, victim.getX(), victim.getY(), victim.getZ(), new ItemStack(Items.NETHER_STAR));
+								netherStar.setPickUpDelay(10);
+								serverLevel.addFreshEntity(netherStar);
 							}
-						} catch (Exception e) {
-							System.out.println("Failed to drop loot: " + e.getMessage());
 						}
 
 						// 播放Deltarune爆炸音效
