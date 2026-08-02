@@ -4,8 +4,8 @@
     "layer0": "everlaartifacts:item/procedure_sword",
     "particle": "everlaartifacts:misc/mcreator/mcreator"
   },
-  "loader": "everlaartifacts:cosmic",
-  "cosmic": {
+  "loader": "everlaartifacts:mcreator_overlay",
+  "mcreator_overlay": {
     "mask": "everlaartifacts:mask/item/procedure_sword"
   }
 }

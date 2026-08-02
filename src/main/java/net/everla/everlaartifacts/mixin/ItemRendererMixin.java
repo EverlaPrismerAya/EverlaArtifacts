@@ -28,7 +28,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
  * Based on Avaritia's ItemRendererMixin implementation.
  * 本类修改自如下开源软件/代码
  * https://github.com/Nova-Committee/Re-Avaritia ，采用 MIT 许可证。
- * 版权所有者：(c) 2026 Nova-Committee
+ * 版权所有者：(c) 2024-2026 Nova-Committee
  */
 @Mixin(ItemRenderer.class)
 public abstract class ItemRendererMixin {

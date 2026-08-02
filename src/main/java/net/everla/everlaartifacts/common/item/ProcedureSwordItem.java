@@ -1,5 +1,9 @@
 package net.everla.everlaartifacts.common.item;
-
+/**
+ * 本类修改自如下开源软件/代码
+ * https://github.com/Nova-Committee/Re-Avaritia ，采用 MIT 许可证。
+ * 版权所有者：(c) 2024-2026 Nova-Committee
+ */
 import net.minecraft.world.entity.TamableAnimal;
 import net.minecraft.world.entity.boss.wither.WitherBoss;
 import net.minecraftforge.fml.common.Mod;

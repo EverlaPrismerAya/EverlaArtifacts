@@ -29,21 +29,21 @@ import java.util.function.Function;
  * {
  *   "parent": "item/handheld",
  *   "textures": { "layer0": "..." },
- *   "loader": "everlaartifacts:cosmic",
- *   "cosmic": {
+ *   "loader": "everlaartifacts:mcreator_overlay",
+ *   "mcreator_overlay": {
  *     "mask": "everlaartifacts:mask/item/procedure_sword"
  *   }
  * }
  * }</pre>
  * <p>
- * The {@code "cosmic"} key is stripped before the base model is baked.
+ * The {@code "mcreator_overlay"} key is stripped before the base model is baked.
  * The mask texture(s) are passed to {@link CosmicBakeModel} for use
  * with the cosmic shader.
  * <p>
  * Based on Avaritia's CosmicModelLoader implementation.
  * 本类修改自如下开源软件/代码
  * https://github.com/Nova-Committee/Re-Avaritia ，采用 MIT 许可证。
- * 版权所有者：(c) 2026 Nova-Committee
+ * 版权所有者：(c) 2024-2026 Nova-Committee
  */
 public class CosmicModelLoader implements IGeometryLoader<CosmicModelLoader.CosmicGeometry> {
 
@@ -53,12 +53,12 @@ public class CosmicModelLoader implements IGeometryLoader<CosmicModelLoader.Cosm
     public CosmicGeometry read(JsonObject modelContents, JsonDeserializationContext deserializationContext)
             throws JsonParseException {
 
-        // Strip the "cosmic" key and deserialize the rest as a vanilla BlockModel
+        // Strip the "mcreator_overlay" key and deserialize the rest as a vanilla BlockModel
         BlockModel baseModel = deserializationContext.deserialize(
-                clear(modelContents, "cosmic"), BlockModel.class);
+                clear(modelContents, "mcreator_overlay"), BlockModel.class);
 
-        // Extract mask texture(s) from the "cosmic" section
-        List<ResourceLocation> cosmicMaskTextures = getMasks(modelContents, "cosmic");
+        // Extract mask texture(s) from the "mcreator_overlay" section
+        List<ResourceLocation> cosmicMaskTextures = getMasks(modelContents, "mcreator_overlay");
 
         return new CosmicGeometry(baseModel, cosmicMaskTextures);
     }
@@ -81,7 +81,7 @@ public class CosmicModelLoader implements IGeometryLoader<CosmicModelLoader.Cosm
      * Supports both a single mask string and an array of mask strings.
      *
      * @param modelContents the full model JSON
-     * @param type          the section key (e.g. "cosmic")
+     * @param type          the section key (e.g. "mcreator_overlay")
      * @return list of ResourceLocations for mask textures
      */
     private static List<ResourceLocation> getMasks(JsonObject modelContents, String type) {

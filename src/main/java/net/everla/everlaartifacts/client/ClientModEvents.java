@@ -60,7 +60,7 @@ public class ClientModEvents {
      */
     @SubscribeEvent
     public static void registerGeometryLoaders(ModelEvent.RegisterGeometryLoaders event) {
-        event.register("cosmic", CosmicModelLoader.INSTANCE);
+        event.register("mcreator_overlay", CosmicModelLoader.INSTANCE);
     }
 
     /**
