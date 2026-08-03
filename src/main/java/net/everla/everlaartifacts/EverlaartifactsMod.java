@@ -39,6 +39,7 @@ import net.everla.everlaartifacts.init.EverlaartifactsModFluids;
 import net.everla.everlaartifacts.init.EverlaartifactsModFluidTypes;
 import net.everla.everlaartifacts.init.EverlaartifactsModEntities;
 import net.everla.everlaartifacts.init.EverlaartifactsModEnchantments;
+import net.everla.everlaartifacts.init.EverlaartifactsModLootModifiers;
 import net.everla.everlaartifacts.init.EverlaartifactsModBlocks;
 import net.everla.everlaartifacts.common.handlers.enchantment.PerformanceBasedThingsHandler;
 import net.everla.everlaartifacts.common.game_rules.ForceUseTruePerformance;
@@ -70,6 +71,7 @@ public class EverlaartifactsMod {
 		EverlaartifactsModItems.REGISTRY.register(bus);
 		EverlaartifactsModEntities.REGISTRY.register(bus);
 		EverlaartifactsModEnchantments.REGISTRY.register(bus);
+		EverlaartifactsModLootModifiers.REGISTRY.register(bus);
 		EverlaartifactsModTabs.REGISTRY.register(bus);
 		EverlaartifactsModMobEffects.REGISTRY.register(bus);
 		EverlaartifactsModPotions.POTIONS.register(bus);
