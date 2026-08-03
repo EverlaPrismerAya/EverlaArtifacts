@@ -53,6 +53,8 @@
   "enchantment.everlaartifacts.amd_sound_quality.desc": "使用极致的音质震慑对方。对声音敏感的生物有额外效果",
   "enchantment.everlaartifacts.wind_breath": "风息",
   "enchantment.everlaartifacts.wind_breath.desc": "释放风压将周围敌人拉向目标，并附加冰冻伤害",
+  "enchantment.everlaartifacts.enemy_step": "踩踩背",
+  "enchantment.everlaartifacts.enemy_step.desc": "大幅减免摔落伤害，与摔落保护冲突",
 
   "entity.everlaartifacts.angolmois_doom_projectile": "安哥鲁莫亚大玉",
 
@@ -251,6 +253,8 @@
   "painting.everlaartifacts.technoblade_staring.title": "Technoblade之凝视",
 
   "subtitles.deltarune_explosion": "三角符文高级爆炸特效",
+  "subtitles.everlaartifacts.enemy_step_back": "背！",
+  "subtitles.everlaartifacts.enemy_step_stomp": "踩！",
 
   "text.everlaartifacts.penis_music_explosion": "%s被神人音乐肘飞了",
   "text.everlaartifacts.suicide": "%s百慕大三角式人间蒸发",

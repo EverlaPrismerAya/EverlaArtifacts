@@ -385,5 +385,23 @@
         "stream": false
       }
     ]
+  },
+  "enemy_step_b": {
+    "subtitle": "subtitles.everlaartifacts.enemy_step_back",
+    "sounds": [
+      {
+        "name": "everlaartifacts:enemy_step_b",
+        "stream": false
+      }
+    ]
+  },
+  "enemy_step_c": {
+    "subtitle": "subtitles.everlaartifacts.enemy_step_stomp",
+    "sounds": [
+      {
+        "name": "everlaartifacts:enemy_step_c",
+        "stream": false
+      }
+    ]
   }
 }

@@ -51,7 +51,6 @@ public class EverlaartifactsModSounds {
 	public static final RegistryObject<SoundEvent> PLACEHOLDER_SND = REGISTRY.register("placeholder_snd", () -> SoundEvent.createVariableRangeEvent(new ResourceLocation("everlaartifacts", "placeholder_snd")));
 	public static final RegistryObject<SoundEvent> GENSHIN_START_SOUND = REGISTRY.register("genshin_start_sound", () -> SoundEvent.createVariableRangeEvent(new ResourceLocation("everlaartifacts", "genshin_start_sound")));
 	public static final RegistryObject<SoundEvent> DELTARUNE_EXPLOSION = REGISTRY.register("deltarune_explosion", () -> SoundEvent.createVariableRangeEvent(new ResourceLocation("everlaartifacts", "deltarune_explosion")));
-	public static final RegistryObject<SoundEvent> FUMOFUMO = REGISTRY.register("fumofumo", () -> SoundEvent.createVariableRangeEvent(new ResourceLocation("everlaartifacts", "fumofumo")));
 	public static final RegistryObject<SoundEvent> AURIC_STRIKE = REGISTRY.register("auric_strike", () -> SoundEvent.createVariableRangeEvent(new ResourceLocation("everlaartifacts", "auric_strike")));
 	public static final RegistryObject<SoundEvent> MANBO_LEGEND = REGISTRY.register("manbo_legend", () -> SoundEvent.createVariableRangeEvent(new ResourceLocation("everlaartifacts", "manbo_legend")));
 	public static final RegistryObject<SoundEvent> MANBO_NO_MORE = REGISTRY.register("manbo_no_more", () -> SoundEvent.createVariableRangeEvent(new ResourceLocation("everlaartifacts", "manbo_no_more")));
@@ -61,4 +60,6 @@ public class EverlaartifactsModSounds {
 	public static final RegistryObject<SoundEvent> LIVE_WIRE = REGISTRY.register("live_wire", () -> SoundEvent.createVariableRangeEvent(new ResourceLocation("everlaartifacts", "live_wire")));
 	public static final RegistryObject<SoundEvent> LIVE_WIRE_HOMA_STAFF = REGISTRY.register("live_wire_homa_staff", () -> SoundEvent.createVariableRangeEvent(new ResourceLocation("everlaartifacts", "live_wire_homa_staff")));
 	public static final RegistryObject<SoundEvent> DIFFICULT_SWITCH = REGISTRY.register("difficult_switch", () -> SoundEvent.createVariableRangeEvent(new ResourceLocation("everlaartifacts", "difficult_switch")));
+	public static final RegistryObject<SoundEvent> ENEMY_STEP_B = REGISTRY.register("enemy_step_b", () -> SoundEvent.createVariableRangeEvent(new ResourceLocation("everlaartifacts", "enemy_step_b")));
+	public static final RegistryObject<SoundEvent> ENEMY_STEP_C = REGISTRY.register("enemy_step_c", () -> SoundEvent.createVariableRangeEvent(new ResourceLocation("everlaartifacts", "enemy_step_c")));
 }
