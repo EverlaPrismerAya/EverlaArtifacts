@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:chest",
+  "random_sequence": "everlaartifacts:inject/escalation_of_freedom",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:empty",
+          "weight": 19
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:enchanted_book",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "minecraft:enchant_randomly",
+              "enchantments": [
+                "everlaartifacts:escalation_of_freedom"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

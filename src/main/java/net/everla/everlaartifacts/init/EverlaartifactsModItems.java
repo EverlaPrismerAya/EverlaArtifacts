@@ -18,6 +18,7 @@ import net.everla.everlaartifacts.common.item.disc.WorstAppleItem;
 import net.everla.everlaartifacts.common.item.weird_thing.WeirdCocktailItem;
 import net.everla.everlaartifacts.common.item.disc.ViscousDesperationItem;
 import net.everla.everlaartifacts.common.item.VenusShellItem;
+import net.everla.everlaartifacts.common.item.WitherEssenceItem;
 import net.everla.everlaartifacts.common.item.TwoBreadSandwichedWithCheeseItem;
 import net.everla.everlaartifacts.common.item.disc.TwistedGardenItem;
 import net.everla.everlaartifacts.common.item.weird_thing.TokyoTicketItem;
@@ -158,6 +159,7 @@ public class EverlaartifactsModItems {
 	public static final RegistryObject<Item> DRAGON_SOUL_FRAGMENT = REGISTRY.register("dragon_soul_fragment", () -> new DragonSoulFragmentItem());
 	// Start of user code block custom items
 	public static final RegistryObject<Item> AURIC_SCRAP_BLOCK = REGISTRY.register("auric_scrap_block", () -> new AuricScrapBlockItem(EverlaartifactsModBlocks.AURIC_SCRAP_BLOCK.get()));
+	public static final RegistryObject<Item> WITHER_ESSENCE = REGISTRY.register("wither_essence", () -> new WitherEssenceItem());
 
 	// End of user code block custom items
 	private static RegistryObject<Item> block(RegistryObject<Block> block) {

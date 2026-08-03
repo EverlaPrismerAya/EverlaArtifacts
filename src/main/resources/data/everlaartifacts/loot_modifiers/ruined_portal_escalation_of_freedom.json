@@ -1,0 +1,10 @@
+{
+  "type": "everlaartifacts:add_loot",
+  "conditions": [
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "minecraft:chests/ruined_portal"
+    }
+  ],
+  "loot_table": "everlaartifacts:inject/escalation_of_freedom"
+}

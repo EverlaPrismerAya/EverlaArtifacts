@@ -57,6 +57,8 @@
   "enchantment.everlaartifacts.enemy_step.desc": "Can step on enemy to deal damage",
   "enchantment.everlaartifacts.pull_request": "Pull Request",
   "enchantment.everlaartifacts.pull_request.desc": "When the trident hits a block or mob, nearby dropped items are pulled onto the trident and carried away",
+  "enchantment.everlaartifacts.escalation_of_freedom": "Escalation of Freedom",
+  "enchantment.everlaartifacts.escalation_of_freedom.desc": "The largest DLC to date! Adds new quests, enemies, difficulty, and reward systems.",
 
   "entity.everlaartifacts.angolmois_doom_projectile": "Angolmois Doom",
 
@@ -237,6 +239,7 @@
   "item.everlaartifacts.dragon_soul_fragment": "Dragon Soul Fragment",
   "item.everlaartifacts.misc.lunatic": "§dLunatic Mode",
   "item.everlaartifacts.dragon_soul_fragment.description_1": "§7Used to craft auric ingot",
+  "item.everlaartifacts.wither_essence": "Wither Essence",
   "item.everlaartifacts.worst_apple": "Music Disc",
   "item.everlaartifacts.worst_apple.desc": "§kNameless Deity§r - Worst Apple",
   "item.everlaartifacts.yamato": "Music Disc",

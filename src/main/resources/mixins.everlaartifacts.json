@@ -14,7 +14,8 @@
         "LivingEntityAccessor",
         "LivingEntityLayeredBufferMixin",
         "AbilitiesAccessor",
-        "ItemTooltipOrderMixin"
+        "ItemTooltipOrderMixin",
+        "EnchantmentHelperBindingMixin"
     ],
     "client": [
         "LocalPlayerSprintMixin",

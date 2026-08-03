@@ -57,6 +57,8 @@
   "enchantment.everlaartifacts.enemy_step.desc": "可以踩踏敌人造成伤害",
   "enchantment.everlaartifacts.pull_request": "拉取请求",
   "enchantment.everlaartifacts.pull_request.desc": "三叉戟命中方块或生物时，把附近的掉落物吸附到三叉戟上带走",
+  "enchantment.everlaartifacts.escalation_of_freedom": "自由升级",
+  "enchantment.everlaartifacts.escalation_of_freedom.desc": "迄今为止最大DLC，新增任务、敌人、难度和奖励系统。",
 
   "entity.everlaartifacts.angolmois_doom_projectile": "安哥鲁莫亚大玉",
 
@@ -237,6 +239,7 @@
   "item.everlaartifacts.dragon_soul_fragment": "龙魂碎片",
   "item.everlaartifacts.misc.lunatic": "§d月狂模式",
   "item.everlaartifacts.dragon_soul_fragment.description_1": "§7用于合成辉金锭",
+  "item.everlaartifacts.wither_essence": "凋亡精粹",
   "item.everlaartifacts.worst_apple": "音乐唱片",
   "item.everlaartifacts.worst_apple.desc": "§k无名光神§r - Worst Apple",
   "item.everlaartifacts.yamato": "音乐唱片",

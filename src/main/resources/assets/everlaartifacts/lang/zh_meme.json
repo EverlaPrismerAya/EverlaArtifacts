@@ -57,6 +57,8 @@
   "enchantment.everlaartifacts.enemy_step.desc": "可以踩踏敌人造成伤害",
   "enchantment.everlaartifacts.pull_request": "提PR",
   "enchantment.everlaartifacts.pull_request.desc": "三叉戟命中时把附近的掉落物拉进代码仓库（三叉戟）一起带走",
+  "enchantment.everlaartifacts.escalation_of_freedom": "白嫖升级",
+  "enchantment.everlaartifacts.escalation_of_freedom.desc": "迄今为止最大DLC，新增任务、敌人、难度和奖励系统。",
 
   "entity.everlaartifacts.angolmois_doom_projectile": "巨大的阴谋",
 
@@ -237,6 +239,7 @@
   "item.everlaartifacts.dragon_soul_fragment": "龙魂碎片",
   "item.everlaartifacts.misc.lunatic": "§d露那提刻模式",
   "item.everlaartifacts.dragon_soul_fragment.description_1": "§7用于合成圣金源锭",
+  "item.everlaartifacts.wither_essence": "凋零精华",
   "item.everlaartifacts.worst_apple": "阴乐唱片",
   "item.everlaartifacts.worst_apple.desc": "§k无名光神§r - Worst Apple",
   "item.everlaartifacts.yamato": "阴乐唱片",

@@ -57,6 +57,8 @@
   "enchantment.everlaartifacts.enemy_step.desc": "可踐踏敵眾以致傷",
   "enchantment.everlaartifacts.pull_request": "取物之求",
   "enchantment.everlaartifacts.pull_request.desc": "三叉戟中塊或物時，吸附近處落物於戟上攜走",
+  "enchantment.everlaartifacts.escalation_of_freedom": "自由之昇",
+  "enchantment.everlaartifacts.escalation_of_freedom.desc": "迄今最巨之DLC，新增任務、敵人、難度與賞酬之制。",
 
   "entity.everlaartifacts.angolmois_doom_projectile": "安哥魯莫亞大玉",
 
@@ -237,6 +239,7 @@
   "item.everlaartifacts.dragon_soul_fragment": "龍魂碎片",
   "item.everlaartifacts.misc.lunatic": "§d月狂之態",
   "item.everlaartifacts.dragon_soul_fragment.description_1": "§7用以合成輝金錠",
+  "item.everlaartifacts.wither_essence": "凋亡之精",
   "item.everlaartifacts.worst_apple": "留聲盤",
   "item.everlaartifacts.worst_apple.desc": "§k無名光神§r - Worst Apple",
   "item.everlaartifacts.yamato": "留聲盤",
