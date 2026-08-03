@@ -51,6 +51,8 @@
   "enchantment.everlaartifacts.nvidia_network_quality.desc": "+20% attack speed at level 1, +5% per additional level, capped at +50%",
   "enchantment.everlaartifacts.amd_sound_quality": "AMD Sound Quality",
   "enchantment.everlaartifacts.amd_sound_quality.desc": "Intimidates opponents with extreme sound quality. Extra effective against sound-sensitive creatures",
+  "enchantment.everlaartifacts.wind_breath": "Wind Breath",
+  "enchantment.everlaartifacts.wind_breath.desc": "Releases wind pressure to pull nearby enemies toward the target and deals additional freeze damage",
 
   "entity.everlaartifacts.angolmois_doom_projectile": "Angolmois Doom",
 

@@ -13,7 +13,9 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
+import java.util.Collections;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -45,6 +47,9 @@ public final class ChineseCanFlyHandler {
 
     /** Maps player UUID → language code reported by the client. */
     static final Map<UUID, String> PLAYER_LANGUAGES = new ConcurrentHashMap<>();
+
+    /** Tracks which players currently have enchantment-provided flight active. */
+    private static final Set<UUID> ENCHANTMENT_FLYING = Collections.newSetFromMap(new ConcurrentHashMap<>());
 
     // ── Called by the network packet ──────────────────────────────────
 
@@ -110,7 +115,13 @@ public final class ChineseCanFlyHandler {
      */
     private static void updateFlight(final ServerPlayer player) {
         if (player.isCreative() || player.isSpectator()) {
-            return; // never interfere with creative/spectator
+            // 玩家从生存模式（附魔飞行激活）切换到创造/旁观模式时，
+            // 需要把飞行速度重置回创造默认值 0.05
+            if (ENCHANTMENT_FLYING.remove(player.getUUID())) {
+                ((AbilitiesAccessor) player.getAbilities()).everlaartifacts$setFlyingSpeed(0.05F);
+                player.onUpdateAbilities();
+            }
+            return;
         }
 
         if (shouldHaveFlight(player)) {
@@ -166,12 +177,14 @@ public final class ChineseCanFlyHandler {
                 player.onUpdateAbilities();
             }
         }
+        ENCHANTMENT_FLYING.add(player.getUUID());
     }
 
     /**
      * Revokes flight granted by this enchantment.
      */
     private static void revokeFlight(final ServerPlayer player) {
+        ENCHANTMENT_FLYING.remove(player.getUUID());
         var abilities = player.getAbilities();
         if (abilities.mayfly && !player.isCreative() && !player.isSpectator()) {
             abilities.mayfly = false;
