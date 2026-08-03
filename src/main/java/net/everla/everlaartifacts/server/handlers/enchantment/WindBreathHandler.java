@@ -24,11 +24,11 @@ import net.everla.everlaartifacts.init.EverlaartifactsModEnchantments;
 public class WindBreathHandler {
 
 	/** 风息爆炸半径（方块） */
-	private static final double EXPLOSION_RADIUS = 4.0;
+	private static final double EXPLOSION_RADIUS = 6.0;
 	/** 击退基础倍率 */
-	private static final double KNOCKBACK_BASE = 1;
+	private static final double KNOCKBACK_BASE = 0.5;
 	/** 击退每级额外倍率 */
-	private static final double KNOCKBACK_PER_LEVEL = 0.75;
+	private static final double KNOCKBACK_PER_LEVEL = 0.3;
 	/** 额外冰冻伤害基础值 */
 	private static final float DAMAGE_BASE = 4.0F;
 	/** 额外冰冻伤害每级增加值 */

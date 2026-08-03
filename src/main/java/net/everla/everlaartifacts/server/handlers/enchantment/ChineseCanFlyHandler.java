@@ -40,7 +40,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public final class ChineseCanFlyHandler {
 
     /** zh-variant language code prefixes that qualify for flight. */
-    private static final String[] ZH_PREFIXES = {"zh_cn", "zh_tw", "zh_hk", "zh_sg", "zh_mo", "zh"};
+    private static final String[] ZH_PREFIXES = {"zh_cn", "zh_tw", "zh_hk", "zh_sg", "zh_mo", "zh", "lzh"};
 
     /** Half of the creative-mode default flying speed (0.05 → 0.025). */
     private static final float HALF_CREATIVE_FLY_SPEED = 0.025F;
