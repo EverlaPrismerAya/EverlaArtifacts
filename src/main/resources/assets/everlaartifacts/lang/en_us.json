@@ -54,7 +54,9 @@
   "enchantment.everlaartifacts.wind_breath": "Wind Breath",
   "enchantment.everlaartifacts.wind_breath.desc": "Releases wind pressure to pull nearby enemies toward the target and deals additional freeze damage",
   "enchantment.everlaartifacts.enemy_step": "Enemy Step",
-  "enchantment.everlaartifacts.enemy_step.desc": "Greatly reduces fall damage. Conflicts with Feather Falling",
+  "enchantment.everlaartifacts.enemy_step.desc": "Can step on enemy to deal damage",
+  "enchantment.everlaartifacts.pull_request": "Pull Request",
+  "enchantment.everlaartifacts.pull_request.desc": "When the trident hits a block or mob, nearby dropped items are pulled onto the trident and carried away",
 
   "entity.everlaartifacts.angolmois_doom_projectile": "Angolmois Doom",
 

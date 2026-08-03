@@ -54,7 +54,9 @@
   "enchantment.everlaartifacts.wind_breath": "风息",
   "enchantment.everlaartifacts.wind_breath.desc": "释放风压将周围敌人拉向目标，并附加冰冻伤害",
   "enchantment.everlaartifacts.enemy_step": "踩踩背",
-  "enchantment.everlaartifacts.enemy_step.desc": "大幅减免摔落伤害，与摔落保护冲突",
+  "enchantment.everlaartifacts.enemy_step.desc": "可以踩踏敌人造成伤害",
+  "enchantment.everlaartifacts.pull_request": "提PR",
+  "enchantment.everlaartifacts.pull_request.desc": "三叉戟命中时把附近的掉落物拉进代码仓库（三叉戟）一起带走",
 
   "entity.everlaartifacts.angolmois_doom_projectile": "巨大的阴谋",
 

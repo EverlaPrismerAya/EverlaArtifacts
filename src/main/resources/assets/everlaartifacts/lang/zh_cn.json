@@ -54,7 +54,9 @@
   "enchantment.everlaartifacts.wind_breath": "风息",
   "enchantment.everlaartifacts.wind_breath.desc": "释放风压将周围敌人拉向目标，并附加冰冻伤害",
   "enchantment.everlaartifacts.enemy_step": "踩踩背",
-  "enchantment.everlaartifacts.enemy_step.desc": "大幅减免摔落伤害，与摔落保护冲突",
+  "enchantment.everlaartifacts.enemy_step.desc": "可以踩踏敌人造成伤害",
+  "enchantment.everlaartifacts.pull_request": "拉取请求",
+  "enchantment.everlaartifacts.pull_request.desc": "三叉戟命中方块或生物时，把附近的掉落物吸附到三叉戟上带走",
 
   "entity.everlaartifacts.angolmois_doom_projectile": "安哥鲁莫亚大玉",
 

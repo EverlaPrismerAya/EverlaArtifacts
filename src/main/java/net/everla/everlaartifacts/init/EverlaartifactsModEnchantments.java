@@ -25,4 +25,5 @@ public class EverlaartifactsModEnchantments {
 	public static final RegistryObject<Enchantment> AMD_SOUND_QUALITY = REGISTRY.register("amd_sound_quality", () -> new AmdSoundQualityEnchantment());
 	public static final RegistryObject<Enchantment> WIND_BREATH = REGISTRY.register("wind_breath", () -> new WindBreathEnchantment());
 	public static final RegistryObject<Enchantment> ENEMY_STEP = REGISTRY.register("enemy_step", () -> new EnemyStepEnchantment());
+	public static final RegistryObject<Enchantment> PULL_REQUEST = REGISTRY.register("pull_request", () -> new PullRequestEnchantment());
 }
