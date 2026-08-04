@@ -1,7 +1,4 @@
 
-/*
- *    MCreator note: This file will be REGENERATED on each build.
- */
 package net.everla.everlaartifacts.init;
 
 import net.minecraftforge.registries.RegistryObject;
@@ -69,7 +66,7 @@ public class EverlaartifactsModTabs {
 				tabData.accept(EverlaartifactsModItems.BEIJING_TICKET.get());
 				tabData.accept(EverlaartifactsModItems.NANJING_TICKET.get());
 				tabData.accept(EverlaartifactsModItems.TOKYO_TICKET.get());
-			}).withTabsBefore(EVERLA_TWEAKER.getId()).build());
+			}).build());
 	public static final RegistryObject<CreativeModeTab> EVERLA_DISCS = REGISTRY.register("everla_discs",
 			() -> CreativeModeTab.builder().title(Component.translatable("item_group.everlaartifacts.everla_discs")).icon(() -> new ItemStack(EverlaartifactsModItems.TWISTED_GARDEN.get())).displayItems((parameters, tabData) -> {
 				tabData.accept(EverlaartifactsModItems.GALATIC_DESTRUCTION.get());
@@ -101,7 +98,7 @@ public class EverlaartifactsModTabs {
 				tabData.accept(EverlaartifactsModItems.MANBO_NO_MORE.get());
 				tabData.accept(EverlaartifactsModItems.LONELY_MAN_BROKENHEARTED_SONG.get());
 				tabData.accept(EverlaartifactsModItems.MUSIC_DISC_NILK.get());
-			}).withTabsBefore(WEIRD_THING.getId()).build());
+			}).build());
 
 	@SubscribeEvent
 	public static void buildTabContentsVanilla(BuildCreativeModeTabContentsEvent tabData) {
