@@ -2,13 +2,9 @@ package net.everla.everlaartifacts.common.difficulty;
 
 import net.everla.everlaartifacts.common.game_rules.EnableLunaticMode;
 import net.everla.everlaartifacts.init.EverlaartifactsModItems;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.TagKey;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.entity.boss.wither.WitherBoss;
 import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
@@ -21,50 +17,16 @@ import net.minecraftforge.fml.common.Mod;
  * <p>
  * 在月狂模式下击败凋灵后，于凋灵死亡位置掉落5-10个凋亡精粹。
  * <p>
- * 同时定义凋亡精粹掉落物形态下的数据驱动防护标签（供
- * {@link net.everla.everlaartifacts.mixin.ItemEntityEverlastingMixin} 检查使用）：
- * <ul>
- *   <li>{@code everlaartifacts:explosion_resistant} — 免疫爆炸伤害</li>
- *   <li>{@code everlaartifacts:fire_resistant} — 免疫火焰与岩浆</li>
- * </ul>
+ * 数据驱动防护标签（explosion_resistant / fire_resistant）已迁移至 EverlaTweaker 模组，
+ * 由 {@code net.everla.everlatweaker.common.handlers.data_driven.ProtectiveTagsHandler} 提供。
  */
 @Mod.EventBusSubscriber(modid = "everlaartifacts")
 public class WitherEssenceDropHandler {
-
-    /** 爆炸抗性标签 — 带有此标签的物品实体不会被爆炸摧毁 */
-    public static final TagKey<Item> EXPLOSION_RESISTANT_TAG = TagKey.create(
-            Registries.ITEM,
-            new ResourceLocation("everlaartifacts", "explosion_resistant")
-    );
-
-    /** 火焰抗性标签 — 带有此标签的物品实体不会在火焰/岩浆中燃烧 */
-    public static final TagKey<Item> FIRE_RESISTANT_TAG = TagKey.create(
-            Registries.ITEM,
-            new ResourceLocation("everlaartifacts", "fire_resistant")
-    );
 
     /** 月狂模式击败凋灵掉落的凋亡精粹数量下限 */
     private static final int MIN_DROPS = 5;
     /** 月狂模式击败凋灵掉落的凋亡精粹数量上限（含） */
     private static final int MAX_DROPS = 10;
-
-    /**
-     * 检查物品栈是否带有爆炸抗性标签。
-     * 供 mixin 判断掉落物是否免疫爆炸伤害使用。
-     */
-    public static boolean isExplosionResistant(ItemStack stack) {
-        if (stack.isEmpty()) return false;
-        return stack.is(EXPLOSION_RESISTANT_TAG);
-    }
-
-    /**
-     * 检查物品栈是否带有火焰抗性标签。
-     * 供 mixin 判断掉落物是否免疫火焰/岩浆伤害使用。
-     */
-    public static boolean isFireResistant(ItemStack stack) {
-        if (stack.isEmpty()) return false;
-        return stack.is(FIRE_RESISTANT_TAG);
-    }
 
     /**
      * 监听凋灵死亡事件，在月狂模式下生成凋亡精粹掉落物

@@ -11,3 +11,9 @@ pluginManagement {
 plugins {
     id 'org.gradle.toolchains.foojay-resolver-convention' version '0.7.0'
 }
+
+rootProject.name = 'EverlaArtifacts'
+
+// EverlaTweaker — Jar-in-Jar 内嵌的数据驱动模组（子项目）
+include 'everlatweaker'
+project(':everlatweaker').projectDir = file('src/JarJar/EverlaTweaker')

@@ -235,7 +235,6 @@
   "jei.everlaartifacts.flashbomb.desc": "於釀造臺中以熒石對夜視藥水釀之而得。飲後生短暫強光閃爍之效。",
   "jei.everlaartifacts.nuclear_waste_water.desc": "於釀造臺中以核廢水桶對玻璃瓶釀之而得。飲後致核輻射之傷。",
 
-  "fluid_type.everlaartifacts.nuclear_waste_water": "核廢水",
+  "fluid_type.everlaartifacts.nuclear_waste_water": "核廢水"
 
-  "tooltip.everlaartifacts.everlasting": "◆ 永恆"
 }

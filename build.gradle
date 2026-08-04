@@ -9,6 +9,9 @@ mixin {
     config 'mixins.everlaartifacts.json'
 }
 
+// Jar-in-Jar — 将 EverlaTweaker 内嵌进本模组
+jarJar.enable()
+
 // 从 mods.toml 文件中读取版本信息
 def getModVersion() {
     def modsToml = file('src/main/resources/META-INF/mods.toml')
@@ -96,6 +99,13 @@ dependencies {
     // Curios API — 饰品系统（可选依赖，仅用于编译期与开发环境运行时）
     compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}:api")
     runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")
+
+    // EverlaTweaker — 数据驱动系统（Jar-in-Jar 内嵌，子项目，本模组无编译期引用）
+    jarJar(project(':everlatweaker')) {
+        transitive = false // 只内嵌 jar 本体，不解析其 forge 传递依赖
+        jarJar.ranged(it, '[1.0,)')
+    }
+    runtimeOnly(project(':everlatweaker'))
 
     //irons_spellbooks
     //runtimeOnly fg.deobf("io.redspace:irons_lib:1.20.1-${irons_lib_version}")

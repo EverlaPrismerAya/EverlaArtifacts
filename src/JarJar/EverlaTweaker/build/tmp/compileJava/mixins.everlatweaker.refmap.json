@@ -1,0 +1,22 @@
+{
+  "mappings": {
+    "net/everla/everlatweaker/mixin/ItemEntityEverlastingMixin": {
+      "fireImmune": "Lnet/minecraft/world/entity/item/ItemEntity;m_5825_()Z",
+      "hurt": "Lnet/minecraft/world/entity/item/ItemEntity;m_6469_(Lnet/minecraft/world/damagesource/DamageSource;F)Z"
+    },
+    "net/everla/everlatweaker/mixin/ItemStackEverlastingMixin": {
+      "hurtAndBreak(ILnet/minecraft/world/entity/LivingEntity;Ljava/util/function/Consumer;)V": "Lnet/minecraft/world/item/ItemStack;m_41622_(ILnet/minecraft/world/entity/LivingEntity;Ljava/util/function/Consumer;)V"
+    }
+  },
+  "data": {
+    "searge": {
+      "net/everla/everlatweaker/mixin/ItemEntityEverlastingMixin": {
+        "fireImmune": "Lnet/minecraft/world/entity/item/ItemEntity;m_5825_()Z",
+        "hurt": "Lnet/minecraft/world/entity/item/ItemEntity;m_6469_(Lnet/minecraft/world/damagesource/DamageSource;F)Z"
+      },
+      "net/everla/everlatweaker/mixin/ItemStackEverlastingMixin": {
+        "hurtAndBreak(ILnet/minecraft/world/entity/LivingEntity;Ljava/util/function/Consumer;)V": "Lnet/minecraft/world/item/ItemStack;m_41622_(ILnet/minecraft/world/entity/LivingEntity;Ljava/util/function/Consumer;)V"
+      }
+    }
+  }
+}

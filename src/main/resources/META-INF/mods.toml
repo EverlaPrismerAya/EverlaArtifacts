@@ -32,3 +32,10 @@ description="Some items and other things from my random idea"
     versionRange="[5.0.0,)"
     ordering="AFTER"
     side="BOTH"
+
+[[dependencies.everlaartifacts]]
+    modId="everlatweaker"
+    mandatory=true
+    versionRange="[1.0,)"
+    ordering="AFTER"
+    side="BOTH"

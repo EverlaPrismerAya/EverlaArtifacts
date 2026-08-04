@@ -1,0 +1,64 @@
+plugins {
+    id 'eclipse'
+    id 'net.minecraftforge.gradle' version '[6.0.16,6.2)'
+    id 'org.spongepowered.mixin' version '0.7.+'
+}
+
+mixin {
+    add sourceSets.main, 'mixins.everlatweaker.refmap.json'
+    config 'mixins.everlatweaker.json'
+}
+
+version = '1.0.0'
+group = 'net.everla'
+archivesBaseName = 'EverlaTweaker'
+
+println "构建版本: ${version}"
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+
+minecraft {
+    mappings channel: 'official', version: '1.20.1'
+
+    copyIdeResources = true
+
+    runs {
+        client {
+            jvmArgs += ['-XX:+AllowEnhancedClassLoading', '-XX:+IgnoreUnrecognizedVMOptions', '--add-opens', 'java.base/java.lang=ALL-UNNAMED', '--add-opens', 'java.base/java.lang.invoke=ALL-UNNAMED', '--add-opens', 'java.base/java.lang.reflect=ALL-UNNAMED', '--add-opens', 'java.base/java.io=ALL-UNNAMED', '--add-opens', 'java.base/java.net=ALL-UNNAMED', '--add-opens', 'java.base/java.nio=ALL-UNNAMED', '--add-opens', 'java.base/java.util=ALL-UNNAMED', '--add-opens', 'java.base/java.util.concurrent=ALL-UNNAMED', '--add-opens', 'java.base/java.util.concurrent.atomic=ALL-UNNAMED', '--add-opens', 'java.base/sun.nio.ch=ALL-UNNAMED', '--add-opens', 'java.base/sun.nio.cs=ALL-UNNAMED', '--add-opens', 'java.base/sun.security.action=ALL-UNNAMED', '--add-opens', 'java.base/sun.util=ALL-UNNAMED']
+        }
+
+        server {
+            jvmArgs += ['-XX:+AllowEnhancedClassLoading', '-XX:+IgnoreUnrecognizedVMOptions', '--add-opens', 'java.base/java.lang=ALL-UNNAMED', '--add-opens', 'java.base/java.lang.invoke=ALL-UNNAMED', '--add-opens', 'java.base/java.lang.reflect=ALL-UNNAMED', '--add-opens', 'java.base/java.io=ALL-UNNAMED', '--add-opens', 'java.base/java.net=ALL-UNNAMED', '--add-opens', 'java.base/java.nio=ALL-UNNAMED', '--add-opens', 'java.base/java.util=ALL-UNNAMED', '--add-opens', 'java.base/java.util.concurrent=ALL-UNNAMED', '--add-opens', 'java.base/java.util.concurrent.atomic=ALL-UNNAMED', '--add-opens', 'java.base/sun.nio.ch=ALL-UNNAMED', '--add-opens', 'java.base/sun.nio.cs=ALL-UNNAMED', '--add-opens', 'java.base/sun.security.action=ALL-UNNAMED', '--add-opens', 'java.base/sun.util=ALL-UNNAMED']
+        }
+
+        configureEach {
+            workingDirectory project.file('run')
+
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+
+            mods {
+                everlatweaker {
+                    source sourceSets.main
+                }
+            }
+        }
+    }
+}
+
+repositories {
+}
+
+dependencies {
+    minecraft 'net.minecraftforge:forge:1.20.1-47.4.21'
+
+    // Mixin 注解处理器 — 生成 refmap 文件（生产环境必需）
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+}
+
+// 本子项目作为 EverlaArtifacts 的 Jar-in-Jar 依赖被内嵌（见根 build.gradle 的 jarJar 配置），无需独立发布。
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
+    // 关闭 javac 的弃用（deprecation）与即将移除（removal）lint 警告
+    options.compilerArgs << '-Xlint:-deprecation' << '-Xlint:-removal'
+}
