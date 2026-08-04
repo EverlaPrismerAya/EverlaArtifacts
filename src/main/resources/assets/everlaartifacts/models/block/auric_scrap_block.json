@@ -1,5 +1,5 @@
 {
-  "parent": "block/cube",
+  "parent": "minecraft:block/cube",
   "textures": {
     "down": "everlaartifacts:block/auric_scrap_block",
     "up": "everlaartifacts:block/auric_scrap_block",

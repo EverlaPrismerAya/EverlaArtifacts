@@ -59,6 +59,8 @@
   "enchantment.everlaartifacts.pull_request.desc": "三叉戟命中方块或生物时，把附近的掉落物吸附到三叉戟上带走",
   "enchantment.everlaartifacts.escalation_of_freedom": "自由升级",
   "enchantment.everlaartifacts.escalation_of_freedom.desc": "迄今为止最大DLC，新增任务、敌人、难度和奖励系统。",
+  "enchantment.everlaartifacts.sonic_boom": "音爆",
+  "enchantment.everlaartifacts.sonic_boom.desc": "射出一道可穿透方块与无生命实体的音爆，对路径上的生物造成伤害",
 
   "entity.everlaartifacts.angolmois_doom_projectile": "安哥鲁莫亚大玉",
 

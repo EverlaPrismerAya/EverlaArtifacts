@@ -1,6 +1,6 @@
 {
 	"credit": "Made with Blockbench",
-	"parent": "item/handheld",
+	"parent": "minecraft:item/handheld",
 	"textures": {
 		"layer0": "everlaartifacts:item/homa_staff"
 	},

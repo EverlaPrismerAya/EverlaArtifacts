@@ -86,9 +86,22 @@ public abstract class CrossbowItemQuickChargeMixin {
         if (everlaartifacts$getQuickChargeLevel(stack) <= 5) {
             return;
         }
+        CrossbowItemAccessor accessor = (CrossbowItemAccessor) this;
+        if (accessor.everlaartifacts$invokeIsCharged(stack)) {
+            // 重入：fireFullVolley 通过 use() 触发发射时的重入调用，交还原版 use() 发射。
+            if (QuickChargeHandler.autoFiring) {
+                return;
+            }
+            // 玩家右键一把已装填的 qc>5 弩：统一走 fireFullVolley 发射，
+            // 确保箭被标记（其它模组重写的 use()/performShooting() 伤害逻辑也被保留）。
+            if (!level.isClientSide()) {
+                everlaartifacts$fireFullVolley(level, player, hand, stack);
+            }
+            cir.setReturnValue(InteractionResultHolder.consume(stack));
+            return;
+        }
 
-        boolean hasProjectiles = ((CrossbowItemAccessor) this).everlaartifacts$invokeIsCharged(stack)
-                || !player.getProjectile(stack).isEmpty();
+        boolean hasProjectiles = !player.getProjectile(stack).isEmpty();
         if (!level.isClientSide()) {
             everlaartifacts$handleAutoFireUse(level, player, hand, stack);
         }
@@ -236,7 +249,14 @@ public abstract class CrossbowItemQuickChargeMixin {
      * Note: {@code tryLoadProjectiles} only populates the {@code ChargedProjectiles}
      * NBT and returns whether ammo was found — it does <b>not</b> set the
      * {@code Charged} flag (vanilla sets it separately in {@code releaseUsing}).
-     * The flag is set here so the subsequent {@code performShooting} actually fires.
+     * The flag is set here so the subsequent {@code use} actually fires.
+     * <p>
+     * Firing is driven through the crossbow's own {@code use()} instead of calling
+     * {@code performShooting()} directly, so overridden {@code use()} /
+     * {@code performShooting()} in modded crossbows keep their custom damage
+     * rather than falling back to vanilla crossbow damage. The reentrant {@code use}
+     * call is absorbed by the "already charged" guard in
+     * {@link #everlaartifacts$autoFireUse}.
      */
     private void everlaartifacts$fireFullVolley(Level level, LivingEntity entity, InteractionHand hand,
             ItemStack stack) {
@@ -247,8 +267,23 @@ public abstract class CrossbowItemQuickChargeMixin {
             }
             accessor.everlaartifacts$invokeSetCharged(stack, true);
         }
-        accessor.everlaartifacts$invokePerformShooting(level, entity, hand, stack,
-                accessor.everlaartifacts$invokeGetShootingPower(stack), 1.0F);
+        // 打开自动开火窗口：期间加入世界的箭都会被标记（绕过无敌帧 + 减伤）。
+        // 对其它模组自行创建/发射箭的弩同样生效（getArrow 注入覆盖不到它们）。
+        QuickChargeHandler.autoFiring = true;
+        QuickChargeHandler.autoFiringReduction = Math.min(QuickChargeHandler.MAX_DAMAGE_REDUCTION,
+                (everlaartifacts$getQuickChargeLevel(stack) - 5) * QuickChargeHandler.DAMAGE_REDUCTION_PER_LEVEL);
+        try {
+            if (entity instanceof Player player) {
+                ((CrossbowItem) (Object) this).use(level, player, hand);
+            } else {
+                // 非玩家实体没有 use() 入口，退回直接调用 performShooting()（原逻辑）
+                accessor.everlaartifacts$invokePerformShooting(level, entity, hand, stack,
+                        accessor.everlaartifacts$invokeGetShootingPower(stack), 1.0F);
+            }
+        } finally {
+            QuickChargeHandler.autoFiring = false;
+            QuickChargeHandler.autoFiringReduction = 0.0F;
+        }
         accessor.everlaartifacts$invokeSetCharged(stack, false);
     }
 

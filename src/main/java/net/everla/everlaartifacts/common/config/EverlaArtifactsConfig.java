@@ -37,6 +37,15 @@ public class EverlaArtifactsConfig {
     
     // 不会被末影人协同攻击的实体ID列表配置
     public static ForgeConfigSpec.ConfigValue<String> immuneToEndermanAggression;
+
+    // 音爆附魔配置
+    public static ForgeConfigSpec.DoubleValue sonicBoomBaseDamage;
+    public static ForgeConfigSpec.DoubleValue sonicBoomDamagePerLevel;
+    public static ForgeConfigSpec.DoubleValue sonicBoomPowerDamagePerLevel;
+    public static ForgeConfigSpec.DoubleValue sonicBoomRange;
+    public static ForgeConfigSpec.BooleanValue sonicBoomPenetrateLiving;
+    public static ForgeConfigSpec.BooleanValue sonicBoomPenetrateBlocks;
+    public static ForgeConfigSpec.BooleanValue sonicBoomPenetrateNonLiving;
     
     // 凋灵特殊攻击配置
     public static ForgeConfigSpec.BooleanValue enableWitherSpecialAttacks;
@@ -44,6 +53,7 @@ public class EverlaArtifactsConfig {
     public static ForgeConfigSpec.DoubleValue witherSkeletonSummonHealthThreshold;
 
     static {
+        // 附魔
         // 配置穿刺附魔加强
         BUILDER.push("EnhanceImpaling");
         enhanceImpaling = BUILDER.comment("启用穿刺附魔加强：修改伤害公式（等级1+2，后续每级+2.5），并将增伤条件改为任何在雨中、水中或熔岩中的生物").define("enhanceImpaling", true);
@@ -51,9 +61,21 @@ public class EverlaArtifactsConfig {
 
         // 配置快速装填附魔修复
         BUILDER.push("EnhanceQuickCharge");
-        enhanceQuickCharge = BUILDER.comment("启用快速装填附魔修复：等级高于5级时右击自动发射满蓄力弩箭（6级为120rpm，之后每级增加120rpm，最高720rpm）").define("enhanceQuickCharge", true);
+        enhanceQuickCharge = BUILDER.comment("启用快速装填附魔修复：等级高于5级时右击自动发射满蓄力弩箭。6级为120rpm，之后每级增加120rpm，最高1200rpm，但每级会使得单发最终伤害降低4%，最多40%").define("enhanceQuickCharge", true);
         BUILDER.pop();
 
+        // 配置音爆附魔部分
+        BUILDER.push("SonicBoom");
+        sonicBoomBaseDamage = BUILDER.comment("音爆附魔1级造成的伤害（点）").defineInRange("baseDamage", 4.0, 0.0, 1000.0);
+        sonicBoomDamagePerLevel = BUILDER.comment("音爆附魔每级增加的伤害（点）").defineInRange("damagePerLevel", 1.5, 0.0, 1000.0);
+        sonicBoomPowerDamagePerLevel = BUILDER.comment("力量附魔对音爆的伤害增幅（每级力量增加的伤害点数）").defineInRange("powerDamagePerLevel", 0.5, 0.0, 1000.0);
+        sonicBoomRange = BUILDER.comment("音爆最大射程（格）").defineInRange("range", 20.0, 1.0, 1000.0);
+        sonicBoomPenetrateLiving = BUILDER.comment("音爆是否可穿透生物（true=穿透并对路径上每个生物都造成伤害，false=命中第一个生物即停）").define("penetrateLiving", false);
+        sonicBoomPenetrateBlocks = BUILDER.comment("音爆是否可穿透方块").define("penetrateBlocks", true);
+        sonicBoomPenetrateNonLiving = BUILDER.comment("音爆是否可穿透无生命实体（音爆始终不会对无生命实体造成伤害）").define("penetrateNonLiving", true);
+        BUILDER.pop();
+
+        // 月狂难度修改
         // 配置凋灵特殊攻击部分
         BUILDER.push("WitherSpecialAttacks");
         enableWitherSpecialAttacks = BUILDER.comment("启用月狂模式下的凋灵特殊攻击机制").define("enableWitherSpecialAttacks", true);
@@ -76,6 +98,7 @@ public class EverlaArtifactsConfig {
         immuneToEndermanAggression = BUILDER.comment("月狂模式下不会被末影人协同攻击的实体ID列表，用逗号分隔").define("immuneToEndermanAggression", "minecraft:enderman,minecraft:shulker,minecraft:endermite,minecraft:ender_dragon");
         BUILDER.pop();
 
+        // 机制
         // 配置红包掉落部分
         BUILDER.push("RedPacketDrop");
         redPacketDropChanceNewYear = BUILDER.comment("新年期间红包掉落概率 (0.0-1.0, 例如 0.01 = 1%)").defineInRange("dropChanceNewYear", 0.01, 0.0, 1.0);
@@ -84,6 +107,7 @@ public class EverlaArtifactsConfig {
         redPacketChristmasEndDate = BUILDER.comment("圣诞节结束日期 (月份*100+日期, 例如 1231 = 12月31日)").defineInRange("christmasEndDate", 1231, 101, 1231);
         BUILDER.pop();
 
+        // 调试
         // 配置PerformanceDebugMode部分
         BUILDER.push("PerformanceDebugMode");
         performanceDebugMode = BUILDER.comment("性能调试模式：当启用时，使用自定义值代替真实硬件信息。警告：游戏默认开启安全验证阻止此自定义，须通过/gamerule ForceUseTruePerformance false禁用").define("performanceDebugMode", false);
@@ -114,6 +138,35 @@ public class EverlaArtifactsConfig {
     }
     
     // 红包掉落配置的获取方法
+    // 音爆附魔配置的获取方法
+    public static double getSonicBoomBaseDamage() {
+        return sonicBoomBaseDamage.get();
+    }
+
+    public static double getSonicBoomDamagePerLevel() {
+        return sonicBoomDamagePerLevel.get();
+    }
+
+    public static double getSonicBoomPowerDamagePerLevel() {
+        return sonicBoomPowerDamagePerLevel.get();
+    }
+
+    public static double getSonicBoomRange() {
+        return sonicBoomRange.get();
+    }
+
+    public static boolean isSonicBoomPenetrateLiving() {
+        return sonicBoomPenetrateLiving.get();
+    }
+
+    public static boolean isSonicBoomPenetrateBlocks() {
+        return sonicBoomPenetrateBlocks.get();
+    }
+
+    public static boolean isSonicBoomPenetrateNonLiving() {
+        return sonicBoomPenetrateNonLiving.get();
+    }
+
     public static double getRedPacketDropChanceNewYear() {
         return redPacketDropChanceNewYear.get();
     }

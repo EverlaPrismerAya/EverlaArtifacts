@@ -17,7 +17,9 @@
             {
               "function": "minecraft:enchant_randomly",
               "enchantments": [
-                "everlaartifacts:wild_hunt"
+                "everlaartifacts:wild_hunt",
+                "everlaartifacts:sonic_boom",
+                "everlaartifacts:layered_buffer"
               ]
             }
           ]

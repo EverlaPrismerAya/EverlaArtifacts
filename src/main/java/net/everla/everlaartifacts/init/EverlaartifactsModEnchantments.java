@@ -27,4 +27,5 @@ public class EverlaartifactsModEnchantments {
 	public static final RegistryObject<Enchantment> ENEMY_STEP = REGISTRY.register("enemy_step", () -> new EnemyStepEnchantment());
 	public static final RegistryObject<Enchantment> PULL_REQUEST = REGISTRY.register("pull_request", () -> new PullRequestEnchantment());
 	public static final RegistryObject<Enchantment> ESCALATION_OF_FREEDOM = REGISTRY.register("escalation_of_freedom", () -> new EscalationOfFreedomEnchantment());
+	public static final RegistryObject<Enchantment> SONIC_BOOM = REGISTRY.register("sonic_boom", () -> new SonicBoomEnchantment());
 }
