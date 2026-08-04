@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "everlaartifacts:wither_essence"
+    "everlaartifacts:wither_essence",
+    "everlaartifacts:dragon_soul_fragment"
   ]
 }

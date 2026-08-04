@@ -71,6 +71,9 @@ All Mixin classes are in `net.everla.everlaartifacts.mixin` and registered in `s
 | `LivingEntityAccessor` | `LivingEntity` | `@Invoker` for protected `dropFromLootTable()` |
 | `AbilitiesAccessor` | `Abilities` | `@Accessor` for private `flyingSpeed` field |
 | `ItemTooltipOrderMixin` | `ItemStack` | Reorder mod tooltips before F3+H advanced section |
+| `CrossbowItemQuickChargeMixin` | `CrossbowItem` | Quick Charge >5 auto-fires full-charge volleys (right-click + hold) at 120rpm/level, max 720rpm; shared rate gate caps clicks so spam can't exceed rpm |
+| `AbstractArrowQuickChargeMixin` | `AbstractArrow` | qc>5 crossbow arrows bypass target i-frames; damage reduced 12%/level above 5 (max 48%) |
+| `CrossbowItemAccessor` | `CrossbowItem` | `@Invoker` for private static `isCharged`/`setCharged`/`tryLoadProjectiles`/`performShooting`/`getShootingPower` |
 | `LocalPlayerSprintMixin` | `LocalPlayer` | Client sprint behavior |
 | `ItemRendererMixin` | `ItemRenderer` | Custom item rendering |
 
@@ -93,7 +96,7 @@ Defined in `server/network/`. SimpleChannel-based with a sequential message ID c
 
 ### Config
 
-`EverlaArtifactsConfig` uses Forge's `ForgeConfigSpec` system, registered as `ModConfig.Type.COMMON`. Covers: red packet drop rates, wither special attacks, ender dragon crystal respawn, true damage boss blacklist, layered buffer enchantment behavior, performance debug mode, impaling enhancement.
+`EverlaArtifactsConfig` uses Forge's `ForgeConfigSpec` system, registered as `ModConfig.Type.COMMON`. Covers: red packet drop rates, wither special attacks, ender dragon crystal respawn, true damage boss blacklist, layered buffer enchantment behavior, performance debug mode, impaling enhancement, quick charge enhancement.
 
 Config values are accessed via static getter methods (e.g. `EverlaArtifactsConfig.isEnhanceImpaling()`). Mixin handlers read config directly since `ConfigValue.get()` is a cheap field read.
 

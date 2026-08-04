@@ -20,6 +20,9 @@ public class EverlaArtifactsConfig {
     // 穿刺附魔加强配置
     public static ForgeConfigSpec.BooleanValue enhanceImpaling;
 
+    // 快速装填附魔修复配置
+    public static ForgeConfigSpec.BooleanValue enhanceQuickCharge;
+
     // 红包掉落配置
     public static ForgeConfigSpec.DoubleValue redPacketDropChanceNewYear;
     public static ForgeConfigSpec.DoubleValue redPacketDropChanceChristmas;
@@ -44,6 +47,11 @@ public class EverlaArtifactsConfig {
         // 配置穿刺附魔加强
         BUILDER.push("EnhanceImpaling");
         enhanceImpaling = BUILDER.comment("启用穿刺附魔加强：修改伤害公式（等级1+2，后续每级+2.5），并将增伤条件改为任何在雨中、水中或熔岩中的生物").define("enhanceImpaling", true);
+        BUILDER.pop();
+
+        // 配置快速装填附魔修复
+        BUILDER.push("EnhanceQuickCharge");
+        enhanceQuickCharge = BUILDER.comment("启用快速装填附魔修复：等级高于5级时右击自动发射满蓄力弩箭（6级为120rpm，之后每级增加120rpm，最高720rpm）").define("enhanceQuickCharge", true);
         BUILDER.pop();
 
         // 配置凋灵特殊攻击部分
@@ -87,6 +95,10 @@ public class EverlaArtifactsConfig {
     
     public static boolean isEnhanceImpaling() {
         return enhanceImpaling.get();
+    }
+
+    public static boolean isEnhanceQuickCharge() {
+        return enhanceQuickCharge.get();
     }
 
     public static boolean isPerformanceDebugMode() {

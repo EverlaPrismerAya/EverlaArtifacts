@@ -15,7 +15,10 @@
         "LivingEntityLayeredBufferMixin",
         "AbilitiesAccessor",
         "ItemTooltipOrderMixin",
-        "EnchantmentHelperBindingMixin"
+        "EnchantmentHelperBindingMixin",
+        "CrossbowItemAccessor",
+        "CrossbowItemQuickChargeMixin",
+        "AbstractArrowQuickChargeMixin"
     ],
     "client": [
         "LocalPlayerSprintMixin",

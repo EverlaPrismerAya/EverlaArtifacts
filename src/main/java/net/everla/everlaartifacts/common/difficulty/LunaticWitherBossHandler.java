@@ -44,7 +44,7 @@ public class LunaticWitherBossHandler {
     
     // 动态减伤相关常量
     private static final int DPS_CALCULATION_WINDOW = 1200; // 60秒 = 1200 ticks
-    private static final double MAX_DAMAGE_REDUCTION = 0.95; // 最大95%减伤
+    private static final double MAX_DAMAGE_REDUCTION = 0.80; // 最大80%减伤
     private static final double ANTI_OHK_THRESHOLD = 0.3; // 防秒杀阈值：单次伤害不超过最大生命值的30%
     
     // DPS跟踪数据结构 - 使用Boss实体UUID+玩家UUID作为复合键
@@ -618,21 +618,21 @@ public class LunaticWitherBossHandler {
     
     /**
      * 计算动态减伤率
-     * 公式：y = min(0.95, 1-R/x) 当x>R时，否则为0
-     * 
+     * 公式：y = min(0.80, 1-R/x) 当x>R时，否则为0
+     *
      * @param currentDPS 当前DPS
      * @param targetDPS 目标DPS
-     * @return 减伤率 (0-0.95)
+     * @return 减伤率 (0-0.80)
      */
     private static double calculateDamageReductionInternal(double currentDPS, double targetDPS) {
         if (currentDPS <= targetDPS) {
             return 0.0; // 不超过目标DPS时不减伤
         }
-        
+
         // 计算减伤率：1 - R/x
         double reduction = 1.0 - (targetDPS / currentDPS);
-        
-        // 限制最大减伤率为95%
+
+        // 限制最大减伤率为80%
         return Math.min(reduction, MAX_DAMAGE_REDUCTION);
     }
     
