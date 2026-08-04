@@ -1,8 +1,0 @@
-{
-  "comparator_output": 8,
-  "description": {
-    "translate": "item.everlaartifacts.fading_sky.desc"
-  },
-  "length_in_seconds": 249,
-  "sound_event": "everlaartifacts:fading_sky"
-}

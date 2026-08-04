@@ -26,150 +26,6 @@
       }
     ]
   },
-  "galatic_destruction": {
-    "sounds": [
-      {
-        "name": "everlaartifacts:galatic_destruction",
-        "stream": true
-      }
-    ]
-  },
-  "glutinous_arbitration": {
-    "sounds": [
-      {
-        "name": "everlaartifacts:glutinous_arbitration",
-        "stream": true
-      }
-    ]
-  },
-  "viscous_desperation": {
-    "sounds": [
-      {
-        "name": "everlaartifacts:viscous_desperation",
-        "stream": true
-      }
-    ]
-  },
-  "twisted_garden": {
-    "sounds": [
-      {
-        "name": "everlaartifacts:twisted_garden",
-        "stream": true
-      }
-    ]
-  },
-  "icantreadjapanesebruh": {
-    "sounds": [
-      {
-        "name": "everlaartifacts:icantreadjapanesebruh",
-        "stream": true
-      }
-    ]
-  },
-  "ireallywant2stayaturhouse": {
-    "sounds": [
-      {
-        "name": "everlaartifacts:ireallywant2stayaturhouse",
-        "stream": true
-      }
-    ]
-  },
-  "killthemessenger": {
-    "sounds": [
-      {
-        "name": "everlaartifacts:kill_the_messenger",
-        "stream": true
-      }
-    ]
-  },
-  "aleph_0": {
-    "sounds": [
-      {
-        "name": "everlaartifacts:aleph_0",
-        "stream": true
-      }
-    ]
-  },
-  "cruel_angel": {
-    "sounds": [
-      {
-        "name": "everlaartifacts:cruel_angel",
-        "stream": true
-      }
-    ]
-  },
-  "delicate_weapon": {
-    "sounds": [
-      {
-        "name": "everlaartifacts:delicate_weapon",
-        "stream": true
-      }
-    ]
-  },
-  "sweet_death": {
-    "sounds": [
-      {
-        "name": "everlaartifacts:sweet_death",
-        "stream": true
-      }
-    ]
-  },
-  "never_gonna_give_you_up": {
-    "sounds": [
-      {
-        "name": "everlaartifacts:never_gonna_give_you_up",
-        "stream": true
-      }
-    ]
-  },
-  "hardest_2_be": {
-    "sounds": [
-      {
-        "name": "everlaartifacts:hardest_2_be",
-        "stream": true
-      }
-    ]
-  },
-  "real_smoker": {
-    "sounds": [
-      {
-        "name": "everlaartifacts:real_smoker",
-        "stream": true
-      }
-    ]
-  },
-  "hacker_gamer": {
-    "sounds": [
-      {
-        "name": "everlaartifacts:hacker_gamer",
-        "stream": true
-      }
-    ]
-  },
-  "fading_sky": {
-    "sounds": [
-      {
-        "name": "everlaartifacts:fading_sky",
-        "stream": true
-      }
-    ]
-  },
-  "electrical_stick_bone": {
-    "sounds": [
-      {
-        "name": "everlaartifacts:electrical_stick_bone",
-        "stream": true
-      }
-    ]
-  },
-  "lonely_guitar": {
-    "sounds": [
-      {
-        "name": "everlaartifacts:lonely_guitar",
-        "stream": true
-      }
-    ]
-  },
   "annoyingdumpling": {
     "sounds": [
       {
@@ -196,46 +52,6 @@
       }
     ]
   },
-  "the_only_thing_i_know_for_real": {
-    "sounds": [
-      {
-        "name": "everlaartifacts:the_only_thing_i_know_for_real",
-        "stream": true
-      }
-    ]
-  },
-  "girl_go_to_love": {
-    "sounds": [
-      {
-        "name": "everlaartifacts:girl_go_to_love",
-        "stream": true
-      }
-    ]
-  },
-  "yamato": {
-    "sounds": [
-      {
-        "name": "everlaartifacts:yamato",
-        "stream": true
-      }
-    ]
-  },
-  "nanomachine": {
-    "sounds": [
-      {
-        "name": "everlaartifacts:nanomachine",
-        "stream": true
-      }
-    ]
-  },
-  "raiden": {
-    "sounds": [
-      {
-        "name": "everlaartifacts:raiden",
-        "stream": true
-      }
-    ]
-  },
   "eagle_sound": {
     "sounds": [
       {
@@ -257,22 +73,6 @@
       {
         "name": "everlaartifacts:5_watt",
         "stream": false
-      }
-    ]
-  },
-  "worst_apple": {
-    "sounds": [
-      {
-        "name": "everlaartifacts:worst_apple",
-        "stream": true
-      }
-    ]
-  },
-  "tokyo_hot": {
-    "sounds": [
-      {
-        "name": "everlaartifacts:tokyo_hot",
-        "stream": true
       }
     ]
   },
@@ -307,38 +107,6 @@
       {
         "name": "everlaartifacts:auric_strike",
         "stream": false
-      }
-    ]
-  },
-  "manbo_legend": {
-    "sounds": [
-      {
-        "name": "everlaartifacts:manbo_legend",
-        "stream": true
-      }
-    ]
-  },
-  "manbo_no_more": {
-    "sounds": [
-      {
-        "name": "everlaartifacts:manbo_no_more",
-        "stream": true
-      }
-    ]
-  },
-  "lonely_man_brokenhearted_song": {
-    "sounds": [
-      {
-        "name": "everlaartifacts:lonely_man_brokenhearted_song",
-        "stream": true
-      }
-    ]
-  },
-  "nilk": {
-    "sounds": [
-      {
-        "name": "everlaartifacts:nilk",
-        "stream": true
       }
     ]
   },

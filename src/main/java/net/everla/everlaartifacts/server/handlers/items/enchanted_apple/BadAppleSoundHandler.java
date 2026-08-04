@@ -7,6 +7,7 @@ import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.tags.ItemTags;
@@ -15,8 +16,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraftforge.registries.ForgeRegistries;
-
-import net.everla.everlaartifacts.init.EverlaartifactsModItems;
 
 import javax.annotation.Nullable;
 import java.util.WeakHashMap;
@@ -54,9 +53,13 @@ public class BadAppleSoundHandler {
                         SoundSource.PLAYERS, 0.7F, 1.0F);
                 }
                 if (entity instanceof Player player) {
-                    ItemStack worstApple = new ItemStack(EverlaartifactsModItems.WORST_APPLE.get());
-                    worstApple.setCount(1);
-                    ItemHandlerHelper.giveItemToPlayer(player, worstApple);
+                    // 唱片已拆分到 EverlaDiscs 模组，通过注册名软引用（未安装时静默跳过）
+                    Item worstAppleItem = ForgeRegistries.ITEMS.getValue(new ResourceLocation("everladiscs:worst_apple"));
+                    if (worstAppleItem != null) {
+                        ItemStack worstApple = new ItemStack(worstAppleItem);
+                        worstApple.setCount(1);
+                        ItemHandlerHelper.giveItemToPlayer(player, worstApple);
+                    }
                 }
                 lastTriggerMap.put(entity, currentTime);
             }

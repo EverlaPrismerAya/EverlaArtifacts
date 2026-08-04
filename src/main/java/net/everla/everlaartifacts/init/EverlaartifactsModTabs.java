@@ -67,39 +67,6 @@ public class EverlaartifactsModTabs {
 				tabData.accept(EverlaartifactsModItems.NANJING_TICKET.get());
 				tabData.accept(EverlaartifactsModItems.TOKYO_TICKET.get());
 			}).build());
-	public static final RegistryObject<CreativeModeTab> EVERLA_DISCS = REGISTRY.register("everla_discs",
-			() -> CreativeModeTab.builder().title(Component.translatable("item_group.everlaartifacts.everla_discs")).icon(() -> new ItemStack(EverlaartifactsModItems.TWISTED_GARDEN.get())).displayItems((parameters, tabData) -> {
-				tabData.accept(EverlaartifactsModItems.GALATIC_DESTRUCTION.get());
-				tabData.accept(EverlaartifactsModItems.GLUTINOUS_ARBITRATION.get());
-				tabData.accept(EverlaartifactsModItems.VISCOUS_DESPERATION.get());
-				tabData.accept(EverlaartifactsModItems.TWISTED_GARDEN.get());
-				tabData.accept(EverlaartifactsModItems.THOUSAND_LOVE.get());
-				tabData.accept(EverlaartifactsModItems.I_REALLY_WANT_TO_STAY_AT_YOUR_HOUSE.get());
-				tabData.accept(EverlaartifactsModItems.KILL_THE_MESSENGER.get());
-				tabData.accept(EverlaartifactsModItems.ALEPH_0.get());
-				tabData.accept(EverlaartifactsModItems.CRUEL_ANGEL.get());
-				tabData.accept(EverlaartifactsModItems.DELICATE_WEAPON.get());
-				tabData.accept(EverlaartifactsModItems.SWEET_DEATH.get());
-				tabData.accept(EverlaartifactsModItems.NEVER_GONNA_GIVE_YOU_UP.get());
-				tabData.accept(EverlaartifactsModItems.HARDEST_2_BE.get());
-				tabData.accept(EverlaartifactsModItems.REAL_SMOKER.get());
-				tabData.accept(EverlaartifactsModItems.HACKER_GAMER.get());
-				tabData.accept(EverlaartifactsModItems.FADING_SKY.get());
-				tabData.accept(EverlaartifactsModItems.ELECTRICAL_STICK_BONE.get());
-				tabData.accept(EverlaartifactsModItems.LONELY_GUITAR.get());
-				tabData.accept(EverlaartifactsModItems.THEONLYTHINGIKNOWFORREAL.get());
-				tabData.accept(EverlaartifactsModItems.GIRLGOTOLOVE.get());
-				tabData.accept(EverlaartifactsModItems.YAMATO.get());
-				tabData.accept(EverlaartifactsModItems.NANOMACHINE.get());
-				tabData.accept(EverlaartifactsModItems.RAIDEN.get());
-				tabData.accept(EverlaartifactsModItems.WORST_APPLE.get());
-				tabData.accept(EverlaartifactsModItems.TOKYO_HOT_DISC.get());
-				tabData.accept(EverlaartifactsModItems.MANBO_LEGEND.get());
-				tabData.accept(EverlaartifactsModItems.MANBO_NO_MORE.get());
-				tabData.accept(EverlaartifactsModItems.LONELY_MAN_BROKENHEARTED_SONG.get());
-				tabData.accept(EverlaartifactsModItems.MUSIC_DISC_NILK.get());
-			}).build());
-
 	@SubscribeEvent
 	public static void buildTabContentsVanilla(BuildCreativeModeTabContentsEvent tabData) {
 		if (tabData.getTabKey() == CreativeModeTabs.COMBAT) {

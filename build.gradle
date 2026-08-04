@@ -72,6 +72,10 @@ repositories {
         name = 'JEI Maven'
         url = 'https://maven.blamejared.com/'
     }
+    maven {
+        name = "Illusive Soulworks maven"
+        url = "https://maven.theillusivec4.top/"
+    }
     //maven {
     //    name = "Iron's Maven - Release"
     //    url = "https://code.redspace.io/releases"
@@ -88,6 +92,11 @@ dependencies {
     compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
     compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}")
     runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
+
+    // Curios API — 饰品系统（可选依赖，仅用于编译期与开发环境运行时）
+    compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}:api")
+    runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")
+
     //irons_spellbooks
     //runtimeOnly fg.deobf("io.redspace:irons_lib:1.20.1-${irons_lib_version}")
     //compileOnly fg.deobf("io.redspace:irons_spellbooks:1.20.1-${irons_spell_version}:api")

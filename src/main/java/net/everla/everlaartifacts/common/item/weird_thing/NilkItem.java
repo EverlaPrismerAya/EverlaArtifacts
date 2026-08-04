@@ -1,6 +1,5 @@
 package net.everla.everlaartifacts.common.item.weird_thing;
 
-import net.everla.everlaartifacts.init.EverlaartifactsModItems;
 import net.everla.everlaartifacts.init.EverlaartifactsModMobEffects;
 import net.minecraft.commands.CommandSource;
 import net.minecraft.commands.CommandSourceStack;
@@ -67,15 +66,19 @@ public class NilkItem extends Item {
 		if (Math.random() < 0.05) {
 			if (world instanceof Level _level) {
 				if (!_level.isClientSide()) {
-					_level.playSound(null, BlockPos.containing(x, y, z), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("everlaartifacts:nilk")), SoundSource.PLAYERS, 1, 1);
+					_level.playSound(null, BlockPos.containing(x, y, z), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("everladiscs:nilk")), SoundSource.PLAYERS, 1, 1);
 				} else {
-					_level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("everlaartifacts:nilk")), SoundSource.PLAYERS, 1, 1, false);
+					_level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("everladiscs:nilk")), SoundSource.PLAYERS, 1, 1, false);
 				}
 			}
 			if (entity instanceof Player _player) {
-				ItemStack _setstack = new ItemStack(EverlaartifactsModItems.MUSIC_DISC_NILK.get()).copy();
-				_setstack.setCount(1);
-				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
+				// 唱片已拆分到 EverlaDiscs 模组，通过注册名软引用（未安装时静默跳过）
+				Item _disc = ForgeRegistries.ITEMS.getValue(new ResourceLocation("everladiscs:music_disc_nilk"));
+				if (_disc != null) {
+					ItemStack _setstack = new ItemStack(_disc).copy();
+					_setstack.setCount(1);
+					ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
+				}
 			}
 			if (ModList.get().isLoaded("mekanism")) {
 				if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
