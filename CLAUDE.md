@@ -4,11 +4,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-EverlaArtifacts is a Minecraft Forge 1.20.1 mod (modId: `everlaartifacts`) that adds custom items, music discs, enchantments, mob effects, a difficulty system, and various "random ideas." Partially MCreator-generated, partially hand-written.
+EverlaArtifacts is a Minecraft Forge 1.20.1 mod (modId: `everlaartifacts`) that adds custom items, enchantments, mob effects, a difficulty system, and various "random ideas." Partially MCreator-generated, partially hand-written. The music discs were split out into a sibling mod **EverlaDiscs** (modId: `everladiscs`) — see the "Sibling Mod: EverlaDiscs" section below.
 
 - **Group**: `net.everla` / **Package**: `net.everla.everlaartifacts`
 - **Java**: 17 (toolchain locked) / **Forge**: 1.20.1-47.4.21 / **Mappings**: official
-- **Dependencies**: JEI 15.2.0.27 (compileOnly for API, runtimeOnly for full jar)
+- **Dependencies**: JEI 15.2.0.27 (compileOnly for API, runtimeOnly for full jar); Curios API `5.14.1+1.20.1` (compileOnly `:api` classifier + runtimeOnly, optional dependency declared in mods.toml)
 - **Mixin**: 0.8.5 (annotation processor, refmap auto-generated)
 
 ## Build Commands
@@ -20,6 +20,17 @@ EverlaArtifacts is a Minecraft Forge 1.20.1 mod (modId: `everlaartifacts`) that 
 ```
 
 The mod version is read from `src/main/resources/META-INF/mods.toml` (the `version=` field) at build time — update it there, not in `build.gradle`.
+
+## Sibling Mod: EverlaDiscs
+
+The music discs (item classes, jukebox song data, sounds, disc recipes, the `everla_discs` creative tab, and the "penis music" jukebox-explosion handler) live in a separate Forge mod: **EverlaDiscs**, modId `everladiscs`, package `net.everla.everladiscs`, source at `F:\备份区\minecraft\工作区\EverlaDiscs`. It uses the same Minecraft/Forge version and the same `2.1.5` mod version.
+
+- Discs use the `everladiscs:` namespace; the old `everlaartifacts:<disc>` IDs no longer exist (discs already in saves become invalid items after the split).
+- The two mods have **no forced dependency** on each other. Cross-mod access is done with string-based `ForgeRegistries` lookups + null checks rather than compile-time imports:
+  - `NilkItem` (this mod) plays `everladiscs:nilk` and grants `everladiscs:music_disc_nilk`.
+  - `BadAppleSoundHandler` (this mod) grants `everladiscs:worst_apple`.
+  - `EverlaDiscs.PenisMusicExplosionHandler` soft-references this mod's `everlaartifacts:waaooo_overlay` effect and `everlaartifacts:deltarune_explosion` sound (it inlines a copy of `EverlaKillHandler`'s kill routine to avoid a dependency on this mod).
+- Some disc recipes in EverlaDiscs still reference this mod's items (`auric_scrap`, `firecracker`, `three_interwined_fate`, `tokyo_ticket`), so those recipes only load when both mods are installed.
 
 ## Architecture
 
@@ -45,7 +56,7 @@ Most handlers use `@Mod.EventBusSubscriber(modid = "everlaartifacts")` on the cl
 
 ### Item Class Hierarchy
 
-Basic items extend vanilla types (`SwordItem`, `RecordItem`, etc.) with custom tiers and properties defined inline. Music discs extend `BaseRecordItem`, a shared base class that resolves `SoundEvent` by registry name and supports translatable description lines. Complex items (Homa Staff, Brackets Blade, Venus Shell, Procedure Sword) have their ability logic in corresponding `server/handlers/items/<name>/` handler classes.
+Basic items extend vanilla types (`SwordItem`, etc.) with custom tiers and properties defined inline. Complex items (Homa Staff, Brackets Blade, Venus Shell, Procedure Sword) have their ability logic in corresponding `server/handlers/items/<name>/` handler classes. Music discs are no longer defined here — they live in the sibling EverlaDiscs mod.
 
 ### Mixin Architecture
 
@@ -139,7 +150,7 @@ Client detects language on login → sends `LanguageSyncPacket` to server → se
 
 ### Custom music discs
 
-~30 discs with jukebox song definitions; many reference anime/game music.
+Moved to the sibling **EverlaDiscs** mod. This mod keeps only cross-mod soft references to a few discs (`NilkItem`, `BadAppleSoundHandler`); the `everlatweaker:penis_music` tag that powers the Manbo-disc explosion is defined in EverlaDiscs.
 
 ### Mob effects with screen overlays
 
