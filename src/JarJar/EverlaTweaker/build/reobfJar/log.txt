@@ -148,15 +148,6 @@ Writing Output: F:\??????\minecraft\??????\EverlaArtifacts-main\src\JarJar\Everl
   assets/everlatweaker/lang/lzh.json
   assets/everlatweaker/lang/zh_cn.json
   assets/everlatweaker/lang/zh_meme.json
-  data/
-  data/everlatweaker/
-  data/everlatweaker/tags/
-  data/everlatweaker/tags/items/
-  data/everlatweaker/tags/items/everlasting.json
-  data/everlatweaker/tags/items/explosion_resistant.json
-  data/everlatweaker/tags/items/fire_resistant.json
-  data/everlatweaker/tags/items/rainbow_lore.json
-  data/everlatweaker/tags/items/rainbow_name.json
   logo.png
   mixins.everlatweaker.json
   mixins.everlatweaker.refmap.json

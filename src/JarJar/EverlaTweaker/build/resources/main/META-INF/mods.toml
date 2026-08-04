@@ -1,6 +1,6 @@
 modLoader="javafml"
 loaderVersion="[47,)"
-license="All Rights Reserved"
+license="GNU General Public License version 3 (GPLv3)"
 
 [[mods]]
 modId="everlatweaker"
