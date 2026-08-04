@@ -1,0 +1,1 @@
+net/everla/everlatweaker/mixin/ItemEntityEverlastingMixin getItem ()Lnet/minecraft/world/item/ItemStack; m_32055_

@@ -4,24 +4,38 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-EverlaArtifacts is a Minecraft Forge 1.20.1 mod (modId: `everlaartifacts`) that adds custom items, enchantments, mob effects, a difficulty system, and various "random ideas." Partially MCreator-generated, partially hand-written. The music discs were split out into a sibling mod **EverlaDiscs** (modId: `everladiscs`) — see the "Sibling Mod: EverlaDiscs" section below.
+EverlaArtifacts is a Minecraft Forge 1.20.1 mod (modId: `everlaartifacts`) that adds custom items, enchantments, mob effects, a difficulty system, and various "random ideas." Partially MCreator-generated, partially hand-written. Two related mods are split out of it: the data-driven tweaks live in the **EverlaTweaker** Jar-in-Jar subproject (`src/JarJar/EverlaTweaker`, modId `everlatweaker`, bundled inside this mod), and the music discs live in a separate standalone mod **EverlaDiscs** (modId `everladiscs`) — see "Related Mods" below.
 
 - **Group**: `net.everla` / **Package**: `net.everla.everlaartifacts`
 - **Java**: 17 (toolchain locked) / **Forge**: 1.20.1-47.4.21 / **Mappings**: official
-- **Dependencies**: JEI 15.2.0.27 (compileOnly for API, runtimeOnly for full jar); Curios API `5.14.1+1.20.1` (compileOnly `:api` classifier + runtimeOnly, optional dependency declared in mods.toml)
+- **Dependencies**: EverlaTweaker 1.0.0 (Jar-in-Jar subproject, `mandatory=true` in mods.toml, bundled into the `-all` jar); JEI 15.2.0.27 (compileOnly for API, runtimeOnly for full jar); Curios API `5.14.1+1.20.1` (compileOnly `:api` classifier + runtimeOnly, optional dependency declared in mods.toml)
 - **Mixin**: 0.8.5 (annotation processor, refmap auto-generated)
 
 ## Build Commands
 
 ```bash
-./gradlew build          # Build the mod jar
-./gradlew runClient      # Launch Minecraft client with the mod
-./gradlew runServer      # Launch dedicated server with the mod
+./gradlew build                      # Build the mod jar (auto-builds + bundles the EverlaTweaker subproject)
+./gradlew :everlatweaker:build       # Build only the EverlaTweaker subproject
+./gradlew runClient                  # Launch Minecraft client with the mod
+./gradlew runServer                  # Launch dedicated server with the mod
 ```
 
 The mod version is read from `src/main/resources/META-INF/mods.toml` (the `version=` field) at build time — update it there, not in `build.gradle`.
 
-## Sibling Mod: EverlaDiscs
+`build/libs/` produces two jars: `EverlaArtifacts-<version>-forge-1.20.1-all.jar` (the **distribution jar**, with EverlaTweaker bundled under `META-INF/jarjar/` via `jarJar.enable()`) and the plain jar without it — distribute the `-all` jar. EverlaTweaker is wired in as a Gradle subproject (`settings.gradle`: `include 'everlatweaker'`, `projectDir = src/JarJar/EverlaTweaker`) and consumed via `jarJar(project(':everlatweaker')) { transitive = false; jarJar.ranged(it, '[1.0,)') }` + `runtimeOnly(project(':everlatweaker'))`. The embedded jar is a dev-mapped jar flagged `isObfuscated: true` in the jarjar metadata, so FML remaps it at load time.
+
+## Related Mods
+
+### EverlaTweaker (Jar-in-Jar subproject)
+
+The data-driven systems — **rainbow name** (`everlatweaker:rainbow_name`), **rainbow lore** (`everlatweaker:rainbow_lore`), **fire resistance** (`everlatweaker:fire_resistant`), **explosion resistance** (`everlatweaker:explosion_resistant`), and **everlasting/unbreakable** (`everlatweaker:everlasting`) — live in the Jar-in-Jar subproject **EverlaTweaker** (modId `everlatweaker`, package `net.everla.everlatweaker`, source at `src/JarJar/EverlaTweaker`).
+
+- It is a **Gradle subproject** of this build (not a separate project) and is automatically bundled into the `-all` distribution jar — no separate install needed.
+- Handlers: `EverlastingItemHandler` (tag constant + tooltip `tooltip.everlatweaker.everlasting`), `ProtectiveTagsHandler` (fire/explosion tag checks), `EverlaRainbowHandler`/`RainbowNameHandler`/`RainbowLoreHandler` (client rainbow rendering), plus mixins `ItemStackEverlastingMixin` + `ItemEntityEverlastingMixin` (`mixins.everlatweaker.json`).
+- Tags live at `src/JarJar/EverlaTweaker/src/main/resources/data/everlatweaker/tags/items/` and still reference this mod's items (`everlaartifacts:`). Tag IDs changed from `everlaartifacts:` to `everlatweaker:`.
+- This mod has **no compile-time reference** to EverlaTweaker — the mixins/handlers were moved wholesale. `WitherEssenceDropHandler` here keeps only the wither-essence drop logic.
+
+### EverlaDiscs (standalone)
 
 The music discs (item classes, jukebox song data, sounds, disc recipes, the `everla_discs` creative tab, and the "penis music" jukebox-explosion handler) live in a separate Forge mod: **EverlaDiscs**, modId `everladiscs`, package `net.everla.everladiscs`, source at `F:\备份区\minecraft\工作区\EverlaDiscs`. It uses the same Minecraft/Forge version and the same `2.1.5` mod version.
 
@@ -50,7 +64,7 @@ When adding a new item/block/effect/etc., register it in the corresponding `init
 
 Most handlers use `@Mod.EventBusSubscriber(modid = "everlaartifacts")` on the class with `@SubscribeEvent` static methods. Some are registered manually in the main mod constructor via `MinecraftForge.EVENT_BUS.register(...)`. Handlers are organized by domain:
 
-- `common/handlers/` — enchantment behavior, data-driven item systems (everlasting, rainbow name/lore)
+- `common/handlers/` — enchantment behavior (the data-driven everlasting/rainbow systems moved to the EverlaTweaker subproject)
 - `client/handlers/` — visual effects, tooltips, particles, overlays, language detection (organized by item/effect name)
 - `server/handlers/` — item ability logic, block behavior, difficulty mechanics, command handling, enchantment flight (organized by item/effect name)
 
@@ -72,8 +86,6 @@ All Mixin classes are in `net.everla.everlaartifacts.mixin` and registered in `s
 
 | Class | Target | Purpose |
 |---|---|---|
-| `ItemStackEverlastingMixin` | `ItemStack` | Cancel durability consumption for everlasting-tagged items |
-| `ItemEntityEverlastingMixin` | `ItemEntity` | Make everlasting items immune to fire/explosions |
 | `ImpalingEnchantmentMixin` | `TridentImpalerEnchantment` | New damage formula (L1=+2, Ln=+2.5), all mob types |
 | `PlayerAttackImpalingMixin` | `Player` | Water/rain/lava condition check + suppress enchanted_hit particles |
 | `ThrownTridentImpalingMixin` | `ThrownTrident` | Water/rain/lava condition for thrown tridents |
@@ -165,13 +177,13 @@ Custom `DifficultyLevel` enum extends vanilla with `LUNATIC` and `EXTRA` levels.
 - **Projectiles**: Angolmois Doom (custom model/renderer), Firecracker
 - **Fluid**: Nuclear Waste Water (Create mod compat)
 - **Performance tracking**: Client reports hardware specs; server calculates performance score
-- **Everlasting tag**: Items tagged `everlaartifacts:everlasting` are unbreakable via Mixin
+- **Everlasting tag**: Items tagged `everlatweaker:everlasting` are unbreakable (the mixin now lives in the EverlaTweaker subproject)
 - **Brackets Blade**: Sword damage scales with `「」` bracket pairs in custom name
 - **Procedure Sword**: Instant-kill weapon using Mixin `@Invoker` for loot drops instead of fragile Java reflection
 
 ### Data-Driven Systems
 
-- **Item tags** at `data/everlaartifacts/tags/items/`: `everlasting.json` (auto-unbreakable), `rainbow_lore.json`, `rainbow_name.json` — handlers in `common/handlers/data_driven/` and `client/handlers/data_driven/` react to these tags.
+- The **data-driven tweak tags** (everlasting / fire_resistant / explosion_resistant / rainbow_name / rainbow_lore) and their handlers + mixins were moved to the **EverlaTweaker** subproject (`src/JarJar/EverlaTweaker`), under the `everlatweaker:` namespace. This mod's own data folders that remain:
 - **Weapon attributes** at `data/everlaartifacts/weapon_attributes/`: JSON configs for special weapon mechanics.
 - **Damage types** at `data/everlaartifacts/damage_type/`: custom damage types.
 - **Recipes** at `data/everlaartifacts/recipes/`: standard and Create mod compat recipes.

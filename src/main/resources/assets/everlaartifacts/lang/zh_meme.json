@@ -235,7 +235,6 @@
   "jei.everlaartifacts.flashbomb.desc": "通过在酿造台中用荧石对夜视药水进行酿造获得。饮用后会产生短暂的强光闪烁效果。",
   "jei.everlaartifacts.nuclear_waste_water.desc": "通过在酿造台中用核↑废↓水桶对玻璃瓶进行酿造获得。饮用后会造成核辐射伤害。",
 
-  "fluid_type.everlaartifacts.nuclear_waste_water": "核↑废↓水",
+  "fluid_type.everlaartifacts.nuclear_waste_water": "核↑废↓水"
 
-  "tooltip.everlaartifacts.everlasting": "◆ 以为辣死听"
 }

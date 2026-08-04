@@ -26,7 +26,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.FriendlyByteBuf;
 
 import net.everla.everlaartifacts.server.handlers.items.red_packet.RedPacketHandler;
-import net.everla.everlaartifacts.common.handlers.data_driven.EverlastingItemHandler;
 import net.everla.everlaartifacts.server.network.ServerPerformanceScorePacket;
 import net.everla.everlaartifacts.init.EverlaartifactsModTabs;
 import net.everla.everlaartifacts.init.EverlaartifactsModSounds;
@@ -62,7 +61,6 @@ public class EverlaartifactsMod {
 
 	public EverlaartifactsMod() {
 		MinecraftForge.EVENT_BUS.register(RedPacketHandler.class);
-		MinecraftForge.EVENT_BUS.register(EverlastingItemHandler.class);
 		MinecraftForge.EVENT_BUS.register(this);
 		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 		bus.addListener(this::commonSetup);

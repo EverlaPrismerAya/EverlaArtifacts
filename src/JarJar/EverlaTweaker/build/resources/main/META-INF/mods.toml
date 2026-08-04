@@ -1,0 +1,20 @@
+modLoader="javafml"
+loaderVersion="[47,)"
+license="All Rights Reserved"
+
+[[mods]]
+modId="everlatweaker"
+version="1.0.0"
+displayName="EverlaTweaker"
+displayURL="https://space.bilibili.com/485238732?spm_id_from=333.1007.0.0"
+logoFile="logo.png"
+credits="fumofumo, fumofumofumo"
+authors="EverlaPrismerAya"
+description="Data-driven tweaks separated from EverlaArtifacts"
+
+[[dependencies.everlatweaker]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.20.1]"
+    ordering="AFTER"
+    side="BOTH"
