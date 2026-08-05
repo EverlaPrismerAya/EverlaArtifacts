@@ -8,8 +8,9 @@
 
 ```bash
 ./gradlew build          # 构建模组 jar（会自动构建并内嵌 EverlaTweaker）
+./gradlew :everlatweaker:build     #只构建EverlaTweaker
 ./gradlew runClient      # 启动 Minecraft 客户端
-./gradlew runServer      # 启动专用服务器
+./gradlew runServer      # 启动测试服务器
 ```
 
 构建产物位于 `build/libs/`，**分发请用 `-all` 后缀的 jar**（内含 Jar-in-Jar 内嵌的依赖）：
@@ -31,8 +32,8 @@
 
 ### 独立模组：EverlaDiscs
 
-音乐唱片（约 29 张）为**独立模组** `EverlaDiscs`（modId `everladiscs`），源码在 `../EverlaDiscs`，
-**不随本工程内嵌**，需单独构建并安装。两个模组无强制依赖，交叉引用均通过注册名软引用（未装对方时自动跳过）。
+音乐唱片（约 29 张）为**独立模组** `EverlaDiscs`（modId `everladiscs`），协议All Rights Reserved，
+**不内嵌**。两个模组无强制依赖。
 
 ### 依赖
 
