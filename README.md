@@ -1,49 +1,50 @@
 # EverlaArtifacts
 
-一个关于作者胡思乱想的 Forge 1.20.1 模组。
+A Forge 1.20.1 mod born from the author's wildest musings.
 
-## 构建方式
+## Building
 
-依赖 **Java 17**，项目根目录下执行：
+Requires **Java 17**. Run the following from the project root:
 
 ```bash
-./gradlew build          # 构建模组 jar（会自动构建并内嵌 EverlaTweaker）
-./gradlew runClient      # 启动 Minecraft 客户端
-./gradlew runServer      # 启动专用服务器
+./gradlew build                  # Build the mod jar (automatically builds and bundles EverlaTweaker)
+./gradlew :everlatweaker:build   # Build EverlaTweaker only
+./gradlew runClient              # Launch the Minecraft client
+./gradlew runServer              # Launch a test server
 ```
 
-构建产物位于 `build/libs/`，**分发请用 `-all` 后缀的 jar**（内含 Jar-in-Jar 内嵌的依赖）：
+Build artifacts are located in `build/libs/`. **For distribution, use the jar with the `-all` suffix** (which bundles its Jar-in-Jar dependencies):
 
-| 产物 | 说明 |
+| Artifact | Description |
 |---|---|
-| `EverlaArtifacts-<版本>-forge-1.20.1-all.jar` | **分发包**（内含内嵌模组） |
-| `EverlaArtifacts-<版本>-forge-1.20.1.jar` | 不含内嵌模组的精简包 |
+| `EverlaArtifacts-<version>-forge-1.20.1-all.jar` | **Distribution jar** (contains the embedded mod) |
+| `EverlaArtifacts-<version>-forge-1.20.1.jar` | Slim jar without the embedded mod |
 
-### Jar-in-Jar 子项目：EverlaTweaker
+### Jar-in-Jar Subproject: EverlaTweaker
 
-数据驱动系统（彩虹名称、彩虹物品描述、物品防火、物品防爆、物品不可破坏）位于 Jar-in-Jar 子项目
-`src/JarJar/EverlaTweaker`（modId `everlatweaker`）。它随根项目一起构建、被自动内嵌进 `-all` jar，
-**无需单独构建或安装**；只装 EverlaArtifacts 即可获得全部功能。
+The data-driven systems (rainbow names, rainbow item lore, fire resistance, explosion resistance, and unbreakable items) live in the Jar-in-Jar subproject
+`src/JarJar/EverlaTweaker` (modId `everlatweaker`). It is built together with the root project and automatically bundled into the `-all` jar,
+**no separate build or install required**; installing EverlaArtifacts alone is enough to get every feature.
 
-单独构建该子项目：`./gradlew :everlatweaker:build`（产物在 `src/JarJar/EverlaTweaker/build/libs/`）。
+To build the subproject on its own: `./gradlew :everlatweaker:build` (artifacts in `src/JarJar/EverlaTweaker/build/libs/`).
 
-> 注意：改 EverlaTweaker 源码后直接重新 `./gradlew build` 即可，构建会自动重新编译并内嵌最新代码。
+> Note: after changing EverlaTweaker's source, just run `./gradlew build` again — the build will automatically recompile and bundle the latest code.
 
-### 独立模组：EverlaDiscs
+### Standalone Mod: EverlaDiscs
 
-音乐唱片（约 29 张）为**独立模组** `EverlaDiscs`（modId `everladiscs`），源码在 `../EverlaDiscs`，
-**不随本工程内嵌**，需单独构建并安装。两个模组无强制依赖，交叉引用均通过注册名软引用（未装对方时自动跳过）。
+The music discs (about 29) are a **standalone mod** `EverlaDiscs` (modId `everladiscs`), licensed All Rights Reserved,
+and are **not embedded**. The two mods have no forced dependency on each other.
 
-### 依赖
+### Dependencies
 
-- **EverlaTweaker** — 必装（Jar-in-Jar 内嵌，自动提供）
-- **JEI** — 可选
-- **Curios API** — 可选
+- **EverlaTweaker** — required (bundled via Jar-in-Jar, provided automatically)
+- **JEI** — optional
+- **Curios API** — optional
 
-## 开源声明
+## Open-Source Notice
 
-本项目使用了以下开源软件/代码：
+This project uses the following open-source software/code:
 
-https://github.com/Nova-Committee/Re-Avaritia ，采用 MIT 许可证。
+https://github.com/Nova-Committee/Re-Avaritia , licensed under the MIT License.
 
-版权所有者：(c) 2024-2026 Nova-Committee
+Copyright (c) 2024-2026 Nova-Committee
