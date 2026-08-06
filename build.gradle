@@ -12,6 +12,12 @@ mixin {
 // Jar-in-Jar — 将 EverlaTweaker 内嵌进本模组
 jarJar.enable()
 
+// jarJar 打包的是子项目的 jar 任务输出（dev 映射）。必须等子项目的 reobfJar 先把 jar
+// 转成 SRG 映射，否则内嵌 jar 在整合包（SRG 运行时）会报 NoSuchFieldError。
+tasks.named('jarJar') {
+    dependsOn ':everlatweaker:reobfJar'
+}
+
 // 从 mods.toml 文件中读取版本信息
 def getModVersion() {
     def modsToml = file('src/main/resources/META-INF/mods.toml')
