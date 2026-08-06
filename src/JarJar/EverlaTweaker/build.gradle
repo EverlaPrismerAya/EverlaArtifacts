@@ -9,7 +9,21 @@ mixin {
     config 'mixins.everlatweaker.json'
 }
 
-version = '1.0.0'
+// 从 mods.toml 文件中读取版本信息
+def getModVersion() {
+    def modsToml = file('src/main/resources/META-INF/mods.toml')
+    if (modsToml.exists()) {
+        def content = modsToml.text
+        def versionMatch = content =~ /version="([^"]+)"/
+        if (versionMatch) {
+            return versionMatch[0][1]
+        }
+    }
+    return '1.0.0' // 默认版本
+}
+
+def modVersion = getModVersion()
+version = modVersion
 group = 'net.everla'
 archivesBaseName = 'EverlaTweaker'
 

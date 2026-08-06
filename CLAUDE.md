@@ -8,7 +8,7 @@ EverlaArtifacts is a Minecraft Forge 1.20.1 mod (modId: `everlaartifacts`) that 
 
 - **Group**: `net.everla` / **Package**: `net.everla.everlaartifacts`
 - **Java**: 17 (toolchain locked) / **Forge**: 1.20.1-47.4.21 / **Mappings**: official
-- **Dependencies**: EverlaTweaker 1.0.0 (Jar-in-Jar subproject, `mandatory=true` in mods.toml, bundled into the `-all` jar); JEI 15.2.0.27 (compileOnly for API, runtimeOnly for full jar); Curios API `5.14.1+1.20.1` (compileOnly `:api` classifier + runtimeOnly, optional dependency declared in mods.toml)
+- **Dependencies**: EverlaTweaker 1.0.1 (Jar-in-Jar subproject, `mandatory=true` in mods.toml, bundled into the `-all` jar); JEI 15.2.0.27 (compileOnly for API, runtimeOnly for full jar); Curios API `5.14.1+1.20.1` (compileOnly `:api` classifier + runtimeOnly, optional dependency declared in mods.toml)
 - **Mixin**: 0.8.5 (annotation processor, refmap auto-generated)
 
 ## Build Commands
@@ -20,7 +20,7 @@ EverlaArtifacts is a Minecraft Forge 1.20.1 mod (modId: `everlaartifacts`) that 
 ./gradlew runServer                  # Launch dedicated server with the mod
 ```
 
-The mod version is read from `src/main/resources/META-INF/mods.toml` (the `version=` field) at build time — update it there, not in `build.gradle`.
+The mod version is read from `src/main/resources/META-INF/mods.toml` (the `version=` field) at build time — update it there, not in `build.gradle`. The EverlaTweaker subproject does the same for its own version (from `src/JarJar/EverlaTweaker/src/main/resources/META-INF/mods.toml`), which drives the `EverlaTweaker-<version>.jar` artifact name and the name of the jar bundled under `META-INF/jarjar/`.
 
 `build/libs/` produces two jars: `EverlaArtifacts-<version>-forge-1.20.1-all.jar` (the **distribution jar**, with EverlaTweaker bundled under `META-INF/jarjar/` via `jarJar.enable()`) and the plain jar without it — distribute the `-all` jar. EverlaTweaker is wired in as a Gradle subproject (`settings.gradle`: `include 'everlatweaker'`, `projectDir = src/JarJar/EverlaTweaker`) and consumed via `jarJar(project(':everlatweaker')) { transitive = false; jarJar.ranged(it, '[1.0,)') }` + `runtimeOnly(project(':everlatweaker'))`. The embedded jar is a dev-mapped jar flagged `isObfuscated: true` in the jarjar metadata, so FML remaps it at load time.
 

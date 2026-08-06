@@ -9654,8 +9654,6 @@ com/mojang/realmsclient/util/task/WorldCreationTask com/mojang/realmsclient/util
 		3 p_90471_ p_90471_
 	run ()V run
 com/mojang/realmsclient/util/task/package-info com/mojang/realmsclient/util/task/package-info
-net/everla/everlatweaker/mixin/ItemEntityEverlastingMixin net/everla/everlatweaker/mixin/ItemEntityEverlastingMixin
-	getItem ()Lnet/minecraft/world/item/ItemStack; m_32055_
 net/minecraft/BlockUtil net/minecraft/BlockUtil
 	<init> ()V <init>
 	getLargestRectangleAround (Lnet/minecraft/core/BlockPos;Lnet/minecraft/core/Direction$Axis;ILnet/minecraft/core/Direction$Axis;ILjava/util/function/Predicate;)Lnet/minecraft/BlockUtil$FoundRectangle; m_124334_
