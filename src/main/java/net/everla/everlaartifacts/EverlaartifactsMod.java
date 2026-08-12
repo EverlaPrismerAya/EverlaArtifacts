@@ -36,6 +36,7 @@ import net.everla.everlaartifacts.init.EverlaartifactsModMobEffects;
 import net.everla.everlaartifacts.init.EverlaartifactsModItems;
 import net.everla.everlaartifacts.init.EverlaartifactsModFluids;
 import net.everla.everlaartifacts.init.EverlaartifactsModFluidTypes;
+import net.everla.everlaartifacts.init.EverlaartifactsModTriggerTypes;
 import net.everla.everlaartifacts.init.EverlaartifactsModEntities;
 import net.everla.everlaartifacts.init.EverlaartifactsModEnchantments;
 import net.everla.everlaartifacts.init.EverlaartifactsModLootModifiers;
@@ -77,6 +78,7 @@ public class EverlaartifactsMod {
 		EverlaartifactsModParticleTypes.REGISTRY.register(bus);
 		EverlaartifactsModFluids.REGISTRY.register(bus);
 		EverlaartifactsModFluidTypes.REGISTRY.register(bus);
+		EverlaartifactsModTriggerTypes.register();
 		EverlaArtifactsConfig.register();
 		initializeSystemInfo();
 		registerNetworkPackets();

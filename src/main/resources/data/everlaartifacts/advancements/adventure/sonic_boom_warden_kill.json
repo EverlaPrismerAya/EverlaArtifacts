@@ -1,0 +1,28 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:sculk_shrieker"
+    },
+    "title": {
+      "translate": "advancements.everlaartifacts.sonic_boom_warden_kill.title"
+    },
+    "description": {
+      "translate": "advancements.everlaartifacts.sonic_boom_warden_kill.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "sonic_boom_warden_kill": {
+      "trigger": "everlaartifacts:sonic_boom_warden_kill"
+    }
+  },
+  "requirements": [
+    [
+      "sonic_boom_warden_kill"
+    ]
+  ],
+  "parent": "minecraft:adventure/avoid_vibration"
+}

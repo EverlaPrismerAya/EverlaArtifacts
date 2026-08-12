@@ -8,6 +8,7 @@ import java.util.Set;
 import java.util.UUID;
 
 import net.everla.everlaartifacts.EverlaartifactsMod;
+import net.everla.everlaartifacts.common.advancements.SonicBoomWardenKillTrigger;
 import net.everla.everlaartifacts.common.config.EverlaArtifactsConfig;
 import net.everla.everlaartifacts.init.EverlaartifactsModEnchantments;
 import net.minecraft.core.BlockPos;
@@ -16,6 +17,7 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
@@ -24,6 +26,7 @@ import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.boss.enderdragon.EndCrystal;
+import net.minecraft.world.entity.monster.warden.Warden;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.ThrownTrident;
@@ -36,6 +39,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -166,6 +170,30 @@ public class SonicBoomHandler {
 		Vec3 start = player.getEyePosition().add(dir.scale(0.3D));
 		fireSonicBoom(level, start, dir, damage, player);
 		markFired(level, player);
+	}
+
+	/**
+	 * 监守者死于玩家音爆时，解锁「呀卡吗洗！」目标级进度。
+	 * <p>
+	 * 音爆伤害使用 {@link DamageTypes#SONIC_BOOM}，来源实体为发射玩家；
+	 * 光束为 hitscan、击杀与发射发生在同一 tick，玩家此刻仍手持音爆弓。
+	 */
+	@SubscribeEvent
+	public static void onWardenKilledBySonicBoom(LivingDeathEvent event) {
+		if (!(event.getEntity() instanceof Warden)) {
+			return;
+		}
+		DamageSource source = event.getSource();
+		if (!source.is(DamageTypes.SONIC_BOOM)) {
+			return;
+		}
+		if (!(source.getEntity() instanceof ServerPlayer player)) {
+			return;
+		}
+		if (getSonicBoomBow(player).isEmpty()) {
+			return;
+		}
+		SonicBoomWardenKillTrigger.fire(player);
 	}
 
 	/** 瞬间命中：从 start 沿 dir 一次性扫描整条路径，如同守卫者音爆。 */

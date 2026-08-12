@@ -50,7 +50,7 @@ The music discs (item classes, jukebox song data, sounds, disc recipes, the `eve
 
 ### Registration Layer (`init/`)
 
-All game objects are registered via Forge's `DeferredRegister` pattern in the `init/` package. Each file (e.g., `EverlaartifactsModItems`, `EverlaartifactsModBlocks`) holds a `public static final DeferredRegister` and `RegistryObject<>` fields for every registered object. The main mod class registers all of them on the mod event bus in its constructor.
+All game objects are registered via Forge's `DeferredRegister` pattern in the `init/` package. Each file (e.g., `EverlaartifactsModItems`, `EverlaartifactsModBlocks`) holds a `public static final DeferredRegister` and `RegistryObject<>` fields for every registered object. The main mod class registers all of them on the mod event bus in its constructor. Advancement triggers are the exception — 1.20.1 has no trigger registry, so `EverlaartifactsModTriggerTypes.register()` calls `CriteriaTriggers.register(...)` directly (trigger classes live in `common/advancements/`, e.g. `SonicBoomWardenKillTrigger`).
 
 When adding a new item/block/effect/etc., register it in the corresponding `init/` class and, if it's an item, add it to the appropriate creative tab in `EverlaartifactsModTabs`.
 
