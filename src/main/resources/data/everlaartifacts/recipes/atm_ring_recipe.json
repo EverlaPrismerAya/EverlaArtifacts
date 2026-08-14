@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "ibg",
+    "bdb",
+    "nbl"
+  ],
+  "key": {
+    "i": {
+      "item": "minecraft:iron_ingot"
+    },
+    "g": {
+      "item": "minecraft:gold_ingot"
+    },
+    "d": {
+      "item": "minecraft:diamond"
+    },
+    "n": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "l": {
+      "item": "minecraft:lapis_lazuli"
+    },
+    "b": {
+      "item": "everlaartifacts:auric_ingot"
+    }
+  },
+  "result": {
+    "item": "everlaartifacts:atm_ring",
+    "count": 1
+  }
+}

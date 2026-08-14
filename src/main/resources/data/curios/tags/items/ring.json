@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "everlaartifacts:gigabyte_memory_ring"
+    "everlaartifacts:gigabyte_memory_ring",
+    "everlaartifacts:atm_ring"
   ]
 }

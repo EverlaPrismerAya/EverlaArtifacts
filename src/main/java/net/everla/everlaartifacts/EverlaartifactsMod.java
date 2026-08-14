@@ -2,7 +2,9 @@ package net.everla.everlaartifacts;
 
 import net.everla.everlaartifacts.server.handlers.difficulty.DifficultySyncHandler;
 import net.everla.everlaartifacts.server.network.BloodBlossomEntityPacket;
+import net.everla.everlaartifacts.server.network.ClientFpsReportPacket;
 import net.everla.everlaartifacts.server.network.ClientHardwareInfoPacket;
+import net.everla.everlaartifacts.server.network.ClientModCountPacket;
 import net.everla.everlaartifacts.server.network.ClientPerformanceReportPacket;
 import net.everla.everlaartifacts.server.network.DifficultyChangePacket;
 import net.everla.everlaartifacts.server.network.DifficultySyncPacket;
@@ -43,6 +45,7 @@ import net.everla.everlaartifacts.init.EverlaartifactsModEnchantments;
 import net.everla.everlaartifacts.init.EverlaartifactsModLootModifiers;
 import net.everla.everlaartifacts.init.EverlaartifactsModBlocks;
 import net.everla.everlaartifacts.common.handlers.enchantment.PerformanceBasedThingsHandler;
+import net.everla.everlaartifacts.server.PerformanceMetrics;
 import net.everla.everlaartifacts.common.game_rules.ForceUseTruePerformance;
 import net.everla.everlaartifacts.common.game_rules.EnableLunaticMode;
 import net.everla.everlaartifacts.common.config.EverlaArtifactsConfig;
@@ -154,6 +157,12 @@ public class EverlaartifactsMod {
 		// 添加语言同步网络包（客户端→服务端，用于中国人能飞附魔）
 		addNetworkMessage(LanguageSyncPacket.class, LanguageSyncPacket::encode, LanguageSyncPacket::new,
 				LanguageSyncPacket::handle);
+		// 添加FPS上报网络包（客户端→服务端，每40刻上报平均FPS）
+		addNetworkMessage(ClientFpsReportPacket.class, ClientFpsReportPacket::encode, ClientFpsReportPacket::new,
+				ClientFpsReportPacket::handle);
+		// 添加模组数上报网络包（客户端→服务端，进入游戏时上报安装模组数，供ATM之戒加成）
+		addNetworkMessage(ClientModCountPacket.class, ClientModCountPacket::encode, ClientModCountPacket::new,
+				ClientModCountPacket::handle);
 	}
 
 	/**
@@ -178,6 +187,17 @@ public class EverlaartifactsMod {
 			
 			// 使用专门的同步处理器来同步难度状态
 			DifficultySyncHandler.syncSinglePlayer(serverPlayer);
+		}
+	}
+
+	/**
+	* 玩家登出时清理服务端遥测数据
+	*/
+	@SubscribeEvent
+	public void onPlayerLogout(PlayerEvent.PlayerLoggedOutEvent event) {
+		if (event.getEntity() != null) {
+			PerformanceMetrics.removePlayerFps(event.getEntity().getUUID());
+			PerformanceMetrics.removePlayerModCount(event.getEntity().getUUID());
 		}
 	}
 

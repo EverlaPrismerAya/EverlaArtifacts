@@ -51,6 +51,8 @@ import net.everla.everlaartifacts.common.item.AuricIngotItem;
 import net.everla.everlaartifacts.common.item.weird_thing.WeirdFishStewItem;
 import net.everla.everlaartifacts.common.item.DragonSoulFragmentItem;
 import net.everla.everlaartifacts.common.item.GigabyteMemoryRingItem;
+import net.everla.everlaartifacts.common.item.GamingCattleItem;
+import net.everla.everlaartifacts.common.item.AtmRingItem;
 import net.everla.everlaartifacts.EverlaartifactsMod;
 
 public class EverlaartifactsModItems {
@@ -99,6 +101,8 @@ public class EverlaartifactsModItems {
 	public static final RegistryObject<Item> AURIC_SCRAP_BLOCK = REGISTRY.register("auric_scrap_block", () -> new AuricScrapBlockItem(EverlaartifactsModBlocks.AURIC_SCRAP_BLOCK.get()));
 	public static final RegistryObject<Item> WITHER_ESSENCE = REGISTRY.register("wither_essence", () -> new WitherEssenceItem());
 	public static final RegistryObject<Item> GIGABYTE_MEMORY_RING = REGISTRY.register("gigabyte_memory_ring", () -> new GigabyteMemoryRingItem());
+	public static final RegistryObject<Item> GAMING_CATTLE = REGISTRY.register("gaming_cattle", () -> new GamingCattleItem());
+	public static final RegistryObject<Item> ATM_RING = REGISTRY.register("atm_ring", () -> new AtmRingItem());
 	private static RegistryObject<Item> block(RegistryObject<Block> block) {
 		return REGISTRY.register(block.getId().getPath(), () -> new BlockItem(block.get(), new Item.Properties()));
 	}

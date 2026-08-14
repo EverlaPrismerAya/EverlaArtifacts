@@ -4,17 +4,28 @@ import net.everla.everlaartifacts.EverlaartifactsMod;
 import net.everla.everlaartifacts.common.handlers.enchantment.PerformanceBasedThingsHandler;
 import net.everla.everlaartifacts.server.PerformanceMetrics;
 import net.everla.everlaartifacts.common.config.EverlaArtifactsConfig;
+import net.everla.everlaartifacts.server.network.ClientFpsReportPacket;
 import net.everla.everlaartifacts.server.network.ClientHardwareInfoPacket;
+import net.everla.everlaartifacts.server.network.ClientModCountPacket;
 import net.everla.everlaartifacts.server.network.ClientPerformanceReportPacket;
+import net.minecraft.client.Minecraft;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.ClientPlayerNetworkEvent;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = "everlaartifacts", value = Dist.CLIENT)
 public class ClientPerformanceHandler {
-    
+
+    // FPS 遥测：每 40 刻（2秒）将当前帧率直接上报一次
+    private static final int FPS_REPORT_INTERVAL_TICKS = 40;
+    private static int fpsReportTickCounter = 0;
+    private static double currentFps = 0.0;
+    // 上一渲染帧的墙钟时间（纳秒），用于计算真实帧间隔
+    private static long lastRenderNanos = 0L;
+
     // 使用 ClientPlayerNetworkEvent.LoggedInEvent 替代 PlayerEvent.PlayerLoggedInEvent
     @SubscribeEvent
     public static void onClientPlayerLogin(ClientPlayerNetworkEvent.LoggingIn event) {
@@ -61,6 +72,13 @@ public class ClientPerformanceHandler {
                 } catch (Exception e) {
                     // 发送失败，忽略错误
                 }
+
+                // 发送本机已安装模组数到服务器（ATM之戒按模组数加成）
+                try {
+                    ClientModCountPacket.sendToServer();
+                } catch (Exception e) {
+                    // 发送失败，忽略错误
+                }
             } else {
                 // 没有连接，直接在本地设置性能评分（单人游戏情况）
                 double performanceScore = PerformanceMetrics.getClientPerformanceScore();
@@ -74,12 +92,66 @@ public class ClientPerformanceHandler {
         }
     }
     
+    // 每个渲染帧用墙钟时间测量真实帧间隔（包含帧率上限的睡眠），计算真实 FPS
+    @SubscribeEvent
+    public static void onRenderTick(TickEvent.RenderTickEvent event) {
+        if (event.phase != TickEvent.Phase.END) {
+            return;
+        }
+        Minecraft mc = Minecraft.getInstance();
+        // 仅在进入世界（有玩家且已连接服务器）时采样
+        if (mc.level == null || mc.player == null || mc.getConnection() == null) {
+            // 离开世界时重置，防止恢复世界后首个帧间隔被算成超大值
+            lastRenderNanos = 0L;
+            return;
+        }
+        long now = System.nanoTime();
+        if (lastRenderNanos != 0L) {
+            long deltaNanos = now - lastRenderNanos;
+            // 跳过超过 1 秒的间隔（暂停/最小化/长卡顿），不更新当前帧率
+            if (deltaNanos < 1_000_000_000L) {
+                currentFps = 1_000_000_000.0 / deltaNanos;
+            }
+        }
+        lastRenderNanos = now;
+    }
+
+    // 每 40 刻（2秒）对采样值求平均后通过网络包上报到服务端
+    @SubscribeEvent
+    public static void onClientTick(TickEvent.ClientTickEvent event) {
+        if (event.phase != TickEvent.Phase.END) {
+            return;
+        }
+        Minecraft mc = Minecraft.getInstance();
+        if (mc.level == null || mc.player == null || mc.getConnection() == null) {
+            return;
+        }
+
+        fpsReportTickCounter++;
+        if (fpsReportTickCounter < FPS_REPORT_INTERVAL_TICKS) {
+            return;
+        }
+        fpsReportTickCounter = 0;
+
+        // 直接将当前帧率上报（不取平均）
+        try {
+            ClientFpsReportPacket.sendToServer(currentFps);
+        } catch (Exception e) {
+            // 发送失败，忽略错误
+        }
+    }
+
     // 添加玩家登出事件处理，用于重置客户端性能评分
     @SubscribeEvent
     public static void onClientPlayerLogout(ClientPlayerNetworkEvent.LoggingOut event) {
         // 当客户端断开与服务器的连接时，重置从服务端接收的性能评分
         // 这样可以让客户端回到使用本地计算的性能评分
         PerformanceMetrics.resetClientPerformanceScore();
+
+        // 重置 FPS 遥测状态，避免断线重连后携带旧数据
+        fpsReportTickCounter = 0;
+        currentFps = 0.0;
+        lastRenderNanos = 0L;
     }
     
     // 添加玩家克隆事件处理，用于处理玩家从存档加载的情况

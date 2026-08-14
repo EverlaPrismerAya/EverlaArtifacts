@@ -10,7 +10,10 @@ import org.lwjgl.system.MemoryStack;
 
 import java.lang.management.ManagementFactory;
 import java.nio.IntBuffer;
+import java.util.Map;
 import java.util.Random;
+import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 性能指标计算和网络传输类
@@ -335,6 +338,78 @@ public class PerformanceMetrics {
             cachedVramMB = detectVramMB();
         }
         return cachedVramMB;
+    }
+
+    // 存储各玩家上报的平均 FPS（性能遥测，高频瞬态数据，用内存 Map 而非持久化 NBT）
+    private static final Map<UUID, Double> playerFpsCache = new ConcurrentHashMap<>();
+
+    /**
+     * 存储玩家上报的平均 FPS。
+     *
+     * @param playerUuid 玩家 UUID
+     * @param averageFps 平均 FPS
+     */
+    public static void setPlayerFps(UUID playerUuid, double averageFps) {
+        if (playerUuid != null) {
+            playerFpsCache.put(playerUuid, averageFps);
+        }
+    }
+
+    /**
+     * 获取玩家上报的平均 FPS。
+     *
+     * @param playerUuid 玩家 UUID
+     * @return 平均 FPS，未上报时返回0
+     */
+    public static double getPlayerFps(UUID playerUuid) {
+        return playerFpsCache.getOrDefault(playerUuid, 0.0);
+    }
+
+    /**
+     * 移除玩家的 FPS 记录（玩家登出时清理，防止内存泄漏）。
+     *
+     * @param playerUuid 玩家 UUID
+     */
+    public static void removePlayerFps(UUID playerUuid) {
+        if (playerUuid != null) {
+            playerFpsCache.remove(playerUuid);
+        }
+    }
+
+    // 存储各玩家上报的已安装模组数（供 ATM 之戒按模组数加成，登录时上报一次）
+    private static final Map<UUID, Integer> playerModCountCache = new ConcurrentHashMap<>();
+
+    /**
+     * 存储玩家上报的已安装模组数。
+     *
+     * @param playerUuid 玩家 UUID
+     * @param modCount   已安装模组数
+     */
+    public static void setPlayerModCount(UUID playerUuid, int modCount) {
+        if (playerUuid != null) {
+            playerModCountCache.put(playerUuid, modCount);
+        }
+    }
+
+    /**
+     * 获取玩家上报的已安装模组数。
+     *
+     * @param playerUuid 玩家 UUID
+     * @return 已安装模组数，未上报时返回0
+     */
+    public static int getPlayerModCount(UUID playerUuid) {
+        return playerModCountCache.getOrDefault(playerUuid, 0);
+    }
+
+    /**
+     * 移除玩家的模组数记录（玩家登出时清理，防止内存泄漏）。
+     *
+     * @param playerUuid 玩家 UUID
+     */
+    public static void removePlayerModCount(UUID playerUuid) {
+        if (playerUuid != null) {
+            playerModCountCache.remove(playerUuid);
+        }
     }
 
     /**
