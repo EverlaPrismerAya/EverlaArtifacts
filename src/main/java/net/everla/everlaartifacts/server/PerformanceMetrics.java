@@ -1,7 +1,15 @@
 package net.everla.everlaartifacts.server;
 
 import net.everla.everlaartifacts.common.config.EverlaArtifactsConfig;
+import org.lwjgl.opengl.ATIMeminfo;
+import org.lwjgl.opengl.GL;
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GLCapabilities;
+import org.lwjgl.opengl.NVXGPUMemoryInfo;
+import org.lwjgl.system.MemoryStack;
 
+import java.lang.management.ManagementFactory;
+import java.nio.IntBuffer;
 import java.util.Random;
 
 /**
@@ -32,6 +40,10 @@ public class PerformanceMetrics {
     // 存储从服务端接收的硬件信息
     private static Integer serverCPUCount = null;
     private static Integer serverAllocatedMemory = null;
+
+    // 存储从客户端接收的硬件信息（性能遥测）
+    private static Integer receivedPhysicalMemoryMB = null;
+    private static Integer receivedVramMB = null;
 
     /**
      * CPU评分函数: 根据CPU核心数计算相对于基准的评分
@@ -149,7 +161,182 @@ public class PerformanceMetrics {
         serverCPUCount = null;
         serverAllocatedMemory = null;
     }
-    
+
+    /**
+     * 设置从客户端接收的硬件信息（物理内存与显存容量，性能遥测用）
+     *
+     * @param physicalMemoryMB 客户端设备物理内存总容量（MB）
+     * @param vramMB           客户端显卡显存容量（MB）
+     */
+    public static void receiveClientHardwareInfo(int physicalMemoryMB, int vramMB) {
+        receivedPhysicalMemoryMB = physicalMemoryMB;
+        receivedVramMB = vramMB;
+    }
+
+    /**
+     * 获取从客户端接收的物理内存容量（MB）
+     *
+     * @return 物理内存容量（MB），未接收时返回null
+     */
+    public static Integer getReceivedPhysicalMemoryMB() {
+        return receivedPhysicalMemoryMB;
+    }
+
+    /**
+     * 获取从客户端接收的显存容量（MB）
+     *
+     * @return 显存容量（MB），未接收时返回null
+     */
+    public static Integer getReceivedVramMB() {
+        return receivedVramMB;
+    }
+
+    /**
+     * 检测设备物理内存总容量（MB）
+     * <p>
+     * 通过 {@code com.sun.management.OperatingSystemMXBean} 获取系统物理内存，
+     * 而非 JVM 堆内存上限。失败时按 0 处理。
+     *
+     * @return 物理内存容量（MB），获取失败时返回0
+     */
+    public static int detectPhysicalMemoryMB() {
+        try {
+            long totalBytes = ((com.sun.management.OperatingSystemMXBean)
+                    ManagementFactory.getOperatingSystemMXBean()).getTotalPhysicalMemorySize();
+            return (int) (totalBytes / (1024 * 1024));
+        } catch (Throwable e) {
+            // 无法获取物理内存时按 0 处理
+            return 0;
+        }
+    }
+
+    /**
+     * 检测显卡显存容量（MB）
+     * <p>
+     * 需要 GL 上下文（仅在客户端渲染线程调用），优先使用 NVIDIA 的
+     * {@code NVX_gpu_memory_info} 扩展查询总显存；AMD/ATI 的
+     * {@code ATI_meminfo} 只暴露空闲显存，取三类空闲值中的最高者作为估算。
+     *
+     * @return 显存容量（MB），无法检测时返回0
+     */
+    public static int detectVramMB() {
+        try {
+            GLCapabilities capabilities = GL.getCapabilities();
+            if (capabilities == null) {
+                return 0;
+            }
+            if (capabilities.GL_NVX_gpu_memory_info) {
+                // NVIDIA：总可用显存（KiB）
+                try (MemoryStack stack = MemoryStack.stackPush()) {
+                    IntBuffer buffer = stack.mallocInt(1);
+                    GL11.glGetIntegerv(NVXGPUMemoryInfo.GL_GPU_MEMORY_INFO_TOTAL_AVAILABLE_MEMORY_NVX, buffer);
+                    return buffer.get(0) / 1024; // KiB -> MiB
+                }
+            } else if (capabilities.GL_ATI_meminfo) {
+                // AMD/ATI：空闲显存（KiB），取三类中最高的作为估算
+                try (MemoryStack stack = MemoryStack.stackPush()) {
+                    IntBuffer buffer = stack.mallocInt(1);
+                    int maxFree = 0;
+                    GL11.glGetIntegerv(ATIMeminfo.GL_VBO_FREE_MEMORY_ATI, buffer);
+                    maxFree = Math.max(maxFree, buffer.get(0));
+                    GL11.glGetIntegerv(ATIMeminfo.GL_TEXTURE_FREE_MEMORY_ATI, buffer);
+                    maxFree = Math.max(maxFree, buffer.get(0));
+                    GL11.glGetIntegerv(ATIMeminfo.GL_RENDERBUFFER_FREE_MEMORY_ATI, buffer);
+                    maxFree = Math.max(maxFree, buffer.get(0));
+                    return maxFree / 1024; // KiB -> MiB
+                }
+            }
+        } catch (Throwable e) {
+            // GL 上下文不可用或扩展不支持时返回0
+        }
+        return 0;
+    }
+
+    // 玩家持久化数据中的硬件信息键（性能遥测，供千兆内存之戒等使用）
+    private static final String PLAYER_RAM_KEY = "PlayerPhysicalMemoryMB";
+    private static final String PLAYER_VRAM_KEY = "PlayerVramMB";
+
+    /**
+     * 将玩家上报的硬件信息存入其持久化数据（按玩家区分，供服务端使用）。
+     *
+     * @param player           玩家实体
+     * @param physicalMemoryMB 玩家设备物理内存容量（MB）
+     * @param vramMB           玩家显卡显存容量（MB）
+     */
+    public static void setPlayerHardwareInfo(net.minecraft.world.entity.player.Player player, int physicalMemoryMB, int vramMB) {
+        if (player == null) {
+            return;
+        }
+        net.minecraft.nbt.CompoundTag data = player.getPersistentData();
+        if (data != null) {
+            data.putInt(PLAYER_RAM_KEY, physicalMemoryMB);
+            data.putInt(PLAYER_VRAM_KEY, vramMB);
+        }
+    }
+
+    /**
+     * 获取玩家上报的物理内存容量（MB）
+     *
+     * @return 物理内存容量（MB），未上报时返回0
+     */
+    public static int getPlayerPhysicalMemoryMB(net.minecraft.world.entity.player.Player player) {
+        if (player == null || player.getPersistentData() == null) {
+            return 0;
+        }
+        return player.getPersistentData().getInt(PLAYER_RAM_KEY);
+    }
+
+    /**
+     * 获取玩家上报的显存容量（MB）
+     *
+     * @return 显存容量（MB），未上报时返回0
+     */
+    public static int getPlayerVramMB(net.minecraft.world.entity.player.Player player) {
+        if (player == null || player.getPersistentData() == null) {
+            return 0;
+        }
+        return player.getPersistentData().getInt(PLAYER_VRAM_KEY);
+    }
+
+    // 客户端本地缓存的本机硬件（用于 Tooltip 展示当前设备加成）
+    private static Integer cachedPhysicalMemoryMB = null;
+    private static Integer cachedVramMB = null;
+
+    /**
+     * 缓存客户端本机检测到的硬件信息（登录发送遥测包时调用）。
+     *
+     * @param physicalMemoryMB 物理内存容量（MB）
+     * @param vramMB           显存容量（MB）
+     */
+    public static void cacheClientHardware(int physicalMemoryMB, int vramMB) {
+        cachedPhysicalMemoryMB = physicalMemoryMB;
+        cachedVramMB = vramMB;
+    }
+
+    /**
+     * 获取客户端本机物理内存容量（MB），未缓存时按需检测。
+     *
+     * @return 物理内存容量（MB），获取失败时返回0
+     */
+    public static int getCachedPhysicalMemoryMB() {
+        if (cachedPhysicalMemoryMB == null) {
+            cachedPhysicalMemoryMB = detectPhysicalMemoryMB();
+        }
+        return cachedPhysicalMemoryMB;
+    }
+
+    /**
+     * 获取客户端本机显存容量（MB），未缓存时按需检测。
+     *
+     * @return 显存容量（MB），获取失败时返回0
+     */
+    public static int getCachedVramMB() {
+        if (cachedVramMB == null) {
+            cachedVramMB = detectVramMB();
+        }
+        return cachedVramMB;
+    }
+
     /**
      * 获取当前客户端的CPU核心数
      *

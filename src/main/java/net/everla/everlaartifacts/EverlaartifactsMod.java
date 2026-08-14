@@ -2,6 +2,7 @@ package net.everla.everlaartifacts;
 
 import net.everla.everlaartifacts.server.handlers.difficulty.DifficultySyncHandler;
 import net.everla.everlaartifacts.server.network.BloodBlossomEntityPacket;
+import net.everla.everlaartifacts.server.network.ClientHardwareInfoPacket;
 import net.everla.everlaartifacts.server.network.ClientPerformanceReportPacket;
 import net.everla.everlaartifacts.server.network.DifficultyChangePacket;
 import net.everla.everlaartifacts.server.network.DifficultySyncPacket;
@@ -136,6 +137,9 @@ public class EverlaartifactsMod {
 	private void registerNetworkPackets() {
 		addNetworkMessage(ClientPerformanceReportPacket.class, ClientPerformanceReportPacket::encode, ClientPerformanceReportPacket::new,
 				ClientPerformanceReportPacket::handle);
+		// 添加客户端硬件信息网络包（客户端→服务端，玩家进入游戏时上报物理内存与显存容量）
+		addNetworkMessage(ClientHardwareInfoPacket.class, ClientHardwareInfoPacket::encode, ClientHardwareInfoPacket::new,
+				ClientHardwareInfoPacket::handle);
 		addNetworkMessage(ServerPerformanceScorePacket.class, ServerPerformanceScorePacket::encode, ServerPerformanceScorePacket::new,
 				ServerPerformanceScorePacket::handle);
 		// 添加BloodBlossomEntityPacket

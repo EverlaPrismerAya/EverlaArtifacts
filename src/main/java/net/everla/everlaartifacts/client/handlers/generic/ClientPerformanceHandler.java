@@ -4,6 +4,7 @@ import net.everla.everlaartifacts.EverlaartifactsMod;
 import net.everla.everlaartifacts.common.handlers.enchantment.PerformanceBasedThingsHandler;
 import net.everla.everlaartifacts.server.PerformanceMetrics;
 import net.everla.everlaartifacts.common.config.EverlaArtifactsConfig;
+import net.everla.everlaartifacts.server.network.ClientHardwareInfoPacket;
 import net.everla.everlaartifacts.server.network.ClientPerformanceReportPacket;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.ClientPlayerNetworkEvent;
@@ -52,6 +53,13 @@ public class ClientPerformanceHandler {
                 } catch (Exception e) {
                     // 发送失败，忽略错误
                     // 什么时候出bug什么时候来草窝
+                }
+
+                // 发送设备硬件信息（物理内存容量与显存容量）到服务器，用于性能遥测
+                try {
+                    ClientHardwareInfoPacket.sendToServer();
+                } catch (Exception e) {
+                    // 发送失败，忽略错误
                 }
             } else {
                 // 没有连接，直接在本地设置性能评分（单人游戏情况）

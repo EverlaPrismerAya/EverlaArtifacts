@@ -34,6 +34,7 @@ public class EverlaartifactsModTabs {
 				tabData.accept(EverlaartifactsModItems.VENUS_SHELL.get());
 				tabData.accept(EverlaartifactsModItems.BRACKETS_BLADE.get());
 				tabData.accept(EverlaartifactsModItems.PROCEDURE_SWORD.get());
+				tabData.accept(EverlaartifactsModItems.GIGABYTE_MEMORY_RING.get());
 			}).build());
 	public static final RegistryObject<CreativeModeTab> WEIRD_THING = REGISTRY.register("weird_thing",
 			() -> CreativeModeTab.builder().title(Component.translatable("item_group.everlaartifacts.weird_thing")).icon(() -> new ItemStack(EverlaartifactsModItems.BRAISED_PORK_WITH_PLUM_CABBAGE.get())).displayItems((parameters, tabData) -> {

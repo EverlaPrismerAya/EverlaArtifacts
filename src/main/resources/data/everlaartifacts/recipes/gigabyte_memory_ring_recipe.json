@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "ab ",
+    "b b",
+    " b "
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:deepslate_emerald_ore"
+    },
+    "b": {
+      "item": "everlaartifacts:auric_ingot"
+    }
+  },
+  "result": {
+    "item": "everlaartifacts:gigabyte_memory_ring",
+    "count": 1
+  }
+}
