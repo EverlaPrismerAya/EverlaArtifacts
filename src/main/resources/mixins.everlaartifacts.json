@@ -12,7 +12,6 @@
         "LivingEntityAccessor",
         "LivingEntityLayeredBufferMixin",
         "AbilitiesAccessor",
-        "ItemTooltipOrderMixin",
         "EnchantmentHelperBindingMixin",
         "CrossbowItemAccessor",
         "CrossbowItemQuickChargeMixin",

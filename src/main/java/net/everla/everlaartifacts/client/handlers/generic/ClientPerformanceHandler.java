@@ -4,10 +4,10 @@ import net.everla.everlaartifacts.EverlaartifactsMod;
 import net.everla.everlaartifacts.common.handlers.enchantment.PerformanceBasedThingsHandler;
 import net.everla.everlaartifacts.server.PerformanceMetrics;
 import net.everla.everlaartifacts.common.config.EverlaArtifactsConfig;
-import net.everla.everlaartifacts.server.network.ClientFpsReportPacket;
 import net.everla.everlaartifacts.server.network.ClientHardwareInfoPacket;
 import net.everla.everlaartifacts.server.network.ClientModCountPacket;
 import net.everla.everlaartifacts.server.network.ClientPerformanceReportPacket;
+import net.everla.everlaartifacts.server.network.ClientPerformanceStatusPacket;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.ClientPlayerNetworkEvent;
@@ -79,6 +79,13 @@ public class ClientPerformanceHandler {
                 } catch (Exception e) {
                     // 发送失败，忽略错误
                 }
+
+                // 启动 CPU 温度检测线程（DeepSeek之戒使用）
+                try {
+                    CpuLoadDetector.start();
+                } catch (Exception e) {
+                    // 启动失败，忽略错误
+                }
             } else {
                 // 没有连接，直接在本地设置性能评分（单人游戏情况）
                 double performanceScore = PerformanceMetrics.getClientPerformanceScore();
@@ -133,9 +140,22 @@ public class ClientPerformanceHandler {
         }
         fpsReportTickCounter = 0;
 
-        // 直接将当前帧率上报（不取平均）
+        // 读取当前窗口分辨率并缓存（近视眼镜 tooltip 使用）
+        com.mojang.blaze3d.platform.Window window = mc.getWindow();
+        if (window != null) {
+            int w = window.getWidth();
+            int h = window.getHeight();
+            if (w > 0 && h > 0) {
+                PerformanceMetrics.setLatestClientWindowSize(w, h);
+            }
+        }
+
+        // 每 40 刻合并上报一次当前 FPS、CPU 利用率与窗口分辨率（减少传输开销）
         try {
-            ClientFpsReportPacket.sendToServer(currentFps);
+            ClientPerformanceStatusPacket.sendToServer(currentFps,
+                    PerformanceMetrics.getLatestClientCpuLoad(),
+                    PerformanceMetrics.getLatestClientWindowWidth(),
+                    PerformanceMetrics.getLatestClientWindowHeight());
         } catch (Exception e) {
             // 发送失败，忽略错误
         }
@@ -152,6 +172,9 @@ public class ClientPerformanceHandler {
         fpsReportTickCounter = 0;
         currentFps = 0.0;
         lastRenderNanos = 0L;
+
+        // 停止 CPU 温度检测线程
+        CpuLoadDetector.stop();
     }
     
     // 添加玩家克隆事件处理，用于处理玩家从存档加载的情况

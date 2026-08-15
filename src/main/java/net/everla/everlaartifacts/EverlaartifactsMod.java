@@ -2,10 +2,10 @@ package net.everla.everlaartifacts;
 
 import net.everla.everlaartifacts.server.handlers.difficulty.DifficultySyncHandler;
 import net.everla.everlaartifacts.server.network.BloodBlossomEntityPacket;
-import net.everla.everlaartifacts.server.network.ClientFpsReportPacket;
 import net.everla.everlaartifacts.server.network.ClientHardwareInfoPacket;
 import net.everla.everlaartifacts.server.network.ClientModCountPacket;
 import net.everla.everlaartifacts.server.network.ClientPerformanceReportPacket;
+import net.everla.everlaartifacts.server.network.ClientPerformanceStatusPacket;
 import net.everla.everlaartifacts.server.network.DifficultyChangePacket;
 import net.everla.everlaartifacts.server.network.DifficultySyncPacket;
 import net.everla.everlaartifacts.server.network.LanguageSyncPacket;
@@ -157,12 +157,12 @@ public class EverlaartifactsMod {
 		// 添加语言同步网络包（客户端→服务端，用于中国人能飞附魔）
 		addNetworkMessage(LanguageSyncPacket.class, LanguageSyncPacket::encode, LanguageSyncPacket::new,
 				LanguageSyncPacket::handle);
-		// 添加FPS上报网络包（客户端→服务端，每40刻上报平均FPS）
-		addNetworkMessage(ClientFpsReportPacket.class, ClientFpsReportPacket::encode, ClientFpsReportPacket::new,
-				ClientFpsReportPacket::handle);
 		// 添加模组数上报网络包（客户端→服务端，进入游戏时上报安装模组数，供ATM之戒加成）
 		addNetworkMessage(ClientModCountPacket.class, ClientModCountPacket::encode, ClientModCountPacket::new,
 				ClientModCountPacket::handle);
+		// 添加实时性能上报网络包（客户端→服务端，每40刻上报FPS与CPU利用率，合并减少传输开销）
+		addNetworkMessage(ClientPerformanceStatusPacket.class, ClientPerformanceStatusPacket::encode, ClientPerformanceStatusPacket::new,
+				ClientPerformanceStatusPacket::handle);
 	}
 
 	/**
@@ -198,6 +198,8 @@ public class EverlaartifactsMod {
 		if (event.getEntity() != null) {
 			PerformanceMetrics.removePlayerFps(event.getEntity().getUUID());
 			PerformanceMetrics.removePlayerModCount(event.getEntity().getUUID());
+			PerformanceMetrics.removePlayerCpuLoad(event.getEntity().getUUID());
+			PerformanceMetrics.removePlayerWindowSize(event.getEntity().getUUID());
 		}
 	}
 

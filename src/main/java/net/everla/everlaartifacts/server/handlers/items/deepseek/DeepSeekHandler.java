@@ -1,6 +1,6 @@
-package net.everla.everlaartifacts.server.handlers.items.gigabyte_memory_ring;
+package net.everla.everlaartifacts.server.handlers.items.deepseek;
 
-import net.everla.everlaartifacts.common.item.GigabyteMemoryRingItem;
+import net.everla.everlaartifacts.common.item.DeepSeekItem;
 import net.everla.everlaartifacts.init.EverlaartifactsModItems;
 import net.everla.everlaartifacts.server.PerformanceMetrics;
 import net.minecraft.server.level.ServerPlayer;
@@ -17,31 +17,22 @@ import top.theillusivec4.curios.api.CuriosApi;
 import java.util.UUID;
 
 /**
- * 千兆内存之戒的效果处理（服务端）：
+ * 深度求索之戒的效果处理（服务端）：
  * <ul>
- *   <li>每 8GB 物理内存 → +2.5% 攻击力</li>
- *   <li>每 1GB 显存 → +0.5% 攻击力 与 +2% 攻击速度</li>
+ *   <li>基于使用者当前 CPU 利用率提升攻击力：40% 为 0%，50% 最高 +25%，20% 最低 -25%</li>
  * </ul>
- * Curios API 加载时戒指佩戴于饰品栏；未加载时放置于副手生效。
- * <p>
+ * CPU 利用率由客户端周期性上报（见 {@code ClientPerformanceStatusPacket}）。
  * 攻击力通过对 {@link Attributes#ATTACK_DAMAGE} 添加 {@link AttributeModifier}
- * （MULTIPLY_BASE）实现，攻击速度通过对 {@link Attributes#ATTACK_SPEED} 添加修饰符实现。
- * 加成基于佩戴者上报的硬件数据（见 {@link PerformanceMetrics}），未获取到数据时按 0 处理（无加成）。
+ * （MULTIPLY_BASE）实现。Curios API 加载时戒指佩戴于饰品栏；未加载时放置于副手生效。
  */
 @Mod.EventBusSubscriber(modid = "everlaartifacts", bus = Mod.EventBusSubscriber.Bus.FORGE)
-public class GigabyteMemoryRingHandler {
+public class DeepSeekHandler {
 
     /** 攻击力修饰符固定 UUID，确保可被可靠移除 */
     private static final UUID ATTACK_DAMAGE_UUID =
-            UUID.fromString("4c7b9e1a-2f3d-4a5b-8c6d-9e0f1a2b3c4d");
+            UUID.fromString("6a1b3c4d-5e6f-4a7b-8c9d-0e1f2a3b4c5d");
 
-    private static final String ATTACK_DAMAGE_NAME = "gigabyte_memory_ring_damage";
-
-    /** 攻击速度修饰符固定 UUID，确保可被可靠移除 */
-    private static final UUID ATTACK_SPEED_UUID =
-            UUID.fromString("8d3f2a11-4b5c-4d6e-8f70-1a2b3c4d5e6f");
-
-    private static final String ATTACK_SPEED_NAME = "gigabyte_memory_ring_speed";
+    private static final String ATTACK_DAMAGE_NAME = "deepseek_attack_damage";
 
     private static boolean curiosLoaded = false;
     private static boolean curiosChecked = false;
@@ -73,7 +64,6 @@ public class GigabyteMemoryRingHandler {
             return;
         }
         updateAttackDamage(player);
-        updateAttackSpeed(player);
     }
 
     /**
@@ -83,14 +73,14 @@ public class GigabyteMemoryRingHandler {
         if (isCuriosLoaded()) {
             return hasRingInCurios(player);
         }
-        return player.getOffhandItem().getItem() == EverlaartifactsModItems.GIGABYTE_MEMORY_RING.get();
+        return player.getOffhandItem().getItem() == EverlaartifactsModItems.DEEPSEEK.get();
     }
 
     /** 仅当 Curios 加载时调用，避免引用不存在的类 */
     private static boolean hasRingInCurios(Player player) {
         return CuriosApi.getCuriosInventory(player)
                 .resolve()
-                .map(inventory -> inventory.isEquipped(EverlaartifactsModItems.GIGABYTE_MEMORY_RING.get()))
+                .map(inventory -> inventory.isEquipped(EverlaartifactsModItems.DEEPSEEK.get()))
                 .orElse(false);
     }
 
@@ -103,9 +93,8 @@ public class GigabyteMemoryRingHandler {
             attribute.removeModifier(ATTACK_DAMAGE_UUID);
             return;
         }
-        int ramMB = PerformanceMetrics.getPlayerPhysicalMemoryMB(player);
-        int vramMB = PerformanceMetrics.getPlayerVramMB(player);
-        double bonus = GigabyteMemoryRingItem.calculateDamageMultiplier(ramMB, vramMB) - 1.0;
+        int cpuLoad = PerformanceMetrics.getPlayerCpuLoad(player.getUUID());
+        double bonus = DeepSeekItem.calculateDamageMultiplier(cpuLoad) - 1.0;
         if (Math.abs(bonus) < 0.0001) {
             attribute.removeModifier(ATTACK_DAMAGE_UUID);
             return;
@@ -113,27 +102,6 @@ public class GigabyteMemoryRingHandler {
         attribute.removeModifier(ATTACK_DAMAGE_UUID);
         attribute.addTransientModifier(new AttributeModifier(
                 ATTACK_DAMAGE_UUID, ATTACK_DAMAGE_NAME, bonus,
-                AttributeModifier.Operation.MULTIPLY_BASE));
-    }
-
-    private static void updateAttackSpeed(ServerPlayer player) {
-        AttributeInstance attribute = player.getAttribute(Attributes.ATTACK_SPEED);
-        if (attribute == null) {
-            return;
-        }
-        if (!hasRingEquipped(player)) {
-            attribute.removeModifier(ATTACK_SPEED_UUID);
-            return;
-        }
-        int vramMB = PerformanceMetrics.getPlayerVramMB(player);
-        if (vramMB <= 0) {
-            attribute.removeModifier(ATTACK_SPEED_UUID);
-            return;
-        }
-        double bonus = GigabyteMemoryRingItem.calculateAttackSpeedBonus(vramMB);
-        attribute.removeModifier(ATTACK_SPEED_UUID);
-        attribute.addTransientModifier(new AttributeModifier(
-                ATTACK_SPEED_UUID, ATTACK_SPEED_NAME, bonus,
                 AttributeModifier.Operation.MULTIPLY_BASE));
     }
 }

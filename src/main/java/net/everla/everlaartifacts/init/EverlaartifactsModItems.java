@@ -53,6 +53,8 @@ import net.everla.everlaartifacts.common.item.DragonSoulFragmentItem;
 import net.everla.everlaartifacts.common.item.GigabyteMemoryRingItem;
 import net.everla.everlaartifacts.common.item.GamingCattleItem;
 import net.everla.everlaartifacts.common.item.AtmRingItem;
+import net.everla.everlaartifacts.common.item.DeepSeekItem;
+import net.everla.everlaartifacts.common.item.GlassesItem;
 import net.everla.everlaartifacts.EverlaartifactsMod;
 
 public class EverlaartifactsModItems {
@@ -103,6 +105,8 @@ public class EverlaartifactsModItems {
 	public static final RegistryObject<Item> GIGABYTE_MEMORY_RING = REGISTRY.register("gigabyte_memory_ring", () -> new GigabyteMemoryRingItem());
 	public static final RegistryObject<Item> GAMING_CATTLE = REGISTRY.register("gaming_cattle", () -> new GamingCattleItem());
 	public static final RegistryObject<Item> ATM_RING = REGISTRY.register("atm_ring", () -> new AtmRingItem());
+	public static final RegistryObject<Item> DEEPSEEK = REGISTRY.register("deepseek", () -> new DeepSeekItem());
+	public static final RegistryObject<Item> GLASSES = REGISTRY.register("glasses", () -> new GlassesItem());
 	private static RegistryObject<Item> block(RegistryObject<Block> block) {
 		return REGISTRY.register(block.getId().getPath(), () -> new BlockItem(block.get(), new Item.Properties()));
 	}

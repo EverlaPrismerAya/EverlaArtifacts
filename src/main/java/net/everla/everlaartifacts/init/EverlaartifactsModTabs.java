@@ -36,6 +36,8 @@ public class EverlaartifactsModTabs {
 				tabData.accept(EverlaartifactsModItems.PROCEDURE_SWORD.get());
 				tabData.accept(EverlaartifactsModItems.GIGABYTE_MEMORY_RING.get());
 				tabData.accept(EverlaartifactsModItems.ATM_RING.get());
+				tabData.accept(EverlaartifactsModItems.DEEPSEEK.get());
+				tabData.accept(EverlaartifactsModItems.GLASSES.get());
 				tabData.accept(EverlaartifactsModItems.GAMING_CATTLE.get());
 			}).build());
 	public static final RegistryObject<CreativeModeTab> WEIRD_THING = REGISTRY.register("weird_thing",

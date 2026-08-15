@@ -412,6 +412,145 @@ public class PerformanceMetrics {
         }
     }
 
+    // 客户端检测到的最新 CPU 利用率（百分比），供 DeepSeek 之戒 tooltip 与上报使用（默认基线 40%）
+    private static volatile int latestClientCpuLoad = 40;
+
+    /**
+     * 更新客户端检测到的最新 CPU 利用率（百分比）。
+     *
+     * @param percent 利用率百分比（0~100）
+     */
+    public static void setLatestClientCpuLoad(int percent) {
+        latestClientCpuLoad = percent;
+    }
+
+    /**
+     * 获取客户端检测到的最新 CPU 利用率（百分比）。
+     *
+     * @return 利用率百分比，未检测到时为基线 40%
+     */
+    public static int getLatestClientCpuLoad() {
+        return latestClientCpuLoad;
+    }
+
+    // 存储各玩家上报的 CPU 利用率（百分比），供 DeepSeek 之戒按利用率加成
+    private static final Map<UUID, Integer> playerCpuLoadCache = new ConcurrentHashMap<>();
+
+    /**
+     * 存储玩家上报的 CPU 利用率（百分比）。
+     *
+     * @param playerUuid 玩家 UUID
+     * @param percent    利用率百分比（0~100）
+     */
+    public static void setPlayerCpuLoad(UUID playerUuid, int percent) {
+        if (playerUuid != null) {
+            playerCpuLoadCache.put(playerUuid, percent);
+        }
+    }
+
+    /**
+     * 获取玩家上报的 CPU 利用率（百分比）。
+     *
+     * @param playerUuid 玩家 UUID
+     * @return 利用率百分比，未上报时返回基线 40%
+     */
+    public static int getPlayerCpuLoad(UUID playerUuid) {
+        return playerCpuLoadCache.getOrDefault(playerUuid, 40);
+    }
+
+    /**
+     * 移除玩家的 CPU 利用率记录（玩家登出时清理，防止内存泄漏）。
+     *
+     * @param playerUuid 玩家 UUID
+     */
+    public static void removePlayerCpuLoad(UUID playerUuid) {
+        if (playerUuid != null) {
+            playerCpuLoadCache.remove(playerUuid);
+        }
+    }
+
+    // 客户端当前窗口分辨率（宽×高），供近视眼镜 tooltip 与上报使用（默认 1920x1080 基准）
+    private static volatile int latestClientWindowWidth = 1920;
+    private static volatile int latestClientWindowHeight = 1080;
+
+    /**
+     * 更新客户端当前窗口分辨率（像素）。
+     *
+     * @param width  窗口宽度
+     * @param height 窗口高度
+     */
+    public static void setLatestClientWindowSize(int width, int height) {
+        latestClientWindowWidth = width;
+        latestClientWindowHeight = height;
+    }
+
+    /**
+     * 获取客户端当前窗口宽度（像素）。
+     *
+     * @return 窗口宽度，未检测时默认 1920
+     */
+    public static int getLatestClientWindowWidth() {
+        return latestClientWindowWidth;
+    }
+
+    /**
+     * 获取客户端当前窗口高度（像素）。
+     *
+     * @return 窗口高度，未检测时默认 1080
+     */
+    public static int getLatestClientWindowHeight() {
+        return latestClientWindowHeight;
+    }
+
+    // 存储各玩家上报的窗口分辨率（宽×高），供近视眼镜按分辨率加成
+    private static final Map<UUID, int[]> playerWindowSizeCache = new ConcurrentHashMap<>();
+
+    /**
+     * 存储玩家上报的窗口分辨率（像素）。
+     *
+     * @param playerUuid 玩家 UUID
+     * @param width      窗口宽度
+     * @param height     窗口高度
+     */
+    public static void setPlayerWindowSize(UUID playerUuid, int width, int height) {
+        if (playerUuid != null) {
+            playerWindowSizeCache.put(playerUuid, new int[]{width, height});
+        }
+    }
+
+    /**
+     * 获取玩家上报的窗口宽度（像素）。
+     *
+     * @param playerUuid 玩家 UUID
+     * @return 窗口宽度，未上报时默认 1920
+     */
+    public static int getPlayerWindowWidth(UUID playerUuid) {
+        int[] size = playerWindowSizeCache.get(playerUuid);
+        return size != null ? size[0] : 1920;
+    }
+
+    /**
+     * 获取玩家上报的窗口高度（像素）。
+     *
+     * @param playerUuid 玩家 UUID
+     * @return 窗口高度，未上报时默认 1080
+     */
+    public static int getPlayerWindowHeight(UUID playerUuid) {
+        int[] size = playerWindowSizeCache.get(playerUuid);
+        return size != null ? size[1] : 1080;
+    }
+
+    /**
+     * 移除玩家的窗口分辨率记录（玩家登出时清理，防止内存泄漏）。
+     *
+     * @param playerUuid 玩家 UUID
+     */
+    public static void removePlayerWindowSize(UUID playerUuid) {
+        if (playerUuid != null) {
+            playerWindowSizeCache.remove(playerUuid);
+        }
+    }
+
     /**
      * 获取当前客户端的CPU核心数
      *

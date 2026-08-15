@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "b b",
+    "b b",
+    "aba"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:amethyst_cluster"
+    },
+    "b": {
+      "item": "everlaartifacts:auric_ingot"
+    }
+  },
+  "result": {
+    "item": "everlaartifacts:glasses",
+    "count": 1
+  }
+}
