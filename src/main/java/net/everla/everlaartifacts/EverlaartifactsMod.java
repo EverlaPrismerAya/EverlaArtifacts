@@ -5,7 +5,9 @@ import net.everla.everlaartifacts.server.network.BloodBlossomEntityPacket;
 import net.everla.everlaartifacts.server.network.ClientHardwareInfoPacket;
 import net.everla.everlaartifacts.server.network.ClientModCountPacket;
 import net.everla.everlaartifacts.server.network.ClientPerformanceReportPacket;
-import net.everla.everlaartifacts.server.network.ClientPerformanceStatusPacket;
+import net.everla.everlaartifacts.server.network.ClientGamingCattleEffectPacket;
+import net.everla.everlaartifacts.server.network.ClientDeepSeekBonusPacket;
+import net.everla.everlaartifacts.server.network.ClientGlassesBonusPacket;
 import net.everla.everlaartifacts.server.network.DifficultyChangePacket;
 import net.everla.everlaartifacts.server.network.DifficultySyncPacket;
 import net.everla.everlaartifacts.server.network.LanguageSyncPacket;
@@ -160,9 +162,13 @@ public class EverlaartifactsMod {
 		// 添加模组数上报网络包（客户端→服务端，进入游戏时上报安装模组数，供ATM之戒加成）
 		addNetworkMessage(ClientModCountPacket.class, ClientModCountPacket::encode, ClientModCountPacket::new,
 				ClientModCountPacket::handle);
-		// 添加实时性能上报网络包（客户端→服务端，每40刻上报FPS与CPU利用率，合并减少传输开销）
-		addNetworkMessage(ClientPerformanceStatusPacket.class, ClientPerformanceStatusPacket::encode, ClientPerformanceStatusPacket::new,
-				ClientPerformanceStatusPacket::handle);
+		// 添加各饰品的属性结果上报网络包（客户端→服务端，仅在佩戴对应饰品且运算结果有变动时上报）
+		addNetworkMessage(ClientGlassesBonusPacket.class, ClientGlassesBonusPacket::encode, ClientGlassesBonusPacket::new,
+				ClientGlassesBonusPacket::handle);
+		addNetworkMessage(ClientDeepSeekBonusPacket.class, ClientDeepSeekBonusPacket::encode, ClientDeepSeekBonusPacket::new,
+				ClientDeepSeekBonusPacket::handle);
+		addNetworkMessage(ClientGamingCattleEffectPacket.class, ClientGamingCattleEffectPacket::encode, ClientGamingCattleEffectPacket::new,
+				ClientGamingCattleEffectPacket::handle);
 	}
 
 	/**
@@ -196,10 +202,10 @@ public class EverlaartifactsMod {
 	@SubscribeEvent
 	public void onPlayerLogout(PlayerEvent.PlayerLoggedOutEvent event) {
 		if (event.getEntity() != null) {
-			PerformanceMetrics.removePlayerFps(event.getEntity().getUUID());
+			PerformanceMetrics.removePlayerGlassesBonus(event.getEntity().getUUID());
+			PerformanceMetrics.removePlayerDeepSeekBonus(event.getEntity().getUUID());
+			PerformanceMetrics.removePlayerGamingCattleMask(event.getEntity().getUUID());
 			PerformanceMetrics.removePlayerModCount(event.getEntity().getUUID());
-			PerformanceMetrics.removePlayerCpuLoad(event.getEntity().getUUID());
-			PerformanceMetrics.removePlayerWindowSize(event.getEntity().getUUID());
 		}
 	}
 

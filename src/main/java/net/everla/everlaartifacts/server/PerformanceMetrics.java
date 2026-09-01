@@ -340,39 +340,137 @@ public class PerformanceMetrics {
         return cachedVramMB;
     }
 
-    // 存储各玩家上报的平均 FPS（性能遥测，高频瞬态数据，用内存 Map 而非持久化 NBT）
-    private static final Map<UUID, Double> playerFpsCache = new ConcurrentHashMap<>();
+    // 客户端本机 GPU 名称（用于 Tooltip 展示当前显卡，检测成功后缓存）
+    private static String clientGpuName = null;
 
     /**
-     * 存储玩家上报的平均 FPS。
+     * 获取客户端本机 GPU 名称（GL_RENDERER）。
+     * <p>
+     * 需要 GL 上下文（仅在客户端渲染线程调用）。首次调用成功时缓存，
+     * 失败（上下文未就绪）时不缓存，下次调用会重试。
+     *
+     * @return GPU 名称，无法检测时返回 "Unknown"
+     */
+    public static String getClientGpuName() {
+        if (clientGpuName == null) {
+            try {
+                String renderer = GL11.glGetString(GL11.GL_RENDERER);
+                if (renderer != null && !renderer.isEmpty()) {
+                    clientGpuName = renderer;
+                }
+            } catch (Throwable e) {
+                // GL 上下文未就绪，稍后重试
+            }
+        }
+        return clientGpuName != null ? clientGpuName : "Unknown";
+    }
+
+    // 存储各玩家上报的「应应用的属性结果」（按玩家区分，高频瞬态数据，用内存 Map 而非持久化 NBT）
+    // 近视眼镜：攻击力修正（generic.attack_damage 的 MULTIPLY_BASE 修饰符数值）
+    private static final Map<UUID, Double> playerGlassesBonusCache = new ConcurrentHashMap<>();
+
+    /**
+     * 存储玩家上报的近视眼镜攻击力修正。
      *
      * @param playerUuid 玩家 UUID
-     * @param averageFps 平均 FPS
+     * @param bonus      generic.attack_damage 的 MULTIPLY_BASE 修饰符数值
      */
-    public static void setPlayerFps(UUID playerUuid, double averageFps) {
+    public static void setPlayerGlassesBonus(UUID playerUuid, double bonus) {
         if (playerUuid != null) {
-            playerFpsCache.put(playerUuid, averageFps);
+            playerGlassesBonusCache.put(playerUuid, bonus);
         }
     }
 
     /**
-     * 获取玩家上报的平均 FPS。
+     * 获取玩家上报的近视眼镜攻击力修正。
      *
      * @param playerUuid 玩家 UUID
-     * @return 平均 FPS，未上报时返回0
+     * @return 攻击力修正，未上报时返回 0（无加成）
      */
-    public static double getPlayerFps(UUID playerUuid) {
-        return playerFpsCache.getOrDefault(playerUuid, 0.0);
+    public static double getPlayerGlassesBonus(UUID playerUuid) {
+        return playerGlassesBonusCache.getOrDefault(playerUuid, 0.0);
     }
 
     /**
-     * 移除玩家的 FPS 记录（玩家登出时清理，防止内存泄漏）。
+     * 移除玩家的近视眼镜攻击力修正（玩家登出时清理，防止内存泄漏）。
      *
      * @param playerUuid 玩家 UUID
      */
-    public static void removePlayerFps(UUID playerUuid) {
+    public static void removePlayerGlassesBonus(UUID playerUuid) {
         if (playerUuid != null) {
-            playerFpsCache.remove(playerUuid);
+            playerGlassesBonusCache.remove(playerUuid);
+        }
+    }
+
+    // 深度求索之戒：攻击力修正（generic.attack_damage 的 MULTIPLY_BASE 修饰符数值）
+    private static final Map<UUID, Double> playerDeepSeekBonusCache = new ConcurrentHashMap<>();
+
+    /**
+     * 存储玩家上报的 DeepSeek 之戒攻击力修正。
+     *
+     * @param playerUuid 玩家 UUID
+     * @param bonus      generic.attack_damage 的 MULTIPLY_BASE 修饰符数值
+     */
+    public static void setPlayerDeepSeekBonus(UUID playerUuid, double bonus) {
+        if (playerUuid != null) {
+            playerDeepSeekBonusCache.put(playerUuid, bonus);
+        }
+    }
+
+    /**
+     * 获取玩家上报的 DeepSeek 之戒攻击力修正。
+     *
+     * @param playerUuid 玩家 UUID
+     * @return 攻击力修正，未上报时返回 0（无加成）
+     */
+    public static double getPlayerDeepSeekBonus(UUID playerUuid) {
+        return playerDeepSeekBonusCache.getOrDefault(playerUuid, 0.0);
+    }
+
+    /**
+     * 移除玩家的 DeepSeek 之戒攻击力修正（玩家登出时清理，防止内存泄漏）。
+     *
+     * @param playerUuid 玩家 UUID
+     */
+    public static void removePlayerDeepSeekBonus(UUID playerUuid) {
+        if (playerUuid != null) {
+            playerDeepSeekBonusCache.remove(playerUuid);
+        }
+    }
+
+    // 电竞牛头：应施加的状态效果掩码
+    private static final Map<UUID, Integer> playerGamingCattleMaskCache = new ConcurrentHashMap<>();
+
+    /**
+     * 存储玩家上报的电竞牛头状态效果掩码。
+     *
+     * @param playerUuid 玩家 UUID
+     * @param mask       应施加的效果位掩码（见 {@code GamingCattleItem} 位定义）
+     */
+    public static void setPlayerGamingCattleMask(UUID playerUuid, int mask) {
+        if (playerUuid != null) {
+            playerGamingCattleMaskCache.put(playerUuid, mask);
+        }
+    }
+
+    /**
+     * 获取玩家上报的电竞牛头状态效果掩码。
+     *
+     * @param playerUuid 玩家 UUID
+     * @return 效果位掩码，未上报时返回 0（无效果）
+     */
+    public static int getPlayerGamingCattleMask(UUID playerUuid) {
+        return playerGamingCattleMaskCache.getOrDefault(playerUuid, 0);
+    }
+
+    /**
+     * 移除玩家的电竞牛头状态效果掩码（玩家登出时清理，防止内存泄漏）。
+     *
+     * @param playerUuid 玩家 UUID
+     */
+    public static void removePlayerGamingCattleMask(UUID playerUuid) {
+        if (playerUuid != null) {
+            playerGamingCattleMaskCache.remove(playerUuid);
         }
     }
 
@@ -433,42 +531,6 @@ public class PerformanceMetrics {
         return latestClientCpuLoad;
     }
 
-    // 存储各玩家上报的 CPU 利用率（百分比），供 DeepSeek 之戒按利用率加成
-    private static final Map<UUID, Integer> playerCpuLoadCache = new ConcurrentHashMap<>();
-
-    /**
-     * 存储玩家上报的 CPU 利用率（百分比）。
-     *
-     * @param playerUuid 玩家 UUID
-     * @param percent    利用率百分比（0~100）
-     */
-    public static void setPlayerCpuLoad(UUID playerUuid, int percent) {
-        if (playerUuid != null) {
-            playerCpuLoadCache.put(playerUuid, percent);
-        }
-    }
-
-    /**
-     * 获取玩家上报的 CPU 利用率（百分比）。
-     *
-     * @param playerUuid 玩家 UUID
-     * @return 利用率百分比，未上报时返回基线 40%
-     */
-    public static int getPlayerCpuLoad(UUID playerUuid) {
-        return playerCpuLoadCache.getOrDefault(playerUuid, 40);
-    }
-
-    /**
-     * 移除玩家的 CPU 利用率记录（玩家登出时清理，防止内存泄漏）。
-     *
-     * @param playerUuid 玩家 UUID
-     */
-    public static void removePlayerCpuLoad(UUID playerUuid) {
-        if (playerUuid != null) {
-            playerCpuLoadCache.remove(playerUuid);
-        }
-    }
-
     // 客户端当前窗口分辨率（宽×高），供近视眼镜 tooltip 与上报使用（默认 1920x1080 基准）
     private static volatile int latestClientWindowWidth = 1920;
     private static volatile int latestClientWindowHeight = 1080;
@@ -500,55 +562,6 @@ public class PerformanceMetrics {
      */
     public static int getLatestClientWindowHeight() {
         return latestClientWindowHeight;
-    }
-
-    // 存储各玩家上报的窗口分辨率（宽×高），供近视眼镜按分辨率加成
-    private static final Map<UUID, int[]> playerWindowSizeCache = new ConcurrentHashMap<>();
-
-    /**
-     * 存储玩家上报的窗口分辨率（像素）。
-     *
-     * @param playerUuid 玩家 UUID
-     * @param width      窗口宽度
-     * @param height     窗口高度
-     */
-    public static void setPlayerWindowSize(UUID playerUuid, int width, int height) {
-        if (playerUuid != null) {
-            playerWindowSizeCache.put(playerUuid, new int[]{width, height});
-        }
-    }
-
-    /**
-     * 获取玩家上报的窗口宽度（像素）。
-     *
-     * @param playerUuid 玩家 UUID
-     * @return 窗口宽度，未上报时默认 1920
-     */
-    public static int getPlayerWindowWidth(UUID playerUuid) {
-        int[] size = playerWindowSizeCache.get(playerUuid);
-        return size != null ? size[0] : 1920;
-    }
-
-    /**
-     * 获取玩家上报的窗口高度（像素）。
-     *
-     * @param playerUuid 玩家 UUID
-     * @return 窗口高度，未上报时默认 1080
-     */
-    public static int getPlayerWindowHeight(UUID playerUuid) {
-        int[] size = playerWindowSizeCache.get(playerUuid);
-        return size != null ? size[1] : 1080;
-    }
-
-    /**
-     * 移除玩家的窗口分辨率记录（玩家登出时清理，防止内存泄漏）。
-     *
-     * @param playerUuid 玩家 UUID
-     */
-    public static void removePlayerWindowSize(UUID playerUuid) {
-        if (playerUuid != null) {
-            playerWindowSizeCache.remove(playerUuid);
-        }
     }
 
     /**

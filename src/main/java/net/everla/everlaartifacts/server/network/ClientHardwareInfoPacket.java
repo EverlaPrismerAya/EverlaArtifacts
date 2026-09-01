@@ -62,6 +62,8 @@ public class ClientHardwareInfoPacket {
         int physicalMemoryMB = PerformanceMetrics.detectPhysicalMemoryMB();
         int vramMB = PerformanceMetrics.detectVramMB();
         PerformanceMetrics.cacheClientHardware(physicalMemoryMB, vramMB);
+        // 顺便预热缓存 GPU 名称（当前处于 GL 上下文可用的登录阶段），供平民项链等 Tooltip 使用
+        PerformanceMetrics.getClientGpuName();
         EverlaartifactsMod.LOGGER.info("检测到设备硬件信息 - 物理内存: {}MB, 显存: {}MB", physicalMemoryMB, vramMB);
         EverlaartifactsMod.PACKET_HANDLER.sendToServer(
                 new ClientHardwareInfoPacket(physicalMemoryMB, vramMB));

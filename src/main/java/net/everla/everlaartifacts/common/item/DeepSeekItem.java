@@ -18,7 +18,7 @@ import java.util.List;
  * <p>
  * Curios API 加载时作为戒指佩戴于饰品栏；未加载时放置于副手生效。
  * <p>
- * CPU 利用率由客户端通过 JDK 检测并周期性上报（见 {@code ClientPerformanceStatusPacket}）。
+ * 攻击力修正由客户端基于 CPU 利用率计算并通过 {@code ClientDeepSeekBonusPacket} 上报。
  * 利用率不可用时按基准线 40%（0% 加成）处理。
  */
 public class DeepSeekItem extends Item {

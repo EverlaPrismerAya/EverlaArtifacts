@@ -1,5 +1,6 @@
-package net.everla.everlaartifacts.server.handlers.items.deepseek;
+package net.everla.everlaartifacts.server.handlers.items.commoner_necklace;
 
+import net.everla.everlaartifacts.common.item.CommonerNecklaceItem;
 import net.everla.everlaartifacts.init.EverlaartifactsModItems;
 import net.everla.everlaartifacts.server.PerformanceMetrics;
 import net.minecraft.server.level.ServerPlayer;
@@ -8,6 +9,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
@@ -16,22 +18,25 @@ import top.theillusivec4.curios.api.CuriosApi;
 import java.util.UUID;
 
 /**
- * 深度求索之戒的效果处理（服务端）：
+ * 平民项链的效果处理（服务端）：
  * <ul>
- *   <li>基于使用者 CPU 利用率计算出的攻击力修正施加加成（见 {@link net.everla.everlaartifacts.common.item.DeepSeekItem#calculateDamageMultiplier}）</li>
+ *   <li>佩戴者攻击力随显卡显存变化（≤4G 最高 +10%，≥16G 最低 -10%，锚点间线性插值）</li>
+ *   <li>显存低于 8G 时受到的伤害降低 10%；高于 10G 时受到的伤害增加 10%</li>
  * </ul>
- * 攻击力修正由客户端计算并通过 {@link ClientDeepSeekBonusPacket} 上报，本类直接应用。
+ * Curios API 加载时项链佩戴于饰品栏；未加载时放置于副手生效。
+ * <p>
  * 攻击力通过对 {@link Attributes#ATTACK_DAMAGE} 添加 {@link AttributeModifier}
- * （MULTIPLY_BASE）实现。Curios API 加载时戒指佩戴于饰品栏；未加载时放置于副手生效。
+ * （MULTIPLY_BASE）实现，防御效果通过 {@link LivingDamageEvent} 直接乘算。
+ * 加成基于佩戴者上报的显存数据（见 {@link PerformanceMetrics}），未获取到数据时按 0 处理（无加成）。
  */
 @Mod.EventBusSubscriber(modid = "everlaartifacts", bus = Mod.EventBusSubscriber.Bus.FORGE)
-public class DeepSeekHandler {
+public class CommonerNecklaceHandler {
 
     /** 攻击力修饰符固定 UUID，确保可被可靠移除 */
     private static final UUID ATTACK_DAMAGE_UUID =
-            UUID.fromString("6a1b3c4d-5e6f-4a7b-8c9d-0e1f2a3b4c5d");
+            UUID.fromString("a1b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d");
 
-    private static final String ATTACK_DAMAGE_NAME = "deepseek_attack_damage";
+    private static final String ATTACK_DAMAGE_NAME = "commoner_necklace_damage";
 
     private static boolean curiosLoaded = false;
     private static boolean curiosChecked = false;
@@ -66,20 +71,46 @@ public class DeepSeekHandler {
     }
 
     /**
-     * 判定戒指是否生效：Curios 加载时检查饰品栏，未加载时检查副手。
+     * 受到伤害时按佩戴者显存结算特殊效果（垃圾佬减伤 / 无法理解平民增伤）。
      */
-    private static boolean hasRingEquipped(Player player) {
-        if (isCuriosLoaded()) {
-            return hasRingInCurios(player);
+    @SubscribeEvent
+    public static void onLivingDamage(LivingDamageEvent event) {
+        if (event.getEntity().level().isClientSide()) {
+            return;
         }
-        return player.getOffhandItem().getItem() == EverlaartifactsModItems.DEEPSEEK.get();
+        if (!(event.getEntity() instanceof Player victim)) {
+            return;
+        }
+        if (!hasNecklaceEquipped(victim)) {
+            return;
+        }
+        int vramMB = PerformanceMetrics.getPlayerVramMB(victim);
+        if (vramMB <= 0) {
+            return;
+        }
+        double vramGB = vramMB / 1024.0;
+        double defense = CommonerNecklaceItem.calculateDefenseMultiplier(vramGB);
+        if (Math.abs(defense - 1.0) < 0.0001) {
+            return;
+        }
+        event.setAmount((float) (event.getAmount() * defense));
+    }
+
+    /**
+     * 判定项链是否生效：Curios 加载时检查饰品栏，未加载时检查副手。
+     */
+    private static boolean hasNecklaceEquipped(Player player) {
+        if (isCuriosLoaded()) {
+            return hasNecklaceInCurios(player);
+        }
+        return player.getOffhandItem().getItem() == EverlaartifactsModItems.COMMONER_NECKLACE.get();
     }
 
     /** 仅当 Curios 加载时调用，避免引用不存在的类 */
-    private static boolean hasRingInCurios(Player player) {
+    private static boolean hasNecklaceInCurios(Player player) {
         return CuriosApi.getCuriosInventory(player)
                 .resolve()
-                .map(inventory -> inventory.isEquipped(EverlaartifactsModItems.DEEPSEEK.get()))
+                .map(inventory -> inventory.isEquipped(EverlaartifactsModItems.COMMONER_NECKLACE.get()))
                 .orElse(false);
     }
 
@@ -88,11 +119,17 @@ public class DeepSeekHandler {
         if (attribute == null) {
             return;
         }
-        if (!hasRingEquipped(player)) {
+        if (!hasNecklaceEquipped(player)) {
             attribute.removeModifier(ATTACK_DAMAGE_UUID);
             return;
         }
-        double bonus = PerformanceMetrics.getPlayerDeepSeekBonus(player.getUUID());
+        int vramMB = PerformanceMetrics.getPlayerVramMB(player);
+        if (vramMB <= 0) {
+            attribute.removeModifier(ATTACK_DAMAGE_UUID);
+            return;
+        }
+        double vramGB = vramMB / 1024.0;
+        double bonus = CommonerNecklaceItem.calculateDamageMultiplier(vramGB) - 1.0;
         if (Math.abs(bonus) < 0.0001) {
             attribute.removeModifier(ATTACK_DAMAGE_UUID);
             return;

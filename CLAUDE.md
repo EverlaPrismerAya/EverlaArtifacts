@@ -160,6 +160,24 @@ Two-layer architecture:
 
 Client detects language on login → sends `LanguageSyncPacket` to server → server stores in `ConcurrentHashMap<UUID, String>` → every 20 ticks + on equipment change, checks zh-language + chest enchantment → enables `mayfly` at `flyingSpeed = 0.025` (half creative default).
 
+### Trinkets: Curios-compatible with off-hand fallback
+
+Trinket items (ATM Ring, Deep Seek, Gigabyte Memory Ring, Glasses, Gaming Cattle, Commoner Necklace) are Curios-capable but keep working without Curios via a fallback slot: **off-hand** for rings/necklaces, **head** for helmet-style items. To add a new trinket:
+
+1. **Item class** (`common/item/<Name>Item.java`) — extends `Item` (or `ArmorItem` for helmet-style). Pure calculation lives in `public static` methods (e.g. `calculateDamageMultiplier(...)`) shared by the server handler and the client tooltip. `appendHoverText` adds `description_N` lines; hardware-dependent lines render only when `level.isClientSide()`.
+2. **Server effect handler** (`server/handlers/items/<name>/<Name>Handler.java`, `@Mod.EventBusSubscriber(FORGE)`):
+   - `isCuriosLoaded()`: lazily cache `ModList.get().isLoaded("curios")` once.
+   - `hasXxxEquipped(Player)`: Curios loaded → `CuriosApi.getCuriosInventory(player)...isEquipped(item)`; otherwise → `player.getOffhandItem().getItem() == <item>` (head slot for helmet-style).
+   - Attribute effects: `addTransientModifier(new AttributeModifier(FIXED_UUID, name, amount, Operation.MULTIPLY_BASE))` on `Attributes.ATTACK_DAMAGE`, re-checked every 20 ticks in `TickEvent.PlayerTickEvent`; always `removeModifier(FIXED_UUID)` first so unequip/zero-bonus clears it.
+   - One-shot effects (e.g. damage-taken multipliers) apply directly in `LivingDamageEvent`/`LivingHurtEvent`.
+3. **Curios capability handler** (`common/handlers/items/<name>/<Name>CuriosHandler.java`) — attaches `CuriosCapability.ITEM` on `AttachCapabilitiesEvent<ItemStack>`, guarded by `isCuriosLoaded()`. Because the JVM resolves classes lazily, Curios types are only touched when Curios is actually installed; the mod compiles and runs without it.
+4. **Registration** — `RegistryObject` in `EverlaartifactsModItems`, `tabData.accept(...)` in `EverlaartifactsModTabs.EVERLA_TWEAKER`, item model JSON in `assets/everlaartifacts/models/item/<name>.json`.
+5. **Lang keys** in all four files (`en_us`, `zh_cn`, `lzh`, `zh_meme`).
+
+Hardware-based trinkets read the wearer's reported hardware: the client reports RAM/VRAM at login via `ClientHardwareInfoPacket`, stored per-player by `PerformanceMetrics.setPlayerHardwareInfo`; the server handler reads `PerformanceMetrics.getPlayerVramMB(player)`; tooltips read the local client cache (`getCachedVramMB()`, `getClientGpuName()`).
+
+For real-time per-frame trinkets (Glasses, Deep Seek, Gaming Cattle) the client computes the attribute result **locally** and sends **one packet per trinket carrying only the result to apply — never raw hardware** (FPS/CPU/window). `ClientPerformanceHandler` gates each send: only when that trinket is equipped (head/off-hand + Curios via `hasTrinketEquipped`) AND the computed result changed since last send (caches `lastSent*`; reset on logout). Packets: `ClientGlassesBonusPacket`/`ClientDeepSeekBonusPacket` (the `double` MULTIPLY_BASE bonus) and `ClientGamingCattleEffectPacket` (an `int` effect mask via `GamingCattleItem.targetEffectMask`/`effectsFromMask`, shared by both sides so thresholds stay in sync). The server handlers apply the stored result directly (`PerformanceMetrics.getPlayerGlassesBonus`/`getPlayerDeepSeekBonus`/`getPlayerGamingCattleMask`).
+
 ### Custom music discs
 
 Moved to the sibling **EverlaDiscs** mod. This mod keeps only cross-mod soft references to a few discs (`NilkItem`, `BadAppleSoundHandler`); the `everlatweaker:penis_music` tag that powers the Manbo-disc explosion is defined in EverlaDiscs.

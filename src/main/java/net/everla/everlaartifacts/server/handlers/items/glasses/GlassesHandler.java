@@ -1,6 +1,5 @@
 package net.everla.everlaartifacts.server.handlers.items.glasses;
 
-import net.everla.everlaartifacts.common.item.GlassesItem;
 import net.everla.everlaartifacts.init.EverlaartifactsModItems;
 import net.everla.everlaartifacts.server.PerformanceMetrics;
 import net.minecraft.server.level.ServerPlayer;
@@ -20,9 +19,9 @@ import java.util.UUID;
 /**
  * 近视眼镜的效果处理（服务端）：
  * <ul>
- *   <li>基于使用者当前分辨率决定攻击力：1920×1080 为 0%，800×600 最高 +35%，3840×2160 最低 -60%</li>
+ *   <li>基于使用者分辨率计算出的攻击力修正施加加成（见 {@link net.everla.everlaartifacts.common.item.GlassesItem#calculateDamageMultiplier}）</li>
  * </ul>
- * 分辨率由客户端通过实时性能包周期性上报（见 {@code ClientPerformanceStatusPacket}）。
+ * 攻击力修正由客户端计算并通过 {@link ClientGlassesBonusPacket} 上报，本类直接应用。
  * 攻击力通过对 {@link Attributes#ATTACK_DAMAGE} 添加 {@link AttributeModifier}
  * （MULTIPLY_BASE）实现。Curios API 加载时作为饰品佩戴；未加载时放在头盔槽位生效。
  */
@@ -97,9 +96,7 @@ public class GlassesHandler {
             attribute.removeModifier(ATTACK_DAMAGE_UUID);
             return;
         }
-        int width = PerformanceMetrics.getPlayerWindowWidth(player.getUUID());
-        int height = PerformanceMetrics.getPlayerWindowHeight(player.getUUID());
-        double bonus = GlassesItem.calculateDamageMultiplier(width, height) - 1.0;
+        double bonus = PerformanceMetrics.getPlayerGlassesBonus(player.getUUID());
         if (Math.abs(bonus) < 0.0001) {
             attribute.removeModifier(ATTACK_DAMAGE_UUID);
             return;

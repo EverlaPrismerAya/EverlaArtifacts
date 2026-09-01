@@ -62,8 +62,6 @@ public class GigabyteMemoryRingItem extends Item {
 	public void appendHoverText(ItemStack stack, Level level, List<Component> tooltip, TooltipFlag flag) {
 		super.appendHoverText(stack, level, tooltip, flag);
 		tooltip.add(Component.translatable("item.everlaartifacts.gigabyte_memory_ring.description_0"));
-		tooltip.add(Component.translatable("item.everlaartifacts.gigabyte_memory_ring.description_1"));
-		tooltip.add(Component.translatable("item.everlaartifacts.gigabyte_memory_ring.description_2"));
 
 		// 在客户端显示当前设备硬件下的实际加成
 		if (level != null && level.isClientSide()) {
